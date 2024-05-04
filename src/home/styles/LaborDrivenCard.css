@@ -1,0 +1,46 @@
+.mk-card-5--flex-container {
+  display: flex;
+}
+
+.mk-card-5--flex-child-one {
+  flex: 1;
+}
+
+.mk-card-5--flex-child-two {
+  margin-right: 3em;
+}
+
+.mk-card-5--flex-child-one:first-child {
+  margin-right: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+.mk-card-5--resource-container {
+  display: flex;
+}
+
+.mk-card-5--companies {
+  margin-right: 3em;
+}
+
+.mk-card-5--products {
+  flex: 1;
+}
+
+.mk-card-5--products:first-child {
+  margin-right: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+.mk-card-5--title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* .ld--landing-footer {
+
+} */
+
+.ld--landing-header--text {
+    margin-bottom: 1%;
+    font-size: 16px;
+}

@@ -1,0 +1,90 @@
+.ld-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px !important;
+}
+
+.ld-input {
+    color: #2f343a;
+    color: #393c3f;
+    width: 100%;
+    height: 51px;
+    border: 1px solid rgb(0 0 0 / 23%);
+    border-radius: 4px;
+    background-color: transparent;
+    padding-left: 13.5px;
+    padding-right: 4px;
+    padding-top: 4.5px;
+    font-size: 16.5px;
+}
+
+.ld-input.error {
+    border: 1px solid #f44336;
+}
+
+.ld-input-label {
+    font-size: 15px;
+    color: #565759;
+    margin-left: 1%;
+    margin-bottom: 0px;
+}
+.ld-input-label.disabled {
+    color: #8f9091;
+}
+
+/* Also for the input fields - overrides Material UI */
+.MuiOutlinedInput-root {
+    border-radius: 4.5px !important;
+}
+.MuiInputLabel-formControl {
+    top: -1px !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    color: #0b7dd5 !important;
+}
+.MuiOutlinedInput-root:hover {
+    cursor: pointer;
+}
+
+
+.MuiOutlinedInput-notchedOutline {
+    border-color: rgb(0 0 0 / 21%) !important;
+}
+
+.ld-input-helptext {
+    color: #7c8389;
+    font-size: 12px;    
+    margin-left: 14px;
+    margin-bottom: -5px;
+    margin-top: 2px;
+}
+
+.ld-input-errortext {
+    color: #f44336;
+    font-size: 12px;
+    margin-left: 14px;
+    margin-bottom: -6px;
+    margin-top: 2px;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .MuiOutlinedInput-root {
+        height: 50px;
+        font-size: 15.5px !important;
+    }
+    .ld-input:disabled {
+        border: 1px solid rgb(0 0 0 / 12%);
+        color: #8c8d8e;
+    }
+    .ld-input {
+        height: 48px;
+        font-size: 15.5px;
+        border-radius: 4.5px;
+        padding-top: 2.5px;
+        border-color: rgb(0 0 0 / 22%) !important;
+    }
+    .ld-input-container {
+        margin-bottom: 8px;
+    }
+}
