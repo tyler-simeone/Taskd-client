@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react"
 import './styles/Home.css';
-import { withRouter } from "react-router-dom";
 
-
-const Home = (props) => {
-
+export const Home = (props) => {
     return (
         <>
             <div className="homepage--container">
@@ -39,5 +36,4 @@ const Home = (props) => {
         </>
     );
 }
-export default withRouter(Home)
 
