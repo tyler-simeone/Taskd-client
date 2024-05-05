@@ -7,6 +7,7 @@ const ApplicationViews = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route exact path="/boards" element={<Home />} />
         </ Routes>
     )
 }
