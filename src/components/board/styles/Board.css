@@ -10,5 +10,6 @@
     display: flex;
     overflow-x: scroll;
     background-color: #f2f4f7;
-    padding: 5px 10px;
+    background-color: #eaecef;
+    padding: 4px 8px;
 }
