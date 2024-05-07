@@ -1,4 +1,40 @@
+/* App.css */
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Additional styles */
+h3 {
+  color: #45494f;
+  font-size: 15px ;
+  font-weight: 500 ;
+  letter-spacing: 0.9px;
+  margin: 4px auto;
+}
+
+h4 {
+  color: #45494f;
+  font-size: 14px ;
+  font-weight: 500 ;
+  letter-spacing: 0.8px;
+  margin: 4px auto;
+}
+
 a  {
   color: inherit;
   text-decoration: none;
+}
+
+p {
+  margin: 2px auto;
 }

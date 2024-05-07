@@ -1,0 +1,20 @@
+.task--container {
+    min-height: 50px;
+    width: 94%;
+    border: 1px solid #d6d9dc;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    padding: 10px;
+}
+.task--container:hover { 
+    cursor: pointer;
+}
+
+.task-title {
+    font-size: 15.5px;
+}
+
+.task-description {
+    font-size: 14.5px;
+    color: #393a3e;
+}
