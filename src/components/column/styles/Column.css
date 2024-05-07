@@ -1,20 +1,18 @@
 .column--container {
-    height: 100%;
-    width: 370px;
-    /* border: 1px solid rgb(0 0 0 / 20%); */
-    /* border: 1px solid #dcdfe2; */
+    height: 99.5%;
+    min-width: 370px;
     border-radius: 2px;
     margin-right: 4px;
     background-color: #fff;
 }
 
-.column--header {
+.column-header--container {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    /* border-bottom: 1px solid rgb(0 0 0 / 14%); */
-    border-bottom: 1px solid #dee1e6;
-    font-size: 15px;
-    letter-spacing: 0.1px;
-    color: #37393d;
+    border-bottom: 2px solid #f2f4f7;
+}
+
+.column--body {
+    padding: 10px;
 }

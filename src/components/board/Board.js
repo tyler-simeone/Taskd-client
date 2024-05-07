@@ -12,6 +12,7 @@ export const Board = () => {
                 <Column column={TestData.Columns[2]} />
                 <Column column={TestData.Columns[3]} />
                 <Column column={TestData.Columns[4]} />
+                <Column column={TestData.Columns[5]} />
             </div>
         </div>
     );
