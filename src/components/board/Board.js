@@ -4,15 +4,29 @@ import { TestData } from "../../TestData";
 import './styles/Board.css';
 
 export const Board = () => {
+    const [columns, setColumns] = useState(TestData.Columns);
+    
+      const handleDrop = (cardId, columnId) => {
+        const updatedColumns = columns.map(column => {
+          if (column.id === columnId) {
+            return {
+              ...column,
+              cards: [...column.cards, { id: cardId, text: `Task ${cardId}` }]
+            };
+          } else {
+            return column;
+          }
+        });
+    
+        setColumns(updatedColumns);
+      };
+
     return (
         <div className="board--container">
             <div className="board">
-                <Column column={TestData.Columns[0]} />
-                <Column column={TestData.Columns[1]} />
-                <Column column={TestData.Columns[2]} />
-                <Column column={TestData.Columns[3]} />
-                <Column column={TestData.Columns[4]} />
-                <Column column={TestData.Columns[5]} />
+                {columns.map(column => (
+                    <Column key={column.columnId} column={column} onDrop={handleDrop} />
+                ))}
             </div>
         </div>
     );
