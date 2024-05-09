@@ -5,11 +5,16 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
 const ApplicationViews = () => {
+    const [didMove, setDidMove] = useState(false);
+
+    useEffect(() => {
+
+    }, [didMove]);
 
     return (
         <Routes>
             <Route exact path="/" element={<Navigate to="/board" />} />
-            <Route path="/board" element={<DndProvider backend={HTML5Backend}><Board /></DndProvider>} />
+            <Route path="/board" element={<DndProvider backend={HTML5Backend}><Board didMove={didMove} setDidMove={setDidMove} /></DndProvider>} />
             {/* <Route path="/boards" element={<Board />} /> */}
         </ Routes>
     )

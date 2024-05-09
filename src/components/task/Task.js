@@ -2,10 +2,26 @@ import React, { useEffect } from "react";
 import { useDrag } from 'react-dnd';
 import "./Task.css"
 
-export const Task = ({ task, sourceColumnId, index }) => {
+export const Task = ({ task, sourceColumnId, index, didMove }) => {
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
         item: { task, sourceColumnId, index },
+        end: (item, monitor) => {
+            console.log("didMove from drag... ", didMove);
+            
+            // Called when the drag operation ends
+            // You can perform any cleanup or finalization here
+            // For example, you might trigger an action based on whether the item was dropped or canceled
+            const dropResult = monitor.getDropResult();
+        
+            if (dropResult) {
+              console.log('Item was dropped successfully');
+              // Perform actions based on the drop result
+            } else {
+              console.log('Item was dragged but not dropped');
+              // Perform actions for when the item was dragged but not dropped
+            }
+          },
         collect: monitor => ({
           isDragging: !!monitor.isDragging(),
         }),

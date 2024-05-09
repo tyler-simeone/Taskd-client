@@ -4,7 +4,7 @@ import { Column } from "../column/Column";
 import { TestData } from "../../TestData";
 import './styles/Board.css';
 
-export const Board = () => {
+export const Board = ({ didMove, setDidMove }) => {
     const [columns, setColumns] = useState(TestData.Columns);
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
@@ -38,6 +38,11 @@ export const Board = () => {
     const useCustomDrop = (destinationColumnId) => {
       return useDrop({
         accept: 'CARD',
+        hover: (item, monitor) => {
+          // Called when a draggable item is hovered over the drop target
+          // Perform any hover-related actions here
+          setDidMove(true);
+        },
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
           console.log("draggedItem: ", draggedItem);
@@ -70,6 +75,7 @@ export const Board = () => {
                       key={column.columnId} 
                       column={column} 
                       useCustomDrop={useCustomDrop} 
+                      didMove={didMove}
                     />
                 ))}
             </div>
