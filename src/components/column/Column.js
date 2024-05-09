@@ -3,7 +3,11 @@ import { Task } from "../task/Task";
 import './styles/Column.css';
 
 export const Column = ({ column, useCustomDrop }) => {
-    const [{ isHover }, drop] = useCustomDrop(column.columnId);
+    const [{ isHover, isOver }, drop] = useCustomDrop(column.columnId);
+
+    useEffect(() => {
+        console.log("isHover, isOver: ", isHover, isOver);
+    }, [isOver]);
 
     return (
         <div key={column.columnId} className="column--container">

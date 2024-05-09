@@ -15,14 +15,15 @@ export const Board = () => {
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
       console.log("position: ", position);
-      console.log("newTask: ", newTask);
+      // console.log("newTask: ", newTask);
       
-      if (sourceColumn.columnId === destinationColumn.columnId)
+      if (sourceColumn.columnId === destinationColumn.columnId) {
         destinationColumn.tasks.splice(position, 0, newTask);
+      }
       else 
         destinationColumn.tasks.push(newTask)
 
-      console.log("destinationColumn.tasks: ", destinationColumn.tasks);
+      // console.log("destinationColumn.tasks: ", destinationColumn.tasks);
 
       updatedColumns[updatedColumns.findIndex(col => col.columnId === destinationColumnId)] = destinationColumn;
       
@@ -37,9 +38,11 @@ export const Board = () => {
     const useCustomDrop = (destinationColumnId) => {
       return useDrop({
         accept: 'CARD',
+        canDrop: () => true,
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
-          const draggedPosition = monitor.getItem().index;
+          console.log("monitor.didDrop(): ", monitor.didDrop());
+          const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
           handleDrop(task, destinationColumnId, sourceColumnId, draggedPosition)
         },
         collect: monitor => ({
