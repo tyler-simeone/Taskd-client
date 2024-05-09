@@ -1,11 +1,7 @@
 .pb-select {
     border: 1px solid rgb(0 0 0 / 16%);
-    border-radius: 5px;
+    border-radius: 4px;
     height: 43.5px;
     padding: 8px;
     width: 280px;
-}
-
-.li-txt {
-    font-size: 14px;
 }

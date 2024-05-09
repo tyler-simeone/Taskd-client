@@ -8,10 +8,6 @@ import './App.css';
 
 function App() {
     
-    useEffect(() => {
-        console.log("hi from app")
-    }, []);
-    
     return (
         <div className="App">
             <Navigation />

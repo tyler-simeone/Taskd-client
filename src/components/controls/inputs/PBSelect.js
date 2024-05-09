@@ -37,7 +37,7 @@ export const PBSelect = ({
     return (
         <div className="pb-select--container">
             <label 
-                for={`pb-select-${index}`} 
+                htmlFor={`pb-select-${index}`} 
                 className={`pb-select-label ${disabled ? 'disabled' : ''}`}
             >
                 {label}
@@ -54,8 +54,8 @@ export const PBSelect = ({
 
                     {options.map(option => {
                         return (
-                            <option className="option" value={option.value}>
-                                <p className="li-txt">{option.label}</p>
+                            <option key={option.label} className="option" value={option.value}>
+                                {option.label}
                             </option>
                         )
                     })}

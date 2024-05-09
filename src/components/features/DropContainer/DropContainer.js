@@ -1,15 +1,16 @@
-import React from 'react';
-import { useDrop } from 'react-dnd';
+// import React from 'react';
+// import { useDrop } from 'react-dnd';
 
-const DropContainer = ({ onDrop, children }) => {
-  const [, drop] = useDrop({
-    accept: 'CARD',
-    drop: (item, monitor) => {
-      onDrop(item.id);
-    },
-  });
+// const DropContainer = ({ onDrop, children }) => {
+//   const [, drop] = useDrop({
+//     accept: 'CARD',
+//     drop: (item) => handleDrop(item.id, columnName),
+//     collect: monitor => ({
+//       isOver: !!monitor.isOver(),
+//     }),
+//   });
 
-  return <div ref={drop}>{children}</div>;
-};
+//   return <div ref={drop}>{children}</div>;
+// };
 
-export default DropContainer;
+// export default DropContainer;
