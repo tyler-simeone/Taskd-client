@@ -7,18 +7,26 @@ import './styles/Board.css';
 export const Board = () => {
     const [columns, setColumns] = useState(TestData.Columns);
     
-    const handleDrop = (newTask, columnName, sourceColumnId) => {
+    const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
       const updatedColumns = [ ...columns ];
 
-      // always take first result bc never duplicate column names
-      const targetColumn = updatedColumns.filter(col => col.columnName === columnName)[0];
-
-      targetColumn.tasks.push(newTask)
-      updatedColumns[updatedColumns.findIndex(col => col.columnId === targetColumn.columnId)] = targetColumn;
-      
       var sourceColumnIdx = updatedColumns.findIndex(col => col.columnId === sourceColumnId);
-      var sourceColumn = updatedColumns[sourceColumnIdx];
+      const sourceColumn = updatedColumns[sourceColumnIdx];
+      const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
+      console.log("position: ", position);
+      console.log("newTask: ", newTask);
+      
+      if (sourceColumn.columnId === destinationColumn.columnId)
+        destinationColumn.tasks.splice(position, 0, newTask);
+      else 
+        destinationColumn.tasks.push(newTask)
+
+      console.log("destinationColumn.tasks: ", destinationColumn.tasks);
+
+      updatedColumns[updatedColumns.findIndex(col => col.columnId === destinationColumnId)] = destinationColumn;
+      
+      // remove from old column
       var sourceTaskIdx = sourceColumn.tasks.findIndex(col => col.taskId === newTask.taskId);
       sourceColumn.tasks.splice(sourceTaskIdx, 1);
       updatedColumns[sourceColumnIdx] = sourceColumn;
@@ -26,10 +34,14 @@ export const Board = () => {
       setColumns(updatedColumns);
     };
 
-    const useCustomDrop = (columnName) => {
+    const useCustomDrop = (destinationColumnId) => {
       return useDrop({
         accept: 'CARD',
-        drop: (droppedItem) => handleDrop(droppedItem.task, columnName, droppedItem.sourceColumnId),
+        drop: (draggedItem, monitor) => {
+          const { task, sourceColumnId } = draggedItem;
+          const draggedPosition = monitor.getItem().index;
+          handleDrop(task, destinationColumnId, sourceColumnId, draggedPosition)
+        },
         collect: monitor => ({
           isOver: !!monitor.isOver(),
         }),
@@ -37,7 +49,6 @@ export const Board = () => {
     };
 
     useEffect(() => {
-      console.log("useEffect!");
     }, [columns]);
 
     return (

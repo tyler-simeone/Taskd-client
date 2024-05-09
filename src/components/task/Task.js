@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDrag } from 'react-dnd';
 import "./Task.css"
 
-export const Task = ({ id, task, sourceColumnId }) => {
+export const Task = ({ task, sourceColumnId, index }) => {
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
-        item: { task, sourceColumnId },
+        item: { task, sourceColumnId, index },
         collect: monitor => ({
           isDragging: !!monitor.isDragging(),
         }),
