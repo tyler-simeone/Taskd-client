@@ -38,20 +38,28 @@ export const Board = () => {
     const useCustomDrop = (destinationColumnId) => {
       return useDrop({
         accept: 'CARD',
-        canDrop: () => true,
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
+          console.log("draggedItem: ", draggedItem);
+
+          // const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
+          handleDrop(task, destinationColumnId, sourceColumnId);
+          
+          columns.forEach(c => console.log("from within drop hook... ", c.tasks.length));
           console.log("monitor.didDrop(): ", monitor.didDrop());
-          const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
-          handleDrop(task, destinationColumnId, sourceColumnId, draggedPosition)
+          console.log("monitor.getDropResult(): ", monitor.getDropResult());  
         },
         collect: monitor => ({
           isOver: !!monitor.isOver(),
+          canDrop: !!monitor.canDrop(),
+          didDrop: monitor.didDrop(),
+          dropResult: monitor.getDropResult(),
         }),
       });
     };
 
     useEffect(() => {
+      // columns.forEach(c => console.log("rerendering... ", c.tasks.length));
     }, [columns]);
 
     return (
