@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import DropContainer from "../features/DropContainer/DropContainer";
 import { Task } from "../task/Task";
 import './styles/Column.css';
 
