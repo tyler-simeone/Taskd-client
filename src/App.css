@@ -14,6 +14,12 @@ body,
 }
 
 /* Additional styles */
+h2 {
+  margin: 2px auto;
+  color: #3e4143;
+  letter-spacing: 0.2px;
+}
+
 h3 {
   color: #45494f;
   color: #383c41;
