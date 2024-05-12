@@ -11,6 +11,7 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
+    const [formError, setFormError] = useState();
 
     const openAddTaskModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
@@ -30,8 +31,14 @@ function App() {
                     setIsModalOpen={setIsModalOpen} 
                     header={modalHeader}
                     closeModal={closeModal}
+                    formError={formError} 
+                    setFormError={setFormError}
                 >
-                    <ModalView modalType={modalType} />
+                    <ModalView 
+                        modalType={modalType} 
+                        formError={formError} 
+                        setFormError={setFormError}
+                    />
                 </Modal>
             ) : null}
             <>
