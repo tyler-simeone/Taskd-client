@@ -1,7 +1,8 @@
 .column--container {
     height: 99.5%;
-    min-width: 370px;
+    min-width: 410px;
     border-radius: 6px;
+    border-radius: 2px;
     margin-right: 4px;
     background-color: #fff;
 }

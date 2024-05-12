@@ -1,0 +1,19 @@
+.primary-button {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 42.5px;
+    border-radius: 5.5px;
+    width: 100%;
+    border: none;
+    background-color: #1871cc;
+    color: #fff;
+    letter-spacing: 0.1px;
+    font-size: 15px;
+}
+.primary-button:hover {
+    cursor: pointer;
+}
+.primary-button.disabled {
+    background-color: #ced4db;
+    color: #7c838c;
+}

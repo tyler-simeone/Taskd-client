@@ -8,10 +8,11 @@
     background-color: #f8fafd66;
     background-color: #f3f4f77d;
     background-color: #f3f4f791;
+    background-color: #fbfcff91;
     z-index: 1;
     overflow-x: hidden;
     transition: right 0.3s ease;
-    backdrop-filter: blur(0.7px); /* Add blur effect */
+    backdrop-filter: blur(0.6px); /* Add blur effect */
   }
   .modal.open {
     right: 0%;
@@ -19,19 +20,18 @@
   }
 
   .modal-content {
-    background-color: #fafbfc;
-    /* background-color: #f6f8f9; */
-
+    background-color: #fbfdff;
+    background-color: #fbfcfd;
+    
     position: absolute;
     /* transform: translate(-50%, -50%); */
     overflow: auto;
     right: -33%;
     height: 93%;
     top: 1%;
-    width: 412px;
-    border: 1px solid #c8ced3;
-    border: 1px solid #ced4da;
+    width: 402px;
     border: 1px solid #d6dce3;
+    border: 1px solid #dce0e6;
     border-radius: 24px;
     padding: 19px 24px;
     box-shadow: 0px 1px 6px 1px rgb(0 0 0 / 7%);
