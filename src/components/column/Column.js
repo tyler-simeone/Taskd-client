@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react"
 import { Task } from "../task/Task";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop }) => {
-    const [{ isHover }, drop] = useCustomDrop(column.columnId);
+export const Column = ({ column, useCustomDrop, didMove }) => {
+    const [{ isHover, isOver, canDrop, didDrop, dropResult }, drop] = useCustomDrop(column.columnId);
+
+    useEffect(() => {
+        console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
+        console.log("didDrop, dropResult: ", didDrop, dropResult);
+    }, [isOver]);
 
     return (
         <div key={column.columnId} className="column--container">
@@ -19,6 +24,7 @@ export const Column = ({ column, useCustomDrop }) => {
                         id={task.taskId} 
                         task={task} 
                         sourceColumnId={column.columnId}
+                        didMove={didMove}
                     />
                 ))}
             </div>
