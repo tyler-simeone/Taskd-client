@@ -4,7 +4,7 @@ import { Column } from "../column/Column";
 import { TestData } from "../../TestData";
 import './styles/Board.css';
 
-export const Board = ({ didMove, setDidMove }) => {
+export const Board = ({ didMove, setDidMove, openAddTaskModal }) => {
     const [columns, setColumns] = useState(TestData.Columns);
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
@@ -76,6 +76,7 @@ export const Board = ({ didMove, setDidMove }) => {
                       column={column} 
                       useCustomDrop={useCustomDrop} 
                       didMove={didMove}
+                      openAddTaskModal={openAddTaskModal}
                     />
                 ))}
             </div>

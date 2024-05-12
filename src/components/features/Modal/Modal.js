@@ -1,17 +1,16 @@
 import React from "react";
 import "./Modal.css"
-import { AddTask } from "../../task/AddTask";
 
-export const Modal = ({ isOpen, setIsModalOpen }) => {
+export const Modal = ({ isOpen, header, children, closeModal }) => {
     return (
         <div id="modal" class={`modal ${isOpen ? 'open' : ''}`}>
             <div class={`modal-content ${isOpen ? 'active' : ''}`}>
                 <div className="modal-header--container">
-                    <span class="close" onClick={() => setIsModalOpen(false)}>&times;</span>
-                    <h2 className="modal-header">Add a Task</h2>
+                    <span class="close" onClick={closeModal}>&times;</span>
+                    <h2 className="modal-header">{header}</h2>
                 </div>
 
-                <AddTask />
+                {children}
             </div>
         </div>
     );

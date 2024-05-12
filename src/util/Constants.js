@@ -4,5 +4,9 @@ export const Constants = {
             label: "My first board",
             value: 1
         }
-    ]
+    ],
+    MODAL_TYPE: {
+        ADD_TASK: "addTask",
+        VIEW_TASK: "viewTask",
+    }
 };
