@@ -1,6 +1,6 @@
 import { responseHandler } from "../util/responseHandler";
 
-const tasksClient = {
+export const tasksClient = {
     httpHeaders: { "Content-Type": "application/json", "Accept": "application/json" },
     baseDevURL: "http://localhost:5273",
     get baseURL() { return `${this.baseDevURL}/api/tasks` }, 
@@ -43,5 +43,3 @@ const tasksClient = {
                 .then(resp => responseHandler(resp));
     }
   };
-
-  export default tasksClient;

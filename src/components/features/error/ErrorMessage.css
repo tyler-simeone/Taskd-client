@@ -1,11 +1,10 @@
 .err-msg--container {
     margin: 0 auto;
-    width: 80%;
+    width: 98%;
     height: 20.5px;
     border: 1px solid #e72a2a;
     border-radius: 2.5px;
     background-color: #e72a2a;
-    color: #fff;
     padding: 20px;
     display: flex;
 }
@@ -14,7 +13,8 @@
     text-align: center;
     margin: 0 auto;
     font-weight: 500;
-    font-size: 16.5px;
+    font-size: 16px;
+    color: #fff;
 }
 
 .close-err-msg {

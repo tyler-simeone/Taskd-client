@@ -14,6 +14,7 @@ const ApplicationViews = ({ openAddTaskModal, openViewTaskModal, setError, setSu
     return (
         <Routes>
             <Route exact path="/" element={<Navigate to="/board" />} />
+
             <Route 
                 path="/board" 
                 element={<DndProvider backend={HTML5Backend}>
@@ -22,6 +23,7 @@ const ApplicationViews = ({ openAddTaskModal, openViewTaskModal, setError, setSu
                                 setDidMove={setDidMove} 
                                 openAddTaskModal={openAddTaskModal} 
                                 openViewTaskModal={openViewTaskModal} 
+                                setError={setError}
                             />
                         </DndProvider>} 
             />
