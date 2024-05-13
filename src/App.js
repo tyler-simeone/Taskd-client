@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Constants } from './util/Constants';
-import { Modal } from './components/features/Modal/Modal';
+import { Modal } from './components/features/modal/Modal';
 import { Navigation } from "./components/navigation/Navigation";
+import { ErrorMessage } from './components/features/error/ErrorMessage';
+import { SuccessMessage } from './components/features/success/SuccessMessage';
 import ApplicationViews from './ApplicationViews'
-import { ModalView } from './components/features/Modal/ModalView';
+import { ModalView } from './components/features/modal/ModalView';
 import './App.css';
 
 function App() {
@@ -12,6 +14,9 @@ function App() {
     const [modalHeader, setModalHeader] = useState("Add a Task");
     const [formError, setFormError] = useState();
     const [task, setTask] = useState();
+
+    const [error, setError] = useState();
+    const [success, setSuccess] = useState();
 
     const openAddTaskModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
@@ -34,6 +39,8 @@ function App() {
     }
     
     const closeModal = () => setIsModalOpen(false);
+    const closeError = () => setError();
+    const closeSuccess = () => setSuccess();
 
     useEffect(() => {
     }, [modalType, task]);
@@ -58,15 +65,20 @@ function App() {
                     />
                 </Modal>
             ) : null}
-            <>
-                <Navigation />
-                <ApplicationViews 
-                    openAddTaskModal={openAddTaskModal} 
-                    openViewTaskModal={openViewTaskModal} 
-                    openEditTaskModal={openEditTaskModal}
-                    closeModal={closeModal} 
-                />
-            </>
+
+            <Navigation />
+
+            {error !== undefined ? <ErrorMessage message={error} closeErrorMessage={closeError} /> : null}
+            {success !== undefined ? <SuccessMessage message={success} closeSuccessMessage={closeSuccess} /> : null}
+            
+            <ApplicationViews 
+                openAddTaskModal={openAddTaskModal} 
+                openViewTaskModal={openViewTaskModal} 
+                openEditTaskModal={openEditTaskModal}
+                closeModal={closeModal} 
+                setError={setError}
+                setSuccess={setSuccess}
+            />
         </div>
     );
 }

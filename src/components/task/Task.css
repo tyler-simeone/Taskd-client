@@ -5,6 +5,7 @@
     border-radius: 8px !important;
     margin-bottom: 6px;
     padding: 11px !important;
+    padding-left: 12px !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
