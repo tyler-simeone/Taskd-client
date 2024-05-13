@@ -6,6 +6,9 @@
     border-radius: 2px;
     margin-right: 4.5px;
     background-color: #fff;
+
+    border: 1px solid #dadde2;
+    border-radius: 10px;
 }
 
 .column-header--container {

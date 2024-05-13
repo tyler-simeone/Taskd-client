@@ -8,7 +8,8 @@
     
 }
 .task-description-lbl {
-    color: #0d0e0f;
+    font-weight: 600;
+    margin-top: 0px !important;
 }
 
 

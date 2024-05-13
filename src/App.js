@@ -38,7 +38,10 @@ function App() {
         setIsModalOpen(true);
     }
     
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => {
+        setTaskId();
+        setIsModalOpen(false);
+    };
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 

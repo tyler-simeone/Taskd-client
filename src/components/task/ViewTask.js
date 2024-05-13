@@ -32,7 +32,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError }) => {
         task !== undefined ? (
             <div className="task-details">
                 <div className="task-description--container">
-                    <h3>Description:</h3>
+                    <h3 className="task-description-lbl">Description:</h3>
                     <p>{task.taskDescription}</p>
                 </div>
 
