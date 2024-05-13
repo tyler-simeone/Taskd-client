@@ -3,7 +3,7 @@ import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import { TestData } from "../../TestData";
 
-export const AddTask = ({ formError, setFormError }) => {
+export const AddTask = ({ setFormError }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
@@ -20,16 +20,28 @@ export const AddTask = ({ formError, setFormError }) => {
         stateToChange.taskId = mostRecentTask.taskId + 1;
 
         stateToChange[evt.target.name] = evt.target.value;
+
         setNewTask(stateToChange);
     }
 
-    const handleSubmit = () => {
-        if ((newTask.taskName === "" || newTask.taskName === null) && (newTask.taskDescription === "" || newTask.taskDescription === null))
+    const validateForm = () => {
+        if (newTask.taskName.trim() === "" && newTask.taskDescription.trim() === "") {
             setFormError("Task name and description are required.");
-        else if (newTask.taskName === "" || newTask.taskName === null)
+            return false;
+        }
+        else if (newTask.taskName.trim() === "") {
             setFormError("Task name is required.");
-        else if (newTask.taskDescription === "" || newTask.taskDescription === null)
+            return false;
+        }
+        else if (newTask.taskDescription.trim() === "") {
             setFormError("Task description is required.");
+            return false;
+        }
+    }
+
+    const handleSubmit = () => {
+        if (!validateForm())
+            return;
 
         setIsSubmitting(true);
         console.log("Sending data! ", newTask);

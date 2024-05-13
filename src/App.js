@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Constants } from './util/Constants';
 import { Modal } from './components/features/Modal/Modal';
-import { AddTask } from './components/task/AddTask';
 import { Navigation } from "./components/navigation/Navigation";
 import ApplicationViews from './ApplicationViews'
 import { ModalView } from './components/features/Modal/ModalView';
@@ -36,7 +35,6 @@ function App() {
                 >
                     <ModalView 
                         modalType={modalType} 
-                        formError={formError} 
                         setFormError={setFormError}
                     />
                 </Modal>
