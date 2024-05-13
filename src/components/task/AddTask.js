@@ -24,7 +24,7 @@ export const AddTask = ({ setFormError }) => {
         setNewTask(stateToChange);
     }
 
-    const validateForm = () => {
+    const formIsValid = () => {
         if (newTask.taskName.trim() === "" && newTask.taskDescription.trim() === "") {
             setFormError("Task name and description are required.");
             return false;
@@ -40,7 +40,7 @@ export const AddTask = ({ setFormError }) => {
     }
 
     const handleSubmit = () => {
-        if (!validateForm())
+        if (formIsValid() === false)
             return;
 
         setIsSubmitting(true);

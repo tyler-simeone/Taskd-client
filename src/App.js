@@ -28,7 +28,7 @@ function App() {
     
     const openEditTaskModal = (task) => {
         setModalType(Constants.MODAL_TYPE.EDIT_TASK);
-        setModalHeader(task.taskName);
+        setModalHeader("Update Task");
         setTask(task);
         setIsModalOpen(true);
     }
@@ -36,7 +36,7 @@ function App() {
     const closeModal = () => setIsModalOpen(false);
 
     useEffect(() => {
-    }, [modalType]);
+    }, [modalType, task]);
 
     return (    
         <div className="App">
@@ -54,6 +54,7 @@ function App() {
                         setFormError={setFormError}
                         task={task}
                         openEditTaskModal={openEditTaskModal}
+                        openViewTaskModal={openViewTaskModal}
                     />
                 </Modal>
             ) : null}

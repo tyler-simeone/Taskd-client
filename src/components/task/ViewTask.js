@@ -7,7 +7,7 @@ export const ViewTask = ({ task, openEditTaskModal }) => {
         task !== undefined ? (
             <div className="task-details">
                 <p>{task.taskDescription}</p>
-                <div className="edit-icon" onClick={openEditTaskModal}><EditIcon /></div>
+                <div className="edit-icon" onClick={() => openEditTaskModal(task)}><EditIcon /></div>
             </div>
         ) : null
     );

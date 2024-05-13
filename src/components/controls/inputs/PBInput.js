@@ -1,7 +1,7 @@
 import React from "react";
 import "./PBInput.css"
 
-export const PBInput = ({ label, name, handleChange }) => {
+export const PBInput = ({ label, name, value, handleChange }) => {
 
     return (
         <div className="pb-input--container">
@@ -13,6 +13,7 @@ export const PBInput = ({ label, name, handleChange }) => {
                 className="pb-input" 
                 type="text"
                 onChange={handleChange}
+                value={value}
             />
         </div>
     );
