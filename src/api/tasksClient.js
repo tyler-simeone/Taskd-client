@@ -27,6 +27,7 @@ export const tasksClient = {
                 .then(resp => responseHandler(resp));
     },
     updateTask: (payload) => {
+        console.log("Yo!")
         return fetch(`${tasksClient.baseURL}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),

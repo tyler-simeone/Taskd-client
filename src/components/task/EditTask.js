@@ -3,9 +3,8 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
-import { TestData } from "../../TestData";
 
-export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError }) => {
+export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, setSuccess }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,39 +28,41 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError }) 
         setFormError();
         const stateToChange = {...editTask};
         stateToChange[evt.target.name] = evt.target.value;
-        console.log("task being edited... ", editTask);
         setEditTask(stateToChange);
     }
 
     const formIsValid = () => {
         if (editTask.taskName.trim() === "" && editTask.taskDescription.trim() === "") {
-            console.log("hi")
             setFormError("Task name and description are required.");
             return false;
         }
         else if (editTask.taskName.trim() === "") {
-            console.log("hiii")
             setFormError("Task name is required.");
             return false;
         }
         else if (editTask.taskDescription.trim() === "") {
-            console.log("hiiiiii")
             setFormError("Task description is required.");
             return false;
         }
     }
 
     const handleSubmit = () => {
-        if (formIsValid() === false) {
+        if (formIsValid() === false)
             return;
-        }
 
         setIsSubmitting(true);
-        console.log("Sending data! ", editTask);
-        var taskToEditIdx = TestData.Columns[0].tasks.indexOf(task => task.taskId === editTask.taskId);
-        TestData.Columns[0].tasks[taskToEditIdx] = editTask;
+
+        const editTaskRequestModel = {
+            userId: 1,
+            taskId: editTask.taskId,
+            taskName: editTask.taskName,
+            taskDescription: editTask.taskDescription,
+        };
+        tasksClient.updateTask(editTaskRequestModel)
+            .catch(err => handleError(err));
+
         setIsSubmitting(false);
-        openViewTaskModal(editTask);
+        openViewTaskModal(editTask.taskId, editTask.taskName);
     }
 
     useEffect(() => {

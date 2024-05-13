@@ -4,7 +4,7 @@ import { ViewTask } from "../../task/ViewTask";
 import { AddTask } from "../../task/AddTask";
 import { EditTask } from "../../task/EditTask";
 
-export const ModalView = ({ modalType, setFormError, taskId, openEditTaskModal, openViewTaskModal, setError }) => {
+export const ModalView = ({ modalType, setFormError, taskId, openEditTaskModal, openViewTaskModal, setError, setSuccess }) => {
     const [modalView, setModalView] = useState();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export const ModalView = ({ modalType, setFormError, taskId, openEditTaskModal, 
                 setModalView(<AddTask setFormError={setFormError} />);
                 break;
             case Constants.MODAL_TYPE.EDIT_TASK:
-                setModalView(<EditTask setError={setError} setFormError={setFormError} taskId={taskId} openViewTaskModal={openViewTaskModal} />);
+                setModalView(<EditTask setError={setError} setSuccess={setSuccess} setFormError={setFormError} taskId={taskId} openViewTaskModal={openViewTaskModal} />);
                 break;
             default:
                 break;

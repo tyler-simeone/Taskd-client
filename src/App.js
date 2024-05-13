@@ -47,7 +47,7 @@ function App() {
 
     return (    
         <div className="App">
-            {isModalOpen ? (
+            {isModalOpen && error === undefined ? (
                 <Modal 
                     isOpen={isModalOpen} 
                     setIsModalOpen={setIsModalOpen} 
@@ -62,6 +62,7 @@ function App() {
                         openEditTaskModal={openEditTaskModal}
                         openViewTaskModal={openViewTaskModal}
                         setError={setError}
+                        setSuccess={setSuccess}
                         taskId={taskId}
                     />
                 </Modal>
