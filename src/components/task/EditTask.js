@@ -59,7 +59,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, se
             taskDescription: editTask.taskDescription,
         };
         tasksClient.updateTask(editTaskRequestModel)
-            .catch(err => handleError(err));
+            .catch(err => handleError(err, setError));
 
         setIsSubmitting(false);
         openViewTaskModal(editTask.taskId, editTask.taskName);

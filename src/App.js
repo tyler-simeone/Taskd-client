@@ -67,6 +67,7 @@ function App() {
                         setError={setError}
                         setSuccess={setSuccess}
                         taskId={taskId}
+                        closeModal={closeModal}
                     />
                 </Modal>
             ) : null}
