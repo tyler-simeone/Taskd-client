@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { tasksClient } from "../../api/tasksClient";
+import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import { TestData } from "../../TestData";
@@ -44,8 +46,19 @@ export const AddTask = ({ setFormError }) => {
             return;
 
         setIsSubmitting(true);
-        console.log("Sending data! ", newTask);
-        TestData.Columns[0].tasks.push(newTask);
+
+        // console.log("Sending data! ", newTask);
+        // TestData.Columns[0].tasks.push(newTask);
+
+        const addTaskRequestModel = {
+            userId: 1,
+            columnId: 1,
+            taskName: newTask.taskName,
+            taskDescription: newTask.taskDescription,
+        }
+        tasksClient.createTask(addTaskRequestModel)
+            .catch(err => setFormError(err));
+        
         setIsSubmitting(false);
     }
 
