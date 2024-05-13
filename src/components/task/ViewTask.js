@@ -31,7 +31,10 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError }) => {
     return (
         task !== undefined ? (
             <div className="task-details">
-                <p>{task.taskDescription}</p>
+                <div className="task-description--container">
+                    <h3>Description:</h3>
+                    <p>{task.taskDescription}</p>
+                </div>
 
                 <div className="icon--container">
                     <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}><EditIcon style={{fontSize: 22}} /></div>

@@ -4,9 +4,16 @@
     justify-content: space-between;
 }
 
+.task-description--container {
+    
+}
+.task-description-lbl {
+    color: #0d0e0f;
+}
+
+
 .icon--container {
     display: flex;
-    flex-direction: column;
 }
 
 .edit-icon,
@@ -18,4 +25,8 @@
 .edit-icon:hover,
 .delete-icon:hover {
     cursor: pointer;
+}
+
+.edit-icon {
+    margin-right: 10px;
 }
