@@ -1,0 +1,77 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Off-screen initially */
+    width: 100%;
+    height: 100%;
+    background-color: #fbfcff91;
+    background-color: #fdfdfd61;
+
+    z-index: 1;
+    overflow-x: hidden;
+    transition: right 0.3s ease;
+    backdrop-filter: blur(0.6px); /*Add blur effect*/
+  }
+  .modal.open {
+    right: 0%;
+    display: block;
+  }
+
+  .modal-content {
+    background-color: #fbfcfd;    
+    position: absolute;
+    overflow: auto;
+    right: -33%;
+    height: 93%;
+    top: 1%;
+    width: 394px;
+    border: 1px solid #d8dce2;
+    border: 1px solid #dbdee1;
+    border-radius: 24px;
+    border-radius: 28px;
+    padding: 19px 24px;
+    box-shadow: 0px 1px 6px 1px rgb(0 0 0 / 12%);
+
+    /* transform: translate(-50%, -50%); */
+    transition: opacity 0.3s ease, transform 3s ease;
+  }
+
+  .modal-content.active {
+    right: 2%;
+    transform: translateX(0%);
+  }
+
+  .modal-header--container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .modal-header {
+    font-size: 24.5px;
+    margin-left: 4px;
+  }
+
+  .close {
+    color: #aaa;
+    position: absolute;
+    top: 19px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .form-err-msg {
+    margin-bottom: 10px;
+  }
+  .form-err-msg > span {
+    color: red;
+    font-size: 15.5px;
+  }

@@ -1,13 +1,13 @@
 .task--container {
     min-height: 50px;
     width: 94%;
-    border: 1px solid #d6d9dc;
-    border-radius: 4px;
+    border: 1px solid #c4cad0 !important;
+    border-radius: 8px !important;
     margin-bottom: 6px;
-    padding: 10px;
+    padding: 11px !important;
 }
 .task--container:hover { 
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .task-title {
@@ -16,5 +16,6 @@
 
 .task-description {
     font-size: 14.5px;
-    color: #393a3e;
+    color: #212124;
+    color: #6b717b;
 }

@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
-const ApplicationViews = () => {
+const ApplicationViews = ({ openAddTaskModal, openViewTaskModal }) => {
     const [didMove, setDidMove] = useState(false);
 
     useEffect(() => {
@@ -14,8 +14,17 @@ const ApplicationViews = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Navigate to="/board" />} />
-            <Route path="/board" element={<DndProvider backend={HTML5Backend}><Board didMove={didMove} setDidMove={setDidMove} /></DndProvider>} />
-            {/* <Route path="/boards" element={<Board />} /> */}
+            <Route 
+                path="/board" 
+                element={<DndProvider backend={HTML5Backend}>
+                            <Board 
+                                didMove={didMove} 
+                                setDidMove={setDidMove} 
+                                openAddTaskModal={openAddTaskModal} 
+                                openViewTaskModal={openViewTaskModal} 
+                            />
+                        </DndProvider>} 
+            />
         </ Routes>
     )
 }

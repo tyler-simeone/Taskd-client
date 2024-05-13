@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDrag } from 'react-dnd';
 import "./Task.css"
 
-export const Task = ({ task, sourceColumnId, index, didMove }) => {
+export const Task = ({ task, sourceColumnId, index, didMove, openViewTaskModal }) => {
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
         item: { task, sourceColumnId, index },
@@ -40,6 +40,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
                 marginBottom: '10px',
                 backgroundColor: 'white',
             }}
+            onClick={() => openViewTaskModal(task)}
         >
             <div>
                 <h4 className="task-title">{task.taskName}</h4>

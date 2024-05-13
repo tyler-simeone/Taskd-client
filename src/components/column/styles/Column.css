@@ -1,17 +1,43 @@
 .column--container {
     height: 99.5%;
-    min-width: 370px;
-    border-radius: 6px;
-    margin-right: 4px;
+    min-width: 406px;
+    /* border-radius: 6px; */
+    /* border-radius: 4px; */
+    border-radius: 2px;
+    margin-right: 4.5px;
     background-color: #fff;
 }
 
 .column-header--container {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     border-bottom: 2px solid #f2f4f7;
     border-bottom: 2px solid #e3e5e9;
+}
+
+.more-icon--container {
+    
+}
+.more-icon--container:hover {
+    cursor: pointer;
+}
+.more-icon {
+    color: gray !important;
+    font-size: 26px !important;
+}
+
+.add-task-icon--container {
+    margin-top: 2px;
+}
+.add-task-icon--container:hover {
+    cursor: pointer;
+}
+.add-task-icon {
+    color: gray !important;
 }
 
 .column--body {

@@ -1,0 +1,21 @@
+.task-details {
+    margin-left: 4.5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-icon,
+.delete-icon {
+    color: #535455 !important;
+    margin-bottom: 4px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+    cursor: pointer;
+}
