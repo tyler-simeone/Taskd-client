@@ -11,7 +11,7 @@ export const tasksClient = {
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    getTaskDetails: (taskId, userId) => {
+    getTask: (taskId, userId) => {
         return fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
                     method: "GET",
                     headers: tasksClient.httpHeaders,

@@ -1,11 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { tasksClient } from "../../api/tasksClient";
+import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import { TestData } from "../../TestData";
 
-export const EditTask = ({ setFormError, task, openViewTaskModal }) => {
+export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError }) => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [editTask, setEditTask] = useState(task);
+    const [editTask, setEditTask] = useState();
+
+    const loadTask = () => {
+        setError();
+        setIsLoading(true);
+        tasksClient.getTask(taskId, 1)
+            .then(resp => {
+                setEditTask(resp);
+                setIsLoading(false);
+            })
+            .catch(err => {
+                setIsLoading(false);
+                handleError(err, setError);
+            });
+    }
 
     const handleChange = (evt) => {
         setFormError();
@@ -47,7 +65,8 @@ export const EditTask = ({ setFormError, task, openViewTaskModal }) => {
     }
 
     useEffect(() => {
-
+        if (editTask === undefined)
+            loadTask();
     }, [editTask])
 
     return (

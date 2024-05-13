@@ -40,7 +40,7 @@ export const Task = ({ task, sourceColumnId, index, didMove, openViewTaskModal }
                 marginBottom: '10px',
                 backgroundColor: 'white',
             }}
-            onClick={() => openViewTaskModal(task)}
+            onClick={() => openViewTaskModal(task.taskId, task.taskName)}
         >
             <div>
                 <h4 className="task-title">{task.taskName}</h4>
