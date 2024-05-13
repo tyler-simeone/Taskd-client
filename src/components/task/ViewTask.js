@@ -10,8 +10,8 @@ export const ViewTask = ({ task, openEditTaskModal }) => {
                 <p>{task.taskDescription}</p>
 
                 <div className="icon--container">
-                    <div className="edit-icon" onClick={() => openEditTaskModal(task)}><EditIcon /></div>
-                    <div className="delete-icon" onClick={() => openEditTaskModal(task)}><DeleteIcon /></div>
+                    <div className="edit-icon" onClick={() => openEditTaskModal(task)}><EditIcon style={{fontSize: 22}} /></div>
+                    <div className="delete-icon" onClick={() => openEditTaskModal(task)}><DeleteIcon style={{fontSize: 22}} /></div>
                 </div>
             </div>
         ) : null

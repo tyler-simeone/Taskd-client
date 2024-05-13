@@ -35,7 +35,6 @@ export const EditTask = ({ setFormError, task, openViewTaskModal }) => {
 
     const handleSubmit = () => {
         if (formIsValid() === false) {
-            console.log("invalid form...")
             return;
         }
 
