@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
-const ApplicationViews = ({ openAddTaskModal }) => {
+const ApplicationViews = ({ openAddTaskModal, openViewTaskModal }) => {
     const [didMove, setDidMove] = useState(false);
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const ApplicationViews = ({ openAddTaskModal }) => {
                                 didMove={didMove} 
                                 setDidMove={setDidMove} 
                                 openAddTaskModal={openAddTaskModal} 
+                                openViewTaskModal={openViewTaskModal} 
                             />
                         </DndProvider>} 
             />

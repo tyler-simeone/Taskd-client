@@ -1,0 +1,12 @@
+.task-details {
+    margin-left: 4.5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-icon {
+    
+}
+.edit-icon:hover {
+    cursor: pointer;
+}

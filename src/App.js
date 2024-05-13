@@ -11,12 +11,28 @@ function App() {
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
     const [formError, setFormError] = useState();
+    const [task, setTask] = useState();
 
     const openAddTaskModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
         setModalHeader("Add a Task");
         setIsModalOpen(true);
     }
+
+    const openViewTaskModal = (task) => {
+        setModalType(Constants.MODAL_TYPE.VIEW_TASK);
+        setModalHeader(task.taskName);
+        setTask(task);
+        setIsModalOpen(true);
+    }
+    
+    const openEditTaskModal = (task) => {
+        setModalType(Constants.MODAL_TYPE.EDIT_TASK);
+        setModalHeader(task.taskName);
+        setTask(task);
+        setIsModalOpen(true);
+    }
+    
     const closeModal = () => setIsModalOpen(false);
 
     useEffect(() => {
@@ -36,12 +52,19 @@ function App() {
                     <ModalView 
                         modalType={modalType} 
                         setFormError={setFormError}
+                        task={task}
+                        openEditTaskModal={openEditTaskModal}
                     />
                 </Modal>
             ) : null}
             <>
                 <Navigation />
-                <ApplicationViews openAddTaskModal={openAddTaskModal} closeModal={closeModal} />
+                <ApplicationViews 
+                    openAddTaskModal={openAddTaskModal} 
+                    openViewTaskModal={openViewTaskModal} 
+                    openEditTaskModal={openEditTaskModal}
+                    closeModal={closeModal} 
+                />
             </>
         </div>
     );

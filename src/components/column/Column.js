@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal }) => {
+export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openViewTaskModal }) => {
     const [{ isHover, isOver, canDrop, didDrop, dropResult }, drop] = useCustomDrop(column.columnId);
 
     useEffect(() => {
@@ -29,6 +29,7 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal }) => 
                         task={task} 
                         sourceColumnId={column.columnId}
                         didMove={didMove}
+                        openViewTaskModal={openViewTaskModal}
                     />
                 ))}
             </div>

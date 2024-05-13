@@ -8,5 +8,6 @@ export const Constants = {
     MODAL_TYPE: {
         ADD_TASK: "addTask",
         VIEW_TASK: "viewTask",
+        EDIT_TASK: "editTask"
     }
 };
