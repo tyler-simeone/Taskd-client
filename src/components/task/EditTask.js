@@ -3,6 +3,8 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import "./EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, setSuccess }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -72,25 +74,29 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, se
 
     return (
         editTask !== undefined ? (
-            <form>
-                <PBInput 
-                    name={"taskName"} 
-                    label={"Task Name"} 
-                    handleChange={handleChange} 
-                    value={editTask.taskName}
-                />
-                <PBInput 
-                    name={"taskDescription"} 
-                    label={"Task Description"} 
-                    handleChange={handleChange} 
-                    value={editTask.taskDescription}
-                />
-                <PrimaryButton 
-                    text={"Submit"} 
-                    handleSubmit={handleSubmit} 
-                    isSubmitting={isSubmitting} 
-                />
-            </ form>
+            <>
+                <KeyboardBackspaceIcon className="update-task-return-arrow" onClick={() => openViewTaskModal(editTask.taskId, editTask.taskName)} />
+
+                <form>
+                    <PBInput 
+                        name={"taskName"} 
+                        label={"Task Name"} 
+                        handleChange={handleChange} 
+                        value={editTask.taskName}
+                    />
+                    <PBInput 
+                        name={"taskDescription"} 
+                        label={"Task Description"} 
+                        handleChange={handleChange} 
+                        value={editTask.taskDescription}
+                    />
+                    <PrimaryButton 
+                        text={"Submit"} 
+                        handleSubmit={handleSubmit} 
+                        isSubmitting={isSubmitting} 
+                    />
+                </ form>
+            </>
         ) : null
     );
 }
