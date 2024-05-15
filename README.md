@@ -1,2 +1,2 @@
 # ProjectB-client
-React client app for ProjectB
+React client app for ProjectB project board.
