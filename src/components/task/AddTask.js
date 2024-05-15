@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { tasksClient } from "../../api/tasksClient";
+import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
-import { TestData } from "../../TestData";
 
-export const AddTask = ({ setFormError }) => {
+export const AddTask = ({ setFormError, setError, closeModal }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
@@ -14,13 +15,7 @@ export const AddTask = ({ setFormError }) => {
     const handleChange = (evt) => {
         setFormError();
         const stateToChange = {...newTask};
-
-        var sortedTestTasks = TestData.Columns[0].tasks.sort((a ,b) => a.id - b.id);
-        var mostRecentTask = sortedTestTasks[sortedTestTasks.length - 1];
-        stateToChange.taskId = mostRecentTask.taskId + 1;
-
         stateToChange[evt.target.name] = evt.target.value;
-
         setNewTask(stateToChange);
     }
 
@@ -44,9 +39,18 @@ export const AddTask = ({ setFormError }) => {
             return;
 
         setIsSubmitting(true);
-        console.log("Sending data! ", newTask);
-        TestData.Columns[0].tasks.push(newTask);
+
+        const addTaskRequestModel = {
+            userId: 1,
+            columnId: 1,
+            taskName: newTask.taskName,
+            taskDescription: newTask.taskDescription,
+        }
+        tasksClient.createTask(addTaskRequestModel)
+            .catch(err => handleError(err, setError));
+        
         setIsSubmitting(false);
+        closeModal();
     }
 
     return (

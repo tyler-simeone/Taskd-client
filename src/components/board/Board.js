@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
+import { tasksClient } from "../../api/tasksClient";
+import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { TestData } from "../../TestData";
 import './styles/Board.css';
 
-export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal }) => {
+export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, setError }) => {
     const [columns, setColumns] = useState(TestData.Columns);
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
@@ -78,6 +80,7 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
                       didMove={didMove}
                       openAddTaskModal={openAddTaskModal}
                       openViewTaskModal={openViewTaskModal}
+                      setError={setError}
                     />
                 ))}
             </div>

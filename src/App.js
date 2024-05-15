@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Constants } from './util/Constants';
-import { Modal } from './components/features/Modal/Modal';
+import { Modal } from './components/features/modal/Modal';
 import { Navigation } from "./components/navigation/Navigation";
+import { ErrorMessage } from './components/features/error/ErrorMessage';
+import { SuccessMessage } from './components/features/success/SuccessMessage';
 import ApplicationViews from './ApplicationViews'
-import { ModalView } from './components/features/Modal/ModalView';
+import { ModalView } from './components/features/modal/ModalView';
 import './App.css';
 
 function App() {
@@ -11,7 +13,10 @@ function App() {
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
     const [formError, setFormError] = useState();
-    const [task, setTask] = useState();
+    const [taskId, setTaskId] = useState();
+
+    const [error, setError] = useState();
+    const [success, setSuccess] = useState();
 
     const openAddTaskModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
@@ -19,28 +24,33 @@ function App() {
         setIsModalOpen(true);
     }
 
-    const openViewTaskModal = (task) => {
+    const openViewTaskModal = (taskId, taskName) => {
         setModalType(Constants.MODAL_TYPE.VIEW_TASK);
-        setModalHeader(task.taskName);
-        setTask(task);
+        setModalHeader(taskName);
+        setTaskId(taskId);
         setIsModalOpen(true);
     }
     
-    const openEditTaskModal = (task) => {
+    const openEditTaskModal = (taskId) => {
         setModalType(Constants.MODAL_TYPE.EDIT_TASK);
         setModalHeader("Update Task");
-        setTask(task);
+        setTaskId(taskId);
         setIsModalOpen(true);
     }
     
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => {
+        setTaskId();
+        setIsModalOpen(false);
+    };
+    const closeError = () => setError();
+    const closeSuccess = () => setSuccess();
 
     useEffect(() => {
-    }, [modalType, task]);
+    }, [modalType, taskId]);
 
     return (    
         <div className="App">
-            {isModalOpen ? (
+            {isModalOpen && error === undefined ? (
                 <Modal 
                     isOpen={isModalOpen} 
                     setIsModalOpen={setIsModalOpen} 
@@ -52,21 +62,29 @@ function App() {
                     <ModalView 
                         modalType={modalType} 
                         setFormError={setFormError}
-                        task={task}
                         openEditTaskModal={openEditTaskModal}
                         openViewTaskModal={openViewTaskModal}
+                        setError={setError}
+                        setSuccess={setSuccess}
+                        taskId={taskId}
+                        closeModal={closeModal}
                     />
                 </Modal>
             ) : null}
-            <>
-                <Navigation />
-                <ApplicationViews 
-                    openAddTaskModal={openAddTaskModal} 
-                    openViewTaskModal={openViewTaskModal} 
-                    openEditTaskModal={openEditTaskModal}
-                    closeModal={closeModal} 
-                />
-            </>
+
+            <Navigation />
+
+            {error !== undefined ? <ErrorMessage message={error} closeErrorMessage={closeError} /> : null}
+            {success !== undefined ? <SuccessMessage message={success} closeSuccessMessage={closeSuccess} /> : null}
+            
+            <ApplicationViews 
+                openAddTaskModal={openAddTaskModal} 
+                openViewTaskModal={openViewTaskModal} 
+                openEditTaskModal={openEditTaskModal}
+                closeModal={closeModal} 
+                setError={setError}
+                setSuccess={setSuccess}
+            />
         </div>
     );
 }

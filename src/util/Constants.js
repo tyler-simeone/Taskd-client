@@ -9,5 +9,6 @@ export const Constants = {
         ADD_TASK: "addTask",
         VIEW_TASK: "viewTask",
         EDIT_TASK: "editTask"
-    }
+    },
+    INTERNAL_SERVER_ERR_MESSAGE: "Internal server error. Please try again later."
 };
