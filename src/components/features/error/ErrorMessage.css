@@ -1,12 +1,18 @@
+.err-msg--container,
+.success-msg--container  {
+  margin: 0 auto;
+  width: 88%;
+  height: 18px;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 6px;
+  margin-top: -2px;
+}
+
 .err-msg--container {
-    margin: 0 auto;
-    width: 98%;
-    height: 20.5px;
-    border: 1px solid #e83232ed;
-    border-radius: 2.5px;
-    background-color: #e83232ed;
-    padding: 20px;
-    display: flex;
+    border: 1px solid #e83232;
+    background-color: #e83232;
 }
 
 .err-msg {
