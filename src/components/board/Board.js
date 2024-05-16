@@ -3,11 +3,15 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
+import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { TestData } from "../../TestData";
 import './styles/Board.css';
+import { columnsClient } from "../../api/columnsClient";
 
-export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, setError }) => {
-    const [columns, setColumns] = useState(TestData.Columns);
+export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, setError }) => {
+    // const [columns, setColumns] = useState(TestData.Columns);
+    const [columns, setColumns] = useState();
+    const [isLoading, setIsLoading] = useState(false);
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
       const updatedColumns = [ ...columns ];
@@ -65,14 +69,41 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
       });
     };
 
-    useEffect(() => {
+    const loadColumns = () => {
+      setError();
+      setIsLoading(true);
+
+      columnsClient.getColumns(1, 1)
+        .then(resp => {
+          setColumns(resp.columns);
+          setIsLoading(false);
+        })
+        .catch(err => {
+            setIsLoading(false);
+            handleError(err, setError);
+        });
+
+      // tasksClient.getTasks(column.columnId)
+      //     .then(resp => {
+      //         setTasks(resp.tasks);
+      //         setIsLoading(false);
+      //     })
+      //     .catch(err => {
+      //         setIsLoading(false);
+      //         handleError(err, setError);
+      //     });
+  }
+
+  useEffect(() => {
+      if (columns === undefined)
+          loadColumns();
       // columns.forEach(c => console.log("rerendering... ", c.tasks.length));
     }, [columns]);
 
     return (
         <div className="board--container">
             <div className="board">
-                {columns.map(column => (
+                {columns !== undefined && columns.map(column => (
                     <Column 
                       key={column.columnId} 
                       column={column} 
@@ -83,6 +114,20 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
                       setError={setError}
                     />
                 ))}
+                <ColumnAddTemplate 
+                  openAddColumnModal={openAddColumnModal}
+                />
+                {/* {columns.map(column => (
+                    <Column 
+                      key={column.columnId} 
+                      column={column} 
+                      useCustomDrop={useCustomDrop} 
+                      didMove={didMove}
+                      openAddTaskModal={openAddTaskModal}
+                      openViewTaskModal={openViewTaskModal}
+                      setError={setError}
+                    />
+                ))} */}
             </div>
         </div>
     );

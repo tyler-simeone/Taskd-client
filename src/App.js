@@ -23,6 +23,12 @@ function App() {
         setModalHeader("Add a Task");
         setIsModalOpen(true);
     }
+    
+    const openAddColumnModal = () => {
+        setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
+        setModalHeader("Add a Column");
+        setIsModalOpen(true);
+    }
 
     const openViewTaskModal = (taskId, taskName) => {
         setModalType(Constants.MODAL_TYPE.VIEW_TASK);
@@ -79,6 +85,7 @@ function App() {
             
             <ApplicationViews 
                 openAddTaskModal={openAddTaskModal} 
+                openAddColumnModal={openAddColumnModal}
                 openViewTaskModal={openViewTaskModal} 
                 openEditTaskModal={openEditTaskModal}
                 closeModal={closeModal} 

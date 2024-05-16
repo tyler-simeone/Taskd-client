@@ -4,21 +4,21 @@ export const columnsClient = {
     httpHeaders: { "Content-Type": "application/json", "Accept": "application/json" },
     baseDevURL: "http://localhost:5156",
     get baseURL() { return `${this.baseDevURL}/api/columns` }, 
-    getColumns: (columnId) => {
-        return fetch(`${columnsClient.baseURL}?columnId=${columnId}`, {
+    getColumns: (columnId, userId) => {
+        return fetch(`${columnsClient.baseURL}?boardId=${columnId}&userId=${userId}`, {
                     method: "GET",
                     headers: columnsClient.httpHeaders,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
     getColumn: (boardId, userId) => {
-        return fetch(`${columnsClient.baseURL}/?boardId=${boardId}&userId=${userId}`, {
+        return fetch(`${columnsClient.baseURL}/?columnId=${boardId}&userId=${userId}`, {
                     method: "GET",
                     headers: columnsClient.httpHeaders,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    createColumn: (payload) => {
+    addColumn: (payload) => {
         return fetch(`${columnsClient.baseURL}`, {
                     method: "POST",
                     body: JSON.stringify(payload),
