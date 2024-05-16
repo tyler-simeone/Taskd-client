@@ -10,13 +10,9 @@ export const ColumnAddTemplate = ({ openAddColumnModal }) => {
 
     return (
         <div key={-1} className="add-column-template--container">
-            <div className="column-header--container">
-                <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div>
-                <h3 className="column-header">Add new column</h3>
-                <div className="add-task-icon--container" onClick={openAddColumnModal} ><AddIcon className="add-task-icon" /></div>
-            </div>
-
-            <div className="column--body">
+            <div className="add-column-template--body">
+                <h2 className="column-header">Add new column</h2>
+                <div className="add-column-template-icon--container" onClick={openAddColumnModal} ><AddIcon className="add-column-icon" /></div>
             </div>
         </div>
     );

@@ -1,3 +1,27 @@
 .add-column-template--container {
-    height: 30%;
+    height: 10%;
+    min-width: 386px;
+    max-width: 386px;
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid #dadde2;
+}
+
+.add-column-template--body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.add-column-template-icon--container {
+    margin-top: 4px;
+    font-size: 24px !important;
+}
+
+.add-column-icon {
+    color: gray;
+    font-size: 24px !important;
+}
+.add-column-icon:hover {
+    cursor: pointer;
 }
