@@ -9,10 +9,10 @@ import './styles/ColumnAddTemplate.css';
 export const ColumnAddTemplate = ({ openAddColumnModal }) => {
 
     return (
-        <div key={-1} className="add-column-template--container">
+        <div key={-1} className="add-column-template--container" onClick={openAddColumnModal}>
             <div className="add-column-template--body">
                 <h2 className="column-header">Add new column</h2>
-                <div className="add-column-template-icon--container" onClick={openAddColumnModal} ><AddIcon className="add-column-icon" /></div>
+                <div className="add-column-template-icon--container" ><AddIcon className="add-column-icon" /></div>
             </div>
         </div>
     );

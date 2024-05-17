@@ -1,16 +1,21 @@
 .add-column-template--container {
-    height: 10%;
+    height: 7%; 
     min-width: 352px;
     max-width: 352px;
     background-color: #fff;
     border-radius: 22px;
     padding: 20px;
-    border: 1px solid #dadde2;
+    /* border: 1px solid #dadde2; */
+    box-shadow: 0px 1px 5px 1px rgb(0 0 0 / 8%);
+}
+.add-column-template--container:hover {
+    cursor: pointer;
 }
 
 .add-column-template--body {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 9px;
 }
 
 .add-column-template-icon--container {

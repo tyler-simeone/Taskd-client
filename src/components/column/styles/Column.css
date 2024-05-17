@@ -36,4 +36,5 @@
 .column--body {
     padding: 10px;
     height: 91%;
+    overflow-y: scroll;
 }
