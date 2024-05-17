@@ -23,17 +23,6 @@
     /* border-bottom: 2px solid #e3e5e9; */
 }
 
-.more-icon--container {
-    
-}
-.more-icon--container:hover {
-    cursor: pointer;
-}
-.more-icon {
-    color: gray !important;
-    font-size: 26px !important;
-}
-
 .add-task-icon--container {
     margin-top: 2px;
 }

@@ -1,0 +1,16 @@
+.more-icon--container {
+    
+}
+.more-icon--container:hover {
+    cursor: pointer;
+}
+.more-icon {
+    color: gray !important;
+    font-size: 26px !important;
+}
+
+.more-options--container {
+    min-width: 200px;
+    min-height: 120px;
+    box-shadow: 0px 1px 5px 1px rgb(0 0 0 / 16%);
+}

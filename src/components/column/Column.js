@@ -3,10 +3,16 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
 import AddIcon from '@mui/icons-material/Add';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { MoreIcon } from "../controls/icons/MoreIcon";
 import './styles/Column.css';
+import { columnsClient } from "../../api/columnsClient";
 
 export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openViewTaskModal, setError }) => {
+    const [moreIconValues, setMoreIconValues] = useState([{
+        name: "deleteColumn",
+        value: "Delete Column",
+        callback: () => deleteColumn()
+    }]);
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +32,14 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
             });
     }
 
+    const deleteColumn = () => {
+        setError();
+        setIsLoading(true);
+        columnsClient.deleteColumn(column.columnId, 1)
+            .catch(err => handleError(err, setError));
+        setIsLoading(false);
+    }
+
     useEffect(() => {
         if (tasks === undefined)
             loadTasks();
@@ -37,7 +51,8 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
     return (
         <div key={column.columnId} className="column--container">
             <div className="column-header--container">
-                <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div>
+                {/* <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div> */}
+                <MoreIcon options={moreIconValues} />
                 <h3 className="column-header">{column.columnName}</h3>
                 <div className="add-task-icon--container" onClick={openAddTaskModal} ><AddIcon className="add-task-icon" /></div>
             </div>

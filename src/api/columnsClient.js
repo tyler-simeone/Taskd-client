@@ -11,8 +11,8 @@ export const columnsClient = {
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    getColumn: (boardId, userId) => {
-        return fetch(`${columnsClient.baseURL}/?columnId=${boardId}&userId=${userId}`, {
+    getColumn: (columnId, userId) => {
+        return fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
                     method: "GET",
                     headers: columnsClient.httpHeaders,
                 }).then(resp => resp.json())
@@ -34,10 +34,9 @@ export const columnsClient = {
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    deleteColumn: (payload) => {
-        return fetch(`${columnsClient.baseURL}`, {
+    deleteColumn: (columnId, userId) => {
+        return fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
                     method: "DELETE",
-                    body: JSON.stringify(payload),
                     headers: columnsClient.httpHeaders,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
