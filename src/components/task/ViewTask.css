@@ -17,6 +17,7 @@
 .icon--container {
     display: flex;
     margin-top: 4px;
+    margin-left: 4px;
 }
 
 .edit-icon,

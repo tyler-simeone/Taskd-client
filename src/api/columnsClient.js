@@ -12,7 +12,7 @@ export const columnsClient = {
                 .then(resp => responseHandler(resp));
     },
     getColumn: (columnId, userId) => {
-        return fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
+        return fetch(`${columnsClient.baseURL}/${columnId}?userId=${userId}`, {
                     method: "GET",
                     headers: columnsClient.httpHeaders,
                 }).then(resp => resp.json())

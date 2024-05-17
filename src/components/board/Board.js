@@ -8,7 +8,7 @@ import { TestData } from "../../TestData";
 import './styles/Board.css';
 import { columnsClient } from "../../api/columnsClient";
 
-export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, setError, rerender, handleRerender }) => {
+export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, openEditColumnModal, setError, rerender, handleRerender }) => {
     // const [columns, setColumns] = useState(TestData.Columns);
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -117,6 +117,7 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
                       didMove={didMove}
                       openAddTaskModal={openAddTaskModal}
                       openViewTaskModal={openViewTaskModal}
+                      openEditColumnModal={openEditColumnModal}
                       setError={setError}
                       handleRerender={handleRerender}
                     />

@@ -4,6 +4,7 @@ import { ViewTask } from "../../task/ViewTask";
 import { AddTask } from "../../task/AddTask";
 import { AddColumn } from "../../column/AddColumn";
 import { EditTask } from "../../task/EditTask";
+import { EditColumn } from "../../column/EditColumn";
 
 export const ModalView = ({ modalType, setFormError, taskId, columnId, openEditTaskModal, openViewTaskModal, setError, setSuccess, closeModal, handleRerender }) => {
     const [modalView, setModalView] = useState();
@@ -21,6 +22,9 @@ export const ModalView = ({ modalType, setFormError, taskId, columnId, openEditT
                 break;
             case Constants.MODAL_TYPE.EDIT_TASK:
                 setModalView(<EditTask setError={setError} setSuccess={setSuccess} setFormError={setFormError} taskId={taskId} openViewTaskModal={openViewTaskModal} handleRerender={handleRerender} />);
+                break;
+            case Constants.MODAL_TYPE.EDIT_COLUMN:
+                setModalView(<EditColumn setError={setError} setSuccess={setSuccess} setFormError={setFormError} columnId={columnId} handleRerender={handleRerender} closeModal={closeModal} />);
                 break;
             default:
                 break;

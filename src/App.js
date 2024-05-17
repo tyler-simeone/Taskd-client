@@ -47,6 +47,13 @@ function App() {
         setTaskId(taskId);
         setIsModalOpen(true);
     }
+   
+    const openEditColumnModal = (columnId) => {
+        setModalType(Constants.MODAL_TYPE.EDIT_COLUMN);
+        setModalHeader("Update Column");
+        setColumnId(columnId);
+        setIsModalOpen(true);
+    }
     
     const closeModal = () => {
         setTaskId();
@@ -55,13 +62,10 @@ function App() {
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
-    const handleRerender = () => {
-        console.log("hiii");
-        setRerender(!rerender);
-    };
+    const handleRerender = () => setRerender(!rerender);
 
     useEffect(() => {
-    }, [modalType, taskId]);
+    }, [modalType, taskId, columnId]);
 
     return (    
         <div className="App">
@@ -99,6 +103,7 @@ function App() {
                 openAddColumnModal={openAddColumnModal}
                 openViewTaskModal={openViewTaskModal} 
                 openEditTaskModal={openEditTaskModal}
+                openEditColumnModal={openEditColumnModal}
                 closeModal={closeModal} 
                 setError={setError}
                 setSuccess={setSuccess}

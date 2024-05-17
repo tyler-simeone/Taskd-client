@@ -7,12 +7,19 @@ import { MoreIcon } from "../controls/icons/MoreIcon";
 import './styles/Column.css';
 import { columnsClient } from "../../api/columnsClient";
 
-export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openViewTaskModal, setError, handleRerender }) => {
-    const [moreIconValues, setMoreIconValues] = useState([{
-        name: "deleteColumn",
-        value: "Delete Column",
-        callback: () => deleteColumn()
-    }]);
+export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openViewTaskModal, openEditColumnModal, setError, handleRerender, updateColumn }) => {
+    const [moreIconValues, setMoreIconValues] = useState([
+        {
+            name: "editColumn",
+            value: "Edit Column",
+            callback: () => openEditColumnModal(column.columnId)
+        },
+        {
+            name: "deleteColumn",
+            value: "Delete Column",
+            callback: () => deleteColumn()
+        },
+    ]);
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
 

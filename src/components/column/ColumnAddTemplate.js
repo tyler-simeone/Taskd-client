@@ -11,7 +11,7 @@ export const ColumnAddTemplate = ({ openAddColumnModal }) => {
     return (
         <div key={-1} className="add-column-template--container" onClick={openAddColumnModal}>
             <div className="add-column-template--body">
-                <h2 className="column-header" style={{fontSize: 22}}>Add new column</h2>
+                <h2 className="column-header" style={{fontSize: "21.5px", color: "#57595f"}}>Add new column</h2>
                 <div className="add-column-template-icon--container" ><AddIcon className="add-column-icon" /></div>
             </div>
         </div>

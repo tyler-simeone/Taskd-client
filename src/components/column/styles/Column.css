@@ -8,8 +8,9 @@
     margin-right: 4.5px;
     background-color: #fff;
 
-    border: 1px solid #dadde2;
-    border-radius: 10px;
+    /* border: 1px solid #dadde2; */
+    /* border-radius: 10px; */
+    border-radius: 4px;
 }
 
 .column-header--container {
@@ -37,4 +38,5 @@
     padding: 10px;
     height: 91%;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
