@@ -54,7 +54,7 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
                 {/* <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div> */}
                 <MoreIcon options={moreIconValues} />
                 <h3 className="column-header">{column.columnName}</h3>
-                <div className="add-task-icon--container" onClick={openAddTaskModal} ><AddIcon className="add-task-icon" /></div>
+                <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)} ><AddIcon className="add-task-icon" /></div>
             </div>
 
             <div ref={drop} style={{ backgroundColor: isHover ? 'lightgray' : 'white'}} className="column--body">

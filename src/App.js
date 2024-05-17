@@ -13,14 +13,16 @@ function App() {
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
     const [formError, setFormError] = useState();
+    const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
 
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
 
-    const openAddTaskModal = () => {
+    const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
         setModalHeader("Add a Task");
+        setColumnId(columnId);
         setIsModalOpen(true);
     }
     
@@ -73,6 +75,7 @@ function App() {
                         setError={setError}
                         setSuccess={setSuccess}
                         taskId={taskId}
+                        columnId={columnId}
                         closeModal={closeModal}
                     />
                 </Modal>
