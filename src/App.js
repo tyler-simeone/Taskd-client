@@ -19,6 +19,8 @@ function App() {
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
 
+    const [rerender, setRerender] = useState(false);
+
     const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
         setModalHeader("Add a Task");
@@ -53,6 +55,11 @@ function App() {
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
+    const handleRerender = () => {
+        console.log("hiii");
+        setRerender(!rerender);
+    };
+
     useEffect(() => {
     }, [modalType, taskId]);
 
@@ -77,6 +84,7 @@ function App() {
                         taskId={taskId}
                         columnId={columnId}
                         closeModal={closeModal}
+                        handleRerender={handleRerender}
                     />
                 </Modal>
             ) : null}
@@ -94,6 +102,8 @@ function App() {
                 closeModal={closeModal} 
                 setError={setError}
                 setSuccess={setSuccess}
+                rerender={rerender}
+                handleRerender={handleRerender}
             />
         </div>
     );

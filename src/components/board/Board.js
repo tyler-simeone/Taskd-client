@@ -8,7 +8,7 @@ import { TestData } from "../../TestData";
 import './styles/Board.css';
 import { columnsClient } from "../../api/columnsClient";
 
-export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, setError }) => {
+export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, setError, rerender, handleRerender }) => {
     // const [columns, setColumns] = useState(TestData.Columns);
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -77,6 +77,7 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
         .then(resp => {
           setColumns(resp.columns);
           setIsLoading(false);
+          handleRerender();
         })
         .catch(err => {
             setIsLoading(false);
@@ -95,10 +96,15 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
   }
 
   useEffect(() => {
-      if (columns === undefined)
-          loadColumns();
-      // columns.forEach(c => console.log("rerendering... ", c.tasks.length));
-    }, [columns]);
+    console.log("rerender value: ", rerender);
+
+    if (rerender === true) {
+      setColumns();
+      loadColumns();
+    }
+    else if (columns === undefined)
+      loadColumns();
+    }, [columns, rerender]);
 
     return (
         <div className="board--container">
@@ -112,6 +118,7 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
                       openAddTaskModal={openAddTaskModal}
                       openViewTaskModal={openViewTaskModal}
                       setError={setError}
+                      handleRerender={handleRerender}
                     />
                 ))}
                 <ColumnAddTemplate 

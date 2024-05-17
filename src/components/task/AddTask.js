@@ -4,7 +4,7 @@ import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
-export const AddTask = ({ setFormError, setError, closeModal, columnId }) => {
+export const AddTask = ({ setFormError, setError, closeModal, columnId, handleRerender }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
@@ -47,6 +47,7 @@ export const AddTask = ({ setFormError, setError, closeModal, columnId }) => {
             taskDescription: newTask.taskDescription,
         }
         tasksClient.createTask(addTaskRequestModel)
+            .then(() => handleRerender())
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);

@@ -4,7 +4,7 @@ import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
-export const AddColumn = ({ setFormError, setError, closeModal }) => {
+export const AddColumn = ({ setFormError, setError, closeModal, handleRerender }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
         boardId: null,
@@ -48,6 +48,7 @@ export const AddColumn = ({ setFormError, setError, closeModal }) => {
             columnDescription: newColumn.columnDescription,
         }
         columnsClient.addColumn(addColumnRequestModel)
+            .then(() => handleRerender())
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);
