@@ -9,9 +9,7 @@
     height: 98.5%;
     display: flex;
     overflow-x: scroll;
-    /* background-color: #e4e7ec;
-    background-color: #dfe2e6;
-    background-color: #e1e4e8; */
-    background-color: #dee1e4;
+    /* background-color: #dee1e4; */
+    background-color: #dde1e5;
     padding: 3.5px 6px;
 }

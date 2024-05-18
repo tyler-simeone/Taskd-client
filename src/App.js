@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from './AppProvider';
-import { Constants } from './util/Constants';
+import { AppContext } from './AppContextProvider';
+
 import { Modal } from './components/features/modal/Modal';
 import { Navigation } from "./components/navigation/Navigation";
 import { ErrorMessage } from './components/features/error/ErrorMessage';
@@ -10,62 +10,33 @@ import { ModalView } from './components/features/modal/ModalView';
 import './App.css';
 
 function App() {
-    const { rerender, handleRerender } = useContext(AppContext);
+    const { 
+        isModalOpen,
+        modalType,
+        modalHeader,
+        formError,
+        columnId,
+        taskId,
+        error,
+        success,
+        rerender,
+        openAddTaskModal,
+        openAddColumnModal,
+        openViewTaskModal,
+        openEditTaskModal,
+        openEditColumnModal,
+        closeModal,
+        closeError,
+        closeSuccess,
+        handleRerender,
+        setIsModalOpen,
+        setFormError,
+        setError,
+        setSuccess
+     } = useContext(AppContext);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState();
-    const [modalHeader, setModalHeader] = useState("Add a Task");
-    const [formError, setFormError] = useState();
-    const [columnId, setColumnId] = useState();
-    const [taskId, setTaskId] = useState();
-
-    const [error, setError] = useState();
-    const [success, setSuccess] = useState();
-
-    // const [rerender, setRerender] = useState(false);
-
-    const openAddTaskModal = (columnId) => {
-        setModalType(Constants.MODAL_TYPE.ADD_TASK);
-        setModalHeader("Add a Task");
-        setColumnId(columnId);
-        setIsModalOpen(true);
-    }
     
-    const openAddColumnModal = () => {
-        setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
-        setModalHeader("Add a Column");
-        setIsModalOpen(true);
-    }
 
-    const openViewTaskModal = (taskId, taskName) => {
-        setModalType(Constants.MODAL_TYPE.VIEW_TASK);
-        setModalHeader(taskName);
-        setTaskId(taskId);
-        setIsModalOpen(true);
-    }
-    
-    const openEditTaskModal = (taskId) => {
-        setModalType(Constants.MODAL_TYPE.EDIT_TASK);
-        setModalHeader("Update Task");
-        setTaskId(taskId);
-        setIsModalOpen(true);
-    }
-   
-    const openEditColumnModal = (columnId) => {
-        setModalType(Constants.MODAL_TYPE.EDIT_COLUMN);
-        setModalHeader("Update Column");
-        setColumnId(columnId);
-        setIsModalOpen(true);
-    }
-    
-    const closeModal = () => {
-        setTaskId();
-        setIsModalOpen(false);
-    };
-    const closeError = () => setError();
-    const closeSuccess = () => setSuccess();
-
-    // const handleRerender = () => setRerender(!rerender);
 
     useEffect(() => {
     }, [modalType, taskId, columnId]);
