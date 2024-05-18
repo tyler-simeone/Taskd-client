@@ -40,17 +40,24 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, hand
 
     return (
         task !== undefined ? (
-            <div className="task-details">
-                <div className="task-description--container">
-                    <h3 className="task-description-lbl">Description:</h3>
-                    <p>{task.taskDescription}</p>
-                </div>
+            <>
+                <div className="task-details">
+                    <div className="task-description--container">
+                        <h3 className="task-lbl">Description:</h3>
+                        <p>{task.taskDescription}</p>
+                    </div>
+                    
+                    <div className="task-create-date--container">
+                        <h3 className="task-lbl">Created on:</h3>
+                        <p className="created-date">{new Date(task.createDatetime).toDateString()}</p>
+                    </div>
 
+                </div>
                 <div className="icon--container">
                     <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}><EditIcon style={{fontSize: 22}} /></div>
                     <div className="delete-icon" onClick={deleteTask}><DeleteIcon style={{fontSize: 22}} /></div>
                 </div>
-            </div>
+            </>
         ) : null
     );
 }

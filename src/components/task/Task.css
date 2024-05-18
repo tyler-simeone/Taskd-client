@@ -10,7 +10,7 @@
 .task--container:hover { 
     cursor: pointer !important;
     background-color: #f7f8f9 !important;
-    border: 1px solid #d5dce4 !important;
+    border: 1px solid #d2d9e1 !important;
 }
 
 .task-title {

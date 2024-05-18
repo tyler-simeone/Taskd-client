@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from './AppProvider';
 import { Constants } from './util/Constants';
 import { Modal } from './components/features/modal/Modal';
 import { Navigation } from "./components/navigation/Navigation";
@@ -9,6 +10,8 @@ import { ModalView } from './components/features/modal/ModalView';
 import './App.css';
 
 function App() {
+    const { rerender, handleRerender } = useContext(AppContext);
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
@@ -19,7 +22,7 @@ function App() {
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
 
-    const [rerender, setRerender] = useState(false);
+    // const [rerender, setRerender] = useState(false);
 
     const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
@@ -62,7 +65,7 @@ function App() {
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
-    const handleRerender = () => setRerender(!rerender);
+    // const handleRerender = () => setRerender(!rerender);
 
     useEffect(() => {
     }, [modalType, taskId, columnId]);
