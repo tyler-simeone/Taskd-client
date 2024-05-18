@@ -6,7 +6,7 @@ import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import "./EditTask.css"
 
-export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, setSuccess }) => {
+export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, setSuccess, handleRerender }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,10 +57,12 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, se
         const editTaskRequestModel = {
             userId: 1,
             taskId: editTask.taskId,
+            columnId: editTask.columnId,
             taskName: editTask.taskName,
             taskDescription: editTask.taskDescription,
         };
         tasksClient.updateTask(editTaskRequestModel)
+            .then(() => handleRerender())
             .catch(err => handleError(err, setError));
 
         setIsSubmitting(false);

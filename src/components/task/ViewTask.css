@@ -11,11 +11,14 @@
     font-weight: 600;
     margin-top: 0px !important;
     letter-spacing: 0.5px;
+    font-size: 16.5px;
 }
 
 
 .icon--container {
     display: flex;
+    margin-top: 4px;
+    margin-left: 4px;
 }
 
 .edit-icon,

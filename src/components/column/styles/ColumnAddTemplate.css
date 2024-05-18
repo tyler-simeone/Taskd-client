@@ -1,0 +1,33 @@
+.add-column-template--container {
+    height: 50px;
+    min-width: 344px;
+    max-width: 344px;
+    border-radius: 22px;
+    padding: 20px;
+    /* border: 1px dashed #a8aaaf; */
+    border: 1px dashed #b0b2b7;
+    margin-top: 1%;
+    margin-left: 0.1%;
+}
+.add-column-template--container:hover {
+    cursor: pointer;
+}
+
+.add-column-template--body {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 7px;
+}
+
+.add-column-template-icon--container {
+    margin-top: 4px;
+    font-size: 24px !important;
+}
+
+.add-column-icon {
+    color: gray;
+    font-size: 25px !important;
+}
+.add-column-icon:hover {
+    cursor: pointer;
+}

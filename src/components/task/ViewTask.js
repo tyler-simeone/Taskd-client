@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./ViewTask.css"
 
-export const ViewTask = ({ taskId, openEditTaskModal, setError }) => {
+export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, handleRerender }) => {
     const [task, setTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +23,16 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError }) => {
             });
     }
 
+    const deleteTask = () => {
+        setError();
+        setIsLoading(true);
+        tasksClient.deleteTask(taskId, 1)
+            .catch(err => handleError(err, setError));
+        setIsLoading(false);
+        handleRerender();
+        closeModal();
+    }
+
     useEffect(() => {
         if (task === undefined)
             loadTask();
@@ -38,7 +48,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError }) => {
 
                 <div className="icon--container">
                     <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}><EditIcon style={{fontSize: 22}} /></div>
-                    <div className="delete-icon"><DeleteIcon style={{fontSize: 22}} /></div>
+                    <div className="delete-icon" onClick={deleteTask}><DeleteIcon style={{fontSize: 22}} /></div>
                 </div>
             </div>
         ) : null

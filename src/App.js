@@ -13,14 +13,24 @@ function App() {
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState("Add a Task");
     const [formError, setFormError] = useState();
+    const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
 
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
 
-    const openAddTaskModal = () => {
+    const [rerender, setRerender] = useState(false);
+
+    const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
         setModalHeader("Add a Task");
+        setColumnId(columnId);
+        setIsModalOpen(true);
+    }
+    
+    const openAddColumnModal = () => {
+        setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
+        setModalHeader("Add a Column");
         setIsModalOpen(true);
     }
 
@@ -37,6 +47,13 @@ function App() {
         setTaskId(taskId);
         setIsModalOpen(true);
     }
+   
+    const openEditColumnModal = (columnId) => {
+        setModalType(Constants.MODAL_TYPE.EDIT_COLUMN);
+        setModalHeader("Update Column");
+        setColumnId(columnId);
+        setIsModalOpen(true);
+    }
     
     const closeModal = () => {
         setTaskId();
@@ -45,8 +62,10 @@ function App() {
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
+    const handleRerender = () => setRerender(!rerender);
+
     useEffect(() => {
-    }, [modalType, taskId]);
+    }, [modalType, taskId, columnId]);
 
     return (    
         <div className="App">
@@ -67,7 +86,9 @@ function App() {
                         setError={setError}
                         setSuccess={setSuccess}
                         taskId={taskId}
+                        columnId={columnId}
                         closeModal={closeModal}
+                        handleRerender={handleRerender}
                     />
                 </Modal>
             ) : null}
@@ -79,11 +100,15 @@ function App() {
             
             <ApplicationViews 
                 openAddTaskModal={openAddTaskModal} 
+                openAddColumnModal={openAddColumnModal}
                 openViewTaskModal={openViewTaskModal} 
                 openEditTaskModal={openEditTaskModal}
+                openEditColumnModal={openEditColumnModal}
                 closeModal={closeModal} 
                 setError={setError}
                 setSuccess={setSuccess}
+                rerender={rerender}
+                handleRerender={handleRerender}
             />
         </div>
     );

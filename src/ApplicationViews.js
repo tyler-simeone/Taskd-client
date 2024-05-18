@@ -4,11 +4,18 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
-const ApplicationViews = ({ openAddTaskModal, openViewTaskModal, setError, setSuccess }) => {
+const ApplicationViews = ({ 
+    openAddTaskModal, 
+    openAddColumnModal, 
+    openViewTaskModal, 
+    openEditColumnModal, 
+    setError, 
+    rerender, 
+    handleRerender 
+}) => {
     const [didMove, setDidMove] = useState(false);
 
     useEffect(() => {
-
     }, [didMove]);
 
     return (
@@ -22,8 +29,12 @@ const ApplicationViews = ({ openAddTaskModal, openViewTaskModal, setError, setSu
                                 didMove={didMove} 
                                 setDidMove={setDidMove} 
                                 openAddTaskModal={openAddTaskModal} 
+                                openAddColumnModal={openAddColumnModal}
                                 openViewTaskModal={openViewTaskModal} 
+                                openEditColumnModal={openEditColumnModal} 
                                 setError={setError}
+                                rerender={rerender}
+                                handleRerender={handleRerender}
                             />
                         </DndProvider>} 
             />
