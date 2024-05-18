@@ -4,7 +4,15 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
-const ApplicationViews = ({ openAddTaskModal, openAddColumnModal, openViewTaskModal, openEditColumnModal, setError, setSuccess, rerender, handleRerender }) => {
+const ApplicationViews = ({ 
+    openAddTaskModal, 
+    openAddColumnModal, 
+    openViewTaskModal, 
+    openEditColumnModal, 
+    setError, 
+    rerender, 
+    handleRerender 
+}) => {
     const [didMove, setDidMove] = useState(false);
 
     useEffect(() => {

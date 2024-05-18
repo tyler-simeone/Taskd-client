@@ -4,12 +4,20 @@ import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
-import { TestData } from "../../TestData";
-import './styles/Board.css';
 import { columnsClient } from "../../api/columnsClient";
+import './styles/Board.css';
 
-export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal, openAddColumnModal, openEditColumnModal, setError, rerender, handleRerender }) => {
-    // const [columns, setColumns] = useState(TestData.Columns);
+export const Board = ({ 
+  didMove, 
+  setDidMove, 
+  openAddTaskModal, 
+  openViewTaskModal, 
+  openAddColumnModal, 
+  openEditColumnModal, 
+  setError, 
+  rerender, 
+  handleRerender 
+}) => {
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
     
@@ -17,8 +25,6 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
       const updatedColumns = [ ...columns ];
 
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
-
-      console.log("position: ", position);
 
       var updateTaskRequest = {
         userId: 1,
@@ -45,9 +51,9 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
           console.log("draggedItem: ", draggedItem);
 
           // const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
+          
           handleDrop(task, destinationColumnId, sourceColumnId);
           
-          // columns.forEach(c => console.log("from within drop hook... ", c.tasks.length));
           console.log("monitor.didDrop(): ", monitor.didDrop());
           console.log("monitor.getDropResult(): ", monitor.getDropResult());  
         },
@@ -77,8 +83,6 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
   }
 
   useEffect(() => {
-    console.log("rerender value: ", rerender);
-
     if (rerender === true) {
       setColumns();
       loadColumns();

@@ -4,10 +4,19 @@ import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
 import AddIcon from '@mui/icons-material/Add';
 import { MoreIcon } from "../controls/icons/MoreIcon";
-import './styles/Column.css';
 import { columnsClient } from "../../api/columnsClient";
+import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openViewTaskModal, openEditColumnModal, setError, handleRerender, updateColumn }) => {
+export const Column = ({ 
+    column, 
+    useCustomDrop, 
+    didMove, 
+    openAddTaskModal, 
+    openViewTaskModal, 
+    openEditColumnModal, 
+    setError, 
+    handleRerender
+}) => {
     const [moreIconValues, setMoreIconValues] = useState([
         {
             name: "editColumn",
@@ -62,13 +71,14 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
     return (
         <div key={column.columnId} className="column--container">
             <div className="column-header--container">
-                {/* <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div> */}
                 <MoreIcon options={moreIconValues} />
                 <div>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
                     {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
                 </div>
-                <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)} ><AddIcon className="add-task-icon" /></div>
+                <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)}>
+                    <AddIcon className="add-task-icon" />
+                </div>
             </div>
 
             <div ref={drop} style={{ backgroundColor: isHover ? 'lightgray' : 'white'}} className="column--body">

@@ -13,6 +13,9 @@ export const Task = ({ task, sourceColumnId, index, didMove, openViewTaskModal }
             // You can perform any cleanup or finalization here
             // For example, you might trigger an action based on whether the item was dropped or canceled
             const dropResult = monitor.getDropResult();
+
+            console.log("monitor.getDropResult(): ", monitor.getDropResult());
+            console.log("monitor.didDrop(): ", monitor.didDrop());
         
             if (dropResult) {
               console.log('Item was dropped successfully');
