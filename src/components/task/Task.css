@@ -10,6 +10,7 @@
 .task--container:hover { 
     cursor: pointer !important;
     background-color: #f7f8f9 !important;
+    background-color: #fafafc !important;
     border: 1px solid #d2d9e1 !important;
 }
 
