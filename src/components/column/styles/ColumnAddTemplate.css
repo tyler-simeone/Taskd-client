@@ -4,7 +4,8 @@
     max-width: 344px;
     border-radius: 22px;
     padding: 20px;
-    border: 1px dashed #a8aaaf;
+    /* border: 1px dashed #a8aaaf; */
+    border: 1px dashed #b0b2b7;
     margin-top: 1%;
     margin-left: 0.1%;
 }

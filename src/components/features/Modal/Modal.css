@@ -11,7 +11,7 @@
     z-index: 1;
     overflow-x: hidden;
     transition: right 0.3s ease;
-    backdrop-filter: blur(0.6px); 
+    /* backdrop-filter: blur(0.6px);  */
   }
   .modal.open {
     right: 0%;

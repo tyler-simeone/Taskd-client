@@ -34,10 +34,9 @@ export const tasksClient = {
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    deleteTask: (payload) => {
-        return fetch(`${tasksClient.baseURL}`, {
+    deleteTask: (taskId, userId) => {
+        return fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
                     method: "DELETE",
-                    body: JSON.stringify(payload),
                     headers: tasksClient.httpHeaders,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));

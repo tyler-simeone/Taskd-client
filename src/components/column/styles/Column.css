@@ -15,7 +15,7 @@
 
 .column-header--container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 12px;
     padding-top: 12px;
     padding-bottom: 12px;

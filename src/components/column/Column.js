@@ -65,7 +65,7 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
                 {/* <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div> */}
                 <MoreIcon options={moreIconValues} />
                 <div>
-                    <h3 className="column-header" onClick={toggleColumnDescription}>{column.columnName}</h3>
+                    <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
                     {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
                 </div>
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)} ><AddIcon className="add-task-icon" /></div>

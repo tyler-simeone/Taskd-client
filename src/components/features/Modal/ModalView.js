@@ -12,7 +12,7 @@ export const ModalView = ({ modalType, setFormError, taskId, columnId, openEditT
     useEffect(() => {
         switch(modalType) {
             case Constants.MODAL_TYPE.VIEW_TASK:
-                setModalView(<ViewTask taskId={taskId} openEditTaskModal={openEditTaskModal} setError={setError} />);
+                setModalView(<ViewTask taskId={taskId} openEditTaskModal={openEditTaskModal} setError={setError} handleRerender={handleRerender} closeModal={closeModal} />);
                 break;
             case Constants.MODAL_TYPE.ADD_TASK:
                 setModalView(<AddTask setFormError={setFormError} setError={setError} closeModal={closeModal} columnId={columnId} handleRerender={handleRerender} />);
