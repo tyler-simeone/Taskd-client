@@ -15,8 +15,8 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    border-bottom: 2px solid #f2f4f7;
-    border-bottom: 2px solid #f2f3f5;
+    /* border-bottom: 2px solid #f2f4f7;
+    border-bottom: 2px solid #f2f3f5; */
 }
 
 .column-header:hover {

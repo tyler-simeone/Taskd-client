@@ -1,10 +1,8 @@
 import React, { useState, createContext } from 'react';
 import { Constants } from './util/Constants';
 
-// Step 1: Create a context
 export const AppContext = createContext();
 
-// Step 2: Create a provider component
 export const AppContextProvider = ({ children }) => {
     
     const [isModalOpen, setIsModalOpen] = useState(false);

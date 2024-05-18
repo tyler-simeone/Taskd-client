@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from './AppContextProvider';
 import { Route, Routes, Navigate } from "react-router-dom";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
 
-const ApplicationViews = ({ 
-    openAddTaskModal, 
-    openAddColumnModal, 
-    openViewTaskModal, 
-    openEditColumnModal, 
-    setError, 
-    rerender, 
-    handleRerender 
-}) => {
+const ApplicationViews = () => {
+    const { 
+        rerender,
+        openAddTaskModal,
+        openAddColumnModal,
+        openViewTaskModal,
+        openEditColumnModal,
+        handleRerender,
+        setError
+     } = useContext(AppContext);  
+
     const [didMove, setDidMove] = useState(false);
 
     useEffect(() => {
