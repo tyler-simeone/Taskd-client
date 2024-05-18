@@ -24,6 +24,18 @@
     /* border-bottom: 2px solid #e3e5e9; */
 }
 
+.column-header {
+    /* width: 80%; */
+}
+.column-header:hover {
+    cursor: pointer;
+} 
+
+.column-description {
+    color: #868a90;
+    color: #6b717b;
+}
+
 .add-task-icon--container {
     margin-top: 2px;
 }

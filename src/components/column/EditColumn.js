@@ -54,20 +54,11 @@ export const EditColumn = ({ setFormError, setError, closeModal, handleRerender,
 
     const loadColumn = () => {
         columnsClient.getColumn(columnId, 1)
-            .then(column => {
-                // const columnState = {...updatedColumn};
-                // columnState.userId = 1;
-                // columnState.columnId = column.columnId;
-                // columnState.columnName = column.columnName;
-                // columnState.columnDescription = column.columnDescription;
-                setUpdatedColumn(column);
-            })
+            .then(column => setUpdatedColumn(column))
             .catch(err => handleError(err, setError));
     }
 
     useEffect(() => {
-        console.log("updatedColumn: ", updatedColumn);
-        console.log("columnId: ", columnId);
         if (updatedColumn === undefined)
             loadColumn();
     }, [updatedColumn])

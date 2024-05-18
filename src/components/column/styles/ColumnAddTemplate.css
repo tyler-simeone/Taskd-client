@@ -6,6 +6,7 @@
     padding: 20px;
     border: 1px dashed #a8aaaf;
     margin-top: 1%;
+    margin-left: 0.1%;
 }
 .add-column-template--container:hover {
     cursor: pointer;

@@ -22,8 +22,11 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
     ]);
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
+    const [showColumnDescription, setShowColumnDescription] = useState(false);
 
     const [{ isHover, isOver, canDrop, didDrop, dropResult }, drop] = useCustomDrop(column.columnId);
+
+    const toggleColumnDescription = () => setShowColumnDescription(!showColumnDescription);
 
     const loadTasks = () => {
         setError();
@@ -54,14 +57,17 @@ export const Column = ({ column, useCustomDrop, didMove, openAddTaskModal, openV
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
-    }, [isOver, tasks]);
+    }, [isOver, tasks, showColumnDescription]);
 
     return (
         <div key={column.columnId} className="column--container">
             <div className="column-header--container">
                 {/* <div className="more-icon--container"><MoreHorizIcon className="more-icon" /></div> */}
                 <MoreIcon options={moreIconValues} />
-                <h3 className="column-header">{column.columnName}</h3>
+                <div>
+                    <h3 className="column-header" onClick={toggleColumnDescription}>{column.columnName}</h3>
+                    {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
+                </div>
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)} ><AddIcon className="add-task-icon" /></div>
             </div>
 

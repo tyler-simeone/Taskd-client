@@ -16,29 +16,20 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
       const updatedColumns = [ ...columns ];
 
-      var sourceColumnIdx = updatedColumns.findIndex(col => col.columnId === sourceColumnId);
-      const sourceColumn = updatedColumns[sourceColumnIdx];
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
       console.log("position: ", position);
-      // console.log("newTask: ", newTask);
-      
-      if (sourceColumn.columnId === destinationColumn.columnId) {
-        destinationColumn.tasks.splice(position, 0, newTask);
-      }
-      else 
-        destinationColumn.tasks.push(newTask)
 
-      // console.log("destinationColumn.tasks: ", destinationColumn.tasks);
-
-      updatedColumns[updatedColumns.findIndex(col => col.columnId === destinationColumnId)] = destinationColumn;
-      
-      // remove from old column
-      var sourceTaskIdx = sourceColumn.tasks.findIndex(col => col.taskId === newTask.taskId);
-      sourceColumn.tasks.splice(sourceTaskIdx, 1);
-      updatedColumns[sourceColumnIdx] = sourceColumn;
-
-      setColumns(updatedColumns);
+      var updateTaskRequest = {
+        userId: 1,
+        taskId: newTask.taskId,
+        columnId: destinationColumn.columnId,
+        taskName: newTask.taskName,
+        taskDescription: newTask.taskDescription
+      };
+      tasksClient.updateTask(updateTaskRequest)
+        .then(() => handleRerender())
+        .catch(err => handleError(err, setError));
     };
 
     const useCustomDrop = (destinationColumnId) => {
@@ -56,7 +47,7 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
           // const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
           handleDrop(task, destinationColumnId, sourceColumnId);
           
-          columns.forEach(c => console.log("from within drop hook... ", c.tasks.length));
+          // columns.forEach(c => console.log("from within drop hook... ", c.tasks.length));
           console.log("monitor.didDrop(): ", monitor.didDrop());
           console.log("monitor.getDropResult(): ", monitor.getDropResult());  
         },
@@ -83,16 +74,6 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
             setIsLoading(false);
             handleError(err, setError);
         });
-
-      // tasksClient.getTasks(column.columnId)
-      //     .then(resp => {
-      //         setTasks(resp.tasks);
-      //         setIsLoading(false);
-      //     })
-      //     .catch(err => {
-      //         setIsLoading(false);
-      //         handleError(err, setError);
-      //     });
   }
 
   useEffect(() => {
@@ -125,17 +106,6 @@ export const Board = ({ didMove, setDidMove, openAddTaskModal, openViewTaskModal
                 <ColumnAddTemplate 
                   openAddColumnModal={openAddColumnModal}
                 />
-                {/* {columns.map(column => (
-                    <Column 
-                      key={column.columnId} 
-                      column={column} 
-                      useCustomDrop={useCustomDrop} 
-                      didMove={didMove}
-                      openAddTaskModal={openAddTaskModal}
-                      openViewTaskModal={openViewTaskModal}
-                      setError={setError}
-                    />
-                ))} */}
             </div>
         </div>
     );

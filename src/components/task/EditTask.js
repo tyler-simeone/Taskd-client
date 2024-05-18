@@ -57,6 +57,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, se
         const editTaskRequestModel = {
             userId: 1,
             taskId: editTask.taskId,
+            columnId: editTask.columnId,
             taskName: editTask.taskName,
             taskDescription: editTask.taskDescription,
         };
