@@ -10,7 +10,8 @@ export const Constants = {
         ADD_COLUMN: "addColumn",
         EDIT_COLUMN: "editColumn",
         VIEW_TASK: "viewTask",
-        EDIT_TASK: "editTask"
+        EDIT_TASK: "editTask",
+        CONFIRM_DELETE: "confirmDelete"
     },
     INTERNAL_SERVER_ERR_MESSAGE: "Internal server error. Please try again later."
 };

@@ -1,0 +1,4 @@
+.confirm-delete--container {
+    display: flex;
+    flex-direction: column;
+}

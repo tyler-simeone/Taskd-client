@@ -5,12 +5,14 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
     
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
+    const [isSideModalOpen, setIsSideModalOpen] = useState(false);
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState();
     const [formError, setFormError] = useState();
     const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
+    const [resourceToDeleteId, setResourceToDeleteId] = useState();
 
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
@@ -21,39 +23,46 @@ export const AppContextProvider = ({ children }) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
         setModalHeader("Add a Task");
         setColumnId(columnId);
-        setIsModalOpen(true);
+        setIsSideModalOpen(true);
     }
     
     const openAddColumnModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
         setModalHeader("Add a Column");
-        setIsModalOpen(true);
+        setIsSideModalOpen(true);
     }
 
     const openViewTaskModal = (taskId, taskName) => {
         setModalType(Constants.MODAL_TYPE.VIEW_TASK);
         setModalHeader(taskName);
         setTaskId(taskId);
-        setIsModalOpen(true);
+        setIsSideModalOpen(true);
     }
     
     const openEditTaskModal = (taskId) => {
         setModalType(Constants.MODAL_TYPE.EDIT_TASK);
         setModalHeader("Update Task");
         setTaskId(taskId);
-        setIsModalOpen(true);
+        setIsSideModalOpen(true);
     }
    
     const openEditColumnModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.EDIT_COLUMN);
         setModalHeader("Update Column");
         setColumnId(columnId);
-        setIsModalOpen(true);
+        setIsSideModalOpen(true);
+    }
+    
+    const openDeleteConfirmationModal = (resource, resourceId) => {
+        setModalType(Constants.MODAL_TYPE.CONFIRM_DELETE);
+        setModalHeader(`Are you sure you want to delete ${resource}?`);
+        setResourceToDeleteId(resourceId);
+        setIsCenterModalOpen(true);
     }
     
     const closeModal = () => {
         setTaskId();
-        setIsModalOpen(false);
+        setIsSideModalOpen(false);
     };
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
@@ -61,7 +70,8 @@ export const AppContextProvider = ({ children }) => {
     const handleRerender = () => setRerender(!rerender);
 
     const ctx = {
-        isModalOpen,
+        isCenterModalOpen,
+        isSideModalOpen,
         modalType,
         modalHeader,
         formError,
@@ -79,7 +89,9 @@ export const AppContextProvider = ({ children }) => {
         closeError,
         closeSuccess,
         handleRerender,
-        setIsModalOpen,
+        openDeleteConfirmationModal,
+        setIsSideModalOpen,
+        setIsCenterModalOpen,
         setFormError,
         setError,
         setSuccess
