@@ -31,6 +31,8 @@
     padding: 8px 0;
     border-radius: 5px;
     margin: 0 auto;
+    font-size: 15.5px;
+    color: #585d66;
 }
 .more-options-li:hover {
     cursor: pointer;

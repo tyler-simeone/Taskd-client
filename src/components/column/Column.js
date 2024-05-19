@@ -18,6 +18,11 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
 
     const [moreIconValues, setMoreIconValues] = useState([
         {
+            name: "sortAZ",
+            value: "Sort A-Z",
+            // callback: () => sortTasksRecentlyAdded(tasks)
+        },
+        {
             name: "sortCreateDate",
             value: "Sort by Recently Added",
             callback: () => sortTasksRecentlyAdded(tasks)
