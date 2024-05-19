@@ -5,20 +5,20 @@ import { CancelButton } from "../../controls/buttons/CancelButton";
 import "./ConfirmDelete.css"
 
 export const ConfirmDelete = () => {
-    const { modalHeader, setDeleteConfirmed } = useContext(AppContext);
+    const { deleteMessage, setDeleteConfirmed } = useContext(AppContext);
 
     const handleDelete = () => setDeleteConfirmed(true);
 
     return (
         <div className="confirm-delete--container">
             <div className="confirm-delete-msg--container">
-                <p>{modalHeader}</p>
-
-                <div className="confirm-delete-btns--container">
-                    <DeleteButton handleSubmit={handleDelete} />
-                    <CancelButton />
-                </div>
+                <h3 className="confirm-delete-msg">{deleteMessage}</h3>
             </div>
+
+            <form className="confirm-delete-btns--container">
+                <DeleteButton text={"Delete"} handleSubmit={handleDelete} />
+                <CancelButton />
+            </form>
         </div>
     );
 }

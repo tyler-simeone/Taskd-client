@@ -36,6 +36,19 @@
     transition: opacity 0.3s ease, transform 3s ease;
   }
 
+  .modal-content.center {
+    background-color: #fbfcfd;
+    position: fixed;
+    overflow: auto;
+    top: 36%;
+    left: 36%;
+    width: 392px;
+    height: 154px;
+    border: 1px solid #dbdee1;
+    border-radius: 26px;
+    padding: 4px 24px;
+  }
+
   .modal-content.active {
     right: 2.5%;
     transform: translateX(0%);

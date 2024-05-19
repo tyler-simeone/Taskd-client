@@ -4,11 +4,12 @@ import "./Modal.css"
 
 export const Modal = ({ children }) => {
     const { 
-        isSideModalOpen
+        isSideModalOpen,
+        isCenterModalOpen
      } = useContext(AppContext);
 
     return (
-        <div id="modal" class={`modal ${isSideModalOpen ? 'open' : ''}`}>
+        <div id="modal" class={`modal ${isSideModalOpen || isCenterModalOpen ? 'open' : ''}`}>
             {children}
         </div>
     );

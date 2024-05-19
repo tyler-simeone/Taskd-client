@@ -10,10 +10,10 @@
     letter-spacing: 0.1px;
     font-size: 15px;
 }
-.primary-button:hover {
+.button:hover {
     cursor: pointer;
 }
-.primary-button.disabled {
+.button.disabled {
     background-color: #ced4db;
     color: #7c838c;
 }

@@ -39,6 +39,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
     }
 
     useEffect(() => {
+        console.log("deleteConfirmed: ", deleteConfirmed);
+        
         if (task === undefined)
             loadTask();
 

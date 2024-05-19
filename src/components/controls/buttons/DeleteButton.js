@@ -9,6 +9,7 @@ export const DeleteButton = ({ text, handleSubmit, isSubmitting }) => {
             text={text} 
             handleSubmit={handleSubmit} 
             isSubmitting={isSubmitting} 
+            isSubmitBtn={true}
         />
     );
 }
