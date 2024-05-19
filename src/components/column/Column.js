@@ -8,7 +8,7 @@ import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove }) => {
+export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
@@ -68,7 +68,7 @@ export const Column = ({ column, useCustomDrop, didMove }) => {
     }, [isOver, tasks, showColumnDescription]);
 
     return (
-        <div key={column.columnId} className="column--container">
+        <div key={column.columnId} className={`column--container ${isLast ? 'last' : ''}`}>
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
                 <div style={{ width: "80%" }}>

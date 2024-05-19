@@ -2,11 +2,13 @@
     width: 99%;
     height: 92%;
     border-top: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .board {
     width: 100%;
-    height: 98.5%;
+    flex: 1;
     display: flex;
     overflow-x: scroll;
     background-color: #dde1e5;

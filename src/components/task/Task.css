@@ -9,8 +9,7 @@
 }
 .task--container:hover { 
     cursor: pointer !important;
-    /* background-color: #f7f7fa !important; */
-    background-color: #f4f6f9 !important;
+    background-color: #f3f5f8 !important;
     border: 1px solid #d6dde5 !important;
 }
 

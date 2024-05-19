@@ -91,7 +91,13 @@ export const Board = ({ didMove, setDidMove }) => {
         <div className="board--container">
             <div className="board">
                 {columns !== undefined && columns.map(column => (
-                    <Column key={column.columnId} column={column} useCustomDrop={useCustomDrop} didMove={didMove} />
+                    <Column 
+                      key={column.columnId} 
+                      column={column} 
+                      useCustomDrop={useCustomDrop} 
+                      didMove={didMove} 
+                      isLast={(column.columnId === columns[columns.length-1].columnId)}
+                    />
                 ))}
                 <ColumnAddTemplate />
             </div>
