@@ -5,10 +5,18 @@
     min-width: 406px;
     max-width: 406px;
     border-radius: 2px;
-    margin-right: 5.5px;
+    margin-right: 4.5px;
     background-color: #fff;
     border-radius: 10px;
     border-radius: 14px;
+    border-radius: 4px;
+}
+
+.column--container:first-of-type {
+    border-radius: 14px 4px 4px 14px;
+}
+.column--container:last-of-type {
+    border-radius: 4px 14px 14px 4px;
 }
 
 .column-header--container {
