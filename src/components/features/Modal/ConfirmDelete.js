@@ -1,20 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { DeleteButton } from "../../controls/buttons/DeleteButton";
 import { CancelButton } from "../../controls/buttons/CancelButton";
 import "./ConfirmDelete.css"
 
-export const ConfirmDelete = ({ deleteHandler }) => {
-    const { closeDeleteConfirmationModal, modalHeader } = useContext(AppContext);
+export const ConfirmDelete = () => {
+    const { modalHeader, setDeleteConfirmed } = useContext(AppContext);
 
-    const [confirmDelete, setConfirmDelete] = useState(false);
-
-    const handleDelete = () => setConfirmDelete(true);
-
-    useEffect(() => {
-        if (confirmDelete === true)
-            closeDeleteConfirmationModal();
-    }, [confirmDelete])
+    const handleDelete = () => setDeleteConfirmed(true);
 
     return (
         <div className="confirm-delete--container">

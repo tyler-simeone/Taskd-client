@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import EditIcon from '@mui/icons-material/Edit';
@@ -6,6 +7,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "./ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, handleRerender }) => {
+    const { openDeleteConfirmationModal, deleteConfirmed, closeDeleteConfirmationModal } = useContext(AppContext);
+
     const [task, setTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +26,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
             });
     }
 
+    const confirmDeletion = () => openDeleteConfirmationModal(`task: ${task.taskName}`);
+
     const deleteTask = () => {
         setError();
         setIsLoading(true);
@@ -30,13 +35,16 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
-        closeSideModal();
+        closeDeleteConfirmationModal();
     }
 
     useEffect(() => {
         if (task === undefined)
             loadTask();
-    }, [task]);
+
+        if (deleteConfirmed === true)
+            deleteTask();
+    }, [task, deleteConfirmed]);
 
     return (
         task !== undefined ? (
@@ -55,7 +63,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
                 </div>
                 <div className="icon--container">
                     <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}><EditIcon style={{fontSize: 22}} /></div>
-                    <div className="delete-icon" onClick={deleteTask}><DeleteIcon style={{fontSize: 22}} /></div>
+                    <div className="delete-icon" onClick={confirmDeletion}><DeleteIcon style={{fontSize: 22}} /></div>
                 </div>
             </>
         ) : null

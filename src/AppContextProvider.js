@@ -13,6 +13,7 @@ export const AppContextProvider = ({ children }) => {
     const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
     const [resourceToDeleteId, setResourceToDeleteId] = useState();
+    const [deleteConfirmed, setDeleteConfirmed] = useState(false);
 
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
@@ -53,10 +54,11 @@ export const AppContextProvider = ({ children }) => {
         setIsSideModalOpen(true);
     }
     
-    const openDeleteConfirmationModal = (resource, resourceId) => {
+    const openDeleteConfirmationModal = (resourceName) => {
+        closeSideModal();
         setModalType(Constants.MODAL_TYPE.CONFIRM_DELETE);
-        setModalHeader(`Are you sure you want to delete ${resource}?`);
-        setResourceToDeleteId(resourceId);
+        setModalHeader(`Are you sure you want to delete ${resourceName}?`);
+        // setResourceToDeleteId(resourceId);
         setIsCenterModalOpen(true);
     }
     
@@ -88,6 +90,7 @@ export const AppContextProvider = ({ children }) => {
         error,
         success,
         rerender,
+        deleteConfirmed,
         openAddTaskModal,
         openAddColumnModal,
         openViewTaskModal,
@@ -98,6 +101,7 @@ export const AppContextProvider = ({ children }) => {
         closeSuccess,
         handleRerender,
         openDeleteConfirmationModal,
+        setDeleteConfirmed,
         closeDeleteConfirmationModal,
         setIsSideModalOpen,
         setIsCenterModalOpen,
