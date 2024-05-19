@@ -8,7 +8,7 @@ import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove }) => {
+export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
@@ -17,6 +17,16 @@ export const Column = ({ column, useCustomDrop, didMove }) => {
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
+        {
+            name: "sortAZ",
+            value: "Sort A-Z",
+            // callback: () => sortTasksRecentlyAdded(tasks)
+        },
+        {
+            name: "sortCreateDate",
+            value: "Sort by Recently Added",
+            callback: () => sortTasksRecentlyAdded(tasks)
+        },
         {
             name: "editColumn",
             value: "Edit Column",
@@ -40,14 +50,17 @@ export const Column = ({ column, useCustomDrop, didMove }) => {
         setError();
         setIsLoading(true);
         tasksClient.getTasks(column.columnId)
-            .then(resp => {
-                setTasks(resp.tasks);
-                setIsLoading(false);
-            })
-            .catch(err => {
-                setIsLoading(false);
-                handleError(err, setError);
-            });
+            .then(resp => setTasks(resp.tasks))
+            .catch(err => handleError(err, setError));
+        setIsLoading(false);
+    }
+
+    const sortTasksRecentlyAdded = (tasks) => {
+        console.log("tasks: ", tasks);
+        const tasksToSort = {...tasks};
+        console.log("tasksToSort: ", tasksToSort);
+        // const sortedTasks = tasksToSort.sort((a, b) => a.createDatetime - b.createDatetime);
+        // setTasks(sortedTasks);
     }
 
     const deleteColumn = () => {
@@ -60,6 +73,9 @@ export const Column = ({ column, useCustomDrop, didMove }) => {
     }
 
     useEffect(() => {
+        console.log("useEffect tasks: ", tasks);
+        console.log("isOver: ", isOver);
+
         if (tasks === undefined)
             loadTasks();
 
@@ -68,13 +84,15 @@ export const Column = ({ column, useCustomDrop, didMove }) => {
     }, [isOver, tasks, showColumnDescription]);
 
     return (
-        <div key={column.columnId} className="column--container">
+        <div key={column.columnId} className={`column--container ${isLast ? 'last' : ''}`}>
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
+
                 <div style={{ width: "80%" }}>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
                     {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
                 </div>
+                
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)}>
                     <AddIcon className="add-task-icon" />
                 </div>

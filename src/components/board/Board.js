@@ -19,6 +19,8 @@ export const Board = ({ didMove, setDidMove }) => {
 
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
+      console.log("destinationColumn: ", destinationColumn);
+
       var updateTaskRequest = {
         userId: 1,
         taskId: newTask.taskId,
@@ -38,6 +40,7 @@ export const Board = ({ didMove, setDidMove }) => {
           // Called when a draggable item is hovered over the drop target
           // Perform any hover-related actions here
           setDidMove(true);
+          console.log("hi from hover...");
         },
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
@@ -87,10 +90,18 @@ export const Board = ({ didMove, setDidMove }) => {
     return (
         <div className="board--container">
             <div className="board">
+              <div className="board-wrapper">
                 {columns !== undefined && columns.map(column => (
-                    <Column key={column.columnId} column={column} useCustomDrop={useCustomDrop} didMove={didMove} />
+                    <Column 
+                      key={column.columnId} 
+                      column={column} 
+                      useCustomDrop={useCustomDrop} 
+                      didMove={didMove} 
+                      isLast={(column.columnId === columns[columns.length-1].columnId)}
+                    />
                 ))}
-                <ColumnAddTemplate />
+              </div>
+              <ColumnAddTemplate />
             </div>
         </div>
     );
