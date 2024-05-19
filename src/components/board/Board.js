@@ -90,6 +90,7 @@ export const Board = ({ didMove, setDidMove }) => {
     return (
         <div className="board--container">
             <div className="board">
+              <div className="board-wrapper">
                 {columns !== undefined && columns.map(column => (
                     <Column 
                       key={column.columnId} 
@@ -99,7 +100,8 @@ export const Board = ({ didMove, setDidMove }) => {
                       isLast={(column.columnId === columns[columns.length-1].columnId)}
                     />
                 ))}
-                <ColumnAddTemplate />
+              </div>
+              <ColumnAddTemplate />
             </div>
         </div>
     );
