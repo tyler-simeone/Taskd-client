@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
@@ -7,16 +8,14 @@ import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Column.css';
 
-export const Column = ({ 
-    column, 
-    useCustomDrop, 
-    didMove, 
-    openAddTaskModal, 
-    openViewTaskModal, 
-    openEditColumnModal, 
-    setError, 
-    handleRerender
-}) => {
+export const Column = ({ column, useCustomDrop, didMove }) => {
+    const { 
+        openAddTaskModal,
+        openEditColumnModal,
+        handleRerender,
+        setError
+    } = useContext(AppContext); 
+
     const [moreIconValues, setMoreIconValues] = useState([
         {
             name: "editColumn",
@@ -72,7 +71,7 @@ export const Column = ({
         <div key={column.columnId} className="column--container">
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
-                <div>
+                <div style={{ width: "80%" }}>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
                     {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
                 </div>
@@ -82,8 +81,7 @@ export const Column = ({
             </div>
 
             <div ref={drop} style={{ backgroundColor: isHover ? 'lightgray' : 'white'}} className="column--body">
-                {tasks !== undefined ? 
-                (tasks.map((task, index) => (
+                {tasks !== undefined && tasks.map((task, index) => 
                     <Task 
                         key={task.taskId} 
                         index={index}
@@ -91,9 +89,8 @@ export const Column = ({
                         task={task} 
                         sourceColumnId={column.columnId}
                         didMove={didMove}
-                        openViewTaskModal={openViewTaskModal}
                     />
-                ))) : null}
+                )}
             </div>
         </div>
     );

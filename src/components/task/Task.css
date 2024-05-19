@@ -11,8 +11,11 @@
     cursor: pointer !important;
     /* background-color: #fafafc !important;
     background-color: #f7f8fa !important; */
-    background-color: #f9f9fa !important;
+    /* background-color: #f9f9fa !important; */
+    background-color: #f7f7fa !important;
     border: 1px solid #d2d9e1 !important;
+    border: 1px solid #d9e0e8 !important;
+    border: 1px solid #d6dde5 !important;
     /* border: 1px solid #d0d7df !important; */
 }
 

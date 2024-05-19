@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
@@ -7,17 +8,9 @@ import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 
-export const Board = ({ 
-  didMove, 
-  setDidMove, 
-  openAddTaskModal, 
-  openViewTaskModal, 
-  openAddColumnModal, 
-  openEditColumnModal, 
-  setError, 
-  rerender, 
-  handleRerender 
-}) => {
+export const Board = ({ didMove, setDidMove }) => {
+    const { rerender, handleRerender, setError } = useContext(AppContext); 
+
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
     
@@ -95,21 +88,9 @@ export const Board = ({
         <div className="board--container">
             <div className="board">
                 {columns !== undefined && columns.map(column => (
-                    <Column 
-                      key={column.columnId} 
-                      column={column} 
-                      useCustomDrop={useCustomDrop} 
-                      didMove={didMove}
-                      openAddTaskModal={openAddTaskModal}
-                      openViewTaskModal={openViewTaskModal}
-                      openEditColumnModal={openEditColumnModal}
-                      setError={setError}
-                      handleRerender={handleRerender}
-                    />
+                    <Column key={column.columnId} column={column} useCustomDrop={useCustomDrop} didMove={didMove} />
                 ))}
-                <ColumnAddTemplate 
-                  openAddColumnModal={openAddColumnModal}
-                />
+                <ColumnAddTemplate />
             </div>
         </div>
     );

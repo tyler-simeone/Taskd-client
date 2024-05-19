@@ -3,9 +3,9 @@
     min-width: 406px;
     max-width: 406px;
     border-radius: 2px;
-    margin-right: 4.5px;
+    margin-right: 5.5px;
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 10px;
 }
 
 .column-header--container {
@@ -15,8 +15,6 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    /* border-bottom: 2px solid #f2f4f7;
-    border-bottom: 2px solid #f2f3f5; */
 }
 
 .column-header:hover {
@@ -24,8 +22,8 @@
 } 
 
 .column-description {
-    color: #868a90;
     color: #6b717b;
+    margin-top: 5px;
 }
 
 .add-task-icon--container {
@@ -40,7 +38,6 @@
 
 .column--body {
     padding: 10px;
-    height: 91%;
     overflow-y: scroll;
     overflow-x: hidden;
 }

@@ -9,7 +9,6 @@
     height: 98.5%;
     display: flex;
     overflow-x: scroll;
-    /* background-color: #dee1e4; */
     background-color: #dde1e5;
-    padding: 3.5px 6px;
+    padding: 4.5px 6px;
 }

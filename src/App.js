@@ -24,7 +24,7 @@ function App() {
 
     return (    
         <div className="App">
-            {isModalOpen && error === undefined ? <Modal><ModalView /></Modal> : null}
+            {isModalOpen && error === undefined && <Modal><ModalView /></Modal>}
 
             <Navigation />
 
