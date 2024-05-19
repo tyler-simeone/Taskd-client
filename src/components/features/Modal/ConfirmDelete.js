@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
+import { DeleteButton } from "../../controls/buttons/DeleteButton";
+import { CancelButton } from "../../controls/buttons/CancelButton";
 import "./ConfirmDelete.css"
 
 export const ConfirmDelete = ({ deleteHandler }) => {
@@ -20,7 +22,8 @@ export const ConfirmDelete = ({ deleteHandler }) => {
                 <p>{modalHeader}</p>
 
                 <div className="confirm-delete-btns--container">
-                    
+                    <DeleteButton handleSubmit={handleDelete} />
+                    <CancelButton />
                 </div>
             </div>
         </div>
