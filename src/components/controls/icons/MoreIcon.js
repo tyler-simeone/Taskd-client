@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import "./MoreIcon.css"
 
@@ -8,6 +8,7 @@ export const MoreIcon = ({ options }) => {
     const showMoreOptions = () => setIsHidden(false);
     const closeMoreOptions = () => setIsHidden(true);
 
+    useEffect(() => {}, [isHidden]);
     return (
         <>
             <div className="more-icon--container" onClick={showMoreOptions}>
@@ -19,7 +20,7 @@ export const MoreIcon = ({ options }) => {
                     <ul>
                         {options !== undefined ? (
                             options.map(option => (
-                                <li className="more-options-li" name={option.name} onClick={option.callback}>
+                                <li className="more-options-li" key={option.name} name={option.name} onClick={option.callback}>
                                     {option.value}
                                 </li>
                             ))

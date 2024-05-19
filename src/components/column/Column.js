@@ -20,7 +20,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         {
             name: "sortCreateDate",
             value: "Sort by Recently Added",
-            callback: () => sortTasksRecentlyAdded()
+            callback: () => sortTasksRecentlyAdded(tasks)
         },
         {
             name: "editColumn",
@@ -50,7 +50,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         setIsLoading(false);
     }
 
-    const sortTasksRecentlyAdded = () => {
+    const sortTasksRecentlyAdded = (tasks) => {
         console.log("tasks: ", tasks);
         const tasksToSort = {...tasks};
         console.log("tasksToSort: ", tasksToSort);
@@ -69,6 +69,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
 
     useEffect(() => {
         console.log("useEffect tasks: ", tasks);
+        console.log("isOver: ", isOver);
 
         if (tasks === undefined)
             loadTasks();
@@ -81,10 +82,12 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         <div key={column.columnId} className={`column--container ${isLast ? 'last' : ''}`}>
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
+
                 <div style={{ width: "80%" }}>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
                     {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
                 </div>
+                
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)}>
                     <AddIcon className="add-task-icon" />
                 </div>
