@@ -15,7 +15,7 @@ export const ModalView = () => {
         taskId,
         openViewTaskModal,
         openEditTaskModal,
-        closeModal,
+        closeSideModal,
         handleRerender,
         setFormError,
         setError,
@@ -32,14 +32,14 @@ export const ModalView = () => {
                                 openEditTaskModal={openEditTaskModal} 
                                 setError={setError} 
                                 handleRerender={handleRerender} 
-                                closeModal={closeModal} 
+                                closeSideModal={closeSideModal} 
                              />);
                 break;
             case Constants.MODAL_TYPE.ADD_TASK:
                 setModalView(<AddTask 
                                 setFormError={setFormError} 
                                 setError={setError} 
-                                closeModal={closeModal} 
+                                closeSideModal={closeSideModal} 
                                 columnId={columnId} 
                                 handleRerender={handleRerender}
                              />);
@@ -48,7 +48,7 @@ export const ModalView = () => {
                 setModalView(<AddColumn 
                                 setFormError={setFormError} 
                                 setError={setError} 
-                                closeModal={closeModal} 
+                                closeSideModal={closeSideModal} 
                                 handleRerender={handleRerender} 
                              />);
                 break;
@@ -69,7 +69,7 @@ export const ModalView = () => {
                                 setFormError={setFormError} 
                                 columnId={columnId} 
                                 handleRerender={handleRerender} 
-                                closeModal={closeModal} 
+                                closeSideModal={closeSideModal} 
                              />);
                 break;
             default:

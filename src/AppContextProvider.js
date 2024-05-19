@@ -60,10 +60,18 @@ export const AppContextProvider = ({ children }) => {
         setIsCenterModalOpen(true);
     }
     
-    const closeModal = () => {
+    const closeSideModal = () => {
         setTaskId();
         setIsSideModalOpen(false);
     };
+
+    const closeDeleteConfirmationModal = () => {
+        setResourceToDeleteId();
+        closeCenterModal();
+    };
+    
+    const closeCenterModal = () => setIsCenterModalOpen(false);
+
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
@@ -85,11 +93,12 @@ export const AppContextProvider = ({ children }) => {
         openViewTaskModal,
         openEditTaskModal,
         openEditColumnModal,
-        closeModal,
+        closeSideModal,
         closeError,
         closeSuccess,
         handleRerender,
         openDeleteConfirmationModal,
+        closeDeleteConfirmationModal,
         setIsSideModalOpen,
         setIsCenterModalOpen,
         setFormError,

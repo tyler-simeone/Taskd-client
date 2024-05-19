@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./ViewTask.css"
 
-export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, handleRerender }) => {
+export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, handleRerender }) => {
     const [task, setTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,7 +30,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, hand
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
-        closeModal();
+        closeSideModal();
     }
 
     useEffect(() => {

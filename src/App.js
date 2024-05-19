@@ -7,8 +7,8 @@ import { SuccessMessage } from './components/features/success/SuccessMessage';
 import ApplicationViews from './ApplicationViews'
 import { ModalView } from './components/features/modal/ModalView';
 import { SideModal } from './components/features/modal/SideModal';
-import './App.css';
 import { CenterModal } from './components/features/modal/CenterModal';
+import './App.css';
 
 function App() {
     const { 
@@ -35,7 +35,7 @@ function App() {
                         </SideModal>
                     ) : isCenterModalOpen && (
                         <CenterModal>
-                            
+
                         </CenterModal>
                     )}
                 </Modal>

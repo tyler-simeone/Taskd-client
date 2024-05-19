@@ -15,7 +15,7 @@ export const CenterModalView = () => {
         taskId,
         openViewTaskModal,
         openEditTaskModal,
-        closeModal,
+        closeSideModal,
         handleRerender,
         setFormError,
         setError,
@@ -32,44 +32,7 @@ export const CenterModalView = () => {
                                 openEditTaskModal={openEditTaskModal} 
                                 setError={setError} 
                                 handleRerender={handleRerender} 
-                                closeModal={closeModal} 
-                             />);
-                break;
-            case Constants.MODAL_TYPE.ADD_TASK:
-                setModalView(<AddTask 
-                                setFormError={setFormError} 
-                                setError={setError} 
-                                closeModal={closeModal} 
-                                columnId={columnId} 
-                                handleRerender={handleRerender}
-                             />);
-                break;
-            case Constants.MODAL_TYPE.ADD_COLUMN:
-                setModalView(<AddColumn 
-                                setFormError={setFormError} 
-                                setError={setError} 
-                                closeModal={closeModal} 
-                                handleRerender={handleRerender} 
-                             />);
-                break;
-            case Constants.MODAL_TYPE.EDIT_TASK:
-                setModalView(<EditTask 
-                                setError={setError} 
-                                setSuccess={setSuccess} 
-                                setFormError={setFormError} 
-                                taskId={taskId} 
-                                openViewTaskModal={openViewTaskModal} 
-                                handleRerender={handleRerender} 
-                             />);
-                break;
-            case Constants.MODAL_TYPE.EDIT_COLUMN:
-                setModalView(<EditColumn 
-                                setError={setError} 
-                                setSuccess={setSuccess} 
-                                setFormError={setFormError} 
-                                columnId={columnId} 
-                                handleRerender={handleRerender} 
-                                closeModal={closeModal} 
+                                closeSideModal={closeSideModal} 
                              />);
                 break;
             default:
