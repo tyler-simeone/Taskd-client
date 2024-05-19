@@ -1,23 +1,36 @@
 .task-details {
     margin-left: 4.5px;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
 }
 
 .task-description--container {
     
 }
-.task-description-lbl {
-    font-weight: 600;
-    margin-top: 0px !important;
-    letter-spacing: 0.5px;
-    font-size: 16.5px;
+
+.task-create-date--container {
+    margin-top: 14px;
+    /* display: flex; */
 }
 
+.task-lbl {
+    font-weight: 500;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    color: #63676d;
+}
+
+.created-date {
+    font-size: 14.5px;
+    color: gray;
+}
 
 .icon--container {
     display: flex;
     margin-top: 4px;
+    margin-top: 18px;
     margin-left: 4px;
 }
 
@@ -30,8 +43,9 @@
 .edit-icon:hover,
 .delete-icon:hover {
     cursor: pointer;
+    /* color: #6f767d !important; */
 }
 
 .edit-icon {
-    margin-right: 10px;
+    margin-right: 14px;
 }

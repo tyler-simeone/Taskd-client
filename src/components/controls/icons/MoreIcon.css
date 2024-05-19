@@ -18,18 +18,24 @@
     border-radius: 7px;
     top: 13%;
     left: 25%;
+    padding: 0 1px;
 }
 .more-options--container > ul {
     margin: 0 auto;
-    padding: 0px;
-    padding: 12px 10px;
+    padding: 6px 0px;
 }
 
 .more-options-li {
     list-style-type: none;
-    width: 100%;
-    padding: 4px 0;
+    width: 95%;
+    padding: 8px 0;
+    border-radius: 4px;
+    margin: 0 auto;
 }
 .more-options-li:hover {
     cursor: pointer;
+    background-color: #dde1e5;
+    background-color: #e0e4e8;
+    background-color: #e3e7ec;
+    color: #484a4c;
 }

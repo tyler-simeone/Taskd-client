@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AppContext } from "../../../AppContextProvider";
 import { Constants } from "../../../util/Constants";
 import { ViewTask } from "../../task/ViewTask";
 import { AddTask } from "../../task/AddTask";
@@ -6,18 +7,21 @@ import { AddColumn } from "../../column/AddColumn";
 import { EditTask } from "../../task/EditTask";
 import { EditColumn } from "../../column/EditColumn";
 
-export const ModalView = ({ 
-    modalType,
-    setFormError,
-    taskId,
-    columnId,
-    openEditTaskModal,
-    openViewTaskModal,
-    setError,
-    setSuccess,
-    closeModal,
-    handleRerender 
-}) => {
+export const ModalView = () => {
+
+    const { 
+        modalType,
+        columnId,
+        taskId,
+        openViewTaskModal,
+        openEditTaskModal,
+        closeModal,
+        handleRerender,
+        setFormError,
+        setError,
+        setSuccess
+     } = useContext(AppContext);
+
     const [modalView, setModalView] = useState();
 
     useEffect(() => {

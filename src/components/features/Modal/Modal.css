@@ -11,7 +11,6 @@
     z-index: 1;
     overflow-x: hidden;
     transition: right 0.3s ease;
-    /* backdrop-filter: blur(0.6px);  */
   }
   .modal.open {
     right: 0%;
@@ -25,10 +24,11 @@
     right: -33%;
     height: 93%;
     top: 1%;
-    width: 394px;
+    width: 392px;
     border: 1px solid #dbdee1;
     border-radius: 24px;
     border-radius: 28px;
+    border-radius: 26px;
     padding: 20px 24px;
     box-shadow: 0px 1px 6px 1px rgb(0 0 0 / 12%);
 
@@ -37,7 +37,7 @@
   }
 
   .modal-content.active {
-    right: 2%;
+    right: 2.5%;
     transform: translateX(0%);
   }
 

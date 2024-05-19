@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
 import "./Task.css"
 
-export const Task = ({ task, sourceColumnId, index, didMove, openViewTaskModal }) => {
+export const Task = ({ task, sourceColumnId, index, didMove }) => {
+    const { openViewTaskModal } = useContext(AppContext);
+    
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
         item: { task, sourceColumnId, index },
