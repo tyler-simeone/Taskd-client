@@ -34,8 +34,6 @@
 }
 .more-options-li:hover {
     cursor: pointer;
-    background-color: #dde1e5;
-    background-color: #e0e4e8;
     background-color: #e3e7ec;
-    color: #484a4c;
+    /* color: #484a4c; */
 }
