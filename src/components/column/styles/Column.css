@@ -1,4 +1,6 @@
 .column--container {
+    display: flex;
+    flex-direction: column;
     height: 99.5%;
     min-width: 406px;
     max-width: 406px;
@@ -6,6 +8,7 @@
     margin-right: 5.5px;
     background-color: #fff;
     border-radius: 10px;
+    border-radius: 14px;
 }
 
 .column-header--container {
@@ -40,4 +43,5 @@
     padding: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
+    flex: 1;
 }

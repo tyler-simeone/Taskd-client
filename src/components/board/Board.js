@@ -19,6 +19,8 @@ export const Board = ({ didMove, setDidMove }) => {
 
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
+      console.log("destinationColumn: ", destinationColumn);
+
       var updateTaskRequest = {
         userId: 1,
         taskId: newTask.taskId,
@@ -38,6 +40,7 @@ export const Board = ({ didMove, setDidMove }) => {
           // Called when a draggable item is hovered over the drop target
           // Perform any hover-related actions here
           setDidMove(true);
+          console.log("hi from hover...");
         },
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
