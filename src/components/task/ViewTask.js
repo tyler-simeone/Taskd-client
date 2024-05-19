@@ -26,7 +26,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
             });
     }
 
-    const confirmDeletion = () => openDeleteConfirmationModal(`task: ${task.taskName}`);
+    const confirmDeletion = () => openDeleteConfirmationModal(`${task.taskName}`);
 
     const deleteTask = () => {
         setError();
@@ -39,8 +39,6 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeSideModal, setError, 
     }
 
     useEffect(() => {
-        console.log("deleteConfirmed: ", deleteConfirmed);
-        
         if (task === undefined)
             loadTask();
 

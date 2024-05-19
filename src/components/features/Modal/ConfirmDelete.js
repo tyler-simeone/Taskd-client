@@ -5,18 +5,18 @@ import { CancelButton } from "../../controls/buttons/CancelButton";
 import "./ConfirmDelete.css"
 
 export const ConfirmDelete = () => {
-    const { deleteMessage, setDeleteConfirmed } = useContext(AppContext);
+    const { resourceToDelete, setDeleteConfirmed } = useContext(AppContext);
 
     const handleDelete = () => setDeleteConfirmed(true);
 
     return (
         <div className="confirm-delete--container">
             <div className="confirm-delete-msg--container">
-                <h3 className="confirm-delete-msg">{deleteMessage}</h3>
+                <h3 className="confirm-delete-msg">Are you sure you want to delete <span className="resource-to-delete">{resourceToDelete}</span></h3>
             </div>
 
-            <form className="confirm-delete-btns--container">
-                <DeleteButton text={"Delete"} handleSubmit={handleDelete} />
+            <form onSubmit={handleDelete} className="confirm-delete-btns--container">
+                <DeleteButton text={"Delete"} />
                 <CancelButton />
             </form>
         </div>
