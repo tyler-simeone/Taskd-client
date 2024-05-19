@@ -18,6 +18,11 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
 
     const [moreIconValues, setMoreIconValues] = useState([
         {
+            name: "sortCreateDate",
+            value: "Sort by Recently Added",
+            callback: () => sortTasksRecentlyAdded()
+        },
+        {
             name: "editColumn",
             value: "Edit Column",
             callback: () => openEditColumnModal(column.columnId)
@@ -40,14 +45,17 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         setError();
         setIsLoading(true);
         tasksClient.getTasks(column.columnId)
-            .then(resp => {
-                setTasks(resp.tasks);
-                setIsLoading(false);
-            })
-            .catch(err => {
-                setIsLoading(false);
-                handleError(err, setError);
-            });
+            .then(resp => setTasks(resp.tasks))
+            .catch(err => handleError(err, setError));
+        setIsLoading(false);
+    }
+
+    const sortTasksRecentlyAdded = () => {
+        console.log("tasks: ", tasks);
+        const tasksToSort = {...tasks};
+        console.log("tasksToSort: ", tasksToSort);
+        // const sortedTasks = tasksToSort.sort((a, b) => a.createDatetime - b.createDatetime);
+        // setTasks(sortedTasks);
     }
 
     const deleteColumn = () => {
@@ -60,6 +68,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
     }
 
     useEffect(() => {
+        console.log("useEffect tasks: ", tasks);
+
         if (tasks === undefined)
             loadTasks();
 

@@ -15,10 +15,10 @@
     position: fixed;
     z-index: 1;
     background-color: #fff;
-    border-radius: 7px;
+    border-radius: 8px;
     top: 13%;
     left: 25%;
-    padding: 0 1px;
+    padding: 1px 1px;
 }
 .more-options--container > ul {
     margin: 0 auto;
@@ -29,7 +29,7 @@
     list-style-type: none;
     width: 95%;
     padding: 8px 0;
-    border-radius: 4px;
+    border-radius: 5px;
     margin: 0 auto;
 }
 .more-options-li:hover {
