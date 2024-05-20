@@ -1,12 +1,11 @@
 import React from "react";
 import { Button } from "./Button";
-import "./PrimaryButton.css"
+import "./DeleteButton.css"
 
-export const PrimaryButton = ({ text, handleSubmit, isSubmitting }) => {
-
+export const DeleteButton = ({ text, handleSubmit, isSubmitting }) => {
     return (
         <Button 
-            className={"primary"} 
+            className={"delete"} 
             text={text} 
             handleSubmit={handleSubmit} 
             isSubmitting={isSubmitting} 

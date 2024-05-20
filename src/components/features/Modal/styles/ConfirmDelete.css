@@ -1,0 +1,20 @@
+.confirm-delete--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.confirm-delete-msg {
+    width: 92%;
+}
+
+.resource-to-delete {
+    color: gray;
+    font-style: italic;
+}
+
+.confirm-delete-btns--container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 18px;
+}

@@ -3,24 +3,28 @@ import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
-import AddIcon from '@mui/icons-material/Add';
 import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
+import { deleteConfirmationModalArgs } from "../../util/deleteConfirmationModalArgs";
+import AddIcon from '@mui/icons-material/Add';
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
+export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
         handleRerender,
-        setError
+        setError,
+        deleteConfirmed,
+        openDeleteConfirmationModal,
+        closeDeleteConfirmationModal
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
         {
             name: "sortAZ",
             value: "Sort A-Z",
-            // callback: () => sortTasksRecentlyAdded(tasks)
+            // callback: () => sortTas
         },
         {
             name: "sortCreateDate",
@@ -35,9 +39,10 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         {
             name: "deleteColumn",
             value: "Delete Column",
-            callback: () => deleteColumn()
+            callback: () => openDeleteConfirmationModal({resourceName: column.columnName, resourceId: column.columnId, callback: () => deleteColumn(column.columnId)})
+            // callback: () => openDeleteConfirmationModal(deleteConfirmationModalArgs(column.columnId, column.columnName, deleteColumn))
         },
-    ]);
+    ]); 
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);
@@ -63,28 +68,30 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         // setTasks(sortedTasks);
     }
 
-    const deleteColumn = () => {
+    const deleteColumn = (columnId) => {
         setError();
         setIsLoading(true);
-        columnsClient.deleteColumn(column.columnId, 1)
+        columnsClient.deleteColumn(columnId, 1)
             .then(() =>  handleRerender())
             .catch(err => handleError(err, setError));
         setIsLoading(false);
+        handleRerender();
+        closeDeleteConfirmationModal();
     }
 
     useEffect(() => {
-        console.log("useEffect tasks: ", tasks);
-        console.log("isOver: ", isOver);
+        // console.log("useEffect tasks: ", tasks);
+        // console.log("isOver: ", isOver);
 
         if (tasks === undefined)
             loadTasks();
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
-    }, [isOver, tasks, showColumnDescription]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed]);
 
     return (
-        <div key={column.columnId} className={`column--container ${isLast ? 'last' : ''}`}>
+        <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
 

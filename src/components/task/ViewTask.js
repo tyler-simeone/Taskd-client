@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./ViewTask.css"
 
-export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, handleRerender }) => {
+export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
+    const { confirmDeletion, deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModal } = useContext(AppContext);
+
     const [task, setTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,20 +26,23 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, hand
             });
     }
 
-    const deleteTask = () => {
+    const deleteTask = (taskId) => {
         setError();
         setIsLoading(true);
         tasksClient.deleteTask(taskId, 1)
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
-        closeModal();
+        closeDeleteConfirmationModal();
     }
 
     useEffect(() => {
         if (task === undefined)
             loadTask();
-    }, [task]);
+
+        if (deleteConfirmed === true)
+            deleteTask();
+    }, [task, deleteConfirmed]);
 
     return (
         task !== undefined ? (
@@ -55,7 +61,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, closeModal, setError, hand
                 </div>
                 <div className="icon--container">
                     <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}><EditIcon style={{fontSize: 22}} /></div>
-                    <div className="delete-icon" onClick={deleteTask}><DeleteIcon style={{fontSize: 22}} /></div>
+                    <div className="delete-icon" onClick={() => openDeleteConfirmationModal({resourceName: task.taskName, resourceId: task.taskId, callback: () => deleteTask(task.taskId)})}><DeleteIcon style={{fontSize: 22}} /></div>
                 </div>
             </>
         ) : null

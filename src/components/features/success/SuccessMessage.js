@@ -14,7 +14,7 @@ export const SuccessMessage = () => {
     return (
         <div className="success-msg--container">
             <div className="success-msg">{successMessage}</div>
-            <span class="close" className="close-success-msg" onClick={closeSuccess}>&times;</span>
+            <span className="close" className="close-success-msg" onClick={closeSuccess}>&times;</span>
         </div>
     );
 }

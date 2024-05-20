@@ -5,7 +5,7 @@ import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-export const EditColumn = ({ setFormError, setError, closeModal, handleRerender, columnId }) => {
+export const EditColumn = ({ setFormError, setError, closeSideModal, handleRerender, columnId }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [updatedColumn, setUpdatedColumn] = useState();
 
@@ -49,7 +49,7 @@ export const EditColumn = ({ setFormError, setError, closeModal, handleRerender,
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);
-        closeModal();
+        closeSideModal();
     }
 
     const loadColumn = () => {

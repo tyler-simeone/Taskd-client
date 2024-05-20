@@ -4,13 +4,17 @@ import { Modal } from './components/features/modal/Modal';
 import { Navigation } from "./components/navigation/Navigation";
 import { ErrorMessage } from './components/features/error/ErrorMessage';
 import { SuccessMessage } from './components/features/success/SuccessMessage';
-import ApplicationViews from './ApplicationViews'
 import { ModalView } from './components/features/modal/ModalView';
+import { SideModal } from './components/features/modal/SideModal';
+import { CenterModal } from './components/features/modal/CenterModal';
+import { CenterModalView } from './components/features/modal/CenterModalView';
+import ApplicationViews from './ApplicationViews'
 import './App.css';
 
 function App() {
     const { 
-        isModalOpen,
+        isCenterModalOpen,
+        isSideModalOpen,
         modalType,
         columnId,
         taskId,
@@ -24,7 +28,12 @@ function App() {
 
     return (    
         <div className="App">
-            {isModalOpen && error === undefined && <Modal><ModalView /></Modal>}
+            {error === undefined && success === undefined && 
+                <Modal>
+                    {isSideModalOpen && <SideModal><ModalView /></SideModal>}
+                    {isCenterModalOpen && <CenterModal><CenterModalView /></CenterModal>}
+                </Modal>
+            }
 
             <Navigation />
 

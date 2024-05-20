@@ -4,7 +4,7 @@ import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
-export const AddColumn = ({ setFormError, setError, closeModal, handleRerender }) => {
+export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
         boardId: null,
@@ -52,7 +52,7 @@ export const AddColumn = ({ setFormError, setError, closeModal, handleRerender }
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);
-        closeModal();
+        closeSideModal();
     }
 
     return (

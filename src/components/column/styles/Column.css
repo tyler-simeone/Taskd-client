@@ -15,6 +15,10 @@
     border-radius: 2px 15px 15px 2px;
     margin-right: 0px;
 }
+.column--container.only {
+    border-radius: 15px;
+    margin-right: 0px;
+}
 
 .column-header--container {
     display: flex;
@@ -24,6 +28,10 @@
     padding-bottom: 12px;
     text-align: center;
 }
+
+.column-header {
+    font-size: 17.5px;
+} 
 
 .column-header:hover {
     cursor: pointer;

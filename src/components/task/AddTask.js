@@ -4,7 +4,7 @@ import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
-export const AddTask = ({ setFormError, setError, closeModal, columnId, handleRerender }) => {
+export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
@@ -51,7 +51,7 @@ export const AddTask = ({ setFormError, setError, closeModal, columnId, handleRe
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);
-        closeModal();
+        closeSideModal();
     }
 
     return (
