@@ -9,7 +9,7 @@ export const Modal = ({ children }) => {
      } = useContext(AppContext);
 
     return (
-        <div id="modal" class={`modal ${isSideModalOpen || isCenterModalOpen ? 'open' : ''}`}>
+        <div id="modal" className={`modal ${isSideModalOpen || isCenterModalOpen ? 'open' : ''}`}>
             {children}
         </div>
     );

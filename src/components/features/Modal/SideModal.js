@@ -11,9 +11,9 @@ export const SideModal = ({ children }) => {
      } = useContext(AppContext);
 
     return (
-        <div class={`modal-content ${isSideModalOpen ? 'active' : ''}`}>
+        <div className={`modal-content ${isSideModalOpen ? 'active' : ''}`}>
             <div className="modal-header--container">
-                <span class="close" onClick={closeSideModal}>&times;</span>
+                <span className="close" onClick={closeSideModal}>&times;</span>
                 <h2 className="modal-header">{modalHeader}</h2>
             </div>
 

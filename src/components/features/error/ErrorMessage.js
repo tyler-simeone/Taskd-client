@@ -14,7 +14,7 @@ export const ErrorMessage = () => {
     return (
         <div className="err-msg--container">
             <div className="err-msg">{errorMessage}</div>
-            <span class="close-err-msg" onClick={closeError}>&times;</span>
+            <span className="close-err-msg" onClick={closeError}>&times;</span>
         </div>
     );
 }
