@@ -8,8 +8,8 @@ import ApplicationViews from './ApplicationViews'
 import { ModalView } from './components/features/modal/ModalView';
 import { SideModal } from './components/features/modal/SideModal';
 import { CenterModal } from './components/features/modal/CenterModal';
-import './App.css';
 import { CenterModalView } from './components/features/modal/CenterModalView';
+import './App.css';
 
 function App() {
     const { 
@@ -32,16 +32,8 @@ function App() {
         <div className="App">
             {error === undefined && success === undefined && 
                 <Modal>
-                    {isSideModalOpen && (
-                        <SideModal>
-                            <ModalView />
-                        </SideModal>
-                    )}
-                    {isCenterModalOpen && (
-                        <CenterModal>
-                            <CenterModalView />
-                        </CenterModal>
-                    )}
+                    {isSideModalOpen && <SideModal><ModalView /></SideModal>}
+                    {isCenterModalOpen && <CenterModal><CenterModalView /></CenterModal>}
                 </Modal>
             }
 
