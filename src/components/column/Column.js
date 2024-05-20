@@ -17,7 +17,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setError,
         deleteConfirmed,
         openDeleteConfirmationModal,
-        closeDeleteConfirmationModal
+        closeDeleteConfirmationModalOnDelete
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
@@ -76,7 +76,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
-        closeDeleteConfirmationModal();
+        closeDeleteConfirmationModalOnDelete();
     }
 
     useEffect(() => {
