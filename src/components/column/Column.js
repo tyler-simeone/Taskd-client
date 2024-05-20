@@ -86,11 +86,6 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         if (tasks === undefined)
             loadTasks();
 
-        // if (deleteConfirmed === true) {
-        //     deleteColumn();
-        //     setDeleteConfirmed(false);
-        // }
-
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
     }, [isOver, tasks, showColumnDescription, deleteConfirmed]);
