@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { DeleteButton } from "../../controls/buttons/DeleteButton";
 import { CancelButton } from "../../controls/buttons/CancelButton";
-import "./ConfirmDelete.css"
+import "./styles/ConfirmDelete.css"
 
 export const ConfirmDelete = () => {
-    const { resourceToDelete, setDeleteConfirmed } = useContext(AppContext);
-
-    const handleDelete = () => setDeleteConfirmed(true);
+    const { resourceToDelete, handleDelete, closeDeleteConfirmationModal } = useContext(AppContext);
 
     return (
         <div className="confirm-delete--container">
@@ -17,7 +15,7 @@ export const ConfirmDelete = () => {
 
             <form onSubmit={handleDelete} className="confirm-delete-btns--container">
                 <DeleteButton text={"Delete"} />
-                <CancelButton />
+                <CancelButton handleCancel={closeDeleteConfirmationModal} />
             </form>
         </div>
     );

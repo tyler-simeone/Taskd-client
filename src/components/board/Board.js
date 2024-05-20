@@ -82,8 +82,7 @@ export const Board = ({ didMove, setDidMove }) => {
     if (rerender === true) {
       setColumns();
       loadColumns();
-    }
-    else if (columns === undefined)
+    } else if (columns === undefined)
       loadColumns();
     }, [columns, rerender]);
 
@@ -97,7 +96,8 @@ export const Board = ({ didMove, setDidMove }) => {
                       column={column} 
                       useCustomDrop={useCustomDrop} 
                       didMove={didMove} 
-                      isLast={(column.columnId === columns[columns.length-1].columnId)}
+                      isLast={(columns.length > 1 && column.columnId === columns[columns.length-1].columnId)}
+                      isOnly={columns.length === 1}
                     />
                 ))}
               </div>

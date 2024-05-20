@@ -24,8 +24,6 @@ function App() {
 
 
     useEffect(() => {
-        console.log("isSideModalOpen: ", isSideModalOpen)
-        console.log("isCenterModalOpen: ", isCenterModalOpen)
     }, [modalType, taskId, columnId]);
 
     return (    

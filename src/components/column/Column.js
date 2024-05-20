@@ -8,19 +8,23 @@ import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
+export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
         handleRerender,
-        setError
+        setError,
+        confirmDeletion,
+        deleteConfirmed,
+        closeDeleteConfirmationModal,
+        setDeleteConfirmed
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
         {
             name: "sortAZ",
             value: "Sort A-Z",
-            // callback: () => sortTasksRecentlyAdded(tasks)
+            // callback: () => sortTas
         },
         {
             name: "sortCreateDate",
@@ -35,7 +39,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         {
             name: "deleteColumn",
             value: "Delete Column",
-            callback: () => deleteColumn()
+            callback: () => confirmDeletion(column.columnName)
         },
     ]);
     const [tasks, setTasks] = useState();
@@ -70,6 +74,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
             .then(() =>  handleRerender())
             .catch(err => handleError(err, setError));
         setIsLoading(false);
+        handleRerender();
+        closeDeleteConfirmationModal();
     }
 
     useEffect(() => {
@@ -79,12 +85,17 @@ export const Column = ({ column, useCustomDrop, didMove, isLast }) => {
         if (tasks === undefined)
             loadTasks();
 
+        if (deleteConfirmed === true) {
+            deleteColumn();
+            setDeleteConfirmed(false);
+        }
+
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
-    }, [isOver, tasks, showColumnDescription]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed]);
 
     return (
-        <div key={column.columnId} className={`column--container ${isLast ? 'last' : ''}`}>
+        <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>
             <div className="column-header--container">
                 <MoreIcon options={moreIconValues} />
 

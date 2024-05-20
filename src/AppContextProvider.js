@@ -12,10 +12,8 @@ export const AppContextProvider = ({ children }) => {
     const [formError, setFormError] = useState();
     const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
-    const [resourceToDeleteId, setResourceToDeleteId] = useState();
     const [deleteConfirmed, setDeleteConfirmed] = useState(false);
     const [resourceToDelete, setResourceToDelete] = useState();
-
 
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
@@ -55,24 +53,25 @@ export const AppContextProvider = ({ children }) => {
         setColumnId(columnId);
         setIsSideModalOpen(true);
     }
+
+    const closeSideModal = () => {
+        setTaskId();
+        setIsSideModalOpen(false);
+    };
     
     const openDeleteConfirmationModal = (resourceName) => {
         setModalType(Constants.MODAL_TYPE.CONFIRM_DELETE);
         setResourceToDelete(resourceName);
         setIsCenterModalOpen(true);
     }
-    
-    const closeSideModal = () => {
-        setTaskId();
-        setIsSideModalOpen(false);
-    };
 
-    const closeDeleteConfirmationModal = () => {
-        setResourceToDeleteId();
-        closeCenterModal();
-    };
+    const closeDeleteConfirmationModal = () => closeCenterModal();
     
     const closeCenterModal = () => setIsCenterModalOpen(false);
+
+    const confirmDeletion = resourceName => openDeleteConfirmationModal(resourceName);
+
+    const handleDelete = () => setDeleteConfirmed(true);
 
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
@@ -100,7 +99,9 @@ export const AppContextProvider = ({ children }) => {
         closeSideModal,
         closeError,
         closeSuccess,
+        confirmDeletion,
         handleRerender,
+        handleDelete,
         openDeleteConfirmationModal,
         setDeleteConfirmed,
         closeDeleteConfirmationModal,

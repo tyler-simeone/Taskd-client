@@ -4,11 +4,7 @@ import { Constants } from "../../../util/Constants";
 import { ConfirmDelete } from "./ConfirmDelete";
 
 export const CenterModalView = () => {
-    const { 
-        modalType,
-        handleRerender,
-        setError
-     } = useContext(AppContext);
+    const {  modalType } = useContext(AppContext);
 
     const [modalView, setModalView] = useState();
 

@@ -43,7 +43,8 @@
     top: 36%;
     left: 36%;
     width: 392px;
-    height: 154px;
+    min-height: 133px;
+    max-height: 154px;
     border: 1px solid #dbdee1;
     border-radius: 26px;
     padding: 4px 24px;

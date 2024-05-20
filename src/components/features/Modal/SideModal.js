@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
-import "./Modal.css"
+import "./styles/Modal.css"
 
 export const SideModal = ({ children }) => {
     const { 

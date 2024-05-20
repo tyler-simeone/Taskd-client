@@ -1,21 +1,14 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
-import "./Modal.css"
+import "./styles/Modal.css"
 
 export const CenterModal = ({ children }) => {
-    console.log("hi from CenterModal");
-
-    const { 
-        isCenterModalOpen,
-        modalHeader,
-        closeSideModal
-     } = useContext(AppContext);
+    const { closeDeleteConfirmationModal } = useContext(AppContext);
 
     return (
         <div class={`modal-content center`}>
             <div className="modal-header--container">
-                <span class="close" onClick={closeSideModal}>&times;</span>
-                {/* <h2 className="modal-header">{modalHeader}</h2> */}
+                <span class="close" onClick={closeDeleteConfirmationModal}>&times;</span>
             </div>
 
             {children}
