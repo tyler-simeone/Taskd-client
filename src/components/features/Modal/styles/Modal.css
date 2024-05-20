@@ -19,34 +19,33 @@
 
   .modal-content {
     background-color: #fbfcfd;    
+    border: 1px solid #dbdee1;
     position: absolute;
     overflow: auto;
-    right: -33%;
-    height: 93%;
-    top: 1%;
-    width: 392px;
-    border: 1px solid #dbdee1;
     border-radius: 24px;
     border-radius: 28px;
     border-radius: 26px;
     padding: 20px 24px;
     box-shadow: 0px 1px 6px 1px rgb(0 0 0 / 12%);
+  }
 
+  .modal-content.side {
+    right: -33%;
+    height: 93%;
+    top: 1%;
+    width: 392px;
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
   }
 
   .modal-content.center {
-    background-color: #fbfcfd;
     position: fixed;
     overflow: auto;
     top: 36%;
     left: 36%;
     width: 392px;
-    min-height: 133px;
+    min-height: 131px;
     max-height: 154px;
-    border: 1px solid #dbdee1;
-    border-radius: 26px;
     padding: 4px 24px;
   }
 

@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "./ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
-    const { confirmDeletion, deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModal } = useContext(AppContext);
+    const { deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModalOnDelete } = useContext(AppContext);
 
     const [task, setTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
-        closeDeleteConfirmationModal();
+        closeDeleteConfirmationModalOnDelete();
     }
 
     useEffect(() => {

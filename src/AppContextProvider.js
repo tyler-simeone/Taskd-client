@@ -68,7 +68,9 @@ export const AppContextProvider = ({ children }) => {
 
     const handleDelete = () => setDeleteConfirmed(true);
 
-    const closeDeleteConfirmationModal = () => {
+    const closeDeleteConfirmationModal = () => closeCenterModal();
+    
+    const closeDeleteConfirmationModalOnDelete = () => {
         closeSideModal();
         closeCenterModal();
     };
@@ -102,6 +104,7 @@ export const AppContextProvider = ({ children }) => {
         closeError,
         closeSuccess,
         closeDeleteConfirmationModal,
+        closeDeleteConfirmationModalOnDelete,
         confirmDeletion,
         deleteModalArgs,
         handleRerender,
