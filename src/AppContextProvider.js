@@ -12,7 +12,7 @@ export const AppContextProvider = ({ children }) => {
     /* 
         AUTH (session storage & user session related tasks)
     */ 
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     /* 
         MODAL
@@ -116,6 +116,7 @@ export const AppContextProvider = ({ children }) => {
         deleteModalArgs,
         handleRerender,
         handleDelete,
+        isAuthenticated,
         openDeleteConfirmationModal,
         openAddTaskModal,
         openAddColumnModal,

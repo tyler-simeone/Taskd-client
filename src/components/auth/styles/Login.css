@@ -1,7 +1,19 @@
 .login--container {
+    width: 38%;
+    min-width: 550px;
+    max-width: 658px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px solid #cfd2d3;
+    border-radius: 16px;
+    padding: 28px 50px 34px;
+    padding: 30px 52px 35px;
+}
 
+.login-header--container {
+    margin-bottom: 12px;
 }
 
 .login--header {
-    
+    font-size: 24.5px !important;
 }

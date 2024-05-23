@@ -1,17 +1,17 @@
 import React from "react";
 import "./Input.css"
 
-export const Input = ({ label, name, value, handleChange }) => {
+export const Input = ({ id, label, name, type, value, handleChange }) => {
 
     return (
         <div className="pb-input--container">
-            <label className="pb-input-lbl" htmlFor="pb-input">{label}:</label>
+            <label className="pb-input-lbl" htmlFor={id}>{label}:</label>
 
             <input 
-                id="pb-input" 
+                id={id} 
                 name={name}
                 className="pb-input" 
-                type="text"
+                type={type === undefined ? "text" : type}
                 onChange={handleChange}
                 value={value}
             />

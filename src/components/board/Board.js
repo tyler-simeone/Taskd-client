@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
@@ -7,12 +8,14 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
+import { useRedirect } from "../../util/useRedirect";
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated } = useContext(AppContext); 
 
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
       const updatedColumns = [ ...columns ];
@@ -79,12 +82,15 @@ export const Board = ({ didMove, setDidMove }) => {
   }
 
   useEffect(() => {
+    if (!isAuthenticated)
+      navigate('/login');
+
     if (rerender === true) {
       setColumns();
       loadColumns();
     } else if (columns === undefined)
       loadColumns();
-    }, [columns, rerender]);
+    }, [columns, rerender, isAuthenticated]);
 
     return (
         <div className="board--container">

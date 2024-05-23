@@ -9,7 +9,7 @@ export const authClient = {
             }
         )
     },
-    baseDevURL: "http://localhost:5273",
+    baseDevURL: "http://localhost:5058",
     get baseURL() { return `${this.baseDevURL}/api/Auth` }, 
     signUp: async (payload) => {
         const resp = await fetch(`${authClient.baseURL}/user`, {
@@ -18,6 +18,7 @@ export const authClient = {
             headers: authClient.getHeaders(),
         });
         const parsedResp = await resp.json();
+        console.log("parsedResp: ", parsedResp)
         return responseHandler(parsedResp);
     },
     confirmSignUp: async (payload) => {
