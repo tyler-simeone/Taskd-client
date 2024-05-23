@@ -4,7 +4,7 @@ import { handleError } from "../../util/handleError";
 import { PBInput } from "../controls/inputs/PBInput";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import "./EditTask.css"
+import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, setSuccess, handleRerender }) => {
     const [isLoading, setIsLoading] = useState(false);

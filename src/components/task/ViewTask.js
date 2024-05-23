@@ -4,7 +4,7 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import "./ViewTask.css"
+import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
     const { deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModalOnDelete } = useContext(AppContext);

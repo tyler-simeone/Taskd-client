@@ -50,7 +50,7 @@
   }
 
   .modal-content.active {
-    right: 2.5%;
+    right: 2%;
     transform: translateX(0%);
   }
 
