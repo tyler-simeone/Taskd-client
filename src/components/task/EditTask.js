@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
-import { PBInput } from "../controls/inputs/PBInput";
+import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import "./EditTask.css"
@@ -80,13 +80,13 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, se
                 <KeyboardBackspaceIcon className="update-task-return-arrow" onClick={() => openViewTaskModal(editTask.taskId, editTask.taskName)} />
 
                 <form>
-                    <PBInput 
+                    <Input 
                         name={"taskName"} 
                         label={"Task Name"} 
                         handleChange={handleChange} 
                         value={editTask.taskName}
                     />
-                    <PBInput 
+                    <Input 
                         name={"taskDescription"} 
                         label={"Task Description"} 
                         handleChange={handleChange} 

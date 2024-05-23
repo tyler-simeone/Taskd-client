@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
-import { PBInput } from "../controls/inputs/PBInput";
+import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -67,13 +67,13 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
         updatedColumn !== undefined ? (
             <>
                 <form>
-                    <PBInput 
+                    <Input 
                         name={"columnName"} 
                         label={"Column Name"} 
                         handleChange={handleChange} 
                         value={updatedColumn.columnName}
                     />
-                    <PBInput 
+                    <Input 
                         name={"columnDescription"} 
                         label={"Column Description"} 
                         handleChange={handleChange} 

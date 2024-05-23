@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
-import { PBInput } from "../controls/inputs/PBInput";
+import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
@@ -56,8 +56,8 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
 
     return (
         <form>
-            <PBInput name={"taskName"} label={"Task Name"} handleChange={handleChange} />
-            <PBInput name={"taskDescription"} label={"Task Description"} handleChange={handleChange} />
+            <Input name={"taskName"} label={"Task Name"} handleChange={handleChange} />
+            <Input name={"taskDescription"} label={"Task Description"} handleChange={handleChange} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

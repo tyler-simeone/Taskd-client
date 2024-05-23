@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
-import { PBInput } from "../controls/inputs/PBInput";
+import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
@@ -57,8 +57,8 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
 
     return (
         <form>
-            <PBInput name={"columnName"} label={"Column Name"} handleChange={handleChange} />
-            <PBInput name={"columnDescription"} label={"Column Description"} handleChange={handleChange} />
+            <Input name={"columnName"} label={"Column Name"} handleChange={handleChange} />
+            <Input name={"columnDescription"} label={"Column Description"} handleChange={handleChange} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

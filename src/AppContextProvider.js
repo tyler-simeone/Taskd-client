@@ -4,24 +4,31 @@ import { Constants } from './util/Constants';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-    
+    const [success, setSuccess] = useState();
+    const [error, setError] = useState();
+
+    const [rerender, setRerender] = useState(false);
+
+    /* 
+        AUTH (session storage & user session related tasks)
+    */ 
+
+
+    /* 
+        MODAL
+    */ 
     const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
     const [isSideModalOpen, setIsSideModalOpen] = useState(false);
     const [modalType, setModalType] = useState();
     const [modalHeader, setModalHeader] = useState();
     const [formError, setFormError] = useState();
-    
+
     const [columnId, setColumnId] = useState();
     const [taskId, setTaskId] = useState();
 
     const [deleteConfirmed, setDeleteConfirmed] = useState(false);
     const [resourceToDelete, setResourceToDelete] = useState();
     const [deleteModalArgs, setDeleteModalArgs] = useState();
-
-    const [error, setError] = useState();
-    const [success, setSuccess] = useState();
-
-    const [rerender, setRerender] = useState(false);
 
     const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);

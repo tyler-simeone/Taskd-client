@@ -1,7 +1,7 @@
 import React from "react";
-import "./PBInput.css"
+import "./Input.css"
 
-export const PBInput = ({ label, name, value, handleChange }) => {
+export const Input = ({ label, name, value, handleChange }) => {
 
     return (
         <div className="pb-input--container">
