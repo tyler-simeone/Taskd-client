@@ -24,6 +24,10 @@
 }
 
 .pb-logo:hover {
+    /* cursor: default; */
+}
+
+.pb-logo > a:hover {
     cursor: pointer;
 }
 
