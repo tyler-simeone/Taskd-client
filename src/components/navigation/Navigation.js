@@ -8,12 +8,17 @@ import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated } = useContext(AppContext);
+  const { isAuthenticated, logout } = useContext(AppContext);
   return (
     <div className="nav--container">
       <div className="nav">
         {isAuthenticated() && <ProjectBLogo isAuthenticated={isAuthenticated} />}
-        {isAuthenticated() && <NavigationSelect />}
+        {isAuthenticated() && (
+          <div style={{display: "flex"}}>
+            <NavigationSelect />
+            <div onClick={logout}><span>Logout</span></div>
+          </div>
+        )}
       </div>
     </div>
   );

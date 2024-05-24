@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { Constants } from './util/Constants';
+import { useNavigate } from 'react-router-dom';
 
 export const AppContext = createContext();
 
@@ -9,6 +10,8 @@ export const AppContextProvider = ({ children }) => {
     */
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
+    
+    const navigate = useNavigate();
 
     const [rerender, setRerender] = useState(false);
 
@@ -30,15 +33,19 @@ export const AppContextProvider = ({ children }) => {
 
     const setAuthenticatedUserSession = (authenticatedUser) => {
         sessionStorage.setItem("user", JSON.stringify(authenticatedUser));
+        sessionStorage.setItem("jwt", JSON.stringify(authenticatedUser.authenticationResult.idToken));
         setUserSession(authenticatedUser);
         setJwtToken(authenticatedUser.authenticationResult.idToken);
-        sessionStorage.setItem("jwt", JSON.stringify(authenticatedUser.authenticationResult.idToken));
     }
 
     const isAuthenticated = () => (sessionStorage.getItem("user") !== null && sessionStorage.getItem("jwt") !== null);
     
-    const clearUserSession = (user) => {
+    const logout = () => {
+        sessionStorage.removeItem("user");
+        sessionStorage.removeItem("jwt");
         setUserSession();
+        setJwtToken();
+        navigate("/login");
     }
 
     /*
@@ -147,6 +154,7 @@ export const AppContextProvider = ({ children }) => {
         handleRerender,
         handleDelete,
         isAuthenticated,
+        logout,
         openDeleteConfirmationModal,
         openAddTaskModal,
         openAddColumnModal,
