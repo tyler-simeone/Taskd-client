@@ -8,14 +8,14 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
-import { useRedirect } from "../../util/useRedirect";
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken } = useContext(AppContext); 
+    
+    const navigate = useNavigate();
 
     const [columns, setColumns] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
       const updatedColumns = [ ...columns ];
@@ -69,20 +69,17 @@ export const Board = ({ didMove, setDidMove }) => {
       setError();
       setIsLoading(true);
 
-      columnsClient.getColumns(1, 1)
+      columnsClient.getColumns(1, 1, jwtToken)
         .then(resp => {
           setColumns(resp.columns);
-          setIsLoading(false);
           handleRerender();
         })
-        .catch(err => {
-            setIsLoading(false);
-            handleError(err, setError);
-        });
+        .catch(err => handleError(err, setError))
+        .finally(() => setIsLoading(false));
   }
 
   useEffect(() => {
-    if (!isAuthenticated)
+    if (!isAuthenticated()) 
       navigate('/login');
 
     if (rerender === true) {
@@ -90,7 +87,7 @@ export const Board = ({ didMove, setDidMove }) => {
       loadColumns();
     } else if (columns === undefined)
       loadColumns();
-    }, [columns, rerender, isAuthenticated]);
+    }, [columns, rerender]);
 
     return (
         <div className="board--container">

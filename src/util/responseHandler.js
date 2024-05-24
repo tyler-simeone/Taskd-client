@@ -1,5 +1,5 @@
 export const responseHandler = (resp) => {
-    switch(resp.status) {
+    switch(resp.statusCode) {
         case 400:
         case 401:
         case 403:

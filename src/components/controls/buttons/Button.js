@@ -7,7 +7,7 @@ export const Button = ({ text, handleSubmit, isSubmitting, className, isSubmitBt
         <button 
             type={isSubmitBtn === true ? 'submit' : 'button' }
             className={`button ${className} ${isSubmitting ? 'disabled' : ''}`} 
-            onClick={handleSubmit} 
+            onClick={evt => handleSubmit(evt)} 
             style={style}
         >
             {!isSubmitting ? text : 'Sending...'}

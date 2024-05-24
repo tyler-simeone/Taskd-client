@@ -19,7 +19,7 @@ export const ModalView = () => {
         handleRerender,
         setFormError,
         setError,
-        setSuccess
+        showSuccess
      } = useContext(AppContext);
 
     const [modalView, setModalView] = useState();
@@ -55,7 +55,7 @@ export const ModalView = () => {
             case Constants.MODAL_TYPE.EDIT_TASK:
                 setModalView(<EditTask 
                                 setError={setError} 
-                                setSuccess={setSuccess} 
+                                showSuccess={showSuccess} 
                                 setFormError={setFormError} 
                                 taskId={taskId} 
                                 openViewTaskModal={openViewTaskModal} 
@@ -65,7 +65,7 @@ export const ModalView = () => {
             case Constants.MODAL_TYPE.EDIT_COLUMN:
                 setModalView(<EditColumn 
                                 setError={setError} 
-                                setSuccess={setSuccess} 
+                                showSuccess={showSuccess} 
                                 setFormError={setFormError} 
                                 columnId={columnId} 
                                 handleRerender={handleRerender} 

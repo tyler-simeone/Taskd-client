@@ -15,5 +15,5 @@
 }
 .button.disabled {
     background-color: #ced4db;
-    color: #7c838c;
+    /* color: #7c838c; */
 }

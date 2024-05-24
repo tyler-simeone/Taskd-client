@@ -4,6 +4,7 @@ import { PBSelect } from "../controls/inputs/PBSelect";
 import { Constants } from "../../util/Constants";
 import { NavigationSelect } from "./NavigationSelect";
 import { AppContext } from "../../AppContextProvider";
+import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
 import "./Navigation.css"
 
 export const Navigation = () => {
@@ -11,8 +12,8 @@ export const Navigation = () => {
   return (
     <div className="nav--container">
       <div className="nav">
-        <div className="pb-logo"><Link>ProjectB</Link></div>
-        {isAuthenticated && <NavigationSelect />}
+        {isAuthenticated() && <ProjectBLogo isAuthenticated={isAuthenticated} />}
+        {isAuthenticated() && <NavigationSelect />}
       </div>
     </div>
   );

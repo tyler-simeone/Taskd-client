@@ -4,10 +4,14 @@
     max-width: 658px;
     margin: 0 auto;
     margin-top: 10px;
-    border: 1px solid #cfd2d3;
-    border-radius: 16px;
+    /* border: 1px solid #cfd2d3; */
+    border: 1px solid #eeeff0;
+    /* border-radius: 16px; */
+    border-radius: 20px;
     padding: 28px 50px 34px;
-    padding: 30px 52px 35px;
+    padding: 36px 52px;
+    padding-top: 16px;
+    box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 16%);
 }
 
 .login-header--container {
@@ -16,4 +20,11 @@
 
 .login--header {
     font-size: 24.5px !important;
+    font-size: 22.5px !important;
+}
+
+.form-error {
+    color: red;
+    margin-bottom: 8px;
+    font-size: 15.5px;
 }

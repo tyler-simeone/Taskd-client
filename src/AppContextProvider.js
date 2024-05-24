@@ -4,15 +4,47 @@ import { Constants } from './util/Constants';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
+    /*
+        Standard app states
+    */
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
 
     const [rerender, setRerender] = useState(false);
 
+    const closeError = () => setError();
+    const closeSuccess = () => setSuccess();
+
+    const showSuccess = (msg) => {
+        setSuccess(msg);
+        setTimeout(() => closeSuccess(), 5000)
+    };
+
+    const handleRerender = () => setRerender(!rerender);
+
     /* 
         AUTH (session storage & user session related tasks)
     */ 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userSession, setUserSession] = useState();
+    const [jwtToken, setJwtToken] = useState();
+
+    const setAuthenticatedUserSession = (authenticatedUser) => {
+        sessionStorage.setItem("user", JSON.stringify(authenticatedUser));
+        setUserSession(authenticatedUser);
+        setJwtToken(authenticatedUser.authenticationResult.idToken);
+        sessionStorage.setItem("jwt", JSON.stringify(authenticatedUser.authenticationResult.idToken));
+    }
+
+    const isAuthenticated = () => (sessionStorage.getItem("user") !== null && sessionStorage.getItem("jwt") !== null);
+    
+    const clearUserSession = (user) => {
+        setUserSession();
+    }
+
+    /*
+        END AUTH
+    */
+
 
     /* 
         MODAL
@@ -72,10 +104,9 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const confirmDeletion = () => deleteModalArgs.callback(deleteModalArgs.resourceId);
-
     const handleDelete = () => setDeleteConfirmed(true);
-
     const closeDeleteConfirmationModal = () => closeCenterModal();
+    const closeCenterModal = () => setIsCenterModalOpen(false);
     
     const closeDeleteConfirmationModalOnDelete = () => {
         closeSideModal();
@@ -86,13 +117,10 @@ export const AppContextProvider = ({ children }) => {
         setTaskId();
         setIsSideModalOpen(false);
     };
+    /* 
+        END MODAL 
+    */
 
-    const closeCenterModal = () => setIsCenterModalOpen(false);
-
-    const closeError = () => setError();
-    const closeSuccess = () => setSuccess();
-
-    const handleRerender = () => setRerender(!rerender);
 
     const ctx = {
         isCenterModalOpen,
@@ -107,6 +135,8 @@ export const AppContextProvider = ({ children }) => {
         rerender,
         deleteConfirmed,
         resourceToDelete,
+        userSession,
+        jwtToken,
         closeSideModal,
         closeError,
         closeSuccess,
@@ -123,12 +153,13 @@ export const AppContextProvider = ({ children }) => {
         openViewTaskModal,
         openEditTaskModal,
         openEditColumnModal,
+        setAuthenticatedUserSession,
         setDeleteConfirmed,
+        setError,
+        setFormError,
         setIsSideModalOpen,
         setIsCenterModalOpen,
-        setFormError,
-        setError,
-        setSuccess
+        showSuccess
     }
 
   return (
