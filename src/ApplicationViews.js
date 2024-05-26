@@ -15,8 +15,9 @@ const ApplicationViews = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Navigate to="/board" />} />
-            <Route path="/login" element={<AuthContainer isLogin={true} />} />
-            <Route path="/signup" element={<AuthContainer isSignup={true} />} />
+            <Route path="/oauth/login" element={<AuthContainer isLogin={true} />} />
+            <Route path="/oauth/register" element={<AuthContainer isSignup={true} />} />
+            <Route path="/oauth/confirm" element={<AuthContainer isConfirmAccount={true} />} />
             <Route path="/board" element={<DndProvider backend={HTML5Backend}><Board didMove={didMove} setDidMove={setDidMove} /></DndProvider>} />
         </ Routes>
     )

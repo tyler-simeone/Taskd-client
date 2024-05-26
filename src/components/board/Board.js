@@ -80,7 +80,7 @@ export const Board = ({ didMove, setDidMove }) => {
 
   useEffect(() => {
     if (!isAuthenticated()) 
-      navigate('/login');
+      navigate('/oauth/login');
 
     if (rerender === true) {
       setColumns();

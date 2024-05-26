@@ -6,12 +6,11 @@
     margin-top: 10px;
     /* border: 1px solid #cfd2d3; */
     border: 1px solid #eeeff0;
-    /* border-radius: 16px; */
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 28px 50px 34px;
-    padding: 42px 52px;
-    padding-top: 26px;
-    box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 14%);
+    padding: 44px 52px;
+    padding-top: 22.5px;
+    box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 15%);
 }
 
 .auth-header--container {

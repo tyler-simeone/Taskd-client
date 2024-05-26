@@ -28,6 +28,10 @@ export const AppContextProvider = ({ children }) => {
     /* 
         AUTH (session storage & user session related tasks)
     */ 
+    const [signupData, setSignupData] = useState({
+        email: "",
+        password: ""
+    });
     const [userSession, setUserSession] = useState();
     const [jwtToken, setJwtToken] = useState();
 
@@ -45,7 +49,7 @@ export const AppContextProvider = ({ children }) => {
         sessionStorage.removeItem("jwt");
         setUserSession();
         setJwtToken();
-        navigate("/login");
+        navigate('/oauth/login');
     }
 
     /*
@@ -161,12 +165,14 @@ export const AppContextProvider = ({ children }) => {
         openViewTaskModal,
         openEditTaskModal,
         openEditColumnModal,
+        signupData,
         setAuthenticatedUserSession,
         setDeleteConfirmed,
         setError,
         setFormError,
         setIsSideModalOpen,
         setIsCenterModalOpen,
+        setSignupData,
         showSuccess
     }
 

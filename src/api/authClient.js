@@ -17,17 +17,30 @@ export const authClient = {
             body: JSON.stringify(payload),
             headers: authClient.getHeaders(),
         });
-        const parsedResp = await resp.json();
-        console.log("parsedResp: ", parsedResp)
+
+        const parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
         return responseHandler(parsedResp);
     },
-    confirmSignUp: async (payload) => {
+    confirmAccount: async (payload) => {
         const resp = await fetch(`${authClient.baseURL}/user/confirm`, {
             method: "POST",
             body: JSON.stringify(payload),
             headers: authClient.getHeaders(),
         });
-        const parsedResp = await resp.json();
+        
+        const parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
         return responseHandler(parsedResp);
     },
     signIn: async (payload) => {
