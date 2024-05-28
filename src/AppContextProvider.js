@@ -10,6 +10,7 @@ export const AppContextProvider = ({ children }) => {
     */
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
+    const [boardId, setBoardId] = useState();
     
     const navigate = useNavigate();
 
@@ -32,8 +33,11 @@ export const AppContextProvider = ({ children }) => {
         email: "",
         password: ""
     });
-    const [userSession, setUserSession] = useState(sessionStorage.getItem("user"));
-    const [jwtToken, setJwtToken] = useState();
+
+    const sessionUserInfo = JSON.parse(sessionStorage.getItem("user"));
+    const sessionJwt = JSON.parse(sessionStorage.getItem("jwt"));
+    const [userSession, setUserSession] = useState(sessionUserInfo);
+    const [jwtToken, setJwtToken] = useState(sessionJwt);
 
     const setAuthenticatedUserSession = (authenticatedUser, jwtToken) => {
         sessionStorage.setItem("user", JSON.stringify(authenticatedUser));
@@ -134,6 +138,7 @@ export const AppContextProvider = ({ children }) => {
 
 
     const ctx = {
+        boardId,
         isCenterModalOpen,
         isSideModalOpen,
         modalType,
@@ -167,6 +172,7 @@ export const AppContextProvider = ({ children }) => {
         openEditColumnModal,
         signupData,
         setAuthenticatedUserSession,
+        setBoardId,
         setDeleteConfirmed,
         setError,
         setFormError,

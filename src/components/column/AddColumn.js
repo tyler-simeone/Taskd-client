@@ -6,7 +6,7 @@ import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
-    const { userSession } = useContext(AppContext);
+    const { userSession, boardId } = useContext(AppContext);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
@@ -46,7 +46,7 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
 
         const addColumnRequestModel = {
             userId: userSession.userId,
-            boardId: 1,
+            boardId: boardId,
             columnName: newColumn.columnName,
             columnDescription: newColumn.columnDescription,
         }

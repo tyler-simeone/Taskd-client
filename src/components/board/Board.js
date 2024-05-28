@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
+import { boardsClient } from "../../api/boardClient";
 import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
@@ -10,11 +11,12 @@ import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, setBoardId, boardId } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
     const [columns, setColumns] = useState();
+    const [board, setBoard] = useState();
     const [isLoading, setIsLoading] = useState(false);
     
     const handleDrop = (newTask, destinationColumnId, sourceColumnId, position) => {
@@ -69,16 +71,34 @@ export const Board = ({ didMove, setDidMove }) => {
       setError();
       setIsLoading(true);
 
-      columnsClient.getColumns(1, 1, jwtToken)
+      columnsClient.getColumns(boardId, userSession.userId, jwtToken)
         .then(resp => {
           setColumns(resp.columns);
           handleRerender();
         })
         .catch(err => handleError(err, setError))
         .finally(() => setIsLoading(false));
-  }
+    }
+    
+    const loadBoard = () => {
+      setError();
+      setIsLoading(true);
+
+      boardsClient.getBoard(6, userSession.userId)
+        .then(board => {
+          setBoard(board);
+          setBoardId(board.boardId);
+          setColumns(board.columns);
+          handleRerender();
+        })
+        .catch(err => handleError(err, setError))
+        .finally(() => setIsLoading(false));
+    }
 
   useEffect(() => {
+    console.log("userSession: ", userSession);
+    console.log("board: ", board);
+
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
@@ -86,7 +106,7 @@ export const Board = ({ didMove, setDidMove }) => {
       setColumns();
       loadColumns();
     } else if (columns === undefined)
-      loadColumns();
+      loadBoard();
     }, [columns, rerender]);
 
     return (

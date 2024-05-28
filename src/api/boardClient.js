@@ -1,6 +1,6 @@
 import { responseHandler } from "../util/responseHandler";
 
-export const columnsClient = {
+export const boardsClient = {
     get headers () { 
         return (
             {
@@ -10,42 +10,42 @@ export const columnsClient = {
             }
         )
     },
-    baseDevURL: "http://localhost:5156",
-    get baseURL() { return `${this.baseDevURL}/api/columns` }, 
-    getColumns: (boardId, userId) => {
-        return fetch(`${columnsClient.baseURL}?boardId=${boardId}&userId=${userId}`, {
+    baseDevURL: "http://localhost:5032",
+    get baseURL() { return `${this.baseDevURL}/api/Boards` }, 
+    getBoard: (boardId, userId) => {
+        return fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
                     method: "GET",
-                    headers: columnsClient.headers,
+                    headers: boardsClient.headers,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    getColumn: (columnId, userId) => {
-        return fetch(`${columnsClient.baseURL}/${columnId}?userId=${userId}`, {
+    getBoards: (userId) => {
+        return fetch(`${boardsClient.baseURL}?userId=${userId}`, {
                     method: "GET",
-                    headers: columnsClient.headers,
+                    headers: boardsClient.headers,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    addColumn: (payload) => {
-        return fetch(`${columnsClient.baseURL}`, {
+    addBoard: (payload) => {
+        return fetch(`${boardsClient.baseURL}`, {
                     method: "POST",
                     body: JSON.stringify(payload),
-                    headers: columnsClient.headers,
+                    headers: boardsClient.headers,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    updateColumn: (payload) => {
-        return fetch(`${columnsClient.baseURL}`, {
+    updateBoard: (payload) => {
+        return fetch(`${boardsClient.baseURL}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),
-                    headers: columnsClient.headers,
+                    headers: boardsClient.headers,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     },
-    deleteColumn: (columnId, userId) => {
-        return fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
+    deleteBoard: (boardId, userId) => {
+        return fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
                     method: "DELETE",
-                    headers: columnsClient.headers,
+                    headers: boardsClient.headers,
                 }).then(resp => resp.json())
                 .then(resp => responseHandler(resp));
     }
