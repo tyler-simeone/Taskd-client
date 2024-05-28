@@ -1,5 +1,4 @@
 export const responseHandler = (resp) => {
-    console.log("resp: ", resp);
     if (resp.statusCode) {
         switch(resp.statusCode) {
             case 400:
