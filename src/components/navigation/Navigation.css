@@ -15,8 +15,7 @@
 }
 
 .pb-logo {
-    font-size: 27.5px;
-    font-size: 28px;
+    font-size: 28.5px;
     margin-top: 10.5px;
     font-weight: 500;
     letter-spacing: 0.3px;
@@ -24,6 +23,10 @@
 }
 
 .pb-logo:hover {
+    /* cursor: default; */
+}
+
+.pb-logo > a:hover {
     cursor: pointer;
 }
 

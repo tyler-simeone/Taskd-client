@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
-import { PBInput } from "../controls/inputs/PBInput";
+import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
+    const { userSession, boardId } = useContext(AppContext);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
         boardId: null,
@@ -42,8 +45,8 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
         setIsSubmitting(true);
 
         const addColumnRequestModel = {
-            userId: 1,
-            boardId: 1,
+            userId: userSession.userId,
+            boardId: boardId,
             columnName: newColumn.columnName,
             columnDescription: newColumn.columnDescription,
         }
@@ -57,8 +60,8 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
 
     return (
         <form>
-            <PBInput name={"columnName"} label={"Column Name"} handleChange={handleChange} />
-            <PBInput name={"columnDescription"} label={"Column Description"} handleChange={handleChange} />
+            <Input name={"columnName"} label={"Column Name"} handleChange={handleChange} />
+            <Input name={"columnDescription"} label={"Column Description"} handleChange={handleChange} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "./Button";
 import "./PrimaryButton.css"
 
-export const PrimaryButton = ({ text, handleSubmit, isSubmitting }) => {
+export const PrimaryButton = ({ text, handleSubmit, isSubmitting, style }) => {
 
     return (
         <Button 
@@ -11,6 +11,7 @@ export const PrimaryButton = ({ text, handleSubmit, isSubmitting }) => {
             handleSubmit={handleSubmit} 
             isSubmitting={isSubmitting} 
             isSubmitBtn={true}
+            style={style}
         />
     );
 }

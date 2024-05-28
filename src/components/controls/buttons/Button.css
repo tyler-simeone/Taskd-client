@@ -8,12 +8,15 @@
     border: none;
     color: #fff;
     letter-spacing: 0.1px;
-    font-size: 15px;
+    font-size: 15.5px;
 }
 .button:hover {
     cursor: pointer;
 }
+.button:focus {
+    outline: auto;
+}
 .button.disabled {
     background-color: #ced4db;
-    color: #7c838c;
+    /* color: #7c838c; */
 }
