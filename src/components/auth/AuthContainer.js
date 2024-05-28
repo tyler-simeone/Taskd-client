@@ -136,7 +136,6 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     }
 
     useEffect(() => {
-        console.log("signupData: ", signupData);
     }, [signupData, signUpFormData])
 
     return (
