@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
 import { Input } from "../controls/inputs/Input";
@@ -6,6 +7,8 @@ import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 export const EditColumn = ({ setFormError, setError, closeSideModal, handleRerender, columnId }) => {
+    const { userSession } = useContext(AppContext);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [updatedColumn, setUpdatedColumn] = useState();
 
@@ -39,7 +42,7 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
         setIsSubmitting(true);
 
         var editColumnRequest = {
-            userId: 1,
+            userId: userSession.userId,
             columnId: updatedColumn.columnId,
             columnName: updatedColumn.columnName,
             columnDescription: updatedColumn.columnDescription

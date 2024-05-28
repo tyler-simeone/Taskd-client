@@ -65,18 +65,15 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                         const updatedSignupData = {...signupData};
                         updatedSignupData.email = signUpFormData.email;
                         updatedSignupData.password = signUpFormData.password;
-                        console.log("updatedSignupData: ", updatedSignupData);
                         setSignupData(updatedSignupData);
                         navigate('/oauth/confirm');
                     })
                     .catch(err => handleError(err, setFormError))
                     .finally(() => setIsSubmitting(false));
             } else {
-                console.log("signupData from submit: ", signupData);
                 const updatedConfirmAccountData = {...confirmAccountData};
                 updatedConfirmAccountData.email = signupData.email;
                 updatedConfirmAccountData.confirmationCode = updatedConfirmAccountData.confirmationCode;
-                console.log("updatedConfirmAccountData: ", updatedConfirmAccountData);
                 authClient.confirmAccount(updatedConfirmAccountData)
                     .then(() => loginUser(signupData))
                     .catch(err => handleError(err, setFormError))
@@ -88,7 +85,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     const loginUser = (credentials) => {
         authClient.signIn(credentials)
             .then(resp => {
-                setAuthenticatedUserSession(resp);
+                setAuthenticatedUserSession(resp.user, resp.authenticationResult.idToken);
                 navigate('/board');
             })
             .catch(err => handleError(err, setFormError))

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
+    const { userSession } = useContext(AppContext);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
         boardId: null,
@@ -42,7 +45,7 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
         setIsSubmitting(true);
 
         const addColumnRequestModel = {
-            userId: 1,
+            userId: userSession.userId,
             boardId: 1,
             columnName: newColumn.columnName,
             columnDescription: newColumn.columnDescription,

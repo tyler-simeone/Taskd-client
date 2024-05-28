@@ -32,14 +32,14 @@ export const AppContextProvider = ({ children }) => {
         email: "",
         password: ""
     });
-    const [userSession, setUserSession] = useState();
+    const [userSession, setUserSession] = useState(sessionStorage.getItem("user"));
     const [jwtToken, setJwtToken] = useState();
 
-    const setAuthenticatedUserSession = (authenticatedUser) => {
+    const setAuthenticatedUserSession = (authenticatedUser, jwtToken) => {
         sessionStorage.setItem("user", JSON.stringify(authenticatedUser));
-        sessionStorage.setItem("jwt", JSON.stringify(authenticatedUser.authenticationResult.idToken));
+        sessionStorage.setItem("jwt", JSON.stringify(jwtToken));
         setUserSession(authenticatedUser);
-        setJwtToken(authenticatedUser.authenticationResult.idToken);
+        setJwtToken(jwtToken);
     }
 
     const isAuthenticated = () => (sessionStorage.getItem("user") !== null && sessionStorage.getItem("jwt") !== null);

@@ -10,7 +10,7 @@ import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export const Board = ({ didMove, setDidMove }) => {
       console.log("destinationColumn: ", destinationColumn);
 
       var updateTaskRequest = {
-        userId: 1,
+        userId: userSession.userId,
         taskId: newTask.taskId,
         columnId: destinationColumn.columnId,
         taskName: newTask.taskName,

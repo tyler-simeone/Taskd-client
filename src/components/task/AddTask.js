@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
+    const { userSession } = useContext(AppContext);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
@@ -41,7 +44,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
         setIsSubmitting(true);
 
         const addTaskRequestModel = {
-            userId: 1,
+            userId: userSession.userId,
             columnId: columnId,
             taskName: newTask.taskName,
             taskDescription: newTask.taskDescription,
