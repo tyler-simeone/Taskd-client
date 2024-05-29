@@ -84,10 +84,9 @@ export const Board = ({ didMove, setDidMove }) => {
       setError();
       setIsLoading(true);
 
-      boardsClient.getBoard(6, userSession.userId)
+      boardsClient.getBoard(boardId, userSession.userId)
         .then(board => {
           setBoard(board);
-          setBoardId(board.boardId);
           setColumns(board.columns);
           handleRerender();
         })
@@ -105,9 +104,9 @@ export const Board = ({ didMove, setDidMove }) => {
     if (rerender === true) {
       setColumns();
       loadColumns();
-    } else if (columns === undefined)
+    } else if (boardId !== undefined && columns === undefined)
       loadBoard();
-    }, [columns, rerender]);
+    }, [columns, rerender, boardId]);
 
     return (
         <div className="board--container">

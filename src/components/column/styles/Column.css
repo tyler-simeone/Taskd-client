@@ -3,7 +3,7 @@
     flex-direction: column;
     min-width: 406px;
     max-width: 406px;
-    margin-right: 3.5px;
+    margin-right: 4px;
     background-color: #fff;
     border-radius: 4px;
 }
@@ -27,6 +27,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
+    color: #242629 !important;
 }
 
 .column-header {

@@ -26,8 +26,8 @@ function App() {
 
 
     useEffect(() => {
-        console.log("userSession: ", userSession);
-        console.log("jwtToken: ", jwtToken);
+        // console.log("userSession: ", userSession);
+        // console.log("jwtToken: ", jwtToken);
     }, [modalType, taskId, columnId]);
 
     return (    

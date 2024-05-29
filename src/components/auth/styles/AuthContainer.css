@@ -5,12 +5,13 @@
     margin: 0 auto;
     margin-top: 10px;
     /* border: 1px solid #cfd2d3; */
-    border: 1px solid #eeeff0;
+    /* border: 1px solid #eeeff0; */
+    border: 1px solid #d2d7dc;
     border-radius: 24px;
     padding: 28px 50px 34px;
-    padding: 44px 52px;
-    padding-top: 22.5px;
-    box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 15%);
+    padding: 46px 52px;
+    padding-top: 24.5px;
+    /* box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 15%); */
 }
 
 .auth-header--container {
