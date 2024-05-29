@@ -19,15 +19,11 @@ function App() {
         columnId,
         taskId,
         error,
-        success,
-        userSession,
-        jwtToken
+        success
      } = useContext(AppContext);    
 
 
     useEffect(() => {
-        // console.log("userSession: ", userSession);
-        // console.log("jwtToken: ", jwtToken);
     }, [modalType, taskId, columnId]);
 
     return (    

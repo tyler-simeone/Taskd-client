@@ -95,9 +95,6 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
-    console.log("userSession: ", userSession);
-    console.log("board: ", board);
-
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
