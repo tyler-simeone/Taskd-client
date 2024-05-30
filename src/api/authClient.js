@@ -18,7 +18,7 @@ export const authClient = {
             headers: authClient.getHeaders(),
         });
 
-        const parsedResp = resp;
+        let parsedResp = resp;
         try {
             parsedResp = await resp.json();
         } catch (err) {
@@ -34,7 +34,7 @@ export const authClient = {
             headers: authClient.getHeaders(),
         });
         
-        const parsedResp = resp;
+        let parsedResp = resp;
         try {
             parsedResp = await resp.json();
         } catch (err) {
@@ -49,7 +49,12 @@ export const authClient = {
             body: JSON.stringify(payload),
             headers: authClient.getHeaders(),
         });
-        const parsedResp = await resp.json();
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
         return responseHandler(parsedResp);
     }
   };

@@ -12,41 +12,81 @@ export const boardsClient = {
     },
     baseDevURL: "http://localhost:5032",
     get baseURL() { return `${this.baseDevURL}/api/Boards` }, 
-    getBoard: (boardId, userId) => {
-        return fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
-                    method: "GET",
-                    headers: boardsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getBoard: async (boardId, userId) => {
+        const resp = await fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
+            method: "GET",
+            headers: boardsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
     },
-    getBoards: (userId) => {
-        return fetch(`${boardsClient.baseURL}?userId=${userId}`, {
-                    method: "GET",
-                    headers: boardsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getBoards: async (userId) => {
+        const resp = await fetch(`${boardsClient.baseURL}?userId=${userId}`, {
+            method: "GET",
+            headers: boardsClient.headers,
+        });        
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
     },
-    addBoard: (payload) => {
-        return fetch(`${boardsClient.baseURL}`, {
-                    method: "POST",
-                    body: JSON.stringify(payload),
-                    headers: boardsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    addBoard: async (payload) => {
+        const resp = await fetch(`${boardsClient.baseURL}`, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: boardsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
     },
-    updateBoard: (payload) => {
-        return fetch(`${boardsClient.baseURL}`, {
-                    method: "PUT",
-                    body: JSON.stringify(payload),
-                    headers: boardsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    updateBoard: async (payload) => {
+        const resp = await fetch(`${boardsClient.baseURL}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: boardsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
     },
-    deleteBoard: (boardId, userId) => {
-        return fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
-                    method: "DELETE",
-                    headers: boardsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    deleteBoard: async (boardId, userId) => {
+        const resp = await fetch(`${boardsClient.baseURL}/${boardId}?userId=${userId}`, {
+            method: "DELETE",
+            headers: boardsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
     }
   };

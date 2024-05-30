@@ -12,41 +12,86 @@ export const tasksClient = {
     },
     baseDevURL: "http://localhost:5273",
     get baseURL() { return `${this.baseDevURL}/api/tasks` }, 
-    getTasks: (columnId) => {
-        return fetch(`${tasksClient.baseURL}?columnId=${columnId}`, {
-                    method: "GET",
-                    headers: tasksClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getTasks: async (columnId) => {
+        const resp = await fetch(`${tasksClient.baseURL}?columnId=${columnId}`, {
+            method: "GET",
+            headers: tasksClient.headers,
+        });
+        
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    getTask: (taskId, userId) => {
-        return fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
-                    method: "GET",
-                    headers: tasksClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getTask: async (taskId, userId) => {
+        const resp = await fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
+            method: "GET",
+            headers: tasksClient.headers,
+        });
+        
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    createTask: (payload) => {
-        return fetch(`${tasksClient.baseURL}`, {
-                    method: "POST",
-                    body: JSON.stringify(payload),
-                    headers: tasksClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    createTask: async (payload) => {
+        const resp = await fetch(`${tasksClient.baseURL}`, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: tasksClient.headers,
+        });
+        
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    updateTask: (payload) => {
-        return fetch(`${tasksClient.baseURL}`, {
-                    method: "PUT",
-                    body: JSON.stringify(payload),
-                    headers: tasksClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    updateTask: async (payload) => {
+        const resp = await fetch(`${tasksClient.baseURL}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: tasksClient.headers,
+        });
+        
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    deleteTask: (taskId, userId) => {
-        return fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
-                    method: "DELETE",
-                    headers: tasksClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    deleteTask: async (taskId, userId) => {
+        const resp = await fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
+            method: "DELETE",
+            headers: tasksClient.headers,
+        });
+        
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     }
   };

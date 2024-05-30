@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import "./PBSelect.css"
+import "./Select.css"
 
-export const PBSelect = ({
+export const Select = ({
     label,
     index, 
     options,
     handleSelectChange,
     value,
-    disabled
+    disabled,
+    selectedOption
 }) => {
 
     const [selectedValue, setSelectedValue] = useState();
@@ -52,9 +53,9 @@ export const PBSelect = ({
                 >
                     {/* <option value="" disabled selected hidden></option> */}
 
-                    {options.map(option => {
+                    {options !== undefined && options.map(option => {
                         return (
-                            <option key={option.label} className="option" value={option.value}>
+                            <option key={option.id} className="option" value={option.value}>
                                 {option.label}
                             </option>
                         )

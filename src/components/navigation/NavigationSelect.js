@@ -1,16 +1,30 @@
-import React, { useState } from "react";
-import { PBSelect } from "../controls/inputs/PBSelect";
-import { Constants } from "../../util/Constants";
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../../AppContextProvider";
+import { Select } from "../controls/inputs/Select";
 import "./NavigationSelect.css"
 
-export const NavigationSelect = () => {
+export const NavigationSelect = ({ defaultValue, options }) => {
+    const { setBoardId, handleRerender, boardId } = useContext(AppContext);
+
+    const handleSelectChange = (boardId) => {
+        setBoardId(boardId);
+        handleRerender();
+    }
+
+    useEffect(() => {
+        // initial load
+        setBoardId(defaultValue);
+    }, [])
+
     return (
         <div className="nav-select">
-            <PBSelect
+            <Select
                 label={""}
                 index={0}
-                options={Constants.NAV_MENU_OPTIONS_TEST_DATA}
+                options={options}
                 name={"nav-select"}
+                handleSelectChange={handleSelectChange}
+                // selectedOption={options && boardId && options.find(o => o.id === boardId)}
             />
         </div>
     );

@@ -12,41 +12,81 @@ export const columnsClient = {
     },
     baseDevURL: "http://localhost:5156",
     get baseURL() { return `${this.baseDevURL}/api/columns` }, 
-    getColumns: (boardId, userId) => {
-        return fetch(`${columnsClient.baseURL}?boardId=${boardId}&userId=${userId}`, {
-                    method: "GET",
-                    headers: columnsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getColumns: async (boardId, userId) => {
+        const resp = await fetch(`${columnsClient.baseURL}?boardId=${boardId}&userId=${userId}`, {
+            method: "GET",
+            headers: columnsClient.headers,
+        });
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    getColumn: (columnId, userId) => {
-        return fetch(`${columnsClient.baseURL}/${columnId}?userId=${userId}`, {
-                    method: "GET",
-                    headers: columnsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    getColumn: async (columnId, userId) => {
+        const resp = await fetch(`${columnsClient.baseURL}/${columnId}?userId=${userId}`, {
+            method: "GET",
+            headers: columnsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    addColumn: (payload) => {
-        return fetch(`${columnsClient.baseURL}`, {
-                    method: "POST",
-                    body: JSON.stringify(payload),
-                    headers: columnsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    addColumn: async (payload) => {
+        const resp = await fetch(`${columnsClient.baseURL}`, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: columnsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    updateColumn: (payload) => {
-        return fetch(`${columnsClient.baseURL}`, {
-                    method: "PUT",
-                    body: JSON.stringify(payload),
-                    headers: columnsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    updateColumn: async (payload) => {
+        const resp = await fetch(`${columnsClient.baseURL}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: columnsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     },
-    deleteColumn: (columnId, userId) => {
-        return fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
-                    method: "DELETE",
-                    headers: columnsClient.headers,
-                }).then(resp => resp.json())
-                .then(resp => responseHandler(resp));
+    deleteColumn: async (columnId, userId) => {
+        const resp = await fetch(`${columnsClient.baseURL}?columnId=${columnId}&userId=${userId}`, {
+            method: "DELETE",
+            headers: columnsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
     }
   };
