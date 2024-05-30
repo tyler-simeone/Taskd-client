@@ -15,8 +15,10 @@ export const AppContextProvider = ({ children }) => {
     const [boardId, setBoardId] = useState(selectedBoardId);
 
     const setSelectedBoardId = (boardId) => {
-        setBoardId(boardId);
-        sessionStorage.setItem("boardId", boardId);
+        if (boardId !== undefined) {
+            setBoardId(boardId);
+            sessionStorage.setItem("boardId", boardId);
+        }
     };
     
     const navigate = useNavigate();

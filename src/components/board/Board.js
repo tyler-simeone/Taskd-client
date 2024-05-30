@@ -9,6 +9,7 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
+import { BoardAddTemplate } from "./BoardAddTemplate";
 
 export const Board = ({ didMove, setDidMove }) => {
     const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId } = useContext(AppContext); 
@@ -124,7 +125,8 @@ export const Board = ({ didMove, setDidMove }) => {
                     />
                 ))}
               </div>
-              <ColumnAddTemplate />
+
+              {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
             </div>
         </div>
     );

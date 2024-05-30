@@ -27,6 +27,7 @@ export const NavigationSelect = ({ defaultValue, options }) => {
                 name={"nav-select"}
                 handleSelectChange={handleSelectChange}
                 value={boardId}
+                placeholder={"No boards yet"}
                 // selectedOption={options && boardId && options.find(o => o.id === boardId)}
             />
         </div>
