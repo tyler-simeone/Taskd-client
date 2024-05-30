@@ -7,15 +7,14 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, setError, setBoardId } = useContext(AppContext);
+  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
   const [defaultValue, setDefaultValue] = useState();
 
-  const loadBoards = () => {
+  const loadBoardOptions = () => {
     boardsClient.getBoards(userSession.userId)
       .then(resp => {
-        console.log("boards resp: ", resp);
         const options = [];
         resp.boards.forEach(b => {
           var option = {
@@ -26,15 +25,15 @@ export const Navigation = () => {
           options.push(option);
         });
         setBoardOptions(options);
-        setDefaultValue(options[0].value);
-        setBoardId(options[0].id);
+        const selectedBoardId = boardId !== null ? boardId : options[0].value;
+        setDefaultValue(selectedBoardId);
       })
       .catch(err => handleError(err, setError));
   }
 
   useEffect(() => {
-    if (boardOptions === undefined && userSession !== undefined && userSession !== null)
-      loadBoards();
+    if (boardOptions === undefined && userSession !== null)
+      loadBoardOptions();
   }, [userSession, boardOptions, defaultValue])
 
   return (

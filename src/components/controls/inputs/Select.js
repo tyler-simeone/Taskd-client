@@ -24,8 +24,11 @@ export const Select = ({
     const applySelectedValue = () => {
         var selectMenu = document.getElementById(`pb-select-${index}`);
         
-        if (value !== undefined) 
+        // applies default value passed in
+        if (value) {
             selectMenu.value = value;
+            setSelectedValue(value);
+        }
 
         if (selectMenu.value !== selectedValue)
             setSelectedValue(selectMenu.value);

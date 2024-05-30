@@ -11,7 +11,7 @@ import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, setBoardId, boardId } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ export const Board = ({ didMove, setDidMove }) => {
         .finally(() => setIsLoading(false));
     }
     
-    const loadBoard = () => {
+    const loadBoard = (boardId) => {
       setError();
       setIsLoading(true);
 
@@ -101,8 +101,8 @@ export const Board = ({ didMove, setDidMove }) => {
     if (rerender === true) {
       setColumns();
       loadColumns();
-    } else if (boardId !== undefined && columns === undefined)
-      loadBoard();
+    } else if (boardId !== null && columns === undefined)
+      loadBoard(boardId);
     }, [columns, rerender, boardId]);
 
     return (
