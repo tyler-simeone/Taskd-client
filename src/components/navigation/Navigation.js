@@ -3,6 +3,7 @@ import { NavigationSelect } from "./NavigationSelect";
 import { AppContext } from "../../AppContextProvider";
 import { boardsClient } from "../../api/boardClient";
 import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
+import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
@@ -12,9 +13,9 @@ export const Navigation = () => {
   const [defaultValue, setDefaultValue] = useState();
 
   const loadBoards = () => {
-    console.log("userSession: ", userSession);
     boardsClient.getBoards(userSession.userId)
       .then(resp => {
+        console.log("boards resp: ", resp);
         const options = [];
         resp.boards.forEach(b => {
           var option = {
@@ -28,7 +29,7 @@ export const Navigation = () => {
         setDefaultValue(options[0].value);
         setBoardId(options[0].id);
       })
-      .catch(err => setError(err));
+      .catch(err => handleError(err, setError));
   }
 
   useEffect(() => {

@@ -32,8 +32,11 @@
   .modal-content.side {
     right: -33%;
     height: 90%;
-    top: 1%;
+    top: 1.8%;
     width: 392px;
+    box-shadow: none;
+    border-radius: 30px;
+
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
   }
