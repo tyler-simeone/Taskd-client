@@ -95,14 +95,18 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
+    console.log("boardId: ", boardId);
+
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
     if (rerender === true) {
       setColumns();
       loadColumns();
-    } else if (boardId !== null && columns === undefined)
+    } else if (boardId !== undefined && boardId !== null && columns === undefined) {
+      console.log("Hi there!");
       loadBoard(boardId);
+    }
     }, [columns, rerender, boardId]);
 
     return (

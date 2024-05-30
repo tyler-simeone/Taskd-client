@@ -16,22 +16,27 @@ export const Navigation = () => {
     boardsClient.getBoards(userSession.userId)
       .then(resp => {
         const options = [];
-        resp.boards.forEach(b => {
-          var option = {
-            id: b.boardId,
-            label: b.boardName,
-            value: b.boardId
-          };
-          options.push(option);
-        });
-        setBoardOptions(options);
-        const selectedBoardId = boardId !== null ? boardId : options[0].value;
-        setDefaultValue(selectedBoardId);
+        if (resp.boards.length > 0) {
+          resp.boards.forEach(b => {
+            var option = {
+              id: b.boardId,
+              label: b.boardName,
+              value: b.boardId
+            };
+            options.push(option);
+          });
+          setBoardOptions(options);
+          if (boardId === null)
+            setSelectedBoardId(options[0].value);
+          const selectedBoardId = boardId !== null ? boardId : options[0].value;
+          setDefaultValue(selectedBoardId);
+        }
       })
       .catch(err => handleError(err, setError));
   }
 
   useEffect(() => {
+    console.log("boardId: ", boardId);
     if (boardOptions === undefined && userSession !== null)
       loadBoardOptions();
   }, [userSession, boardOptions, defaultValue])
