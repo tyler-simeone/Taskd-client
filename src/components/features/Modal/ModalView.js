@@ -6,6 +6,7 @@ import { AddTask } from "../../task/AddTask";
 import { AddColumn } from "../../column/AddColumn";
 import { EditTask } from "../../task/EditTask";
 import { EditColumn } from "../../column/EditColumn";
+import { AddBoard } from "../../board/AddBoard";
 
 export const ModalView = () => {
 
@@ -46,6 +47,14 @@ export const ModalView = () => {
                 break;
             case Constants.MODAL_TYPE.ADD_COLUMN:
                 setModalView(<AddColumn 
+                                setFormError={setFormError} 
+                                setError={setError} 
+                                closeSideModal={closeSideModal} 
+                                handleRerender={handleRerender} 
+                             />);
+                break;
+            case Constants.MODAL_TYPE.ADD_BOARD:
+                setModalView(<AddBoard 
                                 setFormError={setFormError} 
                                 setError={setError} 
                                 closeSideModal={closeSideModal} 

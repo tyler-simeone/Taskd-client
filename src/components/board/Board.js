@@ -10,9 +10,10 @@ import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 import { BoardAddTemplate } from "./BoardAddTemplate";
+import AddIcon from '@mui/icons-material/Add';
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId, openAddBoardModal } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -101,17 +102,27 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (rerender === true) {
+    if (rerender === true && boardId !== undefined && boardId !== null) {
       setColumns();
       loadColumns();
     } else if (boardId !== undefined && boardId !== null && columns === undefined) {
-      console.log("Hi there!");
       loadBoard(boardId);
     }
-    }, [columns, rerender, boardId]);
+  }, [columns, rerender, boardId]);
 
     return (
         <div className="board--container">
+          <div className="board-name--container">
+            <div style={{ display: "flex", width: "10%" }}>
+              <h2 className="board-name">
+                {board && board.boardName}
+              </h2>
+              {/* <div className="add-new-board--btn">
+                <span>Add new board</span> */}
+                <AddIcon onClick={openAddBoardModal} className="add-column-icon" style={{ marginTop: 3.5 }} />  
+              {/* </div> */}
+            </div>
+          </div>
             <div className="board">
               <div className="board-wrapper">
                 {columns !== undefined && columns.map(column => (

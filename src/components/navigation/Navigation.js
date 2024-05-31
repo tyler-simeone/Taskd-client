@@ -7,7 +7,7 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId } = useContext(AppContext);
+  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, rerender } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
   const [defaultValue, setDefaultValue] = useState();
@@ -37,7 +37,8 @@ export const Navigation = () => {
 
   useEffect(() => {
     console.log("boardId: ", boardId);
-    if (boardOptions === undefined && userSession !== null)
+    console.log("rerender: ", rerender);
+    if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
   }, [userSession, boardOptions, defaultValue])
 

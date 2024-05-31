@@ -3,13 +3,28 @@
     border-top: none;
     display: flex;
     flex-direction: column;
+    background-color: #dde1e5;
+}
+
+.board-name--container {
+    padding: 15px;
+    padding-bottom: 3px;
+    padding-top: 9.5px;
+    margin-left: 0.4%;
+}
+
+.board-name {
+    font-size: 22.5px;
+}
+
+.add-new-board--btn {
+    display: flex;
 }
 
 .board {
     flex: 1;
     display: flex;
     overflow-x: scroll;
-    background-color: #dde1e5;
     padding-top: 6.5px;
     padding-right: 8.5px;
     padding-bottom: 8.5px;
