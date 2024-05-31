@@ -9,9 +9,10 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
+import { BoardAddTemplate } from "./BoardAddTemplate";
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, setBoardId, boardId } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -80,7 +81,7 @@ export const Board = ({ didMove, setDidMove }) => {
         .finally(() => setIsLoading(false));
     }
     
-    const loadBoard = () => {
+    const loadBoard = (boardId) => {
       setError();
       setIsLoading(true);
 
@@ -95,14 +96,18 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
+    console.log("boardId: ", boardId);
+
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
     if (rerender === true) {
       setColumns();
       loadColumns();
-    } else if (boardId !== undefined && columns === undefined)
-      loadBoard();
+    } else if (boardId !== undefined && boardId !== null && columns === undefined) {
+      console.log("Hi there!");
+      loadBoard(boardId);
+    }
     }, [columns, rerender, boardId]);
 
     return (
@@ -120,7 +125,8 @@ export const Board = ({ didMove, setDidMove }) => {
                     />
                 ))}
               </div>
-              <ColumnAddTemplate />
+
+              {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
             </div>
         </div>
     );

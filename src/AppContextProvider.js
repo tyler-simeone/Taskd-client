@@ -10,7 +10,16 @@ export const AppContextProvider = ({ children }) => {
     */
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
-    const [boardId, setBoardId] = useState();
+
+    const selectedBoardId = sessionStorage.getItem("boardId");
+    const [boardId, setBoardId] = useState(selectedBoardId);
+
+    const setSelectedBoardId = (boardId) => {
+        if (boardId !== undefined) {
+            setBoardId(boardId);
+            sessionStorage.setItem("boardId", boardId);
+        }
+    };
     
     const navigate = useNavigate();
 
@@ -49,8 +58,9 @@ export const AppContextProvider = ({ children }) => {
     const isAuthenticated = () => (sessionStorage.getItem("user") !== null && sessionStorage.getItem("jwt") !== null);
     
     const logout = () => {
-        sessionStorage.removeItem("user");
-        sessionStorage.removeItem("jwt");
+        // sessionStorage.removeItem("user");
+        // sessionStorage.removeItem("jwt");
+        sessionStorage.clear();
         setUserSession();
         setJwtToken();
         navigate('/oauth/login');
@@ -172,7 +182,7 @@ export const AppContextProvider = ({ children }) => {
         openEditColumnModal,
         signupData,
         setAuthenticatedUserSession,
-        setBoardId,
+        setSelectedBoardId,
         setDeleteConfirmed,
         setError,
         setFormError,

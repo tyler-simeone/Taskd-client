@@ -9,7 +9,8 @@ export const Select = ({
     handleSelectChange,
     value,
     disabled,
-    selectedOption
+    selectedOption,
+    placeholder
 }) => {
 
     const [selectedValue, setSelectedValue] = useState();
@@ -24,8 +25,11 @@ export const Select = ({
     const applySelectedValue = () => {
         var selectMenu = document.getElementById(`pb-select-${index}`);
         
-        if (value !== undefined) 
+        // applies default value passed in
+        if (value) {
             selectMenu.value = value;
+            setSelectedValue(value);
+        }
 
         if (selectMenu.value !== selectedValue)
             setSelectedValue(selectMenu.value);
@@ -53,13 +57,13 @@ export const Select = ({
                 >
                     {/* <option value="" disabled selected hidden></option> */}
 
-                    {options !== undefined && options.map(option => {
+                    {options !== undefined ? options.map(option => {
                         return (
                             <option key={option.id} className="option" value={option.value}>
                                 {option.label}
                             </option>
                         )
-                    })}
+                    }) : <option value="" disabled selected>{placeholder}</option>}
                 </select>
                 {/* <div className="pb-select-icon">
                     <KeyboardArrowDownIcon />

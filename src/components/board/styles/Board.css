@@ -10,10 +10,10 @@
     display: flex;
     overflow-x: scroll;
     background-color: #dde1e5;
-    padding-top: 6px;
-    padding-right: 10.5px;
-    padding-bottom: 10.5px;
-    padding-left: 8px;
+    padding-top: 6.5px;
+    padding-right: 8.5px;
+    padding-bottom: 8.5px;
+    padding-left: 8.5px;
 }
 
 .board-wrapper {
