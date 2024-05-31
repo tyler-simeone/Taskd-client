@@ -12,3 +12,6 @@
 .pb-select:focus {
     outline: none;
 }
+.pb-select:hover {
+    cursor: pointer;
+}

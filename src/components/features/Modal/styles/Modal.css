@@ -35,7 +35,7 @@
     top: 1.8%;
     width: 374px;
     box-shadow: none;
-    border-radius: 30px;
+    border-radius: 32px;
     padding-left: 30px;
     padding-right: 30px;
 
@@ -55,7 +55,7 @@
   }
 
   .modal-content.active {
-    right: 2.5%;
+    right: 2%;
     transform: translateX(0%);
   }
 
