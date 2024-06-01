@@ -105,7 +105,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
                 </div>
             </div>
 
-            <div ref={drop} style={{ backgroundColor: isHover ? 'lightgray' : 'white'}} className="column--body">
+            <div ref={drop} style={isHover ? { backgroundColor: 'lightgray'} : null} className="column--body">
                 {tasks !== undefined && tasks.map((task, index) => 
                     <Task 
                         key={task.taskId} 

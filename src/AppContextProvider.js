@@ -94,6 +94,12 @@ export const AppContextProvider = ({ children }) => {
         setIsSideModalOpen(true);
     }
     
+    const openAddBoardModal = () => {
+        setModalType(Constants.MODAL_TYPE.ADD_BOARD);
+        setModalHeader("Add a Board");
+        setIsSideModalOpen(true);
+    }
+
     const openAddColumnModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
         setModalHeader("Add a Column");
@@ -175,11 +181,12 @@ export const AppContextProvider = ({ children }) => {
         isAuthenticated,
         logout,
         openDeleteConfirmationModal,
-        openAddTaskModal,
+        openAddBoardModal,
         openAddColumnModal,
-        openViewTaskModal,
-        openEditTaskModal,
+        openAddTaskModal,
         openEditColumnModal,
+        openEditTaskModal,
+        openViewTaskModal,
         signupData,
         setAuthenticatedUserSession,
         setSelectedBoardId,

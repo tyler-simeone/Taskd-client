@@ -10,9 +10,10 @@ import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 import { BoardAddTemplate } from "./BoardAddTemplate";
+import AddIcon from '@mui/icons-material/Add';
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId } = useContext(AppContext); 
+    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId, openAddBoardModal } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -68,18 +69,18 @@ export const Board = ({ didMove, setDidMove }) => {
       });
     };
 
-    const loadColumns = () => {
-      setError();
-      setIsLoading(true);
+    // const loadColumns = () => {
+    //   setError();
+    //   setIsLoading(true);
 
-      columnsClient.getColumns(boardId, userSession.userId, jwtToken)
-        .then(resp => {
-          setColumns(resp.columns);
-          handleRerender();
-        })
-        .catch(err => handleError(err, setError))
-        .finally(() => setIsLoading(false));
-    }
+    //   columnsClient.getColumns(boardId, userSession.userId, jwtToken)
+    //     .then(resp => {
+    //       setColumns(resp.columns);
+    //       handleRerender();
+    //     })
+    //     .catch(err => handleError(err, setError))
+    //     .finally(() => setIsLoading(false));
+    // }
     
     const loadBoard = (boardId) => {
       setError();
@@ -96,22 +97,35 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
-    console.log("boardId: ", boardId);
+    console.log("board: ", board);
+    console.log("columns: ", columns);
 
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (rerender === true) {
-      setColumns();
-      loadColumns();
-    } else if (boardId !== undefined && boardId !== null && columns === undefined) {
-      console.log("Hi there!");
+    // if (rerender === true && boardId !== undefined && boardId !== null) {
+    //   setColumns();
+    //   loadColumns();
+    // } else 
+    if (boardId !== undefined && boardId !== null && columns === undefined) {
+      console.log("boardId: ", boardId);
       loadBoard(boardId);
     }
-    }, [columns, rerender, boardId]);
+  }, [rerender, boardId, board]);
 
     return (
         <div className="board--container">
+          <div className="board-name--container">
+            <div style={{ display: "flex" }}>
+              <h2 className="board-name">
+                {board && board.boardName}
+              </h2>
+              {/* <div className="add-new-board--btn">
+                <span>Add new board</span> */}
+                <AddIcon onClick={openAddBoardModal} className="add-column-icon" style={{ marginTop: 3.5 }} />  
+              {/* </div> */}
+            </div>
+          </div>
             <div className="board">
               <div className="board-wrapper">
                 {columns !== undefined && columns.map(column => (

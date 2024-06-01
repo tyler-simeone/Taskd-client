@@ -15,27 +15,30 @@ function App() {
     const { 
         isCenterModalOpen,
         isSideModalOpen,
+        isAuthenticated,
         modalType,
         columnId,
         taskId,
         error,
-        success
+        success,
+        rerender
      } = useContext(AppContext);    
 
 
     useEffect(() => {
-    }, [modalType, taskId, columnId]);
+    }, [modalType, taskId, columnId, rerender]);
 
     return (    
         <div className="App">
             {error === undefined && success === undefined && 
                 <Modal>
                     {isSideModalOpen && <SideModal><ModalView /></SideModal>}
+
                     {isCenterModalOpen && <CenterModal><CenterModalView /></CenterModal>}
                 </Modal>
             }
 
-            <Navigation />
+            {isAuthenticated() ? <Navigation /> : null}
 
             {error !== undefined ? <ErrorMessage /> : null}
             {success !== undefined ? <SuccessMessage /> : null}

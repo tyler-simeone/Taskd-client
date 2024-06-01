@@ -5,6 +5,8 @@
     max-width: 406px;
     margin-right: 4px;
     background-color: #fff;
+    background-color: #f7fafd;
+    background-color: #f9fcff;
     border-radius: 4px;
 }
 
@@ -31,7 +33,7 @@
 }
 
 .column-header {
-    font-size: 17.5px;
+    font-size: 18px;
 } 
 
 .column-header:hover {

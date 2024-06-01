@@ -22,7 +22,8 @@
     background-color: #ebeef1;
     padding-left: 14px;
     font-size: 16px;
-    color: #2d2f31;
+    /* color: #2d2f31; */
+    color: #26282a;
 }
 .pb-input:focus {
     outline: none;

@@ -36,6 +36,7 @@ export const Select = ({
     }
 
     useEffect(() => {
+        if (selectedValue === undefined)
         applySelectedValue();
     }, [selectedValue, value, disabled])
 
