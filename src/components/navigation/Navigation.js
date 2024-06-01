@@ -7,7 +7,7 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, rerender } = useContext(AppContext);
+  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, handleRerender, rerender } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
   const [defaultValue, setDefaultValue] = useState();
@@ -30,6 +30,7 @@ export const Navigation = () => {
             setSelectedBoardId(options[0].value);
           const selectedBoardId = boardId !== null ? boardId : options[0].value;
           setDefaultValue(selectedBoardId);
+          handleRerender();
         }
       })
       .catch(err => handleError(err, setError));
@@ -40,7 +41,7 @@ export const Navigation = () => {
     console.log("rerender: ", rerender);
     if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
-  }, [userSession, boardOptions, defaultValue])
+  }, [userSession, boardOptions, defaultValue, rerender])
 
   return (
     <div className="nav--container">

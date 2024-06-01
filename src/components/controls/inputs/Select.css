@@ -1,13 +1,14 @@
 .pb-select {
     border: 1px solid rgb(0 0 0 / 16%);
     border-color: #d8dbdc;
-    border-radius: 4.5px;
+    border-radius: 4px;
     height: 43.5px;
     height: 44px;
     padding: 8px;
     width: 288px;
     font-size: 15px;
-    color: #313335;
+    color: #292b2d;
+    background-color: transparent;
 }
 .pb-select:focus {
     outline: none;

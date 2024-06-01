@@ -5,14 +5,16 @@
     max-width: 406px;
     margin-right: 4px;
     background-color: #fff;
-    border-radius: 2px;
+    background-color: #f7fafd;
+    background-color: #f9fcff;
+    border-radius: 4px;
 }
 
 .column--container:first-of-type {
-    border-radius: 15px 2px 2px 15px;
+    border-radius: 15px 4px 4px 15px;
 }
 .column--container.last {
-    border-radius: 2px 15px 15px 2px;
+    border-radius: 4px 15px 15px 4px;
     margin-right: 0px;
 }
 .column--container.only {

@@ -1,9 +1,11 @@
 .nav--container {
     width: 94.5%;
-    height: 56px;
-    /* height: 62px; */
+    height: 58.5px;
     padding: 10px 48px;
-    background-color: #fff;
+    /* background-color: #fff;
+    background-color: #f9fcfe; */
+    background-color: #f9fcff;
+    padding-top: 6px;
 }
 
 .nav {

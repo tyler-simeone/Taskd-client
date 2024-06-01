@@ -4,12 +4,13 @@
     display: flex;
     flex-direction: column;
     background-color: #dde1e5;
+    background-color: #e6eaee;
 }
 
 .board-name--container {
     padding: 15px;
     padding-bottom: 3px;
-    padding-top: 9.5px;
+    padding-top: 8px;
     margin-left: 0.4%;
 }
 
@@ -28,12 +29,13 @@
     padding-top: 6.5px;
     padding-right: 8.5px;
     padding-bottom: 8.5px;
-    padding-left: 8.5px;
+    padding-left: 12px;
 }
 
 .board-wrapper {
     display: flex;
     border-radius: 14px;
     /* box-shadow: 0px 1px 4px 1px rgb(0 0 0 / 8%); */
+    box-shadow: 0px 1px 7px 1px rgb(0 0 0 / 9%);
     margin-right: 4px;
 }

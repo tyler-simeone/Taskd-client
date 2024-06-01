@@ -15,6 +15,7 @@ function App() {
     const { 
         isCenterModalOpen,
         isSideModalOpen,
+        isAuthenticated,
         modalType,
         columnId,
         taskId,
@@ -37,7 +38,7 @@ function App() {
                 </Modal>
             }
 
-            <Navigation />
+            {isAuthenticated() ? <Navigation /> : null}
 
             {error !== undefined ? <ErrorMessage /> : null}
             {success !== undefined ? <SuccessMessage /> : null}
