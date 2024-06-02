@@ -17,6 +17,7 @@ export const Board = ({ didMove, setDidMove }) => {
     const navigate = useNavigate();
 
     const [columns, setColumns] = useState();
+    // const [sourceColumnId, setSourceColumnId] = useState();
     const [board, setBoard] = useState();
     const [isLoading, setIsLoading] = useState(false);
     
@@ -83,6 +84,7 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
+    console.log("rerender: ", rerender);
     console.log("boardId: ", boardId);
 
     if (!isAuthenticated()) 

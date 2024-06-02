@@ -24,6 +24,8 @@ export const Select = ({
     }
 
     const applySelectedValue = () => {
+        console.log("applySelectedValue value: ", value);
+
         var selectMenu = document.getElementById(`pb-select-${index}`);
         
         // applies default value passed in
@@ -42,7 +44,7 @@ export const Select = ({
     useEffect(() => {
         if (selectedValue === undefined)
             applySelectedValue();
-    }, [selectedValue, hasChanged, value, disabled])
+    }, [selectedValue, value, disabled])
 
     return (
         <div className="pb-select--container">

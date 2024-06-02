@@ -16,7 +16,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setError,
         deleteConfirmed,
         openDeleteConfirmationModal,
-        closeDeleteConfirmationModalOnDelete
+        closeDeleteConfirmationModalOnDelete,
+        rerender
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
@@ -82,12 +83,12 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         // console.log("useEffect tasks: ", tasks);
         // console.log("isOver: ", isOver);
 
-        if (tasks === undefined)
+        if (tasks === undefined || rerender)
             loadTasks();
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
-    }, [isOver, tasks, showColumnDescription, deleteConfirmed]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender]);
 
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>

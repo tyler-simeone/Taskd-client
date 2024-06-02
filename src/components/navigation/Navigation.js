@@ -7,9 +7,10 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, handleRerender, rerender } = useContext(AppContext);
+  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, handleRerender, rerender, selectedBoardId } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
+  const [selectedValue, setSelectedValue] = useState();
   const [defaultValue, setDefaultValue] = useState();
 
   const loadBoardOptions = () => {
@@ -27,11 +28,21 @@ export const Navigation = () => {
           });
           setBoardOptions(options);
 
-          if (boardId === null)
+          // if a board hasn't been loaded yet, set default
+          if (boardId === null) {
             setSelectedBoardId(options[0].value);
+            setSelectedValue(options[0].value);
+            setDefaultValue(options[0].value);
+          }
+          else {
+            setSelectedBoardId(boardId);
+            setSelectedValue(boardId);
+            setDefaultValue(boardId);
+          }
           
-          const selectedBoardId = boardId !== null ? boardId : options[0].value;
-          setDefaultValue(selectedBoardId);
+          // const selectedBoardId = boardId !== null ? boardId : options[0].value;
+          // setSelectedBoardId(selectedBoardId);
+          // setDefaultValue(selectedBoardId);
           handleRerender();
         }
       })
@@ -39,9 +50,15 @@ export const Navigation = () => {
   }
 
   useEffect(() => {
+    console.log("selectedBoardId: ", boardId);
+    console.log("defaultValue: ", defaultValue);
+
+    if (boardId !== null)
+      setDefaultValue(boardId);
+
     if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
-  }, [userSession, boardOptions, defaultValue, rerender])
+  }, [userSession, boardOptions, defaultValue, rerender, selectedBoardId])
 
   return (
     <div className="nav--container">
