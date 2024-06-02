@@ -11,6 +11,8 @@
 }
 .add-column-template--container:hover {
     cursor: pointer;
+    background-color: #f0f4f6;
+    border: 1px dashed #cbcdd2;
 }
 
 .add-column-template--body {

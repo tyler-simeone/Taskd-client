@@ -7,9 +7,9 @@ import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
-import './styles/Board.css';
 import { BoardAddTemplate } from "./BoardAddTemplate";
 import { PbAddIcon } from "../controls/icons/AddIcon";
+import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
     const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId, openAddBoardModal } = useContext(AppContext); 

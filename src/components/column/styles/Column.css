@@ -1,11 +1,10 @@
 .column--container {
     display: flex;
     flex-direction: column;
-    min-width: 406px;
-    max-width: 406px;
+    min-width: 404px;
+    max-width: 404px;
     margin-right: 4px;
-    background-color: #f3f6fa;
-    background-color: #f0f4f8;
+    background-color: #ebeff4;
     border-radius: 2px;
 }
 
