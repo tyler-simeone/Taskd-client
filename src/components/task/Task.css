@@ -6,17 +6,19 @@
     padding: 11px !important;
     padding-left: 12px !important;
 
-    /* background-color: #f4f4f7 !important; */
     background-color: #f1f3f6 !important;
+    background-color: #f0f2f6 !important;
+    background-color: #ecf0f7 !important;
     border: 1px solid #dde1e5 !important;
+    border: 1px solid #d9dde1 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
 
     /* background-color: #eeeff3 !important; */
-    background-color: #ebedef !important;
+    /* background-color: #ebedef !important; */
     /* border: 1.5px solid #d6dde5 !important; */
-    border: 1.5px solid #dcdfe3 !important;
+    border: 1px solid #dcdfe3 !important;
 }
 
 .task-title {

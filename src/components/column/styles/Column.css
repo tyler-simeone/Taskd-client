@@ -4,18 +4,16 @@
     min-width: 406px;
     max-width: 406px;
     margin-right: 4px;
-    background-color: #fff;
-    background-color: #f7fafd;
-    background-color: #f9fcff;
-    background-color: #f7fafd;
-    border-radius: 4px;
+    background-color: #f3f6fa;
+    background-color: #f0f4f8;
+    border-radius: 2px;
 }
 
 .column--container:first-of-type {
-    border-radius: 15px 4px 4px 15px;
+    border-radius: 15px 2px 2px 15px;
 }
 .column--container.last {
-    border-radius: 4px 15px 15px 4px;
+    border-radius: 2px 15px 15px 2px;
     margin-right: 0px;
 }
 .column--container.only {
@@ -30,11 +28,12 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    color: #242629 !important;
+    color: #272727 !important;
 }
 
 .column-header {
     font-size: 18px;
+    color: #363636;
 } 
 
 .column-header:hover {

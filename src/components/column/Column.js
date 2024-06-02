@@ -5,8 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
 import { MoreIcon } from "../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
-import { deleteConfirmationModalArgs } from "../../util/deleteConfirmationModalArgs";
-import AddIcon from '@mui/icons-material/Add';
+import { PbAddIcon } from "../controls/icons/AddIcon";
 import './styles/Column.css';
 
 export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
@@ -101,7 +100,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
                 </div>
                 
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)}>
-                    <AddIcon className="add-task-icon" />
+                    <PbAddIcon />
                 </div>
             </div>
 

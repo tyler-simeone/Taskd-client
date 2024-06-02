@@ -1,0 +1,13 @@
+.add-icon {
+    color: gray;
+    font-size: 25px !important;
+    padding: 0px !important;
+}
+.add-icon:hover {
+    cursor: pointer;
+}
+
+.add-icon.board {
+    font-size: 21px !important;
+    margin-left: 0.5px;
+}

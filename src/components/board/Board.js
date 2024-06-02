@@ -9,7 +9,7 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import './styles/Board.css';
 import { BoardAddTemplate } from "./BoardAddTemplate";
-import AddIcon from '@mui/icons-material/Add';
+import { PbAddIcon } from "../controls/icons/AddIcon";
 
 export const Board = ({ didMove, setDidMove }) => {
     const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId, openAddBoardModal } = useContext(AppContext); 
@@ -83,10 +83,12 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
+    console.log("boardId: ", boardId);
+
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (board === undefined || board.boardId !== boardId) 
+    if (boardId !== null && (board === undefined || board.boardId !== boardId)) 
       loadBoard(boardId);
   }, [rerender, board, boardId]);
 
@@ -97,10 +99,10 @@ export const Board = ({ didMove, setDidMove }) => {
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
-              {/* <div className="add-new-board--btn">
-                <span>Add new board</span> */}
-                <AddIcon onClick={openAddBoardModal} className="add-column-icon" style={{ marginTop: 3.5 }} />  
-              {/* </div> */}
+              <div className="add-new-board--btn" onClick={openAddBoardModal}>
+                <span className="add-new-board--lbl">Add new board</span>
+                <PbAddIcon classname={"board"} />
+              </div>
             </div>
           </div>
             <div className="board">

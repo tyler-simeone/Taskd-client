@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
