@@ -13,6 +13,7 @@ export const NavigationSelect = ({ defaultValue, options }) => {
 
     useEffect(() => {
         console.log("NavigationSelect boardId: ", boardId);
+        
         // initial load -- set the default as the first loaded board
         if (boardId === null)
             setSelectedBoardId(defaultValue);

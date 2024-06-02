@@ -7,7 +7,6 @@ import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
-import { columnsClient } from "../../api/columnsClient";
 import './styles/Board.css';
 import { BoardAddTemplate } from "./BoardAddTemplate";
 import AddIcon from '@mui/icons-material/Add';
@@ -68,19 +67,6 @@ export const Board = ({ didMove, setDidMove }) => {
         }),
       });
     };
-
-    // const loadColumns = () => {
-    //   setError();
-    //   setIsLoading(true);
-
-    //   columnsClient.getColumns(boardId, userSession.userId, jwtToken)
-    //     .then(resp => {
-    //       setColumns(resp.columns);
-    //       handleRerender();
-    //     })
-    //     .catch(err => handleError(err, setError))
-    //     .finally(() => setIsLoading(false));
-    // }
     
     const loadBoard = (boardId) => {
       setError();
@@ -97,21 +83,12 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
-    console.log("board: ", board);
-    console.log("columns: ", columns);
-
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    // if (rerender === true && boardId !== undefined && boardId !== null) {
-    //   setColumns();
-    //   loadColumns();
-    // } else 
-    if (boardId !== undefined && boardId !== null && columns === undefined) {
-      console.log("boardId: ", boardId);
+    if (board === undefined || board.boardId !== boardId) 
       loadBoard(boardId);
-    }
-  }, [rerender, boardId, board]);
+  }, [rerender, board, boardId]);
 
     return (
         <div className="board--container">

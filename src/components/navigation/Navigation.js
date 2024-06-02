@@ -26,8 +26,10 @@ export const Navigation = () => {
             options.push(option);
           });
           setBoardOptions(options);
+
           if (boardId === null)
             setSelectedBoardId(options[0].value);
+          
           const selectedBoardId = boardId !== null ? boardId : options[0].value;
           setDefaultValue(selectedBoardId);
           handleRerender();
@@ -37,8 +39,6 @@ export const Navigation = () => {
   }
 
   useEffect(() => {
-    console.log("boardId: ", boardId);
-    console.log("rerender: ", rerender);
     if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
   }, [userSession, boardOptions, defaultValue, rerender])

@@ -14,6 +14,7 @@ export const Select = ({
 }) => {
 
     const [selectedValue, setSelectedValue] = useState();
+    const [hasChanged, setHasChanged] = useState(false);
 
     const handleSelect = () => {      
         var selectMenu = document.getElementById(`pb-select-${index}`);
@@ -26,19 +27,22 @@ export const Select = ({
         var selectMenu = document.getElementById(`pb-select-${index}`);
         
         // applies default value passed in
-        if (value) {
+        if (value !== undefined) {
             selectMenu.value = value;
             setSelectedValue(value);
+            setHasChanged(true);
         }
 
-        if (selectMenu.value !== selectedValue)
+        if (selectMenu.value !== selectedValue) {
             setSelectedValue(selectMenu.value);
+            setHasChanged(true);
+        }
     }
 
     useEffect(() => {
         if (selectedValue === undefined)
-        applySelectedValue();
-    }, [selectedValue, value, disabled])
+            applySelectedValue();
+    }, [selectedValue, hasChanged, value, disabled])
 
     return (
         <div className="pb-select--container">

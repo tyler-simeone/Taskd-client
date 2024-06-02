@@ -11,12 +11,12 @@ export const AppContextProvider = ({ children }) => {
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
 
-    const selectedBoardId = sessionStorage.getItem("boardId");
+    const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
     const [boardId, setBoardId] = useState(selectedBoardId);
 
     const setSelectedBoardId = (boardId) => {
         if (boardId !== undefined) {
-            setBoardId(boardId);
+            setBoardId(parseInt(boardId));
             sessionStorage.setItem("boardId", boardId);
         }
     };
