@@ -32,12 +32,10 @@ export const Navigation = () => {
           if (boardId === null) {
             setSelectedBoardId(options[0].value);
             setSelectedValue(options[0].value);
-            setDefaultValue(options[0].value);
           }
           else {
             setSelectedBoardId(boardId);
             setSelectedValue(boardId);
-            setDefaultValue(boardId);
           }
           
           // const selectedBoardId = boardId !== null ? boardId : options[0].value;
@@ -51,14 +49,15 @@ export const Navigation = () => {
 
   useEffect(() => {
     console.log("selectedBoardId: ", boardId);
+    console.log("selectedValue: ", selectedValue);
     console.log("defaultValue: ", defaultValue);
 
     if (boardId !== null)
-      setDefaultValue(boardId);
+      setSelectedValue(boardId);
 
     if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
-  }, [userSession, boardOptions, defaultValue, rerender, selectedBoardId])
+  }, [userSession, boardOptions, selectedValue, rerender, selectedBoardId])
 
   return (
     <div className="nav--container">
@@ -67,7 +66,7 @@ export const Navigation = () => {
 
         {isAuthenticated() && (
           <div style={{display: "flex"}}>
-            <NavigationSelect defaultValue={defaultValue} options={boardOptions} />
+            <NavigationSelect selectedValue={selectedValue} options={boardOptions} />
             <div className="logout-btn" onClick={logout}><span>Logout</span></div>
           </div>
         )}
