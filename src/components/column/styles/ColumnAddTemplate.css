@@ -2,15 +2,16 @@
     height: 50px;
     min-width: 344px;
     max-width: 344px;
-    border-radius: 22px;
+    border-radius: 26px;
     padding: 20px;
-    /* border: 1px dashed #a8aaaf; */
     border: 1px dashed #b0b2b7;
-    /* margin-top: 1%; */
     margin-left: 0.2%;
 }
 .add-column-template--container:hover {
     cursor: pointer;
+    /* background-color: #eaeef4; */
+    background-color: #eaeef499;
+    border: 1px dashed #c4c5ca;
 }
 
 .add-column-template--body {
@@ -24,10 +25,3 @@
     font-size: 24px !important;
 }
 
-.add-column-icon {
-    color: gray;
-    font-size: 25px !important;
-}
-.add-column-icon:hover {
-    cursor: pointer;
-}

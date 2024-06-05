@@ -33,7 +33,6 @@ function App() {
             {error === undefined && success === undefined && 
                 <Modal>
                     {isSideModalOpen && <SideModal><ModalView /></SideModal>}
-
                     {isCenterModalOpen && <CenterModal><CenterModalView /></CenterModal>}
                 </Modal>
             }

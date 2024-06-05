@@ -8,37 +8,13 @@ export const Select = ({
     options,
     handleSelectChange,
     value,
-    disabled,
-    selectedOption,
-    placeholder
+    disabled
 }) => {
-
-    const [selectedValue, setSelectedValue] = useState();
-
     const handleSelect = () => {      
         var selectMenu = document.getElementById(`pb-select-${index}`);
         var selectedValue = selectMenu.options[selectMenu.selectedIndex].value;  
         handleSelectChange(selectedValue);
-        setSelectedValue(selectedValue);
     }
-
-    const applySelectedValue = () => {
-        var selectMenu = document.getElementById(`pb-select-${index}`);
-        
-        // applies default value passed in
-        if (value) {
-            selectMenu.value = value;
-            setSelectedValue(value);
-        }
-
-        if (selectMenu.value !== selectedValue)
-            setSelectedValue(selectMenu.value);
-    }
-
-    useEffect(() => {
-        if (selectedValue === undefined)
-        applySelectedValue();
-    }, [selectedValue, value, disabled])
 
     return (
         <div className="pb-select--container">
@@ -58,13 +34,13 @@ export const Select = ({
                 >
                     {/* <option value="" disabled selected hidden></option> */}
 
-                    {options !== undefined ? options.map(option => {
+                    {options && options.map(option => {
                         return (
-                            <option key={option.id} className="option" value={option.value}>
+                            <option key={option.id} selected={option.value === value} className="option" value={option.value}>
                                 {option.label}
                             </option>
                         )
-                    }) : <option value="" disabled selected>{placeholder}</option>}
+                    })}
                 </select>
                 {/* <div className="pb-select-icon">
                     <KeyboardArrowDownIcon />

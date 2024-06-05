@@ -1,20 +1,21 @@
 .column--container {
     display: flex;
     flex-direction: column;
-    min-width: 406px;
-    max-width: 406px;
+    min-width: 402.5px;
+    max-width: 402.5px;
     margin-right: 4px;
-    background-color: #fff;
-    background-color: #f7fafd;
-    background-color: #f9fcff;
-    border-radius: 4px;
+    background-color: #ebeff4;
+    background-color: #eef1f6;
+    background-color: #eef2f7;
+    background-color: #eaeef4;
+    border-radius: 2px;
 }
 
 .column--container:first-of-type {
-    border-radius: 15px 4px 4px 15px;
+    border-radius: 15px 2px 2px 15px;
 }
 .column--container.last {
-    border-radius: 4px 15px 15px 4px;
+    border-radius: 2px 15px 15px 2px;
     margin-right: 0px;
 }
 .column--container.only {
@@ -29,11 +30,14 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    color: #242629 !important;
+    color: #272727 !important;
 }
 
 .column-header {
     font-size: 18px;
+    color: #363636;
+    color: #323131;
+    color: #2d2c2c;
 } 
 
 .column-header:hover {

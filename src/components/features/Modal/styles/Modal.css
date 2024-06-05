@@ -5,9 +5,10 @@
     right: -100%; /* Off-screen initially */
     width: 100%;
     height: 100%;
-    background-color: #fdfdfd61;
-    background-color: #d3d2d261;
+    /* background-color: #fdfdfd61;
+    background-color: #d3d2d261; */
     background-color: #d4d5da61;
+    background-color: #e7e9ed82;
     z-index: 1;
     overflow-x: hidden;
     transition: right 0.3s ease;
@@ -33,11 +34,18 @@
     right: -33%;
     height: 90%;
     top: 1.8%;
-    width: 374px;
+    width: 371px;
     box-shadow: none;
     border-radius: 32px;
     padding-left: 30px;
     padding-right: 30px;
+    background-color: #f7fafd;
+    background-color: #f2f5f9;
+    background-color: #f2f5f8;
+    background-color: #eff3f8;
+    
+    border: 1px solid #d4d7db;
+    border: 1px solid #ccd0d4;
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;

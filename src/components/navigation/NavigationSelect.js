@@ -3,7 +3,7 @@ import { AppContext } from "../../AppContextProvider";
 import { Select } from "../controls/inputs/Select";
 import "./NavigationSelect.css"
 
-export const NavigationSelect = ({ defaultValue, options }) => {
+export const NavigationSelect = ({ selectedValue, options }) => {
     const { boardId, setSelectedBoardId, handleRerender } = useContext(AppContext);
 
     const handleSelectChange = (boardId) => {
@@ -11,12 +11,11 @@ export const NavigationSelect = ({ defaultValue, options }) => {
         handleRerender();
     }
 
-    useEffect(() => {
-        console.log("NavigationSelect boardId: ", boardId);
+    useEffect(() => {        
         // initial load -- set the default as the first loaded board
         if (boardId === null)
-            setSelectedBoardId(defaultValue);
-    }, [])
+            setSelectedBoardId(selectedValue);
+    }, [selectedValue])
 
     return (
         <div className="nav-select">
@@ -26,7 +25,7 @@ export const NavigationSelect = ({ defaultValue, options }) => {
                 options={options}
                 name={"nav-select"}
                 handleSelectChange={handleSelectChange}
-                value={boardId}
+                value={selectedValue}
                 placeholder={"No boards yet"}
                 // selectedOption={options && boardId && options.find(o => o.id === boardId)}
             />

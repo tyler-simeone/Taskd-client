@@ -7,10 +7,20 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, handleRerender, rerender } = useContext(AppContext);
+  const { 
+    isAuthenticated,
+    logout,
+    userSession,
+    boardId,
+    setError,
+    setSelectedBoardId,
+    handleRerender,
+    rerender,
+    selectedBoardId 
+  } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
-  const [defaultValue, setDefaultValue] = useState();
+  const [selectedValue, setSelectedValue] = useState();
 
   const loadBoardOptions = () => {
     boardsClient.getBoards(userSession.userId)
@@ -26,10 +36,16 @@ export const Navigation = () => {
             options.push(option);
           });
           setBoardOptions(options);
-          if (boardId === null)
+
+          // if a board hasn't been loaded yet, set default
+          if (boardId === null) {
             setSelectedBoardId(options[0].value);
-          const selectedBoardId = boardId !== null ? boardId : options[0].value;
-          setDefaultValue(selectedBoardId);
+            setSelectedValue(options[0].value);
+          }
+          else {
+            setSelectedBoardId(boardId);
+            setSelectedValue(boardId);
+          }
           handleRerender();
         }
       })
@@ -37,11 +53,12 @@ export const Navigation = () => {
   }
 
   useEffect(() => {
-    console.log("boardId: ", boardId);
-    console.log("rerender: ", rerender);
+    if (boardId !== null)
+      setSelectedValue(boardId);
+
     if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
       loadBoardOptions();
-  }, [userSession, boardOptions, defaultValue, rerender])
+  }, [userSession, boardOptions, selectedValue, rerender, selectedBoardId])
 
   return (
     <div className="nav--container">
@@ -50,7 +67,7 @@ export const Navigation = () => {
 
         {isAuthenticated() && (
           <div style={{display: "flex"}}>
-            <NavigationSelect defaultValue={defaultValue} options={boardOptions} />
+            <NavigationSelect selectedValue={selectedValue} options={boardOptions} />
             <div className="logout-btn" onClick={logout}><span>Logout</span></div>
           </div>
         )}
