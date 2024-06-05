@@ -10,9 +10,20 @@ import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
 import { PbAddIcon } from "../controls/icons/AddIcon";
 import './styles/Board.css';
+import { columnsClient } from "../../api/columnsClient";
 
 export const Board = ({ didMove, setDidMove }) => {
-    const { rerender, handleRerender, setError, isAuthenticated, jwtToken, userSession, boardId, openAddBoardModal } = useContext(AppContext); 
+    const { 
+      rerender,
+      handleRerender,
+      setError,
+      isAuthenticated,
+      userSession,
+      boardId,
+      openAddBoardModal,
+      columnAdded,
+      handleColumnAdded
+    } = useContext(AppContext); 
     
     const navigate = useNavigate();
 
@@ -69,6 +80,19 @@ export const Board = ({ didMove, setDidMove }) => {
       });
     };
     
+    const loadColumns = (boardId) => {
+      setError();
+      setIsLoading(true);
+
+      columnsClient.getColumns(boardId, userSession.userId)
+        .then(columns => {
+          setColumns(columns);
+          handleRerender();
+        })
+        .catch(err => handleError(err, setError))
+        .finally(() => setIsLoading(false));
+    }
+
     const loadBoard = (boardId) => {
       setError();
       setIsLoading(true);
@@ -77,6 +101,8 @@ export const Board = ({ didMove, setDidMove }) => {
         .then(board => {
           setBoard(board);
           setColumns(board.columns);
+          if (columnAdded === true)
+            handleColumnAdded();
           handleRerender();
         })
         .catch(err => handleError(err, setError))
@@ -84,15 +110,12 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
-    console.log("rerender: ", rerender);
-    console.log("boardId: ", boardId);
-
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId !== null && (board === undefined || board.boardId !== boardId)) 
+    if (boardId !== null && (board === undefined || board.boardId !== boardId || columnAdded === true)) 
       loadBoard(boardId);
-  }, [rerender, board, boardId]);
+  }, [rerender, board, boardId, columnAdded]);
 
     return (
         <div className="board--container">
@@ -107,22 +130,23 @@ export const Board = ({ didMove, setDidMove }) => {
               </div>
             </div>
           </div>
-            <div className="board">
-              <div className="board-wrapper">
-                {columns !== undefined && columns.map(column => (
-                    <Column 
-                      key={column.columnId} 
-                      column={column} 
-                      useCustomDrop={useCustomDrop} 
-                      didMove={didMove} 
-                      isLast={(columns.length > 1 && column.columnId === columns[columns.length-1].columnId)}
-                      isOnly={columns.length === 1}
-                    />
-                ))}
-              </div>
 
-              {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+          <div className="board">
+            <div className="board-wrapper">
+              {columns !== undefined && columns.map(column => (
+                  <Column 
+                    key={column.columnId} 
+                    column={column} 
+                    useCustomDrop={useCustomDrop} 
+                    didMove={didMove} 
+                    isLast={(columns.length > 1 && column.columnId === columns[columns.length-1].columnId)}
+                    isOnly={columns.length === 1}
+                  />
+              ))}
             </div>
+
+            {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+          </div>
         </div>
     );
 }

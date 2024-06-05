@@ -11,10 +11,7 @@ export const NavigationSelect = ({ selectedValue, options }) => {
         handleRerender();
     }
 
-    useEffect(() => {
-        console.log("NavigationSelect boardId: ", boardId);
-        console.log("NavigationSelect selectedValue: ", selectedValue);
-        
+    useEffect(() => {        
         // initial load -- set the default as the first loaded board
         if (boardId === null)
             setSelectedBoardId(selectedValue);

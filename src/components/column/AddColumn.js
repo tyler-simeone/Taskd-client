@@ -6,7 +6,7 @@ import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
-    const { userSession, boardId } = useContext(AppContext);
+    const { userSession, boardId, handleColumnAdded } = useContext(AppContext);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
@@ -51,7 +51,10 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
             columnDescription: newColumn.columnDescription,
         }
         columnsClient.addColumn(addColumnRequestModel)
-            .then(() => handleRerender())
+            .then(() => {
+                handleColumnAdded();
+                handleRerender();
+            })
             .catch(err => handleError(err, setError));
         
         setIsSubmitting(false);

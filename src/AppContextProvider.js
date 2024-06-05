@@ -13,6 +13,8 @@ export const AppContextProvider = ({ children }) => {
 
     const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
     const [boardId, setBoardId] = useState(selectedBoardId);
+    
+    const [columnAdded, setColumnAdded] = useState(false);
 
     const setSelectedBoardId = (boardId) => {
         if (boardId !== undefined) {
@@ -20,6 +22,8 @@ export const AppContextProvider = ({ children }) => {
             sessionStorage.setItem("boardId", boardId);
         }
     };
+
+    const handleColumnAdded = () => setColumnAdded(!columnAdded);
     
     const navigate = useNavigate();
 
@@ -161,6 +165,7 @@ export const AppContextProvider = ({ children }) => {
         modalHeader,
         formError,
         columnId,
+        columnAdded,
         taskId,
         error,
         success,
@@ -178,6 +183,7 @@ export const AppContextProvider = ({ children }) => {
         deleteModalArgs,
         handleRerender,
         handleDelete,
+        handleColumnAdded,
         isAuthenticated,
         logout,
         openDeleteConfirmationModal,
