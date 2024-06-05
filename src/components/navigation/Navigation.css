@@ -3,8 +3,6 @@
     height: 58.5px;
     height: 54px;
     padding: 10px 48px;
-    /* background-color: #fff;
-    background-color: #f9fcfe; */
     background-color: #f9fcff;
     padding-top: 6px;
 }
@@ -18,6 +16,7 @@
 
 .pb-logo {
     font-size: 29.5px;
+    font-size: 30px;
     margin-top: 10px;
     font-weight: 500;
     letter-spacing: 0.3px;
