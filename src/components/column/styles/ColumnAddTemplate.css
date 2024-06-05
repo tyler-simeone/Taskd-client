@@ -9,7 +9,8 @@
 }
 .add-column-template--container:hover {
     cursor: pointer;
-    background-color: #eaeef4;
+    /* background-color: #eaeef4; */
+    background-color: #eaeef499;
     border: 1px dashed #c4c5ca;
 }
 
