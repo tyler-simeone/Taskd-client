@@ -16,6 +16,7 @@
 
 .board-name {
     font-size: 24px;
+    font-size: 23.5px;
 }
 
 .add-new-board--btn {
@@ -59,6 +60,10 @@
     border-radius: 14px;
     box-shadow: 0px 1px 7px 1.5px #d9dce1;
     box-shadow: 0px 1px 6.5px 1.5px #d2d5dc;
+    box-shadow: 0px 1px 6.5px 1.5px #d5d8de;
     background-color: #dde1e5;
+    background-color: #e1e4e7;
+    background-color: #dde0e3;
+    background-color: #e0e3e6;
     margin-right: 4px;
 }

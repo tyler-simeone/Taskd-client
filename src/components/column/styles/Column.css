@@ -1,12 +1,13 @@
 .column--container {
     display: flex;
     flex-direction: column;
-    min-width: 404px;
-    max-width: 404px;
+    min-width: 402.5px;
+    max-width: 402.5px;
     margin-right: 4px;
     background-color: #ebeff4;
     background-color: #eef1f6;
-    /* background-color: #eef2f7; */
+    background-color: #eef2f7;
+    background-color: #eaeef4;
     border-radius: 2px;
 }
 
@@ -35,6 +36,7 @@
 .column-header {
     font-size: 18px;
     color: #363636;
+    color: #323131;
 } 
 
 .column-header:hover {

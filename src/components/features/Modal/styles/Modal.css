@@ -40,7 +40,8 @@
     padding-left: 30px;
     padding-right: 30px;
     background-color: #f7fafd;
-    border: 1px solid #dee0e4;
+    background-color: #f2f5f9;
+    border: 1px solid #d9dbdf;
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
