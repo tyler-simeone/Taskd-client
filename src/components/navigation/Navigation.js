@@ -7,11 +7,20 @@ import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 
 export const Navigation = () => {
-  const { isAuthenticated, logout, userSession, boardId, setError, setSelectedBoardId, handleRerender, rerender, selectedBoardId } = useContext(AppContext);
+  const { 
+    isAuthenticated,
+    logout,
+    userSession,
+    boardId,
+    setError,
+    setSelectedBoardId,
+    handleRerender,
+    rerender,
+    selectedBoardId 
+  } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
   const [selectedValue, setSelectedValue] = useState();
-  const [defaultValue, setDefaultValue] = useState();
 
   const loadBoardOptions = () => {
     boardsClient.getBoards(userSession.userId)
@@ -37,10 +46,6 @@ export const Navigation = () => {
             setSelectedBoardId(boardId);
             setSelectedValue(boardId);
           }
-          
-          // const selectedBoardId = boardId !== null ? boardId : options[0].value;
-          // setSelectedBoardId(selectedBoardId);
-          // setDefaultValue(selectedBoardId);
           handleRerender();
         }
       })
@@ -48,10 +53,6 @@ export const Navigation = () => {
   }
 
   useEffect(() => {
-    console.log("selectedBoardId: ", boardId);
-    console.log("selectedValue: ", selectedValue);
-    console.log("defaultValue: ", defaultValue);
-
     if (boardId !== null)
       setSelectedValue(boardId);
 
