@@ -10,7 +10,6 @@ import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
 import { PbAddIcon } from "../controls/icons/AddIcon";
 import './styles/Board.css';
-import { columnsClient } from "../../api/columnsClient";
 
 export const Board = ({ didMove, setDidMove }) => {
     const { 
@@ -79,19 +78,6 @@ export const Board = ({ didMove, setDidMove }) => {
         }),
       });
     };
-    
-    const loadColumns = (boardId) => {
-      setError();
-      setIsLoading(true);
-
-      columnsClient.getColumns(boardId, userSession.userId)
-        .then(columns => {
-          setColumns(columns);
-          handleRerender();
-        })
-        .catch(err => handleError(err, setError))
-        .finally(() => setIsLoading(false));
-    }
 
     const loadBoard = (boardId) => {
       setError();
