@@ -99,7 +99,7 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId !== null && (board === undefined || board.boardId !== boardId || columnAdded === true)) 
+    if (boardId !== undefined && boardId !== null && (board === undefined || board.boardId !== boardId || columnAdded === true)) 
       loadBoard(boardId);
   }, [rerender, board, boardId, columnAdded]);
 
