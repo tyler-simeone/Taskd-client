@@ -39,13 +39,8 @@
     border-radius: 32px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: #f7fafd;
-    background-color: #f2f5f9;
-    background-color: #f2f5f8;
     background-color: #eff3f8;
-    
-    border: 1px solid #d4d7db;
-    border: 1px solid #ccd0d4;
+    border: 1px solid #dbdcdd;
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;

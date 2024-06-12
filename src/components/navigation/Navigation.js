@@ -48,6 +48,10 @@ export const Navigation = () => {
           }
           handleRerender();
         }
+        else {
+          setBoardOptions([]);
+          handleRerender();
+        }
       })
       .catch(err => handleError(err, setError));
   }
