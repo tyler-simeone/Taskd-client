@@ -10,7 +10,7 @@ import { ConfirmAccount } from "./ConfirmAccount";
 import "./styles/AuthContainer.css";
 
 export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
-    const { showSuccess, setError, setAuthenticatedUserSession, isAuthenticated, signupData, setSignupData } = useContext(AppContext);
+    const { showSuccess, setError, setAuthenticatedUserSession, signupData, setAndStoreSignupData } = useContext(AppContext);
 
     const navigate = useNavigate();
 
@@ -63,17 +63,18 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                         const updatedSignupData = {...signupData};
                         updatedSignupData.email = signUpFormData.email;
                         updatedSignupData.password = signUpFormData.password;
-                        setSignupData(updatedSignupData);
+                        setAndStoreSignupData(updatedSignupData);
                         navigate('/oauth/confirm');
                     })
                     .catch(err => handleError(err, setFormError))
                     .finally(() => setIsSubmitting(false));
             } else {
                 const updatedConfirmAccountData = {...confirmAccountData};
-                updatedConfirmAccountData.email = signupData.email;
+                const storedEmail = JSON.parse(sessionStorage.getItem("signupdata")).email;
+                updatedConfirmAccountData.email = signupData.email !== "" ? signupData.email : storedEmail;
                 updatedConfirmAccountData.confirmationCode = updatedConfirmAccountData.confirmationCode;
                 authClient.confirmAccount(updatedConfirmAccountData)
-                    .then(() => loginUser(signupData))
+                    .then(() => loginUser(JSON.parse(sessionStorage.getItem("signupdata"))))
                     .catch(err => handleError(err, setFormError))
                     .finally(() => setIsSubmitting(false));
             }
@@ -83,6 +84,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     const loginUser = (credentials) => {
         authClient.signIn(credentials)
             .then(resp => {
+                sessionStorage.removeItem("signupdata");
                 setAuthenticatedUserSession(resp.user, resp.authenticationResult.idToken);
                 navigate('/board');
             })

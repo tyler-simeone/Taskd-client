@@ -70,6 +70,11 @@ export const AppContextProvider = ({ children }) => {
         navigate('/oauth/login');
     }
 
+    const setAndStoreSignupData = (signupData) => {
+        sessionStorage.setItem("signupdata", JSON.stringify(signupData));
+        setSignupData(signupData);
+    }
+
     /*
         END AUTH
     */
@@ -202,6 +207,7 @@ export const AppContextProvider = ({ children }) => {
         setIsSideModalOpen,
         setIsCenterModalOpen,
         setSignupData,
+        setAndStoreSignupData,
         showSuccess
     }
 
