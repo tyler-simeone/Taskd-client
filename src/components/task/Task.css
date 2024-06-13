@@ -8,11 +8,14 @@
     /* background-color: #e6eaef !important;
     background-color: #e9edf2 !important; */
     background-color: #e3e7ed !important;
+    background-color: #e7ebf1 !important;
     border: 1px solid #d7d9df !important;
+    border: 1px solid #d5d7de !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
-    border: 1.5px solid #d4d8dd !important;
+    /* border: 1.5px solid #d4d8dd !important; */
+    background-color: #e1e6ed !important;
 }
 
 .task-title {

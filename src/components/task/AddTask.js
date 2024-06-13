@@ -59,8 +59,8 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
 
     return (
         <form>
-            <Input name={"taskName"} label={"Task Name"} handleChange={handleChange} />
-            <Input name={"taskDescription"} label={"Task Description"} handleChange={handleChange} />
+            <Input name={"taskName"} label={"Task Name"} handleChange={handleChange} fromModal={true} />
+            <Input name={"taskDescription"} label={"Task Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

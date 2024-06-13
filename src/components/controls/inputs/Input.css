@@ -28,3 +28,7 @@
 .pb-input:focus {
     outline: none;
 }
+
+.modal-input {
+    background-color: #e4e8ec;   
+}

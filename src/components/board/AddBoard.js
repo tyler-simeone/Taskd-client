@@ -59,8 +59,8 @@ export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerende
 
     return (
         <form>
-            <Input name={"boardName"} label={"Board Name"} handleChange={handleChange} />
-            <Input name={"boardDescription"} label={"Board Description"} handleChange={handleChange} />
+            <Input name={"boardName"} label={"Board Name"} handleChange={handleChange} fromModal={true} />
+            <Input name={"boardDescription"} label={"Board Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );
