@@ -41,10 +41,11 @@
     border-radius: 40px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: #eff3f8;
-    background-color: #edf1f6;
     background-color: #e8ecf1;
-    border: 1px solid #dbdcdd;
+    background-color: #e2e7ed;
+    background-color: #e4e9ee;
+    border: 1px solid #ced1d5;
+    border: 1px solid #d1d4d8;
     border: 1px solid #ced1d5;
 
     /* transform: translate(-50%, -50%); */

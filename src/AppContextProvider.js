@@ -67,6 +67,7 @@ export const AppContextProvider = ({ children }) => {
         sessionStorage.clear();
         setUserSession();
         setJwtToken();
+        setBoardId();
         navigate('/oauth/login');
     }
 
