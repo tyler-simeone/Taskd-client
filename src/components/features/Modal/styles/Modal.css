@@ -35,14 +35,17 @@
     height: 90%;
     top: 1.8%;
     width: 371px;
+    width: 366px;
     box-shadow: none;
     border-radius: 32px;
+    border-radius: 40px;
     padding-left: 30px;
     padding-right: 30px;
     background-color: #eff3f8;
     background-color: #edf1f6;
+    background-color: #e8ecf1;
     border: 1px solid #dbdcdd;
-    border: 1px solid #d2d5d8;
+    border: 1px solid #ced1d5;
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
