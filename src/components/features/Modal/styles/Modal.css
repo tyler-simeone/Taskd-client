@@ -36,6 +36,7 @@
     top: 1.8%;
     width: 371px;
     width: 366px;
+    width: 362px;
     box-shadow: none;
     border-radius: 32px;
     border-radius: 40px;
@@ -43,10 +44,13 @@
     padding-right: 30px;
     background-color: #e8ecf1;
     background-color: #e2e7ed;
-    background-color: #e4e9ee;
+    background-color: #eaeef3;
     border: 1px solid #ced1d5;
     border: 1px solid #d1d4d8;
-    border: 1px solid #ced1d5;
+    border: 1px solid #d8dbdf;
+
+    border: 1px solid #dadde2;
+    box-shadow: 0px 1px 4.5px 0.5px rgb(0 0 0 / 10%);
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;

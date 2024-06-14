@@ -18,6 +18,7 @@
     height: 43.5px;
     height: 42px;
     border-radius: 6px;
+    border-radius: 7px;
     border: none;
     background-color: #ebeef1;
     padding-left: 14px;
@@ -30,5 +31,5 @@
 }
 
 .modal-input {
-    background-color: #d6dce3;   
+    background-color: #dfe4e8;   
 }
