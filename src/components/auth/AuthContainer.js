@@ -7,13 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 import { ConfirmAccount } from "./ConfirmAccount";
+import { useSearchParams } from 'react-router-dom';
 import "./styles/AuthContainer.css";
 
 export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     const { showSuccess, setError, setAuthenticatedUserSession, signupData, setAndStoreSignupData } = useContext(AppContext);
 
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
+    const [isConfirmAccountFromLogin, setIsConfirmAccountFromLogin] = useState(false);
     const [formError, setFormError] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [credentials, setCredentials] = useState({
@@ -86,9 +89,14 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
             .then(resp => {
                 sessionStorage.removeItem("signupdata");
                 setAuthenticatedUserSession(resp.user, resp.authenticationResult.idToken);
-                navigate('/board');
+                navigate("/board");
             })
-            .catch(err => handleError(err, setFormError))
+            .catch(err => {
+                if (err.detail === "User is not confirmed.")
+                    navigate("/oauth/confirm?fromLogin=true");
+                else 
+                    handleError(err, setFormError);
+            })
             .finally(() => setIsSubmitting(false));
     }
 
@@ -136,7 +144,12 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     }
 
     useEffect(() => {
-    }, [signupData, signUpFormData])
+        // console.log("searchParams.get('fromLogin'): ", searchParams.get("fromLogin"))
+        // const confirmFromLogin = Boolean(searchParams.get("fromLogin"));
+        // console.log("confirmFromLogin: ", confirmFromLogin);
+        // if (isConfirmAccountFromLogin === false && confirmFromLogin)
+        //     setIsConfirmAccountFromLogin(true);
+    }, [signupData, signUpFormData, isConfirmAccountFromLogin])
 
     return (
         <div className="auth--container">
@@ -154,7 +167,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                 <Login handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
             ) : isSignup ? (
                 <SignUp handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
-            ) : <ConfirmAccount handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />}
+            ) : <ConfirmAccount handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} isConfirmAccountFromLogin={isConfirmAccountFromLogin} />}
         </div>
     );
 }
