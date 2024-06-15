@@ -10,6 +10,7 @@
     border-radius: 24px;
     padding: 28px 50px 34px;
     padding: 44.5px 52px;
+    padding: 44.5px 62px;
     padding-top: 24.5px;
     padding-top: 30px;
     /* box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 15%); */
@@ -51,10 +52,19 @@
     font-size: 15.5px;
 }
 
+.login-links--container {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
 .auth-link--container {
     display: flex;
     justify-content: center;
     margin-top: 14px;
+}
+.auth-link--container:first-of-type {
+    margin-right: -30%;
 }
 
 .signup-link {

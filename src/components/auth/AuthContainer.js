@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 import { ConfirmAccount } from "./ConfirmAccount";
+import { ResetPassword } from "./ResetPassword";
 import { useSearchParams } from 'react-router-dom';
 import "./styles/AuthContainer.css";
 
-export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
+export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPassword }) => {
     const { showSuccess, setError, setAuthenticatedUserSession, signupData, setAndStoreSignupData } = useContext(AppContext);
 
     const navigate = useNavigate();
@@ -159,7 +160,9 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
         <div className="auth--container">
             <div className="auth-header--container">
                 <ProjectBLogo style={{position: "relative", left: "40%", fontSize: 30.5}} isLink={false} />
-                <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>{isLogin ? 'Login' : isSignup ? 'Sign Up' : 'Enter Confirmation Code'}</h2>
+                <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>
+                    {isLogin ? 'Login' : isSignup ? 'Sign Up' : isConfirmAccount ? 'Enter Confirmation Code' : 'Reset Password'}
+                </h2>
             </div>
 
             {formError !== undefined && <div className="form-error">{formError}</div>}
@@ -169,13 +172,15 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                 <Login handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isFormSubmitting} />
             ) : isSignup ? (
                 <SignUp handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isFormSubmitting} />
-            ) : <ConfirmAccount 
+            ) : isConfirmAccount ? (
+                <ConfirmAccount 
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     handleResendCode={handleResendCode}
                     isFormSubmitting={isFormSubmitting}
                     isResendCodeSubmitting={isResendCodeSubmitting}
-                />}
+                />
+            ) : <ResetPassword />}
         </div>
     );
 }
