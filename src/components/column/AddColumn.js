@@ -24,41 +24,34 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
     }
 
     const formIsValid = () => {
-        if (newColumn.columnName.trim() === "" && newColumn.columnDescription.trim() === "") {
-            setFormError("Column name and description are required.");
-            return false;
-        }
-        else if (newColumn.columnName.trim() === "") {
+        if (newColumn.columnName.trim() === "") {
             setFormError("Column name is required.");
             return false;
         }
-        else if (newColumn.columnDescription.trim() === "") {
-            setFormError("Column description is required.");
-            return false;
-        }
+        return true;
     }
 
     const handleSubmit = () => {
-        if (formIsValid() === false)
-            return;
-
-        setIsSubmitting(true);
-
-        const addColumnRequestModel = {
-            userId: userSession.userId,
-            boardId: boardId,
-            columnName: newColumn.columnName,
-            columnDescription: newColumn.columnDescription,
+        if (formIsValid()) {
+            setIsSubmitting(true);
+    
+            const addColumnRequestModel = {
+                userId: userSession.userId,
+                boardId: boardId,
+                columnName: newColumn.columnName,
+                columnDescription: newColumn.columnDescription,
+            }
+            columnsClient.addColumn(addColumnRequestModel)
+                .then(() => {
+                    handleColumnAdded();
+                    handleRerender();
+                })
+                .catch(err => handleError(err, setError));
+            
+            setIsSubmitting(false);
+            closeSideModal();
         }
-        columnsClient.addColumn(addColumnRequestModel)
-            .then(() => {
-                handleColumnAdded();
-                handleRerender();
-            })
-            .catch(err => handleError(err, setError));
-        
-        setIsSubmitting(false);
-        closeSideModal();
+
     }
 
     return (

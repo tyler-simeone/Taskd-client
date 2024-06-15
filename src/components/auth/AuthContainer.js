@@ -18,7 +18,9 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
 
     const [isConfirmAccountFromLogin, setIsConfirmAccountFromLogin] = useState(false);
     const [formError, setFormError] = useState();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formSuccess, setFormSuccess] = useState();
+    const [isFormSubmitting, setFormIsSubmitting] = useState(false);
+    const [isResendCodeSubmitting, setIsResendCodeSubmitting] = useState(false);
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
@@ -56,10 +58,10 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         if (validForm()) {
-            setIsSubmitting(true);
+            setFormIsSubmitting(true);
 
             if (isLogin) {
-                loginUser(credentials)
+                loginUser(credentials);
             } else if (isSignup) {
                 authClient.signUp(signUpFormData)
                     .then(() => {
@@ -69,8 +71,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                         setAndStoreSignupData(updatedSignupData);
                         navigate('/oauth/confirm');
                     })
-                    .catch(err => handleError(err, setFormError))
-                    .finally(() => setIsSubmitting(false));
+                    .catch(err => handleError(err, setFormError));
             } else {
                 const updatedConfirmAccountData = {...confirmAccountData};
                 const storedEmail = JSON.parse(sessionStorage.getItem("signupdata")).email;
@@ -78,8 +79,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                 updatedConfirmAccountData.confirmationCode = updatedConfirmAccountData.confirmationCode;
                 authClient.confirmAccount(updatedConfirmAccountData)
                     .then(() => loginUser(JSON.parse(sessionStorage.getItem("signupdata"))))
-                    .catch(err => handleError(err, setFormError))
-                    .finally(() => setIsSubmitting(false));
+                    .catch(err => handleError(err, setFormError));
             }
         }
     }
@@ -96,8 +96,17 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                     navigate("/oauth/confirm?fromLogin=true");
                 else 
                     handleError(err, setFormError);
-            })
-            .finally(() => setIsSubmitting(false));
+            });
+    }
+
+    const handleResendCode = () => {
+        setIsResendCodeSubmitting(true);
+
+        const email = JSON.parse(sessionStorage.getItem("signupdata")).email;
+        authClient.resendConfirmationCode(email)
+            .then(() => setFormSuccess(`A new code has been resent to: ${email}`))
+            .catch(err => handleError(err, setFormError))
+            .finally(() => setIsResendCodeSubmitting(false));
     }
 
     const validForm = () => {
@@ -144,11 +153,6 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     }
 
     useEffect(() => {
-        // console.log("searchParams.get('fromLogin'): ", searchParams.get("fromLogin"))
-        // const confirmFromLogin = Boolean(searchParams.get("fromLogin"));
-        // console.log("confirmFromLogin: ", confirmFromLogin);
-        // if (isConfirmAccountFromLogin === false && confirmFromLogin)
-        //     setIsConfirmAccountFromLogin(true);
     }, [signupData, signUpFormData, isConfirmAccountFromLogin])
 
     return (
@@ -157,17 +161,21 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
                 <ProjectBLogo style={{position: "relative", left: "40%", fontSize: 30.5}} isLink={false} />
                 <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>{isLogin ? 'Login' : isSignup ? 'Sign Up' : 'Enter Confirmation Code'}</h2>
             </div>
-            {formError !== undefined && (
-                <div className="form-error">
-                    {formError}
-                </div>
-            )}
+
+            {formError !== undefined && <div className="form-error">{formError}</div>}
+            {formSuccess !== undefined && <div className="form-success">{formSuccess}</div>}
 
             {isLogin ? (
-                <Login handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
+                <Login handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isFormSubmitting} />
             ) : isSignup ? (
-                <SignUp handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
-            ) : <ConfirmAccount handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} isConfirmAccountFromLogin={isConfirmAccountFromLogin} />}
+                <SignUp handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isFormSubmitting} />
+            ) : <ConfirmAccount 
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    handleResendCode={handleResendCode}
+                    isFormSubmitting={isFormSubmitting}
+                    isResendCodeSubmitting={isResendCodeSubmitting}
+                />}
         </div>
     );
 }

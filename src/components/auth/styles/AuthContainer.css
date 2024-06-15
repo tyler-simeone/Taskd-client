@@ -45,6 +45,11 @@
     margin-bottom: 8px;
     font-size: 15.5px;
 }
+.form-success {
+    color: #029902;
+    margin-bottom: 8px;
+    font-size: 15.5px;
+}
 
 .auth-link--container {
     display: flex;

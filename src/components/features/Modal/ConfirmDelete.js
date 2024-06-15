@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { DeleteButton } from "../../controls/buttons/DeleteButton";
-import { CancelButton } from "../../controls/buttons/CancelButton";
+import { SecondaryButton } from "../../controls/buttons/SecondaryButton";
 import "./styles/ConfirmDelete.css"
 
 export const ConfirmDelete = () => {
@@ -16,8 +16,8 @@ export const ConfirmDelete = () => {
             </div>
 
             <form onSubmit={deleteModalArgs.callback} className="confirm-delete-btns--container">
-                <DeleteButton text={"Delete"} />
-                <CancelButton handleCancel={closeDeleteConfirmationModal} />
+                <DeleteButton />
+                <SecondaryButton text={"Cancel"} handleCancel={closeDeleteConfirmationModal} />
             </form>
         </div>
     );
