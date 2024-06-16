@@ -4,16 +4,12 @@
     max-width: 658px;
     margin: 0 auto;
     margin-top: 90px;
-    border: 1px solid #d3d6d9;
-    border: 1px solid #cfd1d4;
     border: 1px solid #cbccce;
     border-radius: 24px;
     padding: 28px 50px 34px;
-    padding: 44.5px 52px;
     padding: 44.5px 62px;
-    padding-top: 24.5px;
+    padding: 46.5px 62px;
     padding-top: 30px;
-    /* box-shadow: 0px 1.5px 7px 1px rgb(0 0 0 / 15%); */
 }
 
 .auth-header--container {
@@ -48,7 +44,8 @@
 }
 .form-success {
     color: #029902;
-    margin-bottom: 8px;
+    margin-bottom: 8.5px;
+    margin-top: -2px;
     font-size: 15.5px;
 }
 

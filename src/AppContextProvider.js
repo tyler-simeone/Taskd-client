@@ -46,6 +46,9 @@ export const AppContextProvider = ({ children }) => {
         email: "",
         password: ""
     });
+    const [resetPasswordData, setResetPasswordData] = useState({
+        email: ""
+    });
 
     const sessionUserInfo = JSON.parse(sessionStorage.getItem("user"));
     const sessionJwt = JSON.parse(sessionStorage.getItem("jwt"));
@@ -62,8 +65,6 @@ export const AppContextProvider = ({ children }) => {
     const isAuthenticated = () => (sessionStorage.getItem("user") !== null && sessionStorage.getItem("jwt") !== null);
     
     const logout = () => {
-        // sessionStorage.removeItem("user");
-        // sessionStorage.removeItem("jwt");
         sessionStorage.clear();
         setUserSession();
         setJwtToken();
@@ -74,6 +75,18 @@ export const AppContextProvider = ({ children }) => {
     const setAndStoreSignupData = (signupData) => {
         sessionStorage.setItem("signupdata", JSON.stringify(signupData));
         setSignupData(signupData);
+    }
+
+    const setAndStoreResetPasswordData = (resetPasswordData) => {
+        sessionStorage.setItem("resetpassworddata", JSON.stringify(resetPasswordData));
+        setResetPasswordData(resetPasswordData);
+    }
+
+    const signupEmail = () => {
+        if (signupData.email !== "")
+            return signupData.email;
+        else 
+            return JSON.parse(sessionStorage.getItem("signupdata"))?.email;
     }
 
     /*
@@ -99,7 +112,7 @@ export const AppContextProvider = ({ children }) => {
 
     const openAddTaskModal = (columnId) => {
         setModalType(Constants.MODAL_TYPE.ADD_TASK);
-        setModalHeader("Add a Task");
+        setModalHeader("New Task");
         setColumnId(columnId);
         setIsSideModalOpen(true);
     }
@@ -112,7 +125,7 @@ export const AppContextProvider = ({ children }) => {
 
     const openAddColumnModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_COLUMN);
-        setModalHeader("Add a Column");
+        setModalHeader("New Column");
         setIsSideModalOpen(true);
     }
 
@@ -199,7 +212,9 @@ export const AppContextProvider = ({ children }) => {
         openEditColumnModal,
         openEditTaskModal,
         openViewTaskModal,
+        resetPasswordData,
         signupData,
+        signupEmail,
         setAuthenticatedUserSession,
         setSelectedBoardId,
         setDeleteConfirmed,
@@ -209,6 +224,7 @@ export const AppContextProvider = ({ children }) => {
         setIsCenterModalOpen,
         setSignupData,
         setAndStoreSignupData,
+        setAndStoreResetPasswordData,
         showSuccess
     }
 

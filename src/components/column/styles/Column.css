@@ -27,7 +27,7 @@
 .column-header--container {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 16px;
     padding-top: 10.5px;
     padding-bottom: 12px;
     text-align: center;
@@ -37,6 +37,8 @@
 .column-header {
     font-size: 18px;
     color: #1d1d1d;
+    color: #5c6167;
+    color: #505459;
 } 
 
 .column-header:hover {

@@ -29,6 +29,10 @@
 .pb-input:focus {
     outline: none;
 }
+.pb-input:disabled {
+    background-color: #f5f7f9;
+    color: gray;
+}
 
 .modal-input {
     background-color: #dfe4e8;   

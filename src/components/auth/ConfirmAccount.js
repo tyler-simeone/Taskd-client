@@ -10,9 +10,7 @@ export const ConfirmAccount = ({ handleChange, handleSubmit, handleResendCode, i
     const [isConfirmAccountFromLogin, setIsConfirmAccountFromLogin] = useState(false);
 
     useEffect(() => {
-        console.log("searchParams.get('fromLogin'): ", searchParams.get("fromLogin"))
         const confirmFromLogin = Boolean(searchParams.get("fromLogin"));
-        console.log("confirmFromLogin: ", confirmFromLogin);
         if (isConfirmAccountFromLogin === false && confirmFromLogin)
             setIsConfirmAccountFromLogin(true);
     }, isConfirmAccountFromLogin)
