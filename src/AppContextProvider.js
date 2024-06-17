@@ -119,7 +119,7 @@ export const AppContextProvider = ({ children }) => {
     
     const openAddBoardModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_BOARD);
-        setModalHeader("Add a Board");
+        setModalHeader("New Board");
         setIsSideModalOpen(true);
     }
 

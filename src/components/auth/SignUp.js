@@ -1,10 +1,89 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../../AppContextProvider";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { authClient } from "../../api/authClient";
+import { handleError } from "../../util/handleError";
 import "./styles/AuthContainer.css";
 
-export const SignUp = ({ handleChange, handleSubmit, isSubmitting }) => {
+export const SignUp = ({ 
+    setFormError,
+    setFormSuccess
+}) => {
+    const { signupData, setAndStoreSignupData } = useContext(AppContext);
+
+    const navigate = useNavigate();
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [signUpFormData, setSignUpFormData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        firstName: "",
+        lastName: ""
+    });
+
+    const handleChange = (evt) => {
+        const stateToChange = {...signUpFormData};
+        handleStateUpdate(evt, stateToChange);
+        setSignUpFormData(stateToChange);
+    }
+
+    const handleStateUpdate = (evt, stateToChange) => stateToChange[evt.target.name] = evt.target.value?.trim();
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+
+        if (validForm()) {
+            setFormError();
+            setIsSubmitting(true);
+
+            authClient.signUp(signUpFormData)
+                .then(() => {
+                    const updatedSignupData = {...signupData};
+                    updatedSignupData.email = signUpFormData.email;
+                    updatedSignupData.password = signUpFormData.password;
+                    setAndStoreSignupData(updatedSignupData);
+                    navigate('/oauth/confirm');
+                })
+                .catch(err => {
+                    setFormSuccess();
+                    handleError(err, setFormError, setIsSubmitting);
+                });
+        }
+    }
+
+    const validForm = () => {
+        if (signUpFormData.email.trim().length === 0) {
+            setFormError("Email is required");
+            return false;
+        } else if (signUpFormData.password.trim().length === 0) {
+            setFormError("Password is required");
+            return false;
+        } else if (signUpFormData.confirmPassword.trim().length === 0) {
+            setFormError("Confirm Password is required");
+            return false;
+        } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
+            setFormError("Passwords do not match");
+            return false;
+        } else if (signUpFormData.firstName.trim().length === 0) {
+            setFormError("First Name is required");
+            return false;
+        } else if (signUpFormData.lastName.trim().length === 0) {
+            setFormError("Last Name is required");
+            return false;
+        }
+        const stateToChange = {...signUpFormData};
+        delete stateToChange.confirmPassword;
+        setSignUpFormData(stateToChange);
+
+        return true;
+    }
+
+    useEffect(() => {
+    }, [signupData, signUpFormData])
+
     return (
         <>
             <form className="auth--form">

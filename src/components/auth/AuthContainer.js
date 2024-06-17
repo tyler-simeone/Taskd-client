@@ -8,62 +8,30 @@ import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 import { ConfirmAccount } from "./ConfirmAccount";
 import { ResetPasswordContainer } from "./ResetPasswordContainer";
-import { useSearchParams } from 'react-router-dom';
 import "./styles/AuthContainer.css";
 
-export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPassword }) => {
-    const { showSuccess, setError, setAuthenticatedUserSession, signupData, setAndStoreSignupData, setAndStoreResetPasswordData } = useContext(AppContext);
-
+export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
+    const { setAuthenticatedUserSession, signupData, setAndStoreSignupData, setAndStoreResetPasswordData } = useContext(AppContext);
+    
     const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
 
     const [isConfirmAccountFromLogin, setIsConfirmAccountFromLogin] = useState(false);
     const [formError, setFormError] = useState();
     const [formSuccess, setFormSuccess] = useState();
     const [isLoginFormSubmitting, setLoginFormIsSubmitting] = useState(false);
-    const [isSignupFormSubmitting, setSignupFormIsSubmitting] = useState(false);
     const [isAccountConfirmationFormSubmitting, setAccountConfirmationFormIsSubmitting] = useState(false);
     const [isResendCodeSubmitting, setIsResendCodeSubmitting] = useState(false);
-    const [isPasswordResetSubmitting, setIsPasswordResetSubmitting] = useState(false);
-    const [passwordResetUserConfirmed, setPasswordResetUserConfirmed] = useState(false);
-    const [credentials, setCredentials] = useState({
-        email: "",
-        password: ""
-    });
-    const [signUpFormData, setSignUpFormData] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        firstName: "",
-        lastName: ""
-    });
+
     const [confirmAccountData, setConfirmAccountData] = useState({
         email: "",
         confirmationCode: ""
     });
-    const [passwordResetFormData, setPasswordResetFormData] = useState({
-        email: "",
-        password: "",
-        confirmPassword: ""
-    });
 
     const handleChange = (evt) => {
-        if (isLogin) {
-            const stateToChange = {...credentials};
-            handleStateUpdate(evt, stateToChange);
-            setCredentials(stateToChange);
-        } else if (isSignup) {
-            const stateToChange = {...signUpFormData};
-            handleStateUpdate(evt, stateToChange);
-            setSignUpFormData(stateToChange);
-        } else if (isConfirmAccount) {
+        if (isConfirmAccount) {
             const stateToChange = {...confirmAccountData};
             handleStateUpdate(evt, stateToChange);
             setConfirmAccountData(stateToChange);
-        } else {
-            const stateToChange = {...passwordResetFormData};
-            handleStateUpdate(evt, stateToChange);
-            setPasswordResetFormData(stateToChange);
         }
     }
 
@@ -72,24 +40,8 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPass
     const handleSubmit = (evt) => {
         evt.preventDefault();
         if (validForm()) {
-            if (isLogin) {
-                setLoginFormIsSubmitting(true);
-                loginUser(credentials);
-            } else if (isSignup) {
-                setSignupFormIsSubmitting(true);
-                authClient.signUp(signUpFormData)
-                    .then(() => {
-                        const updatedSignupData = {...signupData};
-                        updatedSignupData.email = signUpFormData.email;
-                        updatedSignupData.password = signUpFormData.password;
-                        setAndStoreSignupData(updatedSignupData);
-                        navigate('/oauth/confirm');
-                    })
-                    .catch(err => {
-                        setFormSuccess();
-                        handleError(err, setFormError, setSignupFormIsSubmitting);
-                    });
-            } else if (isConfirmAccount) {
+            setFormError();
+            if (isConfirmAccount) {
                 setAccountConfirmationFormIsSubmitting(true);
                 const updatedConfirmAccountData = {...confirmAccountData};
                 const storedEmail = JSON.parse(sessionStorage.getItem("signupdata")).email;
@@ -100,35 +52,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPass
                         setFormSuccess();
                         handleError(err, setFormError, setAccountConfirmationFormIsSubmitting);
                     });
-            } else { // Reset Password
-                setIsPasswordResetSubmitting(true);
-                const email = passwordResetFormData.email;
-
-                if (!passwordResetUserConfirmed) { // step one - user receives confirmation code email
-                    authClient.initiateResetPassword(email)
-                        .then(() => {
-                            setAndStoreResetPasswordData(email);
-                            setPasswordResetUserConfirmed(true);
-                            setIsPasswordResetSubmitting(false);
-                        })
-                        .catch(err => {
-                            setFormSuccess();
-                            handleError(err, setFormError, setIsPasswordResetSubmitting);
-                        });
-                } else { // step two - fulfill the password reset
-                    const resetPasswordRequest = {
-                        email: email,
-                        newPassword: passwordResetFormData.confirmPassword,
-                        confirmationCode: passwordResetFormData.confirmationCode
-                    }
-                    authClient.resetPassword(resetPasswordRequest)
-                        .then(() => navigate("/oauth/login"))
-                        .catch(err => {
-                            setFormSuccess();
-                            handleError(err, setFormError, setIsPasswordResetSubmitting);
-                        });
-                }
-            }   
+            }
         }
     }
 
@@ -159,62 +83,18 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPass
     }
 
     const validForm = () => {
-        if (isLogin) {
-            if (credentials.email.trim().length === 0) {
-                setFormError("Email is required");
-                return false;
-            }
-            else if (credentials.password.trim().length === 0) {
-                setFormError("Password is required");
-                return false;
-            }
-        } else if (isSignup) {
-            if (signUpFormData.email.trim().length === 0) {
-                setFormError("Email is required");
-                return false;
-            } else if (signUpFormData.password.trim().length === 0) {
-                setFormError("Password is required");
-                return false;
-            } else if (signUpFormData.confirmPassword.trim().length === 0) {
-                setFormError("Confirm Password is required");
-                return false;
-            } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
-                setFormError("Passwords do not match");
-                return false;
-            } else if (signUpFormData.firstName.trim().length === 0) {
-                setFormError("First Name is required");
-                return false;
-            } else if (signUpFormData.lastName.trim().length === 0) {
-                setFormError("Last Name is required");
-                return false;
-            }
-            const stateToChange = {...signUpFormData};
-            delete stateToChange.confirmPassword;
-            setSignUpFormData(stateToChange);
-        } else if (isConfirmAccount) {
+        if (isConfirmAccount) {
             // don't check for email in this onSubmit validator because it's being set from appContext 
             if (confirmAccountData.confirmationCode.trim().length === 0) {
                 setFormError("Confirmation code is required");
                 return false;
             }
-        } else {
-            if (passwordResetFormData.email.trim().length === 0) {
-                setFormError("Email is required");
-                return false;
-            } 
-            // else if (passwordResetFormData.password.trim().length === 0) {
-            //     setFormError("Password is required");
-            //     return false;
-            // } else if (passwordResetFormData.confirmPassword.trim().length === 0) {
-            //     setFormError("Confirm Password is required");
-            //     return false;
-            // } 
         }
         return true;
     }
 
     useEffect(() => {
-    }, [signupData, signUpFormData, isConfirmAccountFromLogin, passwordResetUserConfirmed])
+    }, [signupData, isConfirmAccountFromLogin])
 
     return (
         <div className="auth--container">
@@ -229,22 +109,26 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount, isResetPass
             {formSuccess !== undefined && <div className="form-success">{formSuccess}</div>}
 
             {isLogin ? (
-                <Login handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isLoginFormSubmitting} />
+                <Login setFormError={setFormError} />
             ) : isSignup ? (
-                <SignUp handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSignupFormSubmitting} />
+                <SignUp 
+                    setFormError={setFormError} 
+                    setFormSuccess={setFormSuccess} 
+                />
             ) : isConfirmAccount ? (
                 <ConfirmAccount 
+                    setFormError={setFormError}
+                    setFormSuccess={setFormSuccess}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     handleResendCode={handleResendCode}
                     isFormSubmitting={isAccountConfirmationFormSubmitting}
                     isResendCodeSubmitting={isResendCodeSubmitting}
                 />
-            ) : <ResetPasswordContainer 
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                    isSubmitting={isPasswordResetSubmitting}
-                    userConfirmed={passwordResetUserConfirmed} 
+            ) : <ResetPasswordContainer
+                    setFormError={setFormError}
+                    setFormSuccess={setFormSuccess}
+                    setAndStoreResetPasswordData={setAndStoreResetPasswordData}
                 />}
         </div>
     );
