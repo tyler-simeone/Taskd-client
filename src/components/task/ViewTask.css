@@ -9,13 +9,14 @@
 }
 
 .task-create-date--container {
-    margin-top: 14px;
-    /* display: flex; */
+    margin-top: 20px;
+    display: flex;
 }
 
 .task-lbl {
     font-weight: 500;
-    margin-top: 0px !important;
+    /* margin-top: 0px !important; */
+    margin-top: 1px;
     margin-left: 0px !important;
     letter-spacing: 0.5px;
     font-size: 15px;
