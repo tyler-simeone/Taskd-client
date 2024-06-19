@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
 import { Login } from "./Login";
@@ -8,7 +8,7 @@ import { ResetPasswordContainer } from "./ResetPasswordContainer";
 import "./styles/AuthContainer.css";
 
 export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
-    const { setAuthenticatedUserSession, signupData, setAndStoreSignupData, setAndStoreResetPasswordData } = useContext(AppContext);
+    const { setAndStoreResetPasswordData } = useContext(AppContext);
     
     const [formError, setFormError] = useState();
     const [formSuccess, setFormSuccess] = useState();
@@ -17,9 +17,6 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
         email: "",
         password: ""
     });
-
-    // useEffect(() => {
-    // }, [signupData])
 
     return (
         <div className="auth--container">
