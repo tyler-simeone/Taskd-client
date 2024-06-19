@@ -35,12 +35,18 @@
     height: 90%;
     top: 1.8%;
     width: 371px;
+    width: 366px;
+    width: 362px;
     box-shadow: none;
     border-radius: 32px;
+    border-radius: 40px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: #eff3f8;
-    border: 1px solid #dbdcdd;
+    background-color: #eaeef3;
+    background-color: #ecf0f4;
+
+    border: 1px solid #dadde2;
+    box-shadow: 0px 1px 4px 0.5px rgb(0 0 0 / 10%);
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
@@ -64,11 +70,13 @@
 
   .modal-header--container {
     display: flex;
-    margin-bottom: 20px;
+    margin-top: 2px;
+    margin-bottom: 16px;
   }
 
   .modal-header {
     font-size: 24.5px;
+    font-size: 24px;
     margin-left: 4px;
   }
 

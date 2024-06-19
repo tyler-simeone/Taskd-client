@@ -1,7 +1,9 @@
 import { Constants } from "./Constants";
 import { logout } from "../LogoutProvider"
 
-export const handleError = (err, setError) => {
+export const handleError = (err, setError, setIsSubmitting) => {
+    if (setIsSubmitting)
+        setIsSubmitting(false);
     if (err.status === 401) { 
         setError("Unauthorized. Please log in to continue.");
         logout();

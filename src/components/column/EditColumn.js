@@ -72,14 +72,16 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
                 <form>
                     <Input 
                         name={"columnName"} 
-                        label={"Column Name"} 
-                        handleChange={handleChange} 
+                        label={"*Column Name"} 
+                        handleChange={handleChange}
+                        fromModal={true} 
                         value={updatedColumn.columnName}
                     />
                     <Input 
                         name={"columnDescription"} 
                         label={"Column Description"} 
-                        handleChange={handleChange} 
+                        handleChange={handleChange}
+                        fromModal={true} 
                         value={updatedColumn.columnDescription}
                     />
                     <PrimaryButton 

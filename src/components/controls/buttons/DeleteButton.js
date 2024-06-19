@@ -6,7 +6,7 @@ export const DeleteButton = ({ text, handleSubmit, isSubmitting }) => {
     return (
         <Button 
             className={"delete"} 
-            text={text} 
+            text={text !== undefined ? text : "Delete"} 
             handleSubmit={handleSubmit} 
             isSubmitting={isSubmitting} 
             isSubmitBtn={true}

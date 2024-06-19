@@ -24,43 +24,35 @@ export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerende
     }
 
     const formIsValid = () => {
-        if (newBoard.boardName.trim() === "" && newBoard.boardDescription.trim() === "") {
-            setFormError("Board name and description are required.");
-            return false;
-        }
-        else if (newBoard.boardName.trim() === "") {
+        if (newBoard.boardName.trim() === "") {
             setFormError("Board name is required.");
             return false;
         }
-        else if (newBoard.boardDescription.trim() === "") {
-            setFormError("Board description is required.");
-            return false;
-        }
+        return true;
     }
 
     const handleSubmit = () => {
-        if (formIsValid() === false)
-            return;
-
-        setIsSubmitting(true);
-
-        const addBoardRequestModel = {
-            userId: userSession.userId,
-            boardName: newBoard.boardName,
-            boardDescription: newBoard.boardDescription,
+        if (formIsValid()) {
+            setIsSubmitting(true);
+    
+            const addBoardRequestModel = {
+                userId: userSession.userId,
+                boardName: newBoard.boardName,
+                boardDescription: newBoard.boardDescription,
+            }
+            boardsClient.addBoard(addBoardRequestModel)
+                .then(() => handleRerender())
+                .catch(err => handleError(err, setError));
+            
+            setIsSubmitting(false);
+            closeSideModal();
         }
-        boardsClient.addBoard(addBoardRequestModel)
-            .then(() => handleRerender())
-            .catch(err => handleError(err, setError));
-        
-        setIsSubmitting(false);
-        closeSideModal();
     }
 
     return (
         <form>
-            <Input name={"boardName"} label={"Board Name"} handleChange={handleChange} />
-            <Input name={"boardDescription"} label={"Board Description"} handleChange={handleChange} />
+            <Input name={"boardName"} label={"*Board Name"} handleChange={handleChange} fromModal={true} />
+            <Input name={"boardDescription"} label={"Board Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

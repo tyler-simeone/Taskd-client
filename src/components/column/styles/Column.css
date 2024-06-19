@@ -8,6 +8,7 @@
     background-color: #eef1f6;
     background-color: #eef2f7;
     background-color: #eaeef4;
+    background-color: #edf1f6;
     border-radius: 2px;
 }
 
@@ -26,7 +27,7 @@
 .column-header--container {
     display: flex;
     justify-content: space-between;
-    padding: 12px;
+    padding: 16px;
     padding-top: 10.5px;
     padding-bottom: 12px;
     text-align: center;
@@ -35,7 +36,7 @@
 
 .column-header {
     font-size: 18px;
-    color: #212121;
+    color: #2a2b2d;
 } 
 
 .column-header:hover {

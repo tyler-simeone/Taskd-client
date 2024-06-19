@@ -38,7 +38,7 @@ export const Navigation = () => {
           setBoardOptions(options);
 
           // if a board hasn't been loaded yet, set default
-          if (boardId === null) {
+          if (boardId === null || boardId === undefined) {
             setSelectedBoardId(options[0].value);
             setSelectedValue(options[0].value);
           }

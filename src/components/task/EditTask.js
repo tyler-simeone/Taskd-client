@@ -87,12 +87,14 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         name={"taskName"} 
                         label={"Task Name"} 
                         handleChange={handleChange} 
+                        fromModal={true}
                         value={editTask.taskName}
                     />
                     <Input 
                         name={"taskDescription"} 
                         label={"Task Description"} 
                         handleChange={handleChange} 
+                        fromModal={true}
                         value={editTask.taskDescription}
                     />
                     <PrimaryButton 
