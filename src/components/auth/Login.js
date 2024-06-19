@@ -8,18 +8,14 @@ import { handleError } from "../../util/handleError";
 import "./styles/AuthContainer.css";
 
 export const Login = ({ 
-    // handleChange,
-    // handleSubmit,
-    setFormError 
+    setFormError,
+    credentials,
+    setCredentials
 }) => {
     const { setAuthenticatedUserSession } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [credentials, setCredentials] = useState({
-        email: "",
-        password: ""
-    });
 
     const handleChange = (evt) => {
         const stateToChange = {...credentials};

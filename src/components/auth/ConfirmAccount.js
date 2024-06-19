@@ -10,7 +10,8 @@ import "./styles/AuthContainer.css";
 
 export const ConfirmAccount = ({ 
     setFormError,
-    setFormSuccess
+    setFormSuccess,
+    credentials
 }) => {
     const [searchParams] = useSearchParams();
     const [isConfirmAccountFromLogin, setIsConfirmAccountFromLogin] = useState(false);
