@@ -49,7 +49,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             <>
                 <div className="task-details">
                     <div className="task-description--container">
-                        <h3 className="task-lbl">Description:</h3>
+                        {/* <h3 className="task-lbl">Description:</h3> */}
                         <p>{task.taskDescription}</p>
                     </div>
                     

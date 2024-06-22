@@ -20,12 +20,11 @@
 }
 
 .task-title {
-    font-size: 15.5px;
-    color: #414244;
+    font-size: 16px;
+    color: #2a2b2d;
 }
 
 .task-description {
-    font-size: 15px;
-    color: #212124;
+    font-size: 15.5px;
     color: #6b717b;
 }
