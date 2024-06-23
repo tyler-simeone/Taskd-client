@@ -31,7 +31,6 @@
     /* background-color: #f2f4f8; */
     background-color: #eef0f4;
     margin-left: -10%;
-
 }
 .add-new-board--btn:hover {
     cursor: pointer;
@@ -52,6 +51,7 @@
     display: flex;
     overflow-x: scroll;
     padding-top: 6.5px;
+    padding-top: 5px;
     padding-bottom: 8.5px;
     padding-left: 14px; 
     padding-right: 12.5px;
@@ -61,7 +61,9 @@
     display: flex;
     border-radius: 14px;
     box-shadow: 0px 1px 4px 0px #c8c9cc;
+    box-shadow: 0px 2px 4px 0px #d4d5d8;
     background-color: #e1e4e9;
     background-color: #e5e8ed;
     margin-right: 4px;
+    border-top: 1px solid #e8edf2;
 }

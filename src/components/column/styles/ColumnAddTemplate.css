@@ -6,13 +6,16 @@
     padding: 20px;
     border: 1px dashed #b0b2b7;
     margin-left: 0.3%;
+
     background-color: #f1f5f9;
     border: 1px dashed #cbcbcf;
+    background-color: #edf1f6;
+    border: 1px dashed #d7d7dd;
 }
 .add-column-template--container:hover {
     cursor: pointer;
-    background-color: #f1f5f9;
-    border: 1px dashed #cbcbcf;
+    /* background-color: #f1f5f9;
+    border: 1px dashed #cbcbcf; */
 }
 
 .add-column-template--body {
