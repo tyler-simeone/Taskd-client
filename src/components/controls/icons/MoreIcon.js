@@ -3,31 +3,35 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import "./MoreIcon.css"
 
 export const MoreIcon = ({ options }) => {
-    const [isHidden, setIsHidden] = useState(true);
 
-    const showMoreOptions = () => setIsHidden(false);
-    const closeMoreOptions = () => setIsHidden(true);
+    const showMoreOptions = (evt) => {
+        const modal = document.getElementById('more-options--modal');
+        modal.style.left = `${evt.pageX}px`;
+        modal.style.top = `${evt.pageY}px`;
+        modal.style.display = 'block';
+    };
+    const closeMoreOptions = () => {
+        const modal = document.getElementById('more-options--modal');
+        modal.style.display = 'none';
+    };
 
-    useEffect(() => {}, [isHidden]);
     return (
         <>
-            <div className="more-icon--container" onClick={showMoreOptions}>
+            <div className="more-icon--container" onClick={evt => showMoreOptions(evt)}>
                 <MoreHorizIcon className="more-icon" />
             </div>
 
-            {!isHidden ? (
-                <div className="more-options--container" onClick={closeMoreOptions}>
-                    <ul>
-                        {options !== undefined ? (
-                            options.map(option => (
-                                <li className="more-options-li" key={option.name} name={option.name} onClick={option.callback}>
-                                    {option.value}
-                                </li>
-                            ))
-                        ) : null}
-                    </ul>
-                </div>
-            ) : null}
+            <div id="more-options--modal" className="more-options--container" onClick={evt => closeMoreOptions(evt)}>
+                <ul>
+                    {options !== undefined ? (
+                        options.map(option => (
+                            <li className="more-options-li" key={option.name} name={option.name} onClick={option.callback}>
+                                {option.value}
+                            </li>
+                        ))
+                    ) : null}
+                </ul>
+            </div>
         </>
     );
 }

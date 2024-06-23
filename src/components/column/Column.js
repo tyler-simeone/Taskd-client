@@ -43,7 +43,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
             // callback: () => openDeleteConfirmationModal(deleteConfirmationModalArgs(column.columnId, column.columnName, deleteColumn))
         },
     ]); 
-    const [tasks, setTasks] = useState();
+    const [tasks, setTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);
 
@@ -55,7 +55,16 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setError();
         setIsLoading(true);
         tasksClient.getTasks(column.columnId)
-            .then(resp => setTasks(resp.tasks))
+            .then(resp => {
+                // console.log("resp: ", resp);
+                // if (resp.tasks.length === 0) {
+                //     const moreIconValuesCopy = [...moreIconValues];
+                //     moreIconValuesCopy.splice(0, 2);
+                //     setMoreIconValues(moreIconValuesCopy);
+                // }
+
+                setTasks(resp.tasks);
+            })
             .catch(err => handleError(err, setError));
         setIsLoading(false);
     }

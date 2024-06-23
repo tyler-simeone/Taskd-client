@@ -96,6 +96,10 @@
     cursor: pointer;
   }
 
+  .close:hover {
+    color: #949494;
+  }
+
   .form-err-msg {
     margin-bottom: 10px;
   }

@@ -14,18 +14,26 @@
     border: 1px solid #d0d2d6 !important;
     border: 1px solid #d6d8db !important;
     /* border: 1px solid #d9dce1 !important; */
+
+    background-color: #e9edf2 !important;
+    padding-left: 12px !important;
+    border-radius: 5.5px;
+    border-color: #d6dae0 !important;
+
 }
 .task--container:hover { 
     cursor: pointer !important;
-    background-color: #e6eaef !important;
+    /* background-color: #e6eaef !important; */
 }
 
 .task-title {
     font-size: 16px;
     color: #2a2b2d;
+    color: #494a4d;
+    /* color: #545558; */
 }
 
 .task-description {
-    font-size: 15.5px;
+    font-size: 16px;
     color: #6b717b;
 }

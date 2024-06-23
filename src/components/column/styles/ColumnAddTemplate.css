@@ -10,7 +10,9 @@
     background-color: #f1f5f9;
     border: 1px dashed #cbcbcf;
     background-color: #edf1f6;
+    background-color: #f0f3f8;
     border: 1px dashed #d7d7dd;
+    border: 1px dashed #d4d4d9;
 }
 .add-column-template--container:hover {
     cursor: pointer;

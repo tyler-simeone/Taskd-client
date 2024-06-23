@@ -1,7 +1,7 @@
 import React from "react";
 import "./Input.css"
 
-export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal }) => {
+export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className }) => {
 
     return (
         <div className="pb-input--container">
@@ -10,7 +10,7 @@ export const Input = ({ id, label, name, type, value, handleChange, isDisabled, 
             <input 
                 id={id} 
                 name={name}
-                className={`pb-input ${fromModal ? 'modal-input' : ''}`} 
+                className={`pb-input ${className ?? ''} ${fromModal ? 'modal-input' : ''}`} 
                 type={type === undefined ? "text" : type}
                 onChange={handleChange}
                 value={value}
