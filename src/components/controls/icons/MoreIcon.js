@@ -6,6 +6,17 @@ export const MoreIcon = ({ options }) => {
 
     const showMoreOptions = (evt) => {
         const modal = document.getElementById('more-options--modal');
+
+        const isModalOpen = modal.style.display === 'block';
+
+        // console.log("isModalOpen: ", isModalOpen);
+
+        // close modal if mouse click is not in modal
+        // if (isModalOpen && !modal.contains(evt.target)) {
+        //     modal.style.display = 'none';
+        //     return;
+        // }
+        
         modal.style.left = `${evt.pageX}px`;
         modal.style.top = `${evt.pageY}px`;
         modal.style.display = 'block';

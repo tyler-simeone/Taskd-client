@@ -40,14 +40,14 @@
     border-radius: 40px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: #ebf0f3;
-    background-color: #eaedf3;
+    background-color: #edf1f6;
+    /* background-color: #eaedf3; */
 
     /* border: 1px solid #dee1e6;
     box-shadow: 0px 1px 4px 0.5px rgb(0 0 0 / 10%); */
 
+    /* border: 1px solid #d6d9dd; */
     border: 1px solid #d6d9dd;
-    border: 1px solid #ced1d5;
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
@@ -96,9 +96,9 @@
     cursor: pointer;
   }
 
-  .close:hover {
+  /* .close:hover {
     color: #949494;
-  }
+  } */
 
   .form-err-msg {
     margin-bottom: 10px;

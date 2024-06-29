@@ -17,7 +17,7 @@ export const ConfirmDelete = () => {
 
             <form onSubmit={deleteModalArgs.callback} className="confirm-delete-btns--container">
                 <DeleteButton />
-                <SecondaryButton text={"Cancel"} handleCancel={closeDeleteConfirmationModal} />
+                <SecondaryButton text={"Cancel"} handleClick={closeDeleteConfirmationModal} />
             </form>
         </div>
     );
