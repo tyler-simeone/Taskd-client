@@ -7,9 +7,7 @@ export const CenterModal = ({ children }) => {
 
     return (
         <div className={`modal-content center`}>
-            <div className="modal-header--container">
-                <span className="close" onClick={closeDeleteConfirmationModal}>&times;</span>
-            </div>
+            <span className="close center-modal" onClick={closeDeleteConfirmationModal}>&times;</span>
 
             {children}
         </div>

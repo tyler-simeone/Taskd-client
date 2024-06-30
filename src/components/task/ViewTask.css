@@ -1,11 +1,9 @@
 .task-details {
     margin-left: 4.5px;
-    /* display: flex; */
-    /* justify-content: space-between; */
 }
 
-.task-description--container {
-    
+.task-description-details {
+    font-size: 17px;
 }
 
 .task-create-date--container {
@@ -20,19 +18,19 @@
     margin-left: 0px !important;
     letter-spacing: 0.5px;
     font-size: 14.5px;
-    color: #63676d;
+    color: #8c8c8c;
 }
 
 .created-date {
     font-size: 14.5px;
-    color: gray;
+    color: #8c8c8c;
+    font-weight: 500;
 }
 
 .icon--container {
     display: flex;
-    margin-top: 4px;
+    flex-direction: row-reverse;
     margin-top: 18px;
-    margin-left: 4px;
 }
 
 .edit-icon,
@@ -49,4 +47,5 @@
 
 .edit-icon {
     margin-right: 14px;
+    margin-left: 8%;
 }
