@@ -16,7 +16,6 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
     });
 
     const handleChange = (evt) => {
-        setFormError();
         const stateToChange = {...newTask};
         stateToChange[evt.target.name] = evt.target.value;
         setNewTask(stateToChange);
@@ -35,32 +34,36 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
             setFormError("Task description is required.");
             return false;
         }
+        return true;
     }
 
-    const handleSubmit = () => {
-        if (formIsValid() === false)
-            return;
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
 
-        setIsSubmitting(true);
-
-        const addTaskRequestModel = {
-            userId: userSession.userId,
-            columnId: columnId,
-            taskName: newTask.taskName,
-            taskDescription: newTask.taskDescription,
+        if (formIsValid()) {   
+            setFormError(); 
+            setIsSubmitting(true);
+    
+            const addTaskRequestModel = {
+                userId: userSession.userId,
+                columnId: columnId,
+                taskName: newTask.taskName,
+                taskDescription: newTask.taskDescription,
+            };
+    
+            tasksClient.createTask(addTaskRequestModel)
+                .then(() => handleRerender())
+                .catch(err => handleError(err, setError));
+            
+            setIsSubmitting(false);
+            closeSideModal();
         }
-        tasksClient.createTask(addTaskRequestModel)
-            .then(() => handleRerender())
-            .catch(err => handleError(err, setError));
-        
-        setIsSubmitting(false);
-        closeSideModal();
     }
 
     return (
         <form>
-            <Input name={"taskName"} label={"Task Name"} handleChange={handleChange} fromModal={true} />
-            <Input name={"taskDescription"} label={"Task Description"} handleChange={handleChange} fromModal={true} />
+            <Input name={"taskName"} label={"*Task Name"} handleChange={handleChange} fromModal={true} />
+            <Input name={"taskDescription"} label={"*Task Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

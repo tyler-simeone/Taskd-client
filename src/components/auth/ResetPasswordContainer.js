@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ResetPasswordStepOne } from "./ResetPasswordStepOne";
 import { ResetPasswordStepTwo } from "./ResetPasswordStepTwo";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -73,6 +73,10 @@ export const ResetPasswordContainer = ({ setFormError, setFormSuccess, setAndSto
         }
         return true;
     }
+
+    useEffect(() => {
+        setFormError();
+    }, []);
     
     return (
         <>

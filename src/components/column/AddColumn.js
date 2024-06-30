@@ -51,7 +51,6 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
             setIsSubmitting(false);
             closeSideModal();
         }
-
     }
 
     return (

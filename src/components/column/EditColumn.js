@@ -28,10 +28,7 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
             setFormError("Column name is required.");
             return false;
         }
-        else if (updatedColumn.columnDescription.trim() === "") {
-            setFormError("Column description is required.");
-            return false;
-        }
+        return true;
     }
 
     const handleSubmit = () => {
@@ -56,7 +53,7 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
     }
 
     const loadColumn = () => {
-        columnsClient.getColumn(columnId, 1)
+        columnsClient.getColumn(columnId, userSession.userId)
             .then(column => setUpdatedColumn(column))
             .catch(err => handleError(err, setError));
     }

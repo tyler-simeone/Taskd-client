@@ -21,16 +21,16 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
-        {
-            name: "sortAZ",
-            value: "Sort A-Z",
-            // callback: () => sortTas
-        },
-        {
-            name: "sortCreateDate",
-            value: "Sort by Recently Added",
-            callback: () => sortTasksRecentlyAdded(tasks)
-        },
+        // {
+        //     name: "sortAZ",
+        //     value: "Sort A-Z",
+        //     // callback: () => sortTas
+        // },
+        // {
+        //     name: "sortCreateDate",
+        //     value: "Sort by Recently Added",
+        //     callback: () => sortTasksRecentlyAdded(tasks)
+        // },
         {
             name: "editColumn",
             value: "Edit Column",
@@ -43,7 +43,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
             // callback: () => openDeleteConfirmationModal(deleteConfirmationModalArgs(column.columnId, column.columnName, deleteColumn))
         },
     ]); 
-    const [tasks, setTasks] = useState();
+    const [tasks, setTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);
 
@@ -55,7 +55,16 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setError();
         setIsLoading(true);
         tasksClient.getTasks(column.columnId)
-            .then(resp => setTasks(resp.tasks))
+            .then(resp => {
+                // console.log("resp: ", resp);
+                // if (resp.tasks.length === 0) {
+                //     const moreIconValuesCopy = [...moreIconValues];
+                //     moreIconValuesCopy.splice(0, 2);
+                //     setMoreIconValues(moreIconValuesCopy);
+                // }
+
+                setTasks(resp.tasks);
+            })
             .catch(err => handleError(err, setError));
         setIsLoading(false);
     }
@@ -93,7 +102,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>
             <div className="column-header--container">
-                <MoreIcon options={moreIconValues} />
+                <MoreIcon options={moreIconValues} idx={column.columnId} />
 
                 <div style={{ width: "80%" }}>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>

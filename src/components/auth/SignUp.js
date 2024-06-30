@@ -39,7 +39,10 @@ export const SignUp = ({
             setFormError();
             setIsSubmitting(true);
 
-            authClient.signUp(signUpFormData)
+            const signUpRequest = {...signUpFormData};
+            delete signUpRequest.confirmPassword;
+            
+            authClient.signUp(signUpRequest)
                 .then(() => {
                     const updatedSignupData = {...signupData};
                     updatedSignupData.email = signUpFormData.email;
@@ -74,15 +77,15 @@ export const SignUp = ({
             setFormError("Last Name is required");
             return false;
         }
-        const stateToChange = {...signUpFormData};
-        delete stateToChange.confirmPassword;
-        setSignUpFormData(stateToChange);
-
         return true;
     }
 
     useEffect(() => {
     }, [signupData, signUpFormData])
+
+    useEffect(() => {
+        setFormError();
+    }, []);
 
     return (
         <>

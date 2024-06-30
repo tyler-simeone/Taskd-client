@@ -1,52 +1,33 @@
 .task-details {
     margin-left: 4.5px;
-    /* display: flex; */
-    /* justify-content: space-between; */
 }
 
-.task-description--container {
-    
+.task-description-details {
+    font-size: 17px;
 }
 
 .task-create-date--container {
     margin-top: 20px;
     display: flex;
+    font-style: italic;
 }
 
 .task-lbl {
     font-weight: 500;
-    /* margin-top: 0px !important; */
     margin-top: 1px;
     margin-left: 0px !important;
     letter-spacing: 0.5px;
-    font-size: 15px;
-    color: #63676d;
+    font-size: 14.5px;
+    color: #8c8c8c;
 }
 
 .created-date {
     font-size: 14.5px;
-    color: gray;
+    color: #8c8c8c;
+    font-weight: 500;
 }
 
-.icon--container {
+.task-action-btns--container {
     display: flex;
-    margin-top: 4px;
-    margin-top: 18px;
-    margin-left: 4px;
-}
-
-.edit-icon,
-.delete-icon {
-    color: #535455 !important;
-    margin-bottom: 4px;
-}
-
-.edit-icon:hover,
-.delete-icon:hover {
-    cursor: pointer;
-    /* color: #6f767d !important; */
-}
-
-.edit-icon {
-    margin-right: 14px;
+    margin-top: 16px;
 }

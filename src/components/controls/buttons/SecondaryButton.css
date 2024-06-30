@@ -1,5 +1,10 @@
 .button.secondary {
     background-color: #e0e3e6;
+    background-color: #e6e7ea;
     color: #56585d;
+    color: #6e6e6e;
     height: 42.5px;
+}
+.button.secondary:focus {
+    outline: none;
 }

@@ -75,9 +75,14 @@ export const ConfirmAccount = ({
 
         const email = JSON.parse(sessionStorage.getItem("signupdata")).email;
         authClient.resendConfirmationCode(email)
-            .then(() => setFormSuccess(`A new code has been sent to: ${email}`))
-            .catch(err => handleError(err, setFormError))
-            .finally(() => setIsResendCodeSubmitting(false));
+            .then(() => {
+                setFormSuccess(`A new code has been sent to: ${email}`);
+                setTimeout(() => setFormSuccess(), 5000);
+            })
+            .catch(err => {
+                setIsResendCodeSubmitting(false);
+                handleError(err, setFormError);
+            });
     }
 
     const validForm = () => {

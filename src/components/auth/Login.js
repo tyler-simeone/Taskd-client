@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
@@ -59,11 +59,15 @@ export const Login = ({
         return true;
     }
 
+    useEffect(() => {
+        setFormError();
+    }, []);
+
     return (
         <>
             <form className="auth--form">
-                <Input id={"email"} label={"Email"} name={"email"} handleChange={handleChange} />
-                <Input id={"password"} type={"password"} label={"Password"} name={"password"} handleChange={handleChange} />
+                <Input id={"email"} className={"login"} label={"Email"} name={"email"} handleChange={handleChange} />
+                <Input id={"password"} className={"login"} type={"password"} label={"Password"} name={"password"} handleChange={handleChange} />
                 <PrimaryButton text={"Sign In"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45, borderRadius: 8}} />
             </form>
             <div className="login-links--container">

@@ -6,25 +6,30 @@
 
 .pb-input-lbl {
     font-size: 15px;
+    font-size: 14.5px;
     margin-bottom: 4px;
+    margin-bottom: 3.5px;
     margin-left: 1px;
-    color: #616466;
-    color: #595c5e;
+    margin-left: 6px;
     color: #525557;
+    color: #4a4d4f;
+    color: #4e4e4e;
     letter-spacing: 0.1px;
 }
 
 .pb-input {
-    height: 43.5px;
     height: 42px;
-    border-radius: 6px;
     border-radius: 7px;
     border: none;
     background-color: #ebeef1;
     padding-left: 14px;
     font-size: 16px;
-    /* color: #2d2f31; */
-    color: #26282a;
+    color: #49535e;
+    color: #3f4851;
+    color: #4b4b4b;
+    letter-spacing: 0.2px;
+    font-size: 15.5px;
+    font-size: 16px;
 }
 .pb-input:focus {
     outline: none;
@@ -34,6 +39,11 @@
     color: gray;
 }
 
+.pb-input.login {
+    color: #26282a;
+}
+
 .modal-input {
-    background-color: #dfe4e8;   
+    background-color: #e5e8eb;
+    height: 43px;
 }
