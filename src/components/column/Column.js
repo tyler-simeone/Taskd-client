@@ -21,16 +21,16 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
-        {
-            name: "sortAZ",
-            value: "Sort A-Z",
-            // callback: () => sortTas
-        },
-        {
-            name: "sortCreateDate",
-            value: "Sort by Recently Added",
-            callback: () => sortTasksRecentlyAdded(tasks)
-        },
+        // {
+        //     name: "sortAZ",
+        //     value: "Sort A-Z",
+        //     // callback: () => sortTas
+        // },
+        // {
+        //     name: "sortCreateDate",
+        //     value: "Sort by Recently Added",
+        //     callback: () => sortTasksRecentlyAdded(tasks)
+        // },
         {
             name: "editColumn",
             value: "Edit Column",
@@ -102,7 +102,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>
             <div className="column-header--container">
-                <MoreIcon options={moreIconValues} />
+                <MoreIcon options={moreIconValues} idx={column.columnId} />
 
                 <div style={{ width: "80%" }}>
                     <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>

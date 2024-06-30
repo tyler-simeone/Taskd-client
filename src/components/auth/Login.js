@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { Input } from "../controls/inputs/Input";
 import { PrimaryButton } from "../controls/buttons/PrimaryButton";
@@ -58,6 +58,10 @@ export const Login = ({
 
         return true;
     }
+
+    useEffect(() => {
+        setFormError();
+    }, []);
 
     return (
         <>

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import "./MoreIcon.css"
 
-export const MoreIcon = ({ options }) => {
+export const MoreIcon = ({ options, idx }) => {
 
     const showMoreOptions = (evt) => {
-        const modal = document.getElementById('more-options--modal');
+        const modal = document.getElementById(`more-options-modal-${idx}`);
 
         const isModalOpen = modal.style.display === 'block';
 
@@ -22,7 +22,7 @@ export const MoreIcon = ({ options }) => {
         modal.style.display = 'block';
     };
     const closeMoreOptions = () => {
-        const modal = document.getElementById('more-options--modal');
+        const modal = document.getElementById(`more-options-modal-${idx}`);
         modal.style.display = 'none';
     };
 
@@ -32,7 +32,7 @@ export const MoreIcon = ({ options }) => {
                 <MoreHorizIcon className="more-icon" />
             </div>
 
-            <div id="more-options--modal" className="more-options--container" onClick={evt => closeMoreOptions(evt)}>
+            <div id={`more-options-modal-${idx}`} className="more-options--container" onClick={evt => closeMoreOptions(evt)}>
                 <ul>
                     {options !== undefined ? (
                         options.map(option => (

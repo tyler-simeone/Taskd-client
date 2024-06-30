@@ -1,27 +1,16 @@
 .task--container {
     min-height: 50px;
-    border-radius: 5.5px !important;
     margin-bottom: 6px;
-    padding: 10px !important;
-    padding-left: 10.5px !important;
-    border: 1px solid #d4d8dd !important;
-    background-color: #e5e9ef !important;
 
-    min-height: 50px;
-    margin-bottom: 6px;
     padding: 14px !important;
     padding-left: 14.5px !important;
     padding-top: 13px !important;
 
-    border: 1px solid rgb(0 0 0 / 8%) !important;
-    border-color: rgb(218 221 224 / 62%) !important;
+    border: 1px solid rgb(218 221 224 / 62%) !important;
     border-radius: 6.5px !important;
     
-    box-shadow: 0px 1px 2px 0px rgb(222 223 224 / 70%);
-    box-shadow: 0px 1px 2px 0px rgb(219 222 224 / 70%);
-    background-color: #fafcff !important;
+    box-shadow: 0px 1px 2px 0px rgb(219 222 224 / 62%);
     background-color: #f9fbfe !important;
-    /* background-color: #f5f8fb !important; */
 }
 .task--container:hover { 
     cursor: pointer !important;

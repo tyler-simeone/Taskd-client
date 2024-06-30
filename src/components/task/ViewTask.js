@@ -67,23 +67,18 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     </div>
 
                 </div>
-                <div className="icon--container">
-                    {/* <div className="edit-icon" onClick={() => openEditTaskModal(taskId)}> */}
-                        {/* <EditIcon style={{fontSize: 22}} /> */}
-                        <FlatButton 
-                            text={"Edit"} 
-                            className={"task-edit"}
-                            onClick={() => openEditTaskModal(taskId)}
-                        />
-                    {/* </div> */}
-                    {/* <div className="delete-icon" onClick={() => openDeleteConfirmationModal({resourceName: task.taskName, resourceId: task.taskId, callback: () => deleteTask(task.taskId)})}> */}
-                        {/* <DeleteIcon style={{fontSize: 22}} /> */}
-                        <FlatButton 
-                            text={"Delete"} 
-                            className={"task-delete"}
-                            onClick={openDeleteConfirmation}
-                        />
-                    {/* </div> */}
+                <div className="task-action-btns--container">
+                    <FlatButton 
+                        text={"Edit"} 
+                        className={"task-edit"}
+                        onClick={() => openEditTaskModal(taskId)}
+                    />
+
+                    <FlatButton 
+                        text={"Delete"} 
+                        className={"task-delete"}
+                        onClick={openDeleteConfirmation}
+                    />
                 </div>
             </>
         ) : null

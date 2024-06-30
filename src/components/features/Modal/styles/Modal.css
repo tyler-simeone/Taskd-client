@@ -57,7 +57,7 @@
     left: 36%;
     width: 392px;
     min-height: 88px;
-    padding: 16px 28px;
+    padding: 16px 24px;
   }
 
   .modal-content.active {
@@ -105,5 +105,7 @@
   }
   .form-err-msg > span {
     color: red;
+    color: #f60000;
     font-size: 15.5px;
+    font-size: 15px;
   }

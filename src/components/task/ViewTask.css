@@ -9,11 +9,11 @@
 .task-create-date--container {
     margin-top: 20px;
     display: flex;
+    font-style: italic;
 }
 
 .task-lbl {
     font-weight: 500;
-    /* margin-top: 0px !important; */
     margin-top: 1px;
     margin-left: 0px !important;
     letter-spacing: 0.5px;
@@ -27,25 +27,7 @@
     font-weight: 500;
 }
 
-.icon--container {
+.task-action-btns--container {
     display: flex;
-    flex-direction: row-reverse;
-    margin-top: 18px;
-}
-
-.edit-icon,
-.delete-icon {
-    color: #535455 !important;
-    margin-bottom: 4px;
-}
-
-.edit-icon:hover,
-.delete-icon:hover {
-    cursor: pointer;
-    /* color: #6f767d !important; */
-}
-
-.edit-icon {
-    margin-right: 14px;
-    margin-left: 8%;
+    margin-top: 16px;
 }
