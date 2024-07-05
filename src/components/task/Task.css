@@ -4,28 +4,29 @@
 
     padding: 14px !important;
     padding-left: 14.5px !important;
-    padding-top: 13px !important;
+    padding-top: 12.5px !important;
 
-    border: 1px solid rgb(218 221 224 / 62%) !important;
+    border: 1px solid rgb(0 0 0 / 8%) !important;
     border-radius: 6.5px !important;
     
-    box-shadow: 0px 1px 2px 0px rgb(219 222 224 / 62%);
-    background-color: #f9fbfe !important;
+    box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 4%);
+    background-color: #f5f7fa !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
 }
 
 .task-title {
-    font-size: 16.5px;
+    font-size: 17px;
     font-weight: 600;
     color: #4b4b4b;
 }
 
 .task-description {
-    font-size: 16.5px;
+    font-size: 17px;
     margin-top: 4.5px;
     color: #60646a;
     color: #6c6c6c;
     color: #7b7b7b;
+    color: #777676;
 }

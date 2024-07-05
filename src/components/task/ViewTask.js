@@ -67,7 +67,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     </div>
 
                 </div>
-                <div className="task-action-btns--container">
+                <div className="task-action-btns">
                     <FlatButton 
                         text={"Edit"} 
                         className={"task-edit"}

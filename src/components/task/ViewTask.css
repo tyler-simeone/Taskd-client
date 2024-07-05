@@ -27,7 +27,8 @@
     font-weight: 500;
 }
 
-.task-action-btns--container {
+.task-action-btns {
     display: flex;
+    flex-direction: row-reverse;
     margin-top: 16px;
 }
