@@ -22,6 +22,8 @@
     border-radius: 7px;
     border: none;
     background-color: #ebeef1;
+    background-color: #edf0f2;
+    background-color: #f3f4f5;
     padding-left: 14px;
     font-size: 16px;
     color: #49535e;
@@ -29,7 +31,7 @@
     color: #4b4b4b;
     letter-spacing: 0.2px;
     font-size: 15.5px;
-    font-size: 16px;
+    /* font-size: 16px; */
 }
 .pb-input:focus {
     outline: none;
@@ -45,5 +47,6 @@
 
 .modal-input {
     background-color: #e5e8eb;
-    height: 43px;
+    background-color: #e5e8ec;
+    /* height: 43px; */
 }

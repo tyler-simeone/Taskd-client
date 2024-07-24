@@ -38,13 +38,16 @@
     width: 362px;
     width: 360.5px;
     box-shadow: none;
-    border-radius: 40px;
+    border-radius: 42px;
     padding-left: 30px;
     padding-right: 30px;
 
     background-color: #f1f4f8;
 
     border: 1px solid #d1d5d8;
+    border: 1px solid #d5d9db;
+
+    box-shadow: 0px 1px 18px 6px rgb(0 0 0 / 2%);
 
     /* transform: translate(-50%, -50%); */
     transition: opacity 0.3s ease, transform 3s ease;
