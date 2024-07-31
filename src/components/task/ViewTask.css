@@ -3,7 +3,8 @@
 }
 
 .task-description-details {
-    font-size: 17px;
+    /* font-size: 17px; */
+    font-size: 16.5px;
 }
 
 .task-create-date--container {
