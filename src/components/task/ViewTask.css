@@ -3,8 +3,9 @@
 }
 
 .task-description-details {
-    /* font-size: 17px; */
-    font-size: 16.5px;
+    /* font-size: 16.5px; */
+    font-size: 17px;
+    color: #7d8184;
 }
 
 .task-create-date--container {
