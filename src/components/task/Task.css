@@ -1,15 +1,14 @@
 .task--container {
     min-height: 50px;
     margin-bottom: 6px;
-    background-color: #f9fafb !important;
     background-color: #fbfcfe !important;
-    padding: 12px !important;
+    padding-bottom: 12px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 9px !important;
-    border: 1px solid #dfe1e3 !important;
     border: 1px solid #dee0e2 !important;
-    border-radius: 5.5px !important;
+    /* border-radius: 5.5px !important; */
+    border-radius: 5px !important;
     max-width: 392px;
 }
 .task--container:hover { 
