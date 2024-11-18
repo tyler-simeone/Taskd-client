@@ -1,7 +1,8 @@
 .column--container {
     display: flex;
     flex-direction: column;
-    min-width: 422px;
+    /* min-width: 422px; */
+    min-width: 424px;
     margin-right: 0.65%;
     background-color: #eef0f4;
     background-color: #eff0f3;
