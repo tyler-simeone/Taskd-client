@@ -51,6 +51,7 @@
     flex: 1;
     display: flex;
     overflow-x: scroll;
+    scroll-behavior: smooth;
     padding-top: 6.5px;
     padding-top: 5px;
     padding-bottom: 8.5px;
