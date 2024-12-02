@@ -11,7 +11,7 @@ export const ConfirmDelete = () => {
         <div className="confirm-delete--container">
             <div className="confirm-delete-msg--container">
                 <h3 className="confirm-delete-msg">
-                    Are you sure you want to delete <span className="resource-to-delete">{deleteModalArgs.resourceName}</span>?
+                    Are you sure you want to delete: <span className="resource-to-delete">{deleteModalArgs.resourceName}</span>?
                 </h3>
             </div>
 

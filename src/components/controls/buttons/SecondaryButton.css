@@ -1,8 +1,7 @@
 .button.secondary {
-    background-color: #e0e3e6;
     background-color: #e6e7ea;
-    color: #56585d;
-    color: #6e6e6e;
+    background-color: #e9e9e9;
+    color: #6d6d6d;
     height: 42.5px;
 }
 .button.secondary:focus {
