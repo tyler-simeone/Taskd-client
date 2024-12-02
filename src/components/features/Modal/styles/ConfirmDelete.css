@@ -8,8 +8,7 @@
 }
 
 .resource-to-delete {
-    color: gray;
-    /* font-style: italic; */
+    color: #949494;
 }
 
 .confirm-delete-btns--container {
