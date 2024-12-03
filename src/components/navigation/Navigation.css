@@ -21,6 +21,11 @@
     font-weight: 500;
     letter-spacing: 0.3px;
     font-style: italic;
+
+    font-size: 27px;
+    font-weight: 700;
+    color: #343434;
+    /* color: #2e2e2e; */
 }
 
 .pb-logo:hover {

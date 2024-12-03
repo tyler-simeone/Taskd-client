@@ -1,2 +1,2 @@
-# ProjectB-client
-React client app for ProjectB project board.
+# Task'd-client
+React client app for Task'd project board.

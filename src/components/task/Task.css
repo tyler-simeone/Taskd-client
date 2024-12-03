@@ -2,6 +2,7 @@
     min-height: 50px;
     margin-bottom: 6px;
     background-color: #fbfcfe !important;
+    background-color: #fafbfd !important;
     padding-bottom: 12px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
@@ -15,10 +16,11 @@
 }
 
 .task-title {
-    font-size: 17.5px;
+    font-size: 17px;
     font-weight: 600;
-
     color: #454545;
+    color: #3c3c3c;
+    color: #434343;
 }
 
 .task-description {
