@@ -1,13 +1,10 @@
 .task--container {
     min-height: 50px;
-    /* background-color: #fafbfd !important; */
-    /* background-color: #fbfcfe !important; */
     background-color: #f7f8fb !important;
     padding-bottom: 12px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 9px !important;
-    /* border: 1px solid #d9dde1 !important; */
     border: 1px solid #d7dade !important;
     border-radius: 5px !important;
     max-width: 392px;
@@ -20,15 +17,12 @@
 .task-title {
     font-size: 17px;
     font-weight: 600;
-    color: #454545;
-    color: #3c3c3c;
-    /* color: #434343; */
+    color: #3b3b3b;
 }
 
 .task-description {
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    /* color: #707478; */
     color: #6b6f73;
 }
