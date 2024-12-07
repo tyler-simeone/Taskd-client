@@ -3,10 +3,7 @@
     border-top: none;
     display: flex;
     flex-direction: column;
-    background-color: #fafcfe;
-    background-color: #f9fbfd;
     background-color: #f9fafb;
-    /* background-color: #f7f8f9; */
 }
 
 .board-name--container {
@@ -21,6 +18,7 @@
 .board-name {
     font-size: 22.5px;
     letter-spacing: 0.5px;
+    color: #323232;
 }
 
 .add-new-board--btn {
@@ -31,8 +29,8 @@
     padding: 6px 12px;
     color: #636569;
     font-size: 15px;
-    /* background-color: #f2f4f8; */
     background-color: #eef0f4;
+    background-color: #f0f1f4;
     margin-left: -10%;
 }
 .add-new-board--btn:hover {
