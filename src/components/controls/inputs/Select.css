@@ -1,14 +1,12 @@
 .pb-select {
     border: 1px solid rgb(0 0 0 / 14%);
-    /* border-color: #d7d9dc; */
     border-radius: 6px;
+    border-radius: 5px;
     height: 44px;
     padding: 10px;
     width: 288px;
     font-size: 15.5px;
     font-size: 16px;
-    color: #4e5256;
-    color: #606060;
     color: #4d4d4d;
     background-color: transparent;
 }

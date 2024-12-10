@@ -1,13 +1,12 @@
 .task--container {
     min-height: 50px;
-    background-color: #f7f8fb !important;
     background-color: #f4f5f7 !important;
     padding-bottom: 12px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 9px !important;
-    border: 1px solid #d7dade !important;
     border: 1px solid #d4d7db !important;
+    /* border: 1px solid #d4d7db !important; */
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px m !important;
@@ -26,5 +25,6 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #6b6f73;
+    /* color: #6b6f73; */
+    color: #65696d;
 }
