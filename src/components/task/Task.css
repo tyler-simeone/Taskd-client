@@ -16,7 +16,8 @@
 }
 
 .task-title {
-    font-size: 17px;
+    /* font-size: 17px; */
+    font-size: 17.5px;
     font-weight: 600;
     color: #3b3b3b;
 }
