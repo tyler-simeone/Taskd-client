@@ -26,7 +26,8 @@
 
 .column-header {
     font-size: 18px;
-    color: #383838;
+    /* color: #383838; */
+    color: #363636;
     font-weight: 600;
 } 
 
