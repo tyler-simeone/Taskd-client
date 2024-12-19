@@ -52,7 +52,11 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
                 <h4 className="task-title">{task.taskName}</h4>
             </div>
             <div>
-                <p className="task-description">{task.taskDescription}</p>
+                {task.taskDescription && task.taskDescription.trim().length > 0 ? (
+                  <p className="task-description">{task.taskDescription}</p>
+                ) : (
+                  <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
+                )}
             </div>
         </div>
     );

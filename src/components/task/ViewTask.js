@@ -56,7 +56,11 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             <>
                 <div className="task-details">
                     <div>
-                        <p className="task-description-details">{task.taskDescription}</p>
+                        {task.taskDescription && task.taskDescription.trim().length > 0 ? (
+                            <p className="task-description-details">{task.taskDescription}</p>
+                        ) : (
+                            <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
+                        )}
                     </div>
                     
                     <div className="task-create-date--container">
