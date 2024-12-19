@@ -22,16 +22,8 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
     }
 
     const formIsValid = () => {
-        if (newTask.taskName.trim() === "" && newTask.taskDescription.trim() === "") {
-            setFormError("Task name and description are required.");
-            return false;
-        }
-        else if (newTask.taskName.trim() === "") {
+        if (newTask.taskName.trim() === "") {
             setFormError("Task name is required.");
-            return false;
-        }
-        else if (newTask.taskDescription.trim() === "") {
-            setFormError("Task description is required.");
             return false;
         }
         return true;
@@ -63,7 +55,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
     return (
         <form>
             <Input name={"taskName"} label={"*Task Name"} handleChange={handleChange} fromModal={true} />
-            <Input name={"taskDescription"} label={"*Task Description"} handleChange={handleChange} fromModal={true} />
+            <Input name={"taskDescription"} label={"Task Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
         </ form>
     );

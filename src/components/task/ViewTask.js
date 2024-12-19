@@ -2,10 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { FlatButton } from "../../controls/buttons/FlatButton";
-import "./ViewTask.css"
+import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
     const { deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModalOnDelete } = useContext(AppContext);
@@ -46,10 +44,10 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
     const openDeleteConfirmation = () => openDeleteConfirmationModal(deleteModalArgs);
 
     useEffect(() => {
-        if (task === undefined)
+        if (!task)
             loadTask();
 
-        if (deleteConfirmed === true)
+        if (deleteConfirmed)
             deleteTask();
     }, [task, deleteConfirmed]);
 
@@ -58,7 +56,11 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             <>
                 <div className="task-details">
                     <div>
-                        <p className="task-description-details">{task.taskDescription}</p>
+                        {task.taskDescription && task.taskDescription.trim().length > 0 ? (
+                            <p className="task-description-details">{task.taskDescription}</p>
+                        ) : (
+                            <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
+                        )}
                     </div>
                     
                     <div className="task-create-date--container">

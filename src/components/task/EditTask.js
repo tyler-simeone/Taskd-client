@@ -5,7 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import "./EditTask.css"
+import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
     const { userSession } = useContext(AppContext);
@@ -37,39 +37,33 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     }
 
     const formIsValid = () => {
-        if (editTask.taskName.trim() === "" && editTask.taskDescription.trim() === "") {
-            setFormError("Task name and description are required.");
-            return false;
-        }
-        else if (editTask.taskName.trim() === "") {
+        if (editTask.taskName.trim() === "") {
             setFormError("Task name is required.");
             return false;
         }
-        else if (editTask.taskDescription.trim() === "") {
-            setFormError("Task description is required.");
-            return false;
-        }
+        return true;
     }
 
-    const handleSubmit = () => {
-        if (formIsValid() === false)
-            return;
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
 
-        setIsSubmitting(true);
-
-        const editTaskRequestModel = {
-            userId: userSession.userId,
-            taskId: editTask.taskId,
-            columnId: editTask.columnId,
-            taskName: editTask.taskName,
-            taskDescription: editTask.taskDescription,
-        };
-        tasksClient.updateTask(editTaskRequestModel)
-            .then(() => handleRerender())
-            .catch(err => handleError(err, setError));
-
-        setIsSubmitting(false);
-        openViewTaskModal(editTask.taskId, editTask.taskName);
+        if (formIsValid()) {
+            setIsSubmitting(true);
+    
+            const editTaskRequestModel = {
+                userId: userSession.userId,
+                taskId: editTask.taskId,
+                columnId: editTask.columnId,
+                taskName: editTask.taskName,
+                taskDescription: editTask.taskDescription,
+            };
+            tasksClient.updateTask(editTaskRequestModel)
+                .then(() => handleRerender())
+                .catch(err => handleError(err, setError));
+    
+            setIsSubmitting(false);
+            openViewTaskModal(editTask.taskId, editTask.taskName);
+        }
     }
 
     useEffect(() => {
@@ -85,7 +79,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                 <form>
                     <Input 
                         name={"taskName"} 
-                        label={"Task Name"} 
+                        label={"*Task Name"} 
                         handleChange={handleChange} 
                         fromModal={true}
                         value={editTask.taskName}
