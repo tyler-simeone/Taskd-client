@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const { userSession } = useContext(AppContext);

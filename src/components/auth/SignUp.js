@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { Link, useNavigate } from "react-router-dom";
 import { authClient } from "../../api/authClient";
 import { handleError } from "../../util/handleError";

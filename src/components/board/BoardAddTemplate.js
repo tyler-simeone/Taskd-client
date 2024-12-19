@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { PbAddIcon } from "../controls/icons/AddIcon";
+import { PbAddIcon } from "../../controls/icons/AddIcon";
 import '../column/styles/ColumnAddTemplate.css';
 
 export const BoardAddTemplate = () => {

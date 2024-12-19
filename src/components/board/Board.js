@@ -8,7 +8,7 @@ import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
-import { PbAddIcon } from "../controls/icons/AddIcon";
+import { PbAddIcon } from "../../controls/icons/AddIcon";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {

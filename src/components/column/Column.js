@@ -3,9 +3,9 @@ import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { Task } from "../task/Task";
-import { MoreIcon } from "../controls/icons/MoreIcon";
+import { MoreIcon } from "../../controls/icons/MoreIcon";
 import { columnsClient } from "../../api/columnsClient";
-import { PbAddIcon } from "../controls/icons/AddIcon";
+import { PbAddIcon } from "../../controls/icons/AddIcon";
 import './styles/Column.css';
 
 export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {

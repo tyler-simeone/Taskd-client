@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
-import { SecondaryButton } from "../controls/buttons/SecondaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
+import { SecondaryButton } from "../../controls/buttons/SecondaryButton";
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { authClient } from "../../api/authClient";
 import { handleError } from "../../util/handleError";
