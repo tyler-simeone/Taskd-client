@@ -17,9 +17,11 @@ export const Login = ({
     const { setAuthenticatedUserSession } = useContext(AppContext);
     const navigate = useNavigate();
 
+    const [cssSubmitBtn, setCssSubmitBtn] = useState({marginTop: 12, height: 45, borderRadius: 8});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [cookies, setCookie, removeCookie] = useCookies(['email']);
+    const [emailCookie, setEmailCookie] = useState("te");
+    const [cookies, setCookie, removeCookie] = useCookies([emailCookie]);
     const [authCookie, setAuthCookie] = useState();
     const [rememberMeCheckbox, setRememberMeCheckbox] =  useState();
 
@@ -29,7 +31,7 @@ export const Login = ({
     const setLoginCookie = (email) => {
         const expire = 60*60*24*365;
         var cookieSettings = { path: '/', maxAge: expire };
-        setCookie('email', email, cookieSettings);
+        setCookie(emailCookie, email, cookieSettings);
     }
 
     const checkForAuthCookie = () => {
@@ -44,37 +46,40 @@ export const Login = ({
             setAuthCookie(cookieObj);
         }
     }
+    /*
+        END AUTH COOKIE
+    */
 
     /*
         REMEMBER ME
     */
-    const handleRememberMeChange = (isChecked) => {
+    const handleRememberMeCheckboxChange = (isChecked) => {
         const checkbox = {...rememberMeCheckbox};
         checkbox.checked = isChecked;
         
         if (!isChecked)
-            removeCookie('email', {path:'/'});
+            removeCookie(emailCookie, {path:'/'});
 
-        setRememberMeCheckbox(checkbox);
+        setRememberMeCheckbox(checkbox);    
     }
 
-    const decodeCookie = (cookie) => {
+    const decodeEmailCookie = (cookie) => {
         const cookieCutter = cookie.split(';');
-        const emailCookie = cookieCutter.filter(x => x.includes('email='))[0].trim().split('=')[1];
-        return decodeURIComponent(emailCookie)
+        const email = cookieCutter.filter(x => x.includes('te='))[0].trim().split('=')[1];
+        return decodeURIComponent(email)
     }
 
     const checkForRememberMeCookie = () => {
         if (rememberMeCheckbox.checked)
             return;
 
-        if (document.cookie.includes('email')) {
+        if (document.cookie.includes(emailCookie)) {
             const stateToChange = { ...credentials };
-            stateToChange.email = decodeCookie(document.cookie);
+            stateToChange.email = decodeEmailCookie(document.cookie);
             setCredentials(stateToChange);
 
+            // set as checked
             document.getElementById("remember-me").checked = true;
-
             const checkbox = {...rememberMeCheckbox};
             checkbox.checked = true;
             setRememberMeCheckbox(checkbox);
@@ -84,9 +89,11 @@ export const Login = ({
     const checkForRememberMe = () => {
         const checkbox = document.getElementById("remember-me");
 
+        // set checkbox to state
         if (checkbox && !rememberMeCheckbox)
             setRememberMeCheckbox(checkbox);        
 
+        // try load email cookie
         if (!credentials.email && rememberMeCheckbox)
             checkForRememberMeCookie(); 
     }
@@ -112,7 +119,8 @@ export const Login = ({
             authClient.signIn(credentials)
                 .then(resp => {
                     sessionStorage.removeItem("signupdata");
-                    setLoginCookie(credentials.email);
+                    if (document.getElementById("remember-me").checked)
+                        setLoginCookie(credentials.email);
                     setAuthenticatedUserSession(resp.user, resp.authenticationResult.idToken);
                     navigate("/board");
                 })
@@ -138,6 +146,7 @@ export const Login = ({
     }
 
     useEffect(() => {
+        // clear errors on initial load
         setFormError();
     }, []);
     
@@ -152,10 +161,10 @@ export const Login = ({
     return (
         <>
             <form className="auth--form">
-                <Input id={"email"} className={"login"} label={"Email"} name={"email"} handleChange={handleChange} />
+                <Input id={"email"} className={"login"} label={"Email"} name={"email"} handleChange={handleChange} value={credentials.email && credentials.email} />
                 <Input id={"password"} className={"login"} type={"password"} label={"Password"} name={"password"} handleChange={handleChange} />
-                <Checkbox id={"remember-me"} className={"login"} label={"Remember Me"} name={"rememberMe"} handleChange={handleRememberMeChange} />
-                <PrimaryButton text={"Sign In"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45, borderRadius: 8}} />
+                <Checkbox id={"remember-me"} className={"login"} label={"Remember Me"} name={"rememberMe"} handleChange={handleRememberMeCheckboxChange} />
+                <PrimaryButton text={"Sign In"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={cssSubmitBtn} />
             </form>
             <div className="login-links--container">
                 <div className="auth-link--container"><Link to={"/oauth/register"} className="signup-link">Sign Up</Link></div>
