@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavigationSelect } from "./NavigationSelect";
 import { AppContext } from "../../AppContextProvider";
 import { boardsClient } from "../../api/boardClient";
-import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
+import { ProjectBLogo } from "../../controls/icons/ProjectBLogo";
 import { handleError } from "../../util/handleError";
 import "./Navigation.css"
 

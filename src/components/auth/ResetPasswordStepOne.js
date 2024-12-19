@@ -1,6 +1,6 @@
 import React from "react";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import "./styles/AuthContainer.css";
 
 export const ResetPasswordStepOne = ({ handleChange, handleSubmit, isSubmitting }) => {

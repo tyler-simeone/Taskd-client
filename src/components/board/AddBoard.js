@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { handleError } from "../../util/handleError";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { boardsClient } from "../../api/boardClient";
 
 export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerender }) => {

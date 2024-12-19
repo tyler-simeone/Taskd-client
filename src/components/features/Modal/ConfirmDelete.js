@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
-import { DeleteButton } from "../../controls/buttons/DeleteButton";
-import { SecondaryButton } from "../../controls/buttons/SecondaryButton";
+import { DeleteButton } from "../../../controls/buttons/DeleteButton";
+import { SecondaryButton } from "../../../controls/buttons/SecondaryButton";
 import "./styles/ConfirmDelete.css"
 
 export const ConfirmDelete = () => {

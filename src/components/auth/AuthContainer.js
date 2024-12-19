@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { ProjectBLogo } from "../controls/icons/ProjectBLogo";
+import { ProjectBLogo } from "../../controls/icons/ProjectBLogo";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 import { ConfirmAccount } from "./ConfirmAccount";

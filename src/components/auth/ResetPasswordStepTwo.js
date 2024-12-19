@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Input } from "../controls/inputs/Input";
-import { PrimaryButton } from "../controls/buttons/PrimaryButton";
+import { Input } from "../../controls/inputs/Input";
+import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { AppContext } from "../../AppContextProvider";
 import "./styles/AuthContainer.css";
 

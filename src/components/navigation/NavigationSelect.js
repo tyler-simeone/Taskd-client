@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { Select } from "../controls/inputs/Select";
+import { Select } from "../../controls/inputs/Select";
 import "./NavigationSelect.css"
 
 export const NavigationSelect = ({ selectedValue, options }) => {
