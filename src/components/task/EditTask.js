@@ -5,7 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import "./EditTask.css"
+import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
     const { userSession } = useContext(AppContext);

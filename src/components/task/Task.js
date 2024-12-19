@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
-import "./Task.css"
+import "./styles/Task.css"
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
     const { openViewTaskModal } = useContext(AppContext);
