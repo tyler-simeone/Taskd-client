@@ -7,9 +7,10 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #e9eaed !important;
-    background-color: #fefeff !important;
-    border: 1px solid #d1d2d5 !important;
+    background-color: #fafbfc !important;
+    background-color: #fbfcfd !important;
+    /* background-color: #fefeff !important; */
+    border: 1px solid #d5d6d8 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
