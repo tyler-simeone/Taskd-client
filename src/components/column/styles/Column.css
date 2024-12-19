@@ -1,11 +1,9 @@
 .column--container {
     display: flex;
     flex-direction: column;
-    min-width: 424px;
+    min-width: 426px;
     margin-right: 0.65%;
-    /* background-color: #eeeff2; */
-    background-color: #ebecef;
-    border-radius: 1px;
+    background-color: #eaebed;
     box-shadow: 0px 1.5px 2px 0px rgb(0 0 0 / 14%);
 }
 .column--container.last {
@@ -23,9 +21,9 @@
 }
 
 .column-header {
-    font-size: 18.5px;
-    color: #3e4042;
-    color: #3c3e40;
+    font-size: 18px;
+    /* color: #383838; */
+    color: #363636;
     font-weight: 600;
 } 
 
@@ -50,6 +48,7 @@
 
 .column--body {
     padding: 10px 8.5px;
+    padding-top: 5px;
     overflow-y: scroll;
     overflow-x: hidden;
     flex: .985;

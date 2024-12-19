@@ -22,45 +22,48 @@ export const Navigation = () => {
   const [boardOptions, setBoardOptions] = useState();
   const [selectedValue, setSelectedValue] = useState();
 
-  const loadBoardOptions = () => {
-    boardsClient.getBoards(userSession.userId)
-      .then(resp => {
-        const options = [];
-        if (resp.boards.length > 0) {
-          resp.boards.forEach(b => {
-            var option = {
-              id: b.boardId,
-              label: b.boardName,
-              value: b.boardId
-            };
-            options.push(option);
-          });
-          setBoardOptions(options);
+  const loadBoardOptions = async () => {
+    try {
+        var resp = await boardsClient.getBoards(userSession.userId);
 
-          // if a board hasn't been loaded yet, set default
-          if (boardId === null || boardId === undefined) {
-            setSelectedBoardId(options[0].value);
-            setSelectedValue(options[0].value);
-          }
-          else {
-            setSelectedBoardId(boardId);
-            setSelectedValue(boardId);
-          }
-          handleRerender();
+        const options = [];
+
+        if (resp.boards.length > 0) {
+            resp.boards.forEach(b => {
+              var option = {
+                id: b.boardId,
+                label: b.boardName,
+                value: b.boardId
+              };
+              options.push(option);
+            });
+            setBoardOptions(options);
+
+            // if a board hasn't been loaded yet, set default
+            if (!boardId) {
+              setSelectedBoardId(options[0].value);
+              setSelectedValue(options[0].value);
+            }
+            else {
+              setSelectedBoardId(boardId);
+              setSelectedValue(boardId);
+            }
+            handleRerender();
         }
         else {
           setBoardOptions([]);
           handleRerender();
         }
-      })
-      .catch(err => handleError(err, setError));
+    } catch (err) {
+        handleError(err, setError);
+    }
   }
 
   useEffect(() => {
-    if (boardId !== null)
+    if (boardId)
       setSelectedValue(boardId);
 
-    if ((boardOptions === undefined || rerender) && userSession !== undefined && userSession !== null)
+    if ((!boardOptions || rerender) && userSession)
       loadBoardOptions();
   }, [userSession, boardOptions, selectedValue, rerender, selectedBoardId])
 
@@ -71,8 +74,13 @@ export const Navigation = () => {
 
         {isAuthenticated() && (
           <div style={{display: "flex"}}>
-            <NavigationSelect selectedValue={selectedValue} options={boardOptions} />
-            <div className="logout-btn" onClick={logout}><span>Logout</span></div>
+            <NavigationSelect 
+                selectedValue={selectedValue} 
+                options={boardOptions} 
+            />
+            <div className="logout-btn" onClick={logout}>
+                <span>Logout</span>
+            </div>
           </div>
         )}
       </div>

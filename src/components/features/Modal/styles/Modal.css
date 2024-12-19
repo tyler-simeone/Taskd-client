@@ -75,10 +75,9 @@
   }
 
   .modal-header {
-    font-size: 24.5px;
-    font-size: 24px;
     font-size: 22.5px;
     margin-left: 4px;
+    margin-right: 4px;
   }
 
   .close {
@@ -100,16 +99,11 @@
     cursor: pointer;
   }
 
-  /* .close:hover {
-    color: #949494;
-  } */
-
   .form-err-msg {
     margin-bottom: 10px;
   }
   .form-err-msg > span {
-    color: red;
-    color: #f60000;
+    color: #de0000;
     font-size: 15.5px;
     font-size: 15px;
   }

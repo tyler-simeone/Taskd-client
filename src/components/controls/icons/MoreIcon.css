@@ -5,7 +5,8 @@
     cursor: pointer;
 }
 .more-icon {
-    color: gray !important;
+    /* color: gray; */
+    color: #7c7b7b;
     font-size: 27.5px !important;
 }
 

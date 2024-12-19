@@ -5,9 +5,9 @@ export const ProjectBLogo = ({ isAuthenticated, isLink, style }) => {
     return (
         <div style={style} className="pb-logo">
             {isLink ? (
-                <Link to={isAuthenticated === true ? "/board" : "/login"}>ProjectB</Link>
+                <Link to={isAuthenticated === true ? "/board" : "/login"}>Task'd</Link>
             ) : (
-                <span>ProjectB</span>
+                <span>Task'd</span>
             )}
         </div>
     );

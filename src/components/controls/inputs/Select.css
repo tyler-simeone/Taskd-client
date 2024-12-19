@@ -1,17 +1,13 @@
 .pb-select {
-    border: 1px solid rgb(0 0 0 / 18%);
-    border-color: #d8dbdc;
-    border-color: #cccfd1;
-    border-color: #c9cccf;
-    border-color: #d7d9dc;
+    border: 1px solid rgb(0 0 0 / 14%);
+    border-radius: 6px;
     border-radius: 5px;
-    border-radius: 7px; 
     height: 44px;
     padding: 10px;
     width: 288px;
     font-size: 15.5px;
-    color: #292b2d;
-    color: #4e5256;
+    font-size: 16px;
+    color: #4d4d4d;
     background-color: transparent;
 }
 .pb-select:focus {
