@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f9fafb;
+    background-color: #fcfdff;
 }
 
 .board-name--container {

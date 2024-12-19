@@ -7,9 +7,7 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #fafbfc !important;
     background-color: #fbfcfd !important;
-    /* background-color: #fefeff !important; */
     border: 1px solid #d5d6d8 !important;
 }
 .task--container:hover { 
@@ -17,7 +15,6 @@
 }
 
 .task-title {
-    /* font-size: 17px; */
     font-size: 17.5px;
     font-weight: 600;
     color: #3b3b3b;
@@ -28,6 +25,6 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    /* color: #6b6f73; */
     color: #65696d;
+    color: #676b6e;
 }
