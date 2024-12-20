@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import "./Select.css"
+import "./styles/Select.css"
 
 export const Select = ({
     label,

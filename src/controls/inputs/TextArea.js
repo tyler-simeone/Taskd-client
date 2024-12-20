@@ -1,21 +1,23 @@
 import React from "react";
-import "./styles/Input.css"
+import "./styles/TextArea.css"
 
-export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className }) => {
+export const TextArea = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className }) => {
 
     return (
         <div className="pb-input--container">
             <label className="pb-input-lbl" htmlFor={id}>{label}:</label>
 
-            <input 
+            <textarea 
                 id={id} 
                 name={name}
-                className={`pb-input ${className ?? ''} ${fromModal && 'modal-input'}`} 
+                className={`pb-input pb-textarea ${className ?? ''} ${fromModal && 'modal-input'}`} 
                 type={type === undefined ? "text" : type}
                 onChange={handleChange}
                 value={value}
                 disabled={isDisabled}
-            />
+            >
+                {value}
+            </ textarea>
         </div>
     );
 }

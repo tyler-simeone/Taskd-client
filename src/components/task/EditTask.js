@@ -5,6 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { TextArea } from "../../controls/inputs/TextArea";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
@@ -74,7 +75,10 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     return (
         editTask !== undefined ? (
             <>
-                <KeyboardBackspaceIcon className="update-task-return-arrow" onClick={() => openViewTaskModal(editTask.taskId, editTask.taskName)} />
+                <KeyboardBackspaceIcon 
+                    className="update-task-return-arrow" 
+                    onClick={() => openViewTaskModal(editTask.taskId, editTask.taskName)} 
+                />
 
                 <form>
                     <Input 
@@ -84,12 +88,12 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         fromModal={true}
                         value={editTask.taskName}
                     />
-                    <Input 
+                    <TextArea 
                         name={"taskDescription"} 
                         label={"Task Description"} 
                         handleChange={handleChange} 
-                        fromModal={true}
                         value={editTask.taskDescription}
+                        fromModal={true} 
                     />
                     <PrimaryButton 
                         text={"Submit"} 
