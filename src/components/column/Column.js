@@ -69,14 +69,6 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setIsLoading(false);
     }
 
-    const sortTasksRecentlyAdded = (tasks) => {
-        console.log("tasks: ", tasks);
-        const tasksToSort = {...tasks};
-        console.log("tasksToSort: ", tasksToSort);
-        // const sortedTasks = tasksToSort.sort((a, b) => a.createDatetime - b.createDatetime);
-        // setTasks(sortedTasks);
-    }
-
     const deleteColumn = (columnId) => {
         setError();
         setIsLoading(true);
@@ -92,7 +84,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         // console.log("useEffect tasks: ", tasks);
         // console.log("isOver: ", isOver);
 
-        if (tasks === undefined || rerender)
+        if (!tasks || rerender)
             loadTasks();
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
@@ -105,8 +97,12 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
                 <MoreIcon options={moreIconValues} idx={column.columnId} />
 
                 <div style={{ width: "80%" }}>
-                    <h3 className="column-header prevent-highlight" onClick={toggleColumnDescription}>{column.columnName}</h3>
-                    {showColumnDescription ? <p className="column-description">{column.columnDescription}</p> : null}
+                    <h3 className="column-header ph" onClick={toggleColumnDescription}>
+                        <span>{column.columnName}</span> {column.taskCount > 0 && (<span>({column.taskCount})</span>)}
+                    </h3>
+
+                    {showColumnDescription && 
+                        <p className="column-description">{column.columnDescription}</p>}
                 </div>
                 
                 <div className="add-task-icon--container" onClick={() => openAddTaskModal(column.columnId)}>
@@ -114,8 +110,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
                 </div>
             </div>
 
-            <div ref={drop} style={isHover ? { backgroundColor: 'lightgray'} : null} className="column--body">
-                {tasks !== undefined && tasks.map((task, index) => 
+            <div ref={drop} style={isHover && { backgroundColor: 'lightgray'}} className="column--body">
+                {tasks && tasks.map((task, index) => 
                     <Task 
                         key={task.taskId} 
                         index={index}

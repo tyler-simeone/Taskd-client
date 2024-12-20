@@ -87,7 +87,7 @@ export const Board = ({ didMove, setDidMove }) => {
         .then(board => {
           setBoard(board);
           setColumns(board.columns);
-          if (columnAdded === true)
+          if (columnAdded)
             handleColumnAdded();
           handleRerender();
         })
@@ -99,7 +99,7 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId !== undefined && boardId !== null && (board === undefined || board.boardId !== boardId || columnAdded === true)) 
+    if (boardId && (!board || board.boardId !== boardId || columnAdded )) 
       loadBoard(boardId);
   }, [rerender, board, boardId, columnAdded]);
 
