@@ -8,8 +8,7 @@
     max-width: 392px;
     margin-bottom: 8.5px !important;
     background-color: #fbfcfd !important;
-    border: 1px solid #d5d6d8 !important;
-    border: 1px solid #dadadc !important;
+    border: 1px solid #d3d3d6 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
