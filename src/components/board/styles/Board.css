@@ -30,8 +30,8 @@
     color: #636569;
     font-size: 15px;
     border: 1px solid rgb(0 0 0 / 10%);
-    background-color: #f0f1f4;
     background-color: #f0f1f3;
+    background-color: #f1f1f3;
     margin-left: -10%;
 }
 .add-new-board--btn:hover {
