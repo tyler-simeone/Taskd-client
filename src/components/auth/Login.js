@@ -17,7 +17,14 @@ export const Login = ({
     const { setAuthenticatedUserSession } = useContext(AppContext);
     const navigate = useNavigate();
 
-    const [cssSubmitBtn, setCssSubmitBtn] = useState({marginTop: 12, height: 45, borderRadius: 8});
+    const [cssSubmitBtn, setCssSubmitBtn] = useState({
+        marginTop: 12,
+        height: 45,
+        borderRadius: 8,
+        color: "#fafafa",
+        fontWeight: 600,
+        fontSize: 14.5
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [emailCookie, setEmailCookie] = useState("te");
