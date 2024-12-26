@@ -7,12 +7,9 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #fbfcfd !important;
-    background-color: #fafbfc !important;
-    background-color: #fbfcfe !important;
     background-color: #fafafb !important;
-    border: 1px solid #d1d1d3 !important;
-    border: 1px solid #d3d3d5 !important;
+    border: 1px solid #d1d1d4 !important;
+    border: 1px solid #d4d4d6 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -29,7 +26,7 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #676b6e;
+    color: #6e7274;
 }
 
 .description-not-provided--lbl {
