@@ -7,9 +7,7 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #fafafb !important;
     background-color: #f9f9fa !important;
-    border: 1px solid #d3d3d4 !important;
     border: 1px solid #cdcdcf !important;
 }
 .task--container:hover { 
@@ -27,7 +25,7 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #6e7274;
+    color: #6a6e70;
 }
 
 .description-not-provided--lbl {

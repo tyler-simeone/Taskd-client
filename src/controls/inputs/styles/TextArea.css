@@ -1,5 +1,7 @@
 .pb-textarea {
     padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 12px;
     min-height: 70px;
     resize: vertical;
     font-family: inherit !important;
