@@ -16,11 +16,12 @@
     height: 42px;
     border-radius: 7px;
     border: none;
-    background-color: #f3f4f5;
+    /* background-color: #f3f4f5; */
     background-color: #f6f6f7;
     padding-left: 14px;
     font-size: 16px;
-    color: #4b4b4b;
+    /* color: #4b4b4b; */
+    color: #2e2e2e;
     letter-spacing: 0.2px;
     font-size: 15.5px;
 }
