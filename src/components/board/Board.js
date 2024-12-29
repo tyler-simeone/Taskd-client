@@ -36,7 +36,7 @@ export const Board = ({ didMove, setDidMove }) => {
 
       const destinationColumn = updatedColumns.filter(col => col.columnId === destinationColumnId)[0];
 
-      console.log("destinationColumn: ", destinationColumn);
+      // console.log("destinationColumn: ", destinationColumn);
 
       var updateTaskRequest = {
         userId: userSession.userId,
@@ -57,18 +57,18 @@ export const Board = ({ didMove, setDidMove }) => {
           // Called when a draggable item is hovered over the drop target
           // Perform any hover-related actions here
           setDidMove(true);
-          console.log("hi from hover...");
+          // console.log("hi from hover...");
         },
         drop: (draggedItem, monitor) => {
           const { task, sourceColumnId } = draggedItem;
-          console.log("draggedItem: ", draggedItem);
+          // console.log("draggedItem: ", draggedItem);
 
           // const draggedPosition = monitor.didDrop() ? monitor.getDropResult().index : columns.filter(col => col.columnId === sourceColumnId).length;
           
           handleDrop(task, destinationColumnId, sourceColumnId);
           
-          console.log("monitor.didDrop(): ", monitor.didDrop());
-          console.log("monitor.getDropResult(): ", monitor.getDropResult());  
+          // console.log("monitor.didDrop(): ", monitor.didDrop());
+          // console.log("monitor.getDropResult(): ", monitor.getDropResult());  
         },
         collect: monitor => ({
           isOver: !!monitor.isOver(),
@@ -99,7 +99,7 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && (!board || board.boardId !== boardId || columnAdded )) 
+    if (boardId && (!board || rerender)) 
       loadBoard(boardId);
   }, [rerender, board, boardId, columnAdded]);
 

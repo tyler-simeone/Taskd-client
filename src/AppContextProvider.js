@@ -8,27 +8,26 @@ export const AppContextProvider = ({ children }) => {
     /*
         Standard app states
     */
+    const navigate = useNavigate();
+
     const [success, setSuccess] = useState();
     const [error, setError] = useState();
 
     const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
+
     const [boardId, setBoardId] = useState(selectedBoardId);
-    
     const [columnAdded, setColumnAdded] = useState(false);
+    const [rerender, setRerender] = useState(false);
 
     const setSelectedBoardId = (boardId) => {
-        if (boardId !== undefined) {
+        if (boardId) {
             setBoardId(parseInt(boardId));
             sessionStorage.setItem("boardId", boardId);
         }
     };
 
+    const handleRerender = () => setRerender(!rerender);
     const handleColumnAdded = () => setColumnAdded(!columnAdded);
-    
-    const navigate = useNavigate();
-
-    const [rerender, setRerender] = useState(false);
-
     const closeError = () => setError();
     const closeSuccess = () => setSuccess();
 
@@ -37,11 +36,10 @@ export const AppContextProvider = ({ children }) => {
         setTimeout(() => closeSuccess(), 5000)
     };
 
-    const handleRerender = () => setRerender(!rerender);
-
     /* 
         AUTH (session storage & user session related tasks)
     */ 
+    //#region auth
     const [signupData, setSignupData] = useState({
         email: "",
         password: ""
@@ -88,15 +86,15 @@ export const AppContextProvider = ({ children }) => {
         else 
             return JSON.parse(sessionStorage.getItem("signupdata"))?.email;
     }
-
+    //#endregion auth
     /*
         END AUTH
     */
 
-
     /* 
         MODAL
     */ 
+    //#region modal
     const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
     const [isSideModalOpen, setIsSideModalOpen] = useState(false);
     const [modalType, setModalType] = useState();
@@ -171,6 +169,7 @@ export const AppContextProvider = ({ children }) => {
         setTaskId();
         setIsSideModalOpen(false);
     };
+    //#endregion modal
     /* 
         END MODAL 
     */

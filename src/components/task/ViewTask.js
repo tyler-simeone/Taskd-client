@@ -3,6 +3,7 @@ import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { FlatButton } from "../../controls/buttons/FlatButton";
+import { dateHelper } from "../../util/helpers/dateHelper";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
@@ -65,7 +66,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>
-                        <p className="created-date">{new Date(task.createDatetime).toDateString()}</p>
+                        <p className="created-date">{dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
                     </div>
 
                 </div>

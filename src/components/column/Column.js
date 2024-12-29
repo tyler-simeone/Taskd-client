@@ -43,13 +43,24 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
             // callback: () => openDeleteConfirmationModal(deleteConfirmationModalArgs(column.columnId, column.columnName, deleteColumn))
         },
     ]); 
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);
 
     const [{ isHover, isOver, canDrop, didDrop, dropResult }, drop] = useCustomDrop(column.columnId);
 
     const toggleColumnDescription = () => setShowColumnDescription(!showColumnDescription);
+
+    const deleteColumn = (columnId) => {
+        setError();
+        setIsLoading(true);
+        columnsClient.deleteColumn(columnId, 1)
+            .then(() =>  handleRerender())
+            .catch(err => handleError(err, setError));
+        setIsLoading(false);
+        handleRerender();
+        closeDeleteConfirmationModalOnDelete();
+    }
 
     const loadTasks = () => {
         setError();
@@ -67,17 +78,6 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
             })
             .catch(err => handleError(err, setError));
         setIsLoading(false);
-    }
-
-    const deleteColumn = (columnId) => {
-        setError();
-        setIsLoading(true);
-        columnsClient.deleteColumn(columnId, 1)
-            .then(() =>  handleRerender())
-            .catch(err => handleError(err, setError));
-        setIsLoading(false);
-        handleRerender();
-        closeDeleteConfirmationModalOnDelete();
     }
 
     useEffect(() => {
