@@ -10,21 +10,21 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         type: 'CARD',
         item: { task, sourceColumnId, index },
         end: (item, monitor) => {
-            console.log("didMove from drag... ", didMove);
+            // console.log("didMove from drag... ", didMove);
             
             // Called when the drag operation ends
             // You can perform any cleanup or finalization here
             // For example, you might trigger an action based on whether the item was dropped or canceled
             const dropResult = monitor.getDropResult();
 
-            console.log("monitor.getDropResult(): ", monitor.getDropResult());
-            console.log("monitor.didDrop(): ", monitor.didDrop());
+            // console.log("monitor.getDropResult(): ", monitor.getDropResult());
+            // console.log("monitor.didDrop(): ", monitor.didDrop());
         
             if (dropResult) {
-              console.log('Item was dropped successfully');
+              // console.log('Item was dropped successfully');
               // Perform actions based on the drop result
             } else {
-              console.log('Item was dragged but not dropped');
+              // console.log('Item was dragged but not dropped');
               // Perform actions for when the item was dragged but not dropped
             }
           },

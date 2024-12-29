@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { Select } from "../../controls/inputs/Select";
-import "./NavigationSelect.css"
+import "./styles/NavigationSelect.css"
 
 export const NavigationSelect = ({ selectedValue, options }) => {
-    const { boardId, setSelectedBoardId, handleRerender } = useContext(AppContext);
+    const { boardId, setSelectedBoardId, handleRerender, rerender } = useContext(AppContext);
 
     const handleSelectChange = (boardId) => {
         setSelectedBoardId(boardId);
         handleRerender();
     }
 
-    useEffect(() => {        
+    useEffect(() => {
+        console.log("rerender from board selector: ", rerender);
         // initial load -- set the default as the first loaded board
         if (!boardId)
             setSelectedBoardId(selectedValue);
@@ -27,7 +28,6 @@ export const NavigationSelect = ({ selectedValue, options }) => {
                 handleSelectChange={handleSelectChange}
                 value={selectedValue}
                 placeholder={"No boards yet"}
-                // selectedOption={options && boardId && options.find(o => o.id === boardId)}
             />
         </div>
     );
