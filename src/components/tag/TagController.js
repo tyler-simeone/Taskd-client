@@ -1,20 +1,15 @@
 import React from 'react';
 import { TagView } from './TagView';
-import modelMapper from '../../requestModelMapper';
-import { handleError } from '../../handleError';
 
 export const TagController = ({
-    tag
+    tag,
+    handleAddTagToTask,
+    handleDeleteFromTask
 }) => {
-    const [isLoading, setIsLoading] = useState();
-
-    const handleDeleteFromTask = (evt) => {
-        setIsLoading(true);
-    };
-
     return (
         <TagView 
             tagModel={tag}
+            handleAddTagToTask={handleAddTagToTask}
             handleDeleteFromTask={handleDeleteFromTask}
         />
     );
