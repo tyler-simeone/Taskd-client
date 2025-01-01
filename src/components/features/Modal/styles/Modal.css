@@ -78,25 +78,6 @@
     margin-right: 4px;
   }
 
-  .close {
-    color: #aaa;
-    position: absolute;
-    top: 28px;
-    right: 16px;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .close.center-modal {
-    top: 11.5px;
-    right: 25px;
-  }
-
-  .close:hover,
-  .close:focus {
-    text-decoration: none;
-    cursor: pointer;
-  }
-
   .form-err-msg {
     margin-bottom: 10px;
   }

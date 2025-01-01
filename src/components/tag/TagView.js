@@ -1,4 +1,5 @@
 import "./styles/Tag.css"
+import { XIcon } from "../../controls/icons/XIcon";
 
 export const TagView = ({
     tagModel,
@@ -7,7 +8,11 @@ export const TagView = ({
 
     return (
         <div className="tag--container">
-            <p>{tagModel.tagName}</p>
+            <p className="tag-name">{tagModel.tagName}</p>
+            
+            <div className="delete-tag-btn">
+                <XIcon onClick={handleDeleteFromTask} />
+            </div>
         </div>
     );
 }

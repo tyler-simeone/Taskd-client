@@ -14,7 +14,7 @@ export const SideModal = ({ children }) => {
     return (
         <div className={`modal-content side ${isSideModalOpen ? 'active' : ''}`}>
             <div className="modal-header--container">
-                <XIcon handleClick={closeSideModal} />
+                <XIcon onClick={closeSideModal} />
                 
                 <h2 className="modal-header">{modalHeader}</h2>
             </div>

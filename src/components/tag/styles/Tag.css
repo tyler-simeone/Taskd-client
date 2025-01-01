@@ -1,0 +1,18 @@
+.tag--container {
+    display: flex;
+}
+.tag--container:hover {
+    cursor: pointer;
+}
+
+.tag-name {
+
+}
+
+.delete-tag-btn {
+    display: none;
+}
+.delete-tag-btn:hover {
+    display: block;
+    cursor: pointer;
+}
