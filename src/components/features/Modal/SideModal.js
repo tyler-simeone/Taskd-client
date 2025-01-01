@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
+import { XIcon } from "../../../controls/icons/XIcon";
 import "./styles/Modal.css"
 
 export const SideModal = ({ children }) => {
@@ -13,7 +14,8 @@ export const SideModal = ({ children }) => {
     return (
         <div className={`modal-content side ${isSideModalOpen ? 'active' : ''}`}>
             <div className="modal-header--container">
-                <span className="close" onClick={closeSideModal}>&times;</span>
+                <XIcon handleClick={closeSideModal} />
+                
                 <h2 className="modal-header">{modalHeader}</h2>
             </div>
 

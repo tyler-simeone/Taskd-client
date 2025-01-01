@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { SomeView } from '../view/SomeView';
 import modelMapper from '../../requestModelMapper';
 import jobsClient from '../../../api/jobsClient';
 import usersClient from '../../../api/usersClient';
 import { handleError } from '../../handleError';
 
-export const SomeController = ({
+export const TagController = ({
     userType,
     displayErrorMessage,
     displaySuccessMessage

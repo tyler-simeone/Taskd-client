@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { ProjectBLogo } from "../../controls/icons/ProjectBLogo";
+import { TaskdLogo } from "../../controls/icons/TaskdLogo";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 import { ConfirmAccount } from "./ConfirmAccount";
@@ -21,7 +21,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     return (
         <div className="auth--container">
             <div className="auth-header--container">
-                <ProjectBLogo style={{position: "relative", left: "40%"}} isLink={false} />
+                <TaskdLogo style={{position: "relative", left: "40%"}} isLink={false} />
                 <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>
                     {isLogin ? 'Login' : isSignup ? 'Sign Up' : isConfirmAccount ? 'Enter Confirmation Code' : 'Reset Password'}
                 </h2>

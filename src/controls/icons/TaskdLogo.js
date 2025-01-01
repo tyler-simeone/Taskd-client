@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const ProjectBLogo = ({ isAuthenticated, isLink, style }) => {
+export const TaskdLogo = ({ isAuthenticated, isLink, style }) => {
     return (
         <div style={style} className="pb-logo">
             {isLink ? (

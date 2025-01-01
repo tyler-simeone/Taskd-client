@@ -1,6 +1,6 @@
 import React from "react";
 import AddIcon from '@mui/icons-material/Add';
-import "./AddIcon.css"
+import "./styles/AddIcon.css"
 
 export const PbAddIcon = ({ classname }) => {
 

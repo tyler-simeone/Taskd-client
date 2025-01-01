@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavigationSelect } from "./NavigationSelect";
 import { AppContext } from "../../AppContextProvider";
 import { boardsClient } from "../../api/boardClient";
-import { ProjectBLogo } from "../../controls/icons/ProjectBLogo";
+import { TaskdLogo } from "../../controls/icons/TaskdLogo";
 import { handleError } from "../../util/handleError";
 import "./styles/Navigation.css"
 
@@ -70,7 +70,7 @@ export const Navigation = () => {
   return (
     <div className="nav--container">
       <div className="nav">
-        {isAuthenticated() && <ProjectBLogo isAuthenticated={isAuthenticated} />}
+        {isAuthenticated() && <TaskdLogo isAuthenticated={isAuthenticated} />}
 
         {isAuthenticated() && (
           <div style={{display: "flex"}}>
