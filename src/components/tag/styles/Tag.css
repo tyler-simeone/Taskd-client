@@ -8,6 +8,9 @@
 .tag-name {
     width: 100px;
     color: #6e7274;
+    font-weight: 600;
+    font-size: 15px;
+    color: gray;
 }
 
 .delete-tag-btn {

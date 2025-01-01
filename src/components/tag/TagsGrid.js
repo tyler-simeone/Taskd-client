@@ -5,7 +5,7 @@ import "./styles/TagsGrid.css";
 
 export const TagsGrid = ({ tags, handleAddTagToTask }) => {
     return (
-        // <div className="tags-grid">
+        <div className="tags-grid">
             <ul className="tags-list">
                 {tags && tags.map(tag => {
                     return (
@@ -16,6 +16,6 @@ export const TagsGrid = ({ tags, handleAddTagToTask }) => {
                     );
                 })}
             </ul>
-        // </div>
+        </div>
     );
 }
