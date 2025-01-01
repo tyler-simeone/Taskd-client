@@ -8,7 +8,7 @@ export const TagView = ({
 }) => {
 
     return (
-        <div className="tag--container" onClick={handleAddTagToTask}>
+        <div className="tag--container" onClick={() => handleAddTagToTask(tagModel.tagId)}>
             <p className="tag-name">{tagModel.tagName}</p>
             
             <div className="delete-tag-btn">

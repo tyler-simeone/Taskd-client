@@ -1,0 +1,14 @@
+.tags-grid {
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    margin: 20px 0;
+}
+
+.tags-list {
+    /* margin: 0 auto; */
+    padding: 0;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+}

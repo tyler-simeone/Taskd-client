@@ -2,13 +2,13 @@ import React from 'react';
 import { TagView } from './TagView';
 
 export const TagController = ({
-    tag,
+    tagModel,
     handleAddTagToTask,
     handleDeleteFromTask
 }) => {
     return (
         <TagView 
-            tagModel={tag}
+            tagModel={tagModel}
             handleAddTagToTask={handleAddTagToTask}
             handleDeleteFromTask={handleDeleteFromTask}
         />

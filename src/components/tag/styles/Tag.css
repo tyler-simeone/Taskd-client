@@ -6,7 +6,8 @@
 }
 
 .tag-name {
-
+    width: 100px;
+    color: #6e7274;
 }
 
 .delete-tag-btn {

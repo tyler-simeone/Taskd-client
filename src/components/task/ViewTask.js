@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
+import { TagSelector } from "../tag/TagSelector";
 import { FlatButton } from "../../controls/buttons/FlatButton";
 import { dateHelper } from "../../util/helpers/dateHelper";
 import "./styles/ViewTask.css"
@@ -63,6 +64,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                             <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
                         )}
                     </div>
+
+                    <TagSelector />
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>
