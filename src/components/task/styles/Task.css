@@ -7,10 +7,9 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #f9f9fa !important;
-    background-color: #fcfdff !important;
-    /* border: 1px solid rgb(0 0 0 / 18%) !important; */
-    border: 1px solid #d1d1d3 !important;
+    /* background-color: #fcfdff !important; */
+    background-color: #fdfeff !important;
+    border: 1px solid #d4d4d7 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -19,7 +18,6 @@
 .task-title {
     font-size: 17.5px;
     font-weight: 600;
-    color: #3b3b3b;
     color: #383838;
 }
 

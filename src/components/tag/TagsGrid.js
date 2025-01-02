@@ -4,6 +4,7 @@ import { TagController } from './TagController';
 import "./styles/TagsGrid.css";
 
 export const TagsGrid = ({ tags, handleAddTagToTask }) => {
+    console.log("TagsGrid tags: ", tags);
     return (
         <div className="tags-grid">
             <ul className="tags-list">

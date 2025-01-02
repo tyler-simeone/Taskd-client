@@ -1,20 +1,18 @@
 .tags-grid {
-    width: 100%;
+    height: 43px;
+    width: 98.5%;
     overflow: scroll;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
     margin: 20px 0;
-    padding: 10px;
-    padding-left: 12px;
-    background-color: #efeff1;
-    border-radius: 50px;
+    background-color: #f1f1f4;
+    border-radius: 12px;
+    margin-top: 24px;
 }
 
 .tags-list {
     margin: 0 auto;
-    padding: 0px;
-    /* padding: 10px; */
-    border-radius: 50px;
+    padding: 10px;
     display: flex;
     width: 100%;
     overflow: scroll;
+    padding-left: 14px;
 }

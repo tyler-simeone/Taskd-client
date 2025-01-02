@@ -65,7 +65,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                         )}
                     </div>
 
-                    <TagSelector />
+                    <TagSelector taskId={task.taskId} />
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>
