@@ -48,6 +48,7 @@ export const TagSelector = ({
     }, [tags]);
 
     return (
+        tags && tags.length > 0 &&
         <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
     );
 }

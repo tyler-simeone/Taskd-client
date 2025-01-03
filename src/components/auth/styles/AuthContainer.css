@@ -8,8 +8,10 @@
     padding: 46.5px 62px;
     padding-top: 30px;
 
-    border: 4px solid #eee;
+    border: 4.5px solid #eee;
+    border: 4.5px solid #efefef;
     border-radius: 2.5px;
+    border-radius: 0px;
 }
 
 .auth-header--container {
