@@ -29,8 +29,23 @@ export const tagsClient = {
         return responseHandler(parsedResp);
     },
     // Gets all tags that are tied to tasks on the board.
-    getTaskTags: async (boardId, userId) => {
-        const resp = await fetch(`${tagsClient.baseURL}/tasks?boardId=${boardId}&userId=${userId}`, {
+    getTagsByTaskId: async (taskId, boardId) => {
+        const resp = await fetch(`${tagsClient.baseURL}/task/${taskId}?boardId=${boardId}`, {
+            method: "GET",
+            headers: tagsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
+    },
+    getTaskTagsByBoardId: async (boardId, userId) => {
+        const resp = await fetch(`${tagsClient.baseURL}/board/${boardId}?userId=${userId}`, {
             method: "GET",
             headers: tagsClient.headers,
         });

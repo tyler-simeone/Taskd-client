@@ -6,6 +6,7 @@ import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { TextArea } from "../../controls/inputs/TextArea";
+import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
@@ -88,6 +89,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         fromModal={true}
                         value={editTask.taskName}
                     />
+
                     <TextArea 
                         name={"taskDescription"} 
                         label={"Task Description"} 
@@ -95,6 +97,9 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         value={editTask.taskDescription}
                         fromModal={true} 
                     />
+
+                    <TagSelector taskId={taskId} setFormError={setFormError} />
+
                     <PrimaryButton 
                         text={"Submit"} 
                         handleSubmit={handleSubmit} 

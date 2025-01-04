@@ -5,7 +5,8 @@ import { handleError } from "../../util/handleError";
 import { TagsGrid } from './TagsGrid';
 
 export const TagSelector = ({
-    taskId
+    taskId,
+    setFormError
 }) => {
     const { userSession, boardId } = useContext(AppContext);
 
@@ -16,10 +17,18 @@ export const TagSelector = ({
         setIsLoading(true);
 
         try {
-            var tagsByBoard = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
-            setTags(tagsByBoard.data);
+            var response = null; 
+            
+            // When taskId has a value, we're loading tags just for a specific task, to see what remaining tags are avaliable.
+            // Otherwise, just load all tags for a board.
+            if (taskId)
+                response = await tagsClient.getTagsByTaskId(taskId, boardId);
+            else 
+                response = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
+
+            setTags(response.data);
         } catch (err) {
-            handleError(err);
+            handleError(err, setFormError);
         }
     };
     
@@ -32,13 +41,11 @@ export const TagSelector = ({
             taskId: taskId,
             tagId: tagId
         }
-        console.log("payload: ", payload);
 
         try {
-            var tagsByBoard = await tagsClient.addTagToTask(payload);
-            setTags(tagsByBoard);
+            await tagsClient.addTagToTask(payload);
         } catch (err) {
-            handleError(err);
+            handleError(err, setFormError);
         }
     };
 
@@ -48,7 +55,9 @@ export const TagSelector = ({
     }, [tags]);
 
     return (
-        tags && tags.length > 0 &&
-        <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
+        <>
+            {tags && tags.length > 0 &&
+            <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />}
+        </>
     );
 }

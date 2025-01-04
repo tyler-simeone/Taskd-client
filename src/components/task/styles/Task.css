@@ -9,6 +9,7 @@
     margin-bottom: 8.5px !important;
     background-color: #fefefe !important;
     border: 1px solid #d4d4d8 !important;
+    border: 1px solid #ceced2 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;

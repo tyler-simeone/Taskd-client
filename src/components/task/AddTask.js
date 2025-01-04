@@ -5,6 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { TextArea } from "../../controls/inputs/TextArea";
+import { TagSelector } from "../tag/TagSelector";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const { userSession } = useContext(AppContext);

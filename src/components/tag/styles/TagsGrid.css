@@ -1,11 +1,21 @@
+.tags-grid--container {
+    margin: 14px 0;
+    margin-bottom: 16px;
+}
+
+.tags--lbl {
+    margin-bottom: 4px;
+    color: #6c6e71;
+    color: #747679;
+}
+
 .tags-grid {
     height: 43px;
     width: 98.5%;
-    overflow: scroll;
-    margin: 20px 0;
-    background-color: #f2f2f2;
+    overflow: scroll;    
+    /* background-color: #f2f2f2; */
+    background-color: #f0f1f3;
     border-radius: 12px;
-    margin-top: 24px;
 }
 
 .tags-list {
