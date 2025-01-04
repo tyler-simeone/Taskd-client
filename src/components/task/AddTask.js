@@ -62,12 +62,16 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 handleChange={handleChange} 
                 fromModal={true} 
             />
+
             <TextArea 
                 name={"taskDescription"} 
                 label={"Task Description"} 
                 handleChange={handleChange} 
                 fromModal={true} 
             />
+
+            <TagSelector setFormError={setFormError} />
+
             <PrimaryButton 
                 text={"Submit"} 
                 handleSubmit={handleSubmit} 
