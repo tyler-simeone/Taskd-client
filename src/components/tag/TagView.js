@@ -9,7 +9,7 @@ export const TagView = ({
 }) => {
 
     return (
-        <div className="tag--container" onClick={() => isViewOnly ? null : handleAddTagToTask(tagModel.tagId)}>
+        <div className="tag--container" onClick={() => !isViewOnly && handleAddTagToTask(tagModel.tagId)}>
             <p className="tag-name">{tagModel.tagName}</p>
             
             {!isViewOnly && (

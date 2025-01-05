@@ -5,12 +5,12 @@ import "./styles/TagsGrid.css";
 
 export const TagsList = ({ 
     tags,
-    handleAddTagToTask ,
+    handleAddTagToTask,
     isViewOnly // Board-level view of all Tasks and their Tags
 }) => {
     return (
         <>
-            <ul className="tags-list">
+            <ul className="tags-list" style={ isViewOnly && {padding: 0, paddingTop: 4}}>
                 {tags && tags.map(tag => {
                     return (
                         <TagController 
