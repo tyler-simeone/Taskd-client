@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { boardsClient } from "../../api/boardClient";
+import { tagsClient } from "../../api/tagsClient";
 import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
@@ -21,7 +22,8 @@ export const Board = ({ didMove, setDidMove }) => {
       boardId,
       openAddBoardModal,
       columnAdded,
-      handleColumnAdded
+      handleColumnAdded,
+      setTaskTags
     } = useContext(AppContext); 
     
     const navigate = useNavigate();
@@ -79,20 +81,27 @@ export const Board = ({ didMove, setDidMove }) => {
       });
     };
 
-    const loadBoard = (boardId) => {
+    const loadBoard = async (boardId) => {
       setError();
       setIsLoading(true);
 
-      boardsClient.getBoard(boardId, userSession.userId)
-        .then(board => {
+      try {
+          var board = await boardsClient.getBoard(boardId, userSession.userId);
           setBoard(board);
           setColumns(board.columns);
           if (columnAdded)
             handleColumnAdded();
+
+          var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
+          if (taskTags.data.length > 0)
+            setTaskTags(taskTags.data);
+
           handleRerender();
-        })
-        .catch(err => handleError(err, setError))
-        .finally(() => setIsLoading(false));
+      } catch (err) {
+          handleError(err, setError)
+      } finally {
+          setIsLoading(false)
+      }
     }
 
   useEffect(() => {

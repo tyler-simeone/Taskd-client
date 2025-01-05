@@ -6,6 +6,7 @@ import { TagsGrid } from './TagsGrid';
 
 export const TagSelector = ({
     taskId,
+    setTagId,
     setFormError
 }) => {
     const { userSession, boardId } = useContext(AppContext);
@@ -35,17 +36,23 @@ export const TagSelector = ({
     const handleAddTagToTask = async (tagId) => {
         setIsLoading(true);
 
-        var payload = {
-            userId: userSession.userId,
-            boardId: boardId,
-            taskId: taskId,
-            tagId: tagId
-        }
-
-        try {
-            await tagsClient.addTagToTask(payload);
-        } catch (err) {
-            handleError(err, setFormError);
+        // Task edit workflow
+        if (taskId) {
+            var payload = {
+                userId: userSession.userId,
+                boardId: boardId,
+                taskId: taskId,
+                tagId: tagId
+            }
+    
+            try {
+                await tagsClient.addTagToTask(payload);
+            } catch (err) {
+                handleError(err, setFormError);
+            }
+        } else {
+            // Task add workflow
+            setTagId(tagId);
         }
     };
 
@@ -57,7 +64,7 @@ export const TagSelector = ({
     return (
         <>
             {tags && tags.length > 0 &&
-            <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />}
+                <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />}
         </>
     );
 }

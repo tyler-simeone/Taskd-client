@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
 import "./styles/Task.css"
+import { TagsList } from "../tag/TagsList";
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
-    const { openViewTaskModal } = useContext(AppContext);
+    const { openViewTaskModal, taskTags } = useContext(AppContext);
     
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
@@ -33,6 +34,23 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         }),
       });
 
+      const [tagsOnTask, setTagsOnTask] = useState();
+
+
+      useEffect(() => {
+        console.log("taskTags: ", taskTags);
+        console.log("tagsOnTask: ", tagsOnTask);
+
+        if (taskTags && !tagsOnTask) {
+          var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
+          console.log("tagsForTask: ", tagsForTask);
+          if (tagsForTask.length > 0) {
+            console.log("hi");
+            setTagsOnTask(tagsForTask);
+          }
+        }
+      }, [tagsOnTask]);
+
     return (
         <div 
             className="task--container"
@@ -58,6 +76,11 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
                   <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
                 )}
             </div>
+            {tagsOnTask && (
+              <div className="task-tags">
+                  <TagsList tags={tagsOnTask} isViewOnly={true} />
+              </div>
+            )}
         </div>
     );
 }

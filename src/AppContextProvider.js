@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }) => {
     const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
 
     const [boardId, setBoardId] = useState(selectedBoardId);
+    const [taskTags, setTaskTags] = useState();
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
 
@@ -224,7 +225,9 @@ export const AppContextProvider = ({ children }) => {
         setSignupData,
         setAndStoreSignupData,
         setAndStoreResetPasswordData,
-        showSuccess
+        showSuccess,
+        taskTags,
+        setTaskTags
     }
 
   return (

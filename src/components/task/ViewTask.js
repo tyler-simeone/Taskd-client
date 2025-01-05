@@ -4,6 +4,7 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { FlatButton } from "../../controls/buttons/FlatButton";
 import { dateHelper } from "../../util/helpers/dateHelper";
+import { TagSelector } from "../tag/TagSelector";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
@@ -69,6 +70,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                         <p className="created-date">{dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
                     </div>
 
+                    {/* <TagSelector taskId={taskId} setFormError={setError} /> */}
                 </div>
                 <div className="task-action-btns">
                     <FlatButton 

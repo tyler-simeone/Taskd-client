@@ -16,6 +16,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
         taskName: "",
         taskDescription: "",
     });
+    const [tagId, setTagId] = useState();
 
     const handleChange = (evt) => {
         const stateToChange = {...newTask};
@@ -43,6 +44,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 columnId: columnId,
                 taskName: newTask.taskName,
                 taskDescription: newTask.taskDescription,
+                tagId: tagId ? tagId : null
             };
     
             tasksClient.createTask(addTaskRequestModel)
@@ -70,7 +72,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 fromModal={true} 
             />
 
-            <TagSelector setFormError={setFormError} />
+            <TagSelector setTagId={setTagId} setFormError={setFormError} />
 
             <PrimaryButton 
                 text={"Submit"} 
