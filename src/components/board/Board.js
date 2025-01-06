@@ -127,8 +127,7 @@ export const Board = ({ didMove, setDidMove }) => {
           </div>
 
           <div className="board">
-            {/* <div className="board-wrapper"> */}
-              {columns !== undefined && columns.map(column => (
+              {columns && columns.map(column => (
                   <Column 
                     key={column.columnId} 
                     column={column} 
@@ -138,9 +137,8 @@ export const Board = ({ didMove, setDidMove }) => {
                     isOnly={columns.length === 1}
                   />
               ))}
-            {/* </div> */}
 
-            {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+            {boardId ? <ColumnAddTemplate /> : <BoardAddTemplate />}
           </div>
         </div>
     );

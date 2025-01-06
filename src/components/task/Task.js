@@ -38,16 +38,10 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
 
 
       useEffect(() => {
-        console.log("taskTags: ", taskTags);
-        console.log("tagsOnTask: ", tagsOnTask);
-
         if (taskTags && !tagsOnTask) {
           var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
-          console.log("tagsForTask: ", tagsForTask);
-          if (tagsForTask.length > 0) {
-            console.log("hi");
+          if (tagsForTask.length > 0)
             setTagsOnTask(tagsForTask);
-          }
         }
       }, [tagsOnTask]);
 
@@ -69,6 +63,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
             <div>
                 <h4 className="task-title">{task.taskName}</h4>
             </div>
+            
             <div>
                 {task.taskDescription && task.taskDescription.trim().length > 0 ? (
                   <p className="task-description">{task.taskDescription}</p>
@@ -76,6 +71,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
                   <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
                 )}
             </div>
+
             {tagsOnTask && (
               <div className="task-tags">
                   <TagsList tags={tagsOnTask} isViewOnly={true} />

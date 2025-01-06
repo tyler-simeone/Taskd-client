@@ -10,7 +10,7 @@ export const TagsList = ({
 }) => {
     return (
         <>
-            <ul className="tags-list" style={ isViewOnly && {padding: 0, paddingTop: 4}}>
+            <ul className="tags-list" style={ isViewOnly && {padding: 0, paddingTop: 6.5}}>
                 {tags && tags.map(tag => {
                     return (
                         <TagController 

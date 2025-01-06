@@ -10,10 +10,10 @@
 }
 
 .tags-grid {
-    height: 43px;
+    /* height: 43px; */
     overflow: scroll;    
     background-color: #f0f1f3;
-    border-radius: 12px;
+    border-radius: 24px;
 }
 
 .tags-list {
