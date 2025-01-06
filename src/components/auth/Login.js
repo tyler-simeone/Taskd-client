@@ -14,7 +14,7 @@ export const Login = ({
     credentials,
     setCredentials
 }) => {
-    const { setAuthenticatedUserSession } = useContext(AppContext);
+    const { setAuthenticatedUserSession, closeError } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [cssSubmitBtn, setCssSubmitBtn] = useState({
@@ -129,6 +129,7 @@ export const Login = ({
                     if (document.getElementById("remember-me").checked)
                         setLoginCookie(credentials.email);
                     setAuthenticatedUserSession(resp.user, resp.authenticationResult.idToken);
+                    closeError();
                     navigate("/board");
                 })
                 .catch(err => {

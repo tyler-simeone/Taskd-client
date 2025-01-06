@@ -5,6 +5,7 @@ export const TagController = ({
     tagModel,
     handleAddTagToTask,
     handleDeleteFromTask,
+    isTaskDetailsView,
     isViewOnly // Board-level view of all Tasks and their Tags
 }) => {
     return (
@@ -13,6 +14,7 @@ export const TagController = ({
             handleAddTagToTask={handleAddTagToTask}
             handleDeleteFromTask={handleDeleteFromTask}
             isViewOnly={isViewOnly}
+            isTaskDetailsView={isTaskDetailsView}
         />
     );
 }

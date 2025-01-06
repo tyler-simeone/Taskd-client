@@ -10,6 +10,9 @@
 .tag--container:hover {
     cursor: pointer;
 }
+.tag--container.task-details:hover {
+    cursor: pointer;
+}
 
 .tag-name {
     font-weight: 600;
@@ -25,5 +28,4 @@
 }
 .delete-tag-btn:hover {
     display: block;
-    cursor: pointer;
 }

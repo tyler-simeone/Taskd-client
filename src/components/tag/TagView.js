@@ -5,16 +5,17 @@ export const TagView = ({
     tagModel,
     handleAddTagToTask,
     handleDeleteFromTask,
+    isTaskDetailsView,
     isViewOnly // Board-level view of all Tasks and their Tags
 }) => {
 
     return (
-        <div className="tag--container" onClick={() => !isViewOnly && handleAddTagToTask(tagModel.tagId)}>
+        <div className={`tag--container ${isTaskDetailsView && "task-details"}`} onClick={() => handleAddTagToTask && handleAddTagToTask(tagModel.tagId)}>
             <p className="tag-name">{tagModel.tagName}</p>
             
-            {!isViewOnly && (
+            {isTaskDetailsView && (
                 <div className="delete-tag-btn">
-                    <XIcon onClick={handleDeleteFromTask} />
+                    <span className="tag-delete-icon" onClick={() => handleDeleteFromTask(tagModel.tagId)}>&times;</span>
                 </div>
             )}
         </div>

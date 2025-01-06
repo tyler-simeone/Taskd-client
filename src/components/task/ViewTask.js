@@ -4,13 +4,19 @@ import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
 import { FlatButton } from "../../controls/buttons/FlatButton";
 import { dateHelper } from "../../util/helpers/dateHelper";
-import { TagSelector } from "../tag/TagSelector";
+import { TagsList } from "../tag/TagsList";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
-    const { deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModalOnDelete } = useContext(AppContext);
+    const { 
+            deleteConfirmed,
+            openDeleteConfirmationModal,
+            closeDeleteConfirmationModalOnDelete,
+            taskTags
+        } = useContext(AppContext);
 
     const [task, setTask] = useState();
+    const [tagsOnTask, setTagsOnTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [deleteModalArgs, setDeleteModalArgs] = useState();
 
@@ -45,6 +51,12 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
 
     const openDeleteConfirmation = () => openDeleteConfirmationModal(deleteModalArgs);
 
+    const loadTaskTags = () => {
+        var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
+        if (tagsForTask.length > 0)
+            setTagsOnTask(tagsForTask);
+    };
+
     useEffect(() => {
         if (!task)
             loadTask();
@@ -52,6 +64,11 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
         if (deleteConfirmed)
             deleteTask();
     }, [task, deleteConfirmed]);
+
+    useEffect(() => {
+        if (taskTags && !tagsOnTask)
+          loadTaskTags();
+      }, [tagsOnTask]);
 
     return (
         task !== undefined ? (
@@ -64,14 +81,15 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                             <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
                         )}
                     </div>
+
+                    {tagsOnTask && <TagsList tags={tagsOnTask} isTaskDetailsView={true} />}
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>
                         <p className="created-date">{dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
                     </div>
-
-                    {/* <TagSelector taskId={taskId} setFormError={setError} /> */}
                 </div>
+
                 <div className="task-action-btns">
                     <FlatButton 
                         text={"Edit"} 

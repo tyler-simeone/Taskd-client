@@ -36,13 +36,16 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
 
       const [tagsOnTask, setTagsOnTask] = useState();
 
+      const loadTaskTags = () => {
+        var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
+        if (tagsForTask.length > 0)
+            setTagsOnTask(tagsForTask);
+    };
+
 
       useEffect(() => {
-        if (taskTags && !tagsOnTask) {
-          var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
-          if (tagsForTask.length > 0)
-            setTagsOnTask(tagsForTask);
-        }
+        if (taskTags && !tagsOnTask)
+          loadTaskTags();
       }, [tagsOnTask]);
 
     return (
@@ -60,23 +63,15 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
             }}
             onClick={() => openViewTaskModal(task.taskId, task.taskName)}
         >
-            <div>
-                <h4 className="task-title">{task.taskName}</h4>
-            </div>
-            
-            <div>
-                {task.taskDescription && task.taskDescription.trim().length > 0 ? (
-                  <p className="task-description">{task.taskDescription}</p>
-                ) : (
-                  <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
-                )}
-            </div>
+            <h4 className="task-title">{task.taskName}</h4>
 
-            {tagsOnTask && (
-              <div className="task-tags">
-                  <TagsList tags={tagsOnTask} isViewOnly={true} />
-              </div>
+            {task.taskDescription && task.taskDescription.trim().length > 0 ? (
+              <p className="task-description">{task.taskDescription}</p>
+            ) : (
+              <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
             )}
+
+            {tagsOnTask && <TagsList tags={tagsOnTask} isTaskView={true} />}
         </div>
     );
 }
