@@ -3,9 +3,7 @@
     border-top: none;
     display: flex;
     flex-direction: column;
-    background-color: #f9fafb;
-    background-color: #fcfdff;
-    background-color: #fdfeff;
+    /* background-color: #fdfeff; */
 }
 
 .board-name--container {
