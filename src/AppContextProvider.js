@@ -116,6 +116,12 @@ export const AppContextProvider = ({ children }) => {
         setIsSideModalOpen(true);
     }
     
+    const openAddTagModal = () => {
+        setModalType(Constants.MODAL_TYPE.ADD_TAG);
+        setModalHeader("New Tag");
+        setIsSideModalOpen(true);
+    }
+    
     const openAddBoardModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_BOARD);
         setModalHeader("New Board");
@@ -209,6 +215,7 @@ export const AppContextProvider = ({ children }) => {
         openAddBoardModal,
         openAddColumnModal,
         openAddTaskModal,
+        openAddTagModal,
         openEditColumnModal,
         openEditTaskModal,
         openViewTaskModal,

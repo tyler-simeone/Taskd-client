@@ -21,6 +21,7 @@ export const Board = ({ didMove, setDidMove }) => {
       userSession,
       boardId,
       openAddBoardModal,
+      openAddTagModal,
       columnAdded,
       handleColumnAdded,
       setTaskTags
@@ -119,9 +120,15 @@ export const Board = ({ didMove, setDidMove }) => {
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
-              <div className="add-new-board--btn" onClick={openAddBoardModal}>
-                <span className="add-new-board--lbl">Add new board</span>
-                <PbAddIcon classname={"board"} />
+              <div className="board-action-btns--container">
+                <div className="add-new-board--btn" onClick={openAddBoardModal}>
+                  <span className="add-new-board--lbl">Add new board</span>
+                  <PbAddIcon classname={"board"} />
+                </div>
+                <div className="add-new-board--btn" onClick={openAddTagModal}>
+                  <span className="add-new-board--lbl">Add new tag</span>
+                  <PbAddIcon classname={"board"} />
+                </div>
               </div>
             </div>
           </div>
