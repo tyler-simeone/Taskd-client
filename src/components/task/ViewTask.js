@@ -51,22 +51,6 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
         handleRerender();
         closeDeleteConfirmationModalOnDelete();
     }
-    
-    const handleTagDeleteFromTask = async (tagId) => {
-        setError();
-        setIsLoading(true);
-
-        try {
-            await tagsClient.deleteTag(tagId, userSession.userId);
-            var stateToChange = [...tagsOnTask];
-            stateToChange.splice(stateToChange.findIndex(t => t.tagId === tagId), 1);
-            setTagsOnTask(stateToChange);
-        } catch (err) {
-            handleError(err, setError)
-        }
-
-        setIsLoading(false);
-    }
 
     const loadTaskTags = () => {
         var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
@@ -100,7 +84,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     </div>
 
                     {tagsOnTask && 
-                        <TagsList tags={tagsOnTask} isTaskDetailsView={true} handleTagDeleteFromTask={handleTagDeleteFromTask} />}
+                        <TagsList tags={tagsOnTask} isTaskDetailsView={true} />}
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
-import "./styles/Task.css"
 import { TagsList } from "../tag/TagsList";
+import "./styles/Task.css"
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
     const { openViewTaskModal, taskTags } = useContext(AppContext);
@@ -40,7 +40,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
         if (tagsForTask.length > 0)
             setTagsOnTask(tagsForTask);
-    };
+      };
 
 
       useEffect(() => {
@@ -71,7 +71,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
               <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
             )}
 
-            {tagsOnTask && <TagsList tags={tagsOnTask} isTaskView={true} />}
+            {tagsOnTask && <TagsList tags={tagsOnTask} isTaskBoardView={true} />}
         </div>
     );
 }

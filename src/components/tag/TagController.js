@@ -4,18 +4,14 @@ import { TagView } from './TagView';
 export const TagController = ({
     tagModel,
     handleAddTagToTask,
-    handleDeleteFromTask,
-    isTaskDetailsView,
-    isViewOnly, // Board-level view of all Tasks and their Tags
+    isTaskEditView,
     handleTagDeleteFromTask
 }) => {
     return (
         <TagView 
             tagModel={tagModel}
             handleAddTagToTask={handleAddTagToTask}
-            handleDeleteFromTask={handleDeleteFromTask}
-            isViewOnly={isViewOnly}
-            isTaskDetailsView={isTaskDetailsView}
+            isTaskEditView={isTaskEditView}
             handleTagDeleteFromTask={handleTagDeleteFromTask}
         />
     );

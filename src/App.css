@@ -15,7 +15,8 @@ html {
 .App {
   display: flex;
   flex-direction: column;
-  background-color: #fdfeff;
+  /* background-color: #fdfeff; */
+  background-color: #fff;
 }
 
 /* Additional styles */

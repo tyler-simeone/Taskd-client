@@ -28,6 +28,11 @@
     margin-top: 7px;
 }
 
+.column-add-template {
+    font-size: 21.5px !important;
+    color: #4c4d53;
+}
+
 .add-column-template-icon--container {
     margin-top: 4px;
     font-size: 24px !important;

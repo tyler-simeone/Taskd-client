@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import { Spinner } from "../controls/spinner";
-import { TagController } from './TagController';
+import React from 'react';
 import { TagsList } from './TagsList';
 import "./styles/TagsGrid.css";
 

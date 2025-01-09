@@ -6,16 +6,19 @@ import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { TextArea } from "../../controls/inputs/TextArea";
+import { TagsList } from "../tag/TagsList";
+import { tagsClient } from "../../api/tagsClient";
 import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession } = useContext(AppContext);
+    const { userSession, taskTags } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
+    const [tagsOnTask, setTagsOnTask] = useState();
 
     const loadTask = () => {
         setError();
@@ -68,13 +71,41 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         }
     }
 
+    const loadTaskTags = () => {
+        var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
+        if (tagsForTask.length > 0)
+            setTagsOnTask(tagsForTask);
+    };
+
+    const handleTagDeleteFromTask = async (tagId) => {
+        setError();
+        setIsLoading(true);
+
+        try {
+            await tagsClient.deleteTag(tagId, userSession.userId);
+            var stateToChange = [...tagsOnTask];
+            stateToChange.splice(stateToChange.findIndex(t => t.tagId === tagId), 1);
+            setTagsOnTask(stateToChange);
+        } catch (err) {
+            handleError(err, setError)
+        }
+
+        setIsLoading(false);
+    }
+    
     useEffect(() => {
-        if (editTask === undefined)
+        if (!editTask)
             loadTask();
     }, [editTask])
 
+    useEffect(() => {
+        console.log("tagsOnTask: ", tagsOnTask);
+        if (taskTags && !tagsOnTask)
+            loadTaskTags();
+    }, [tagsOnTask])
+
     return (
-        editTask !== undefined ? (
+        editTask && (
             <>
                 <KeyboardBackspaceIcon 
                     className="update-task-return-arrow" 
@@ -98,6 +129,9 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         fromModal={true} 
                     />
 
+                    {tagsOnTask && tagsOnTask.length > 0 && 
+                        <TagsList tags={tagsOnTask} handleTagDeleteFromTask={handleTagDeleteFromTask} isTaskEditView={true} />}
+
                     <TagSelector taskId={taskId} setFormError={setFormError} />
 
                     <PrimaryButton 
@@ -107,6 +141,6 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                     />
                 </ form>
             </>
-        ) : null
+        )
     );
 }
