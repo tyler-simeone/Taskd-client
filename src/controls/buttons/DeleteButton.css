@@ -1,5 +1,8 @@
 .button.delete {
-    background-color: #c82313;
+    /* background-color: #c82313; */
+    background-color: #d61300;
     width: 60%;
     height: 42px;
+    font-weight: 600;
+    font-size: 15px;
 }
