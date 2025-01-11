@@ -23,17 +23,10 @@
 
 .delete-tag-btn--container {
     display: none;
-    border-left: 1px solid #5b99fd;
     padding-left: 3.5px;
-    padding-right: 4.5px;
-    padding-top: 1px;
-    font-size: 17px;
-    margin-right: -9.5px;
-    border-radius: 0 24px 24px 0;
-    margin-left: 4px;
-    margin-top: -1.5px;
+    font-size: 19px;
+    margin-right: -3.5px;
+    margin-top: -3px;
     margin-bottom: -1.5px;
-    background-color: #4683e5;
-    background-color: #5b99fd;
-    color: #fff;
+    color: #3573d9;
 }

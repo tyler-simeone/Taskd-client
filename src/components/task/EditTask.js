@@ -15,6 +15,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const { userSession, taskTags } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
+    const [rerender, setRerender] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
@@ -23,7 +24,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const loadTask = () => {
         setError();
         setIsLoading(true);
-        tasksClient.getTask(taskId, 1)
+        tasksClient.getTask(taskId, userSession.userId)
             .then(resp => {
                 setEditTask(resp);
                 setIsLoading(false);
@@ -77,14 +78,18 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
             setTagsOnTask(tagsForTask);
     };
 
-    const handleTagDeleteFromTask = async (tagId) => {
+    const handleTagDeleteFromTask = async (taskTagId) => {
         setError();
         setIsLoading(true);
 
         try {
-            await tagsClient.deleteTag(tagId, userSession.userId);
+            // console.log("tagId: ", tagId);
+            // var taskTag = tagsOnTask.filter(tt => tt.tagId = tagId);
+            // console.log("taskTag: ", taskTag);
+            console.log("taskTagId: ", taskTagId);
+            await tagsClient.deleteTagFromTask(taskTagId, userSession.userId);
             var stateToChange = [...tagsOnTask];
-            stateToChange.splice(stateToChange.findIndex(t => t.tagId === tagId), 1);
+            stateToChange.splice(stateToChange.findIndex(tt => tt.taskTagId === taskTagId), 1);
             setTagsOnTask(stateToChange);
         } catch (err) {
             handleError(err, setError)
@@ -92,6 +97,8 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
 
         setIsLoading(false);
     }
+
+    const handleTaskRerender = () => setRerender(true);
     
     useEffect(() => {
         if (!editTask)
@@ -99,13 +106,14 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     }, [editTask])
 
     useEffect(() => {
+        console.log("rerender: ", rerender);
         console.log("tagsOnTask: ", tagsOnTask);
         if (taskTags && !tagsOnTask)
             loadTaskTags();
-    }, [tagsOnTask])
+    }, [tagsOnTask, rerender])
 
     return (
-        editTask && (
+        editTask && (   
             <>
                 <KeyboardBackspaceIcon 
                     className="update-task-return-arrow" 
@@ -132,7 +140,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                     {tagsOnTask && tagsOnTask.length > 0 && 
                         <TagsList tags={tagsOnTask} handleTagDeleteFromTask={handleTagDeleteFromTask} isTaskEditView={true} />}
 
-                    <TagSelector taskId={taskId} setFormError={setFormError} />
+                    <TagSelector taskId={taskId} handleTaskRerender={handleTaskRerender} setFormError={setFormError} />
 
                     <PrimaryButton 
                         text={"Submit"} 

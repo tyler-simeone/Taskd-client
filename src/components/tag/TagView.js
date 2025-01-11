@@ -19,7 +19,7 @@ export const TagView = ({
                 <div className="delete-tag-btn--container">
                     <span 
                         className="tag-delete-icon" 
-                        onClick={() => handleTagDeleteFromTask && handleTagDeleteFromTask(tagModel.tagId)}
+                        onClick={() => handleTagDeleteFromTask && handleTagDeleteFromTask(tagModel.taskTagId)}
                     >
                         &times;
                     </span>

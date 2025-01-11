@@ -7,6 +7,7 @@ import { TagsGrid } from './TagsGrid';
 export const TagSelector = ({
     taskId,
     setTagId,
+    handleTaskRerender,
     setFormError
 }) => {
     const { userSession, boardId } = useContext(AppContext);
@@ -20,8 +21,8 @@ export const TagSelector = ({
         try {
             var response = null; 
             
-            // When taskId has a value, we're loading tags just for a specific task, to see what remaining tags are avaliable.
-            // Otherwise, just load all tags for a board.
+            // When taskId has a value, we're loading tags just for a specific Task, to see what remaining tags are avaliable.
+            // Otherwise, just load all tags for a board, as this is a new Task.
             if (taskId)
                 response = await tagsClient.getTagsByTaskId(taskId, boardId);
             else 
@@ -46,7 +47,13 @@ export const TagSelector = ({
             }
     
             try {
+                // Need to force the Task to reload so it gets latest Tags
                 await tagsClient.addTagToTask(payload);
+
+                var stateToChange = [...tags];
+                stateToChange.splice(stateToChange.findIndex(t => t.tagId === tagId), 1);
+                setTags(stateToChange);
+                handleTaskRerender();
             } catch (err) {
                 handleError(err, setFormError);
             }
@@ -62,9 +69,7 @@ export const TagSelector = ({
     }, [tags]);
 
     return (
-        <>
-            {tags && tags.length > 0 &&
-                <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />}
-        </>
+        tags && tags.length > 0 &&
+            <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
     );
 }
