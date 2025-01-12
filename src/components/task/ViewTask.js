@@ -24,7 +24,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
     const loadTask = () => {
         setError();
         setIsLoading(true);
-        tasksClient.getTask(taskId, 1)
+        tasksClient.getTask(taskId, userSession.userId)
             .then(resp => {
                 setTask(resp);
                 setDeleteModalArgs({ 

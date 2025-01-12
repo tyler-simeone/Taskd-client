@@ -8,7 +8,6 @@
     max-width: 392px;
     margin-bottom: 8.5px !important;
     background-color: #fff !important;
-    border: 1px solid #c0c0c3 !important;
     border: 1px solid #c9c9cc !important;
 }
 .task--container:hover { 
@@ -18,7 +17,6 @@
 .task-title {
     font-size: 17.5px;
     font-weight: 600;
-    color: #383838;
     color: #282828;
 }
 
@@ -26,13 +24,10 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #6a6e70;
     color: #5f6264;
 }
 
 .description-not-provided--lbl {
     font-size: 16px;
-    /* color: #676b6e; */
-    /* color: #9a9c9d;
-    color: #88898a; */
+    color: #676b6e;
 }
