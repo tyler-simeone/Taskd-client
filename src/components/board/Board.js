@@ -25,7 +25,9 @@ export const Board = ({ didMove, setDidMove }) => {
       columnAdded,
       handleColumnAdded,
       taskTags,
-      setTaskTags
+      setTaskTags,
+      boardIdHasChanged,
+      setBoardIdHasChanged
     } = useContext(AppContext); 
     
     const navigate = useNavigate();
@@ -94,6 +96,7 @@ export const Board = ({ didMove, setDidMove }) => {
             setColumns(board.columns);
             if (columnAdded)
               handleColumnAdded();
+            setBoardIdHasChanged(false);
           }
       } catch (err) {
           handleError(err, setError)
@@ -121,9 +124,10 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && !board)
+    if (boardId && (!board || boardIdHasChanged)) {
       loadBoard(boardId);
-  }, [rerender, board, boardId, columnAdded]);
+    }
+  }, [boardIdHasChanged, rerender, board, boardId, columnAdded]);
 
   useEffect(() => {
     if (board && !taskTags)

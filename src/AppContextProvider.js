@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }) => {
     const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
 
     const [boardId, setBoardId] = useState(selectedBoardId);
+    const [boardIdHasChanged, setBoardIdHasChanged] = useState(false);
     const [taskTags, setTaskTags] = useState();
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
@@ -23,6 +24,7 @@ export const AppContextProvider = ({ children }) => {
     const setSelectedBoardId = (boardId) => {
         if (boardId) {
             setBoardId(parseInt(boardId));
+            setBoardIdHasChanged(true);
             sessionStorage.setItem("boardId", boardId);
         }
     };
@@ -184,6 +186,7 @@ export const AppContextProvider = ({ children }) => {
 
     const ctx = {
         boardId,
+        boardIdHasChanged,
         isCenterModalOpen,
         isSideModalOpen,
         modalType,
@@ -223,6 +226,7 @@ export const AppContextProvider = ({ children }) => {
         signupData,
         signupEmail,
         setAuthenticatedUserSession,
+        setBoardIdHasChanged,
         setSelectedBoardId,
         setDeleteConfirmed,
         setError,
