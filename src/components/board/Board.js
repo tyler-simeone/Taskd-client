@@ -24,6 +24,7 @@ export const Board = ({ didMove, setDidMove }) => {
       openAddTagModal,
       columnAdded,
       handleColumnAdded,
+      taskTags,
       setTaskTags
     } = useContext(AppContext); 
     
@@ -88,6 +89,8 @@ export const Board = ({ didMove, setDidMove }) => {
 
       try {
           var board = await boardsClient.getBoard(boardId, userSession.userId);
+          console.log("board: ", board);
+
           setBoard(board);
           setColumns(board.columns);
           if (columnAdded)
@@ -104,14 +107,35 @@ export const Board = ({ didMove, setDidMove }) => {
           setIsLoading(false)
       }
     }
+    
+    const loadBoardTags = async (boardId) => {
+      setError();
+      setIsLoading(true);
 
-  useEffect(() => {
+      try {
+          var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
+          console.log("taskTags: ", taskTags);
+          if (taskTags.data)
+            setTaskTags(taskTags.data);
+      } catch (err) {
+          handleError(err, setError)
+      } finally {
+          setIsLoading(false)
+      }
+    }
+
+  useEffect(() => {    
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && (!board || rerender)) 
+    if (boardId && !board)
       loadBoard(boardId);
   }, [rerender, board, boardId, columnAdded]);
+
+  useEffect(() => {
+    if (board && !taskTags)
+      loadBoardTags(boardId);
+  }, [board]);
 
     return (
         <div className="board--container">
