@@ -5,20 +5,19 @@
 
 .tags--lbl {
     margin-bottom: 4px;
-    color: #6c6e71;
     color: #747679;
 }
 
 .tags-grid {
-    /* height: 43px; */
     overflow: scroll;    
     background-color: #f0f1f3;
-    border-radius: 24px;
+    /* border-radius: 24px; */
+    border-radius: 8px;
 }
 
 .tags-list {
     margin: 0 auto;
-    padding: 10px;
+    padding: 10px 0px;
     display: flex;
     width: 100%;
     overflow: scroll;

@@ -7,7 +7,8 @@ import { TagsGrid } from './TagsGrid';
 export const TagSelector = ({
     taskId,
     setTagId,
-    handleTaskRerender,
+    handleTagsHaveChanged,
+    tagsHaveChanged,
     setFormError
 }) => {
     const { userSession, boardId } = useContext(AppContext);
@@ -29,6 +30,7 @@ export const TagSelector = ({
                 response = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
 
             setTags(response.data);
+            handleTagsHaveChanged();
         } catch (err) {
             handleError(err, setFormError);
         }
@@ -47,13 +49,11 @@ export const TagSelector = ({
             }
     
             try {
-                // Need to force the Task to reload so it gets latest Tags
-                await tagsClient.addTagToTask(payload);
+                var resp = await tagsClient.addTagToTask(payload);
 
-                var stateToChange = [...tags];
-                stateToChange.splice(stateToChange.findIndex(t => t.tagId === tagId), 1);
-                setTags(stateToChange);
-                handleTaskRerender();
+                if (resp) {
+                    loadTags();
+                }
             } catch (err) {
                 handleError(err, setFormError);
             }
@@ -64,9 +64,13 @@ export const TagSelector = ({
     };
 
     useEffect(() => {
-        if (!tags)
+        if (!tags || tagsHaveChanged) {
+            if (tagsHaveChanged)
+                handleTagsHaveChanged();
+
             loadTags();
-    }, [tags]);
+        }
+    }, [tags, tagsHaveChanged]);
 
     return (
         tags && tags.length > 0 &&

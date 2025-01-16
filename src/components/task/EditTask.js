@@ -12,7 +12,7 @@ import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession, taskTags } = useContext(AppContext);
+    const { userSession, taskTags, boardId } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [rerender, setRerender] = useState(false);
@@ -20,6 +20,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
     const [tagsOnTask, setTagsOnTask] = useState();
+    const [tagsHaveChanged, setTagsHaveChanged] = useState(false);
 
     const loadTask = () => {
         setError();
@@ -72,10 +73,10 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         }
     }
 
-    const loadTaskTags = () => {
-        var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
-        if (tagsForTask.length > 0)
-            setTagsOnTask(tagsForTask);
+    const loadTaskTags = async () => {
+        var taskTags = await tagsClient.getTaskTags(boardId, taskId);
+        setTagsOnTask(taskTags.data);
+        handleTagsHaveChanged();
     };
 
     const handleTagDeleteFromTask = async (taskTagId) => {
@@ -83,14 +84,10 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         setIsLoading(true);
 
         try {
-            // console.log("tagId: ", tagId);
-            // var taskTag = tagsOnTask.filter(tt => tt.tagId = tagId);
-            // console.log("taskTag: ", taskTag);
-            console.log("taskTagId: ", taskTagId);
-            await tagsClient.deleteTagFromTask(taskTagId, userSession.userId);
-            var stateToChange = [...tagsOnTask];
-            stateToChange.splice(stateToChange.findIndex(tt => tt.taskTagId === taskTagId), 1);
-            setTagsOnTask(stateToChange);
+            var resp = await tagsClient.deleteTagFromTask(taskTagId, userSession.userId);            
+            if (resp) {
+                loadTaskTags();
+            }
         } catch (err) {
             handleError(err, setError)
         }
@@ -98,7 +95,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         setIsLoading(false);
     }
 
-    const handleTaskRerender = () => setRerender(true);
+    const handleTagsHaveChanged = () => setTagsHaveChanged(!tagsHaveChanged);
     
     useEffect(() => {
         if (!editTask)
@@ -106,14 +103,16 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     }, [editTask])
 
     useEffect(() => {
-        console.log("rerender: ", rerender);
-        console.log("tagsOnTask: ", tagsOnTask);
-        if (taskTags && !tagsOnTask)
+        if ((taskTags && !tagsOnTask) || tagsHaveChanged) {
+            if (tagsHaveChanged)
+                handleTagsHaveChanged();
+                        
             loadTaskTags();
-    }, [tagsOnTask, rerender])
+        }
+    }, [tagsOnTask, tagsHaveChanged])
 
     return (
-        editTask && (   
+        editTask && (
             <>
                 <KeyboardBackspaceIcon 
                     className="update-task-return-arrow" 
@@ -138,9 +137,19 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                     />
 
                     {tagsOnTask && tagsOnTask.length > 0 && 
-                        <TagsList tags={tagsOnTask} handleTagDeleteFromTask={handleTagDeleteFromTask} isTaskEditView={true} />}
+                        <TagsList 
+                            tags={tagsOnTask}
+                            handleTagDeleteFromTask={handleTagDeleteFromTask} 
+                            isTaskEditView={true} 
+                        />
+                    }
 
-                    <TagSelector taskId={taskId} handleTaskRerender={handleTaskRerender} setFormError={setFormError} />
+                    <TagSelector 
+                        taskId={taskId}
+                        handleTagsHaveChanged={handleTagsHaveChanged}
+                        tagsHaveChanged={tagsHaveChanged}
+                        setFormError={setFormError}
+                    />
 
                     <PrimaryButton 
                         text={"Submit"} 

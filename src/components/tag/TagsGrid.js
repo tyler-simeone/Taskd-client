@@ -5,7 +5,7 @@ import "./styles/TagsGrid.css";
 export const TagsGrid = ({ tags, handleAddTagToTask }) => {
     return (
         <div className="tags-grid--container">
-            <h4 className='tags--lbl'>Tags:</h4>
+            <h4 className='tags--lbl'>Tags ({tags.length}):</h4>
 
             <div className="tags-grid">
                 <TagsList tags={tags} handleAddTagToTask={handleAddTagToTask} />

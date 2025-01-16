@@ -35,13 +35,16 @@
     width: 362px;
     width: 360.5px;
     box-shadow: none;
-    border-radius: 20px;
+    /* border-radius: 20px;
+    border-radius: 18px; */
+    border-radius: 12px;
     padding-left: 30px;
     padding-right: 30px;
 
     background-color: #fafbfc;
 
-    border: 1px solid #d8d8d8;
+    /* border: 1px solid #d8d8d8; */
+    border: 1px solid #d5d6d7;
 
     box-shadow: 0px 1px 18px 6px rgb(0 0 0 / 2%);
 

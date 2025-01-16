@@ -23,6 +23,7 @@ export const TagsList = ({
                             handleAddTagToTask={handleAddTagToTask}
                             isTaskEditView={isTaskEditView}
                             handleTagDeleteFromTask={handleTagDeleteFromTask}
+                            key={tag.tagId}
                         />
                     );
                 })}
