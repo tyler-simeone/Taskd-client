@@ -8,7 +8,6 @@
     max-width: 392px;
     margin-bottom: 8.5px !important;
     background-color: #fff !important;
-    /* border: 1px solid #c9c9cc !important; */
     border: 1px solid #c8c8ca !important;
 }
 .task--container:hover { 
@@ -25,7 +24,7 @@
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #5f6264;
+    color: #585a5c;
 }
 
 .description-not-provided--lbl {

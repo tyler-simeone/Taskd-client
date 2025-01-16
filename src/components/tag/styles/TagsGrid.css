@@ -4,14 +4,13 @@
 }
 
 .tags--lbl {
-    margin-bottom: 4px;
-    color: #747679;
+    margin-bottom: 6px;
+    color: #818387;
 }
 
 .tags-grid {
     overflow: scroll;    
     background-color: #f0f1f3;
-    /* border-radius: 24px; */
     border-radius: 8px;
 }
 

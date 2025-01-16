@@ -12,6 +12,8 @@ export const TagsList = ({
 }) => {
     return (
         <>
+            {isTaskEditView && <h4 className='tags--lbl'>Tags ({tags.length}):</h4>}
+            
             <ul 
                 className="tags-list" 
                 style={ isTaskBoardView ? {padding: 0, paddingTop: 6.5} : isTaskDetailsView ? {padding: 0, paddingTop: 16} : isTaskEditView && {padding: 0}}
