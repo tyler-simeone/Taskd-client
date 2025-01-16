@@ -12,6 +12,7 @@
     overflow: scroll;    
     background-color: #f0f1f3;
     border-radius: 8px;
+    height: 45px;
 }
 
 .tags-list {

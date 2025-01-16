@@ -89,18 +89,12 @@ export const Board = ({ didMove, setDidMove }) => {
 
       try {
           var board = await boardsClient.getBoard(boardId, userSession.userId);
-          console.log("board: ", board);
-
-          setBoard(board);
-          setColumns(board.columns);
-          if (columnAdded)
-            handleColumnAdded();
-
-          var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
-          if (taskTags.data.length > 0)
-            setTaskTags(taskTags.data);
-
-          handleRerender();
+          if (board && board.columns) {
+            setBoard(board);
+            setColumns(board.columns);
+            if (columnAdded)
+              handleColumnAdded();
+          }
       } catch (err) {
           handleError(err, setError)
       } finally {
@@ -114,7 +108,6 @@ export const Board = ({ didMove, setDidMove }) => {
 
       try {
           var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
-          console.log("taskTags: ", taskTags);
           if (taskTags.data)
             setTaskTags(taskTags.data);
       } catch (err) {
