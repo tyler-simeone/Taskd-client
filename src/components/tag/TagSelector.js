@@ -73,7 +73,6 @@ export const TagSelector = ({
     }, [tags, tagsHaveChanged]);
 
     return (
-        tags && tags.length > 0 &&
-            <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
+        <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
     );
 }

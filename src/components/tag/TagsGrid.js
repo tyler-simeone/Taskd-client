@@ -5,11 +5,13 @@ import "./styles/TagsGrid.css";
 export const TagsGrid = ({ tags, handleAddTagToTask }) => {
     return (
         <div className="tags-grid--container">
-            <h4 className='tags--lbl'>Available tags ({tags.length}):</h4>
+            <h4 className='tags--lbl'>Available tags ({tags && tags.length ? tags.length : 0}):</h4>
 
-            <div className="tags-grid">
-                <TagsList tags={tags} handleAddTagToTask={handleAddTagToTask} />
-            </div>
+            {tags && tags.length > 0 && (
+                <div className="tags-grid">
+                    <TagsList tags={tags} handleAddTagToTask={handleAddTagToTask} />
+                </div>
+            )}
         </div>
     );
 }
