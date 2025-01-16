@@ -15,7 +15,6 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const { userSession, taskTags, boardId } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [rerender, setRerender] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
@@ -106,7 +105,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         if ((taskTags && !tagsOnTask) || tagsHaveChanged) {
             if (tagsHaveChanged)
                 handleTagsHaveChanged();
-                        
+
             loadTaskTags();
         }
     }, [tagsOnTask, tagsHaveChanged])
