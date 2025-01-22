@@ -1,0 +1,26 @@
+.tags-grid--container {
+    margin: 14px 0;
+    margin-bottom: 16px;
+}
+
+.tags--lbl {
+    margin-bottom: 6px;
+    color: #818387;
+}
+
+.tags-grid {
+    overflow: scroll;    
+    /* background-color: #f0f1f3; */
+    background-color: #eff0f1;
+    border-radius: 8px;
+    height: 45px;
+}
+
+.tags-list {
+    margin: 0 auto;
+    padding: 10px 0px;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    padding-left: 14px;
+}

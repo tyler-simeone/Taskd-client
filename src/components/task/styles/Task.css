@@ -1,16 +1,14 @@
 .task--container {
     min-height: 50px;
-    padding-bottom: 12px !important;
+    padding-bottom: 10.5px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 9px !important;
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #f9f9fa !important;
-    background-color: #fcfdff !important;
-    /* border: 1px solid rgb(0 0 0 / 18%) !important; */
-    border: 1px solid #d1d1d3 !important;
+    background-color: #fff !important;
+    border: 1px solid #c3c1c1 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -19,18 +17,17 @@
 .task-title {
     font-size: 17.5px;
     font-weight: 600;
-    color: #3b3b3b;
-    color: #383838;
+    color: #282828;
 }
 
 .task-description {
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #6a6e70;
+    color: #565759;
 }
 
 .description-not-provided--lbl {
     font-size: 16px;
-    color: #676b6e;
+    color: #67676e;
 }

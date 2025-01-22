@@ -1,0 +1,18 @@
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 28px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.close.center-modal {
+    top: 11.5px;
+    right: 25px;
+}

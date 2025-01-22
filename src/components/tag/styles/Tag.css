@@ -1,0 +1,32 @@
+.tag--container {
+    display: flex;
+    margin-right: 2.7%;
+    padding: 1.5px 9px;
+    border: 1.5px solid #5b99fd;
+    background-color: rgb(79 168 255 / 9%);
+    border-radius: 15px;
+}
+.tag--container:hover {
+    cursor: pointer;
+}
+.tag--container:hover .delete-tag-btn--container {
+    cursor: pointer;
+    display: block;
+}
+
+.tag-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: #3573d9;
+    text-wrap-mode: nowrap;
+}
+
+.delete-tag-btn--container {
+    display: none;
+    padding-left: 3.5px;
+    font-size: 19px;
+    margin-right: -3.5px;
+    margin-top: -3px;
+    margin-bottom: -1.5px;
+    color: #3573d9;
+}

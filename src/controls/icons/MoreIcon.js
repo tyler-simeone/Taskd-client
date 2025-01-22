@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import "./MoreIcon.css"
+import "./styles/MoreIcon.css"
 
 export const MoreIcon = ({ options, idx }) => {
 

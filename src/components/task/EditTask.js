@@ -6,20 +6,25 @@ import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { TextArea } from "../../controls/inputs/TextArea";
+import { TagsList } from "../tag/TagsList";
+import { tagsClient } from "../../api/tagsClient";
+import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession } = useContext(AppContext);
+    const { userSession, taskTags, boardId, setTaskTagsHaveChanged, setTaskTagsChangedTaskId } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
+    const [tagsOnTask, setTagsOnTask] = useState();
+    const [tagsHaveChanged, setTagsHaveChanged] = useState(false);
 
     const loadTask = () => {
         setError();
         setIsLoading(true);
-        tasksClient.getTask(taskId, 1)
+        tasksClient.getTask(taskId, userSession.userId)
             .then(resp => {
                 setEditTask(resp);
                 setIsLoading(false);
@@ -67,13 +72,50 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
         }
     }
 
+    const loadTaskTags = async () => {
+        var taskTags = await tagsClient.getTaskTags(boardId, taskId);
+        setTagsOnTask(taskTags.data);
+    };
+
+    const handleTagDeleteFromTask = async (taskTagId) => {
+        setError();
+        setIsLoading(true);
+
+        try {
+            var resp = await tagsClient.deleteTagFromTask(taskTagId, userSession.userId);            
+            if (resp) {
+                loadTaskTags();
+            }
+        } catch (err) {
+            handleError(err, setError)
+        } finally {
+            handleTagsHaveChanged();
+            setIsLoading(false);
+        }
+    }
+
+    const handleTagsHaveChanged = () => {
+        setTagsHaveChanged(!tagsHaveChanged);
+
+        if (tagsHaveChanged)
+            setTaskTagsChangedTaskId(taskId);
+
+        setTaskTagsHaveChanged(true);
+    };
+    
     useEffect(() => {
-        if (editTask === undefined)
+        if (!editTask)
             loadTask();
     }, [editTask])
 
+    useEffect(() => {
+        if ((taskTags && !tagsOnTask) || tagsHaveChanged) {
+            loadTaskTags();
+        }
+    }, [tagsOnTask, tagsHaveChanged])
+
     return (
-        editTask !== undefined ? (
+        editTask && (
             <>
                 <KeyboardBackspaceIcon 
                     className="update-task-return-arrow" 
@@ -88,6 +130,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         fromModal={true}
                         value={editTask.taskName}
                     />
+
                     <TextArea 
                         name={"taskDescription"} 
                         label={"Task Description"} 
@@ -95,6 +138,22 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         value={editTask.taskDescription}
                         fromModal={true} 
                     />
+
+                    {tagsOnTask && tagsOnTask.length > 0 && 
+                        <TagsList 
+                            tags={tagsOnTask}
+                            handleTagDeleteFromTask={handleTagDeleteFromTask} 
+                            isTaskEditView={true} 
+                        />
+                    }
+
+                    <TagSelector 
+                        taskId={taskId}
+                        handleTagsHaveChanged={handleTagsHaveChanged}
+                        tagsHaveChanged={tagsHaveChanged}
+                        setFormError={setFormError}
+                    />
+
                     <PrimaryButton 
                         text={"Submit"} 
                         handleSubmit={handleSubmit} 
@@ -102,6 +161,6 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                     />
                 </ form>
             </>
-        ) : null
+        )
     );
 }

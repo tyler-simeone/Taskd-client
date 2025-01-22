@@ -1,22 +1,31 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
+import { tagsClient } from "../../api/tagsClient";
 import { handleError } from "../../util/handleError";
 import { FlatButton } from "../../controls/buttons/FlatButton";
 import { dateHelper } from "../../util/helpers/dateHelper";
+import { TagsList } from "../tag/TagsList";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
-    const { deleteConfirmed, openDeleteConfirmationModal, closeDeleteConfirmationModalOnDelete } = useContext(AppContext);
+    const { deleteConfirmed,
+            openDeleteConfirmationModal,
+            closeDeleteConfirmationModalOnDelete,
+            taskTags,
+            userSession,
+            taskTagsHaveChanged
+        } = useContext(AppContext);
 
     const [task, setTask] = useState();
+    const [tagsOnTask, setTagsOnTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [deleteModalArgs, setDeleteModalArgs] = useState();
 
     const loadTask = () => {
         setError();
         setIsLoading(true);
-        tasksClient.getTask(taskId, 1)
+        tasksClient.getTask(taskId, userSession.userId)
             .then(resp => {
                 setTask(resp);
                 setDeleteModalArgs({ 
@@ -31,6 +40,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                 handleError(err, setError);
             });
     }
+    
+    const openDeleteConfirmation = () => openDeleteConfirmationModal(deleteModalArgs);
 
     const deleteTask = (taskId) => {
         setError();
@@ -42,7 +53,11 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
         closeDeleteConfirmationModalOnDelete();
     }
 
-    const openDeleteConfirmation = () => openDeleteConfirmationModal(deleteModalArgs);
+    const loadTaskTags = () => {
+        var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
+        if (tagsForTask.length > 0)
+            setTagsOnTask(tagsForTask);
+    };
 
     useEffect(() => {
         if (!task)
@@ -52,8 +67,13 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             deleteTask();
     }, [task, deleteConfirmed]);
 
+    useEffect(() => {
+        if (taskTags && (!tagsOnTask || taskTagsHaveChanged))
+          loadTaskTags();
+      }, [tagsOnTask]);
+
     return (
-        task !== undefined ? (
+        task && (
             <>
                 <div className="task-details">
                     <div>
@@ -63,13 +83,16 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                             <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
                         )}
                     </div>
+
+                    {tagsOnTask && 
+                        <TagsList tags={tagsOnTask} isTaskDetailsView={true} />}
                     
                     <div className="task-create-date--container">
                         <h3 className="task-lbl">Created on:</h3>
                         <p className="created-date">{dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
                     </div>
-
                 </div>
+
                 <div className="task-action-btns">
                     <FlatButton 
                         text={"Edit"} 
@@ -84,6 +107,6 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     />
                 </div>
             </>
-        ) : null
+        )
     );
 }

@@ -5,6 +5,7 @@ import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { TextArea } from "../../controls/inputs/TextArea";
+import { TagSelector } from "../tag/TagSelector";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const { userSession } = useContext(AppContext);
@@ -15,6 +16,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
         taskName: "",
         taskDescription: "",
     });
+    const [tagId, setTagId] = useState();
 
     const handleChange = (evt) => {
         const stateToChange = {...newTask};
@@ -42,6 +44,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 columnId: columnId,
                 taskName: newTask.taskName,
                 taskDescription: newTask.taskDescription,
+                tagId: tagId ? tagId : null
             };
     
             tasksClient.createTask(addTaskRequestModel)
@@ -61,12 +64,16 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 handleChange={handleChange} 
                 fromModal={true} 
             />
+
             <TextArea 
                 name={"taskDescription"} 
                 label={"Task Description"} 
                 handleChange={handleChange} 
                 fromModal={true} 
             />
+
+            <TagSelector setTagId={setTagId} setFormError={setFormError} />
+
             <PrimaryButton 
                 text={"Submit"} 
                 handleSubmit={handleSubmit} 

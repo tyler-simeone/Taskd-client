@@ -35,13 +35,16 @@
     width: 362px;
     width: 360.5px;
     box-shadow: none;
-    border-radius: 20px;
+    /* border-radius: 20px;
+    border-radius: 18px; */
+    border-radius: 12px;
     padding-left: 30px;
     padding-right: 30px;
 
     background-color: #fafbfc;
 
-    border: 1px solid #d8d8d8;
+    /* border: 1px solid #d8d8d8; */
+    border: 1px solid #d5d6d7;
 
     box-shadow: 0px 1px 18px 6px rgb(0 0 0 / 2%);
 
@@ -58,7 +61,7 @@
     min-height: 88px;
     padding: 20px 25px;
     padding-bottom: 18px;
-    border-radius: 23px;
+    border-radius: 10px;
   }
 
   .modal-content.active {
@@ -76,25 +79,6 @@
     font-size: 22.5px;
     margin-left: 4px;
     margin-right: 4px;
-  }
-
-  .close {
-    color: #aaa;
-    position: absolute;
-    top: 28px;
-    right: 16px;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .close.center-modal {
-    top: 11.5px;
-    right: 25px;
-  }
-
-  .close:hover,
-  .close:focus {
-    text-decoration: none;
-    cursor: pointer;
   }
 
   .form-err-msg {

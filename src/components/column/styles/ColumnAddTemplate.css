@@ -5,16 +5,9 @@
     border-radius: 26px;
     padding: 20px;
     padding-top: 18px;
-    border: 1px dashed #b0b2b7;
     margin-left: 0.3%;
-
-    background-color: #f1f5f9;
-    background-color: transparent;
-    /* border: 1px dashed #cbcbcf;
-    background-color: #edf1f6;
-    background-color: #f0f3f8;
-    border: 1px dashed #d7d7dd; */
-    border: 1px dashed #d4d4d9;
+    /* border: 1px dashed #d4d4d9; */
+    border: 1px dashed #c5c5ca;
 }
 .add-column-template--container:hover {
     cursor: pointer;
@@ -26,6 +19,11 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 7px;
+}
+
+.column-add-template {
+    font-size: 21.5px !important;
+    color: #4c4d53;
 }
 
 .add-column-template-icon--container {

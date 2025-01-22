@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { boardsClient } from "../../api/boardClient";
+import { tagsClient } from "../../api/tagsClient";
 import { handleError } from "../../util/handleError";
 import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
@@ -20,8 +21,15 @@ export const Board = ({ didMove, setDidMove }) => {
       userSession,
       boardId,
       openAddBoardModal,
+      openAddTagModal,
       columnAdded,
-      handleColumnAdded
+      handleColumnAdded,
+      taskTags,
+      setTaskTags,
+      boardIdHasChanged,
+      setBoardIdHasChanged,
+      taskTagsHaveChanged,
+      setTaskTagsHaveChanged
     } = useContext(AppContext); 
     
     const navigate = useNavigate();
@@ -79,29 +87,57 @@ export const Board = ({ didMove, setDidMove }) => {
       });
     };
 
-    const loadBoard = (boardId) => {
+    const loadBoard = async (boardId) => {
       setError();
       setIsLoading(true);
 
-      boardsClient.getBoard(boardId, userSession.userId)
-        .then(board => {
-          setBoard(board);
-          setColumns(board.columns);
-          if (columnAdded)
-            handleColumnAdded();
-          handleRerender();
-        })
-        .catch(err => handleError(err, setError))
-        .finally(() => setIsLoading(false));
+      try {
+          var board = await boardsClient.getBoard(boardId, userSession.userId);
+          if (board && board.columns) {
+            setBoard(board);
+            setColumns(board.columns);
+            if (columnAdded)
+              handleColumnAdded();
+            setBoardIdHasChanged(false);
+          }
+      } catch (err) {
+          handleError(err, setError)
+      } finally {
+          setIsLoading(false)
+      }
+    }
+    
+    const loadBoardTags = async (boardId) => {
+      setError();
+      setIsLoading(true);
+
+      try {
+          var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
+          if (taskTags && taskTags.data) {
+            setTaskTags(taskTags.data);
+            setTaskTagsHaveChanged(false);
+          }
+      } catch (err) {
+          handleError(err, setError)
+      } finally {
+          setIsLoading(false)
+      }
     }
 
   useEffect(() => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && (!board || rerender)) 
+    if (boardId && (!board || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
-  }, [rerender, board, boardId, columnAdded]);
+    }
+  }, [boardIdHasChanged, rerender, board, boardId, columnAdded, taskTags]);
+
+  useEffect(() => {
+    if (boardId && board && (!taskTags || taskTagsHaveChanged || boardIdHasChanged)) {
+      loadBoardTags(boardId);
+    }
+  }, [board, boardIdHasChanged, taskTagsHaveChanged]);
 
     return (
         <div className="board--container">
@@ -110,16 +146,21 @@ export const Board = ({ didMove, setDidMove }) => {
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
-              <div className="add-new-board--btn" onClick={openAddBoardModal}>
-                <span className="add-new-board--lbl">Add new board</span>
-                <PbAddIcon classname={"board"} />
+              <div className="board-action-btns--container">
+                <div className="add-new-board--btn" onClick={openAddBoardModal}>
+                  <span className="add-new-board--lbl">Add new board</span>
+                  <PbAddIcon classname={"board"} />
+                </div>
+                <div className="add-new-board--btn" onClick={openAddTagModal}>
+                  <span className="add-new-board--lbl">Add new tag</span>
+                  <PbAddIcon classname={"board"} />
+                </div>
               </div>
             </div>
           </div>
 
           <div className="board">
-            {/* <div className="board-wrapper"> */}
-              {columns !== undefined && columns.map(column => (
+              {columns && columns.map(column => (
                   <Column 
                     key={column.columnId} 
                     column={column} 
@@ -129,9 +170,8 @@ export const Board = ({ didMove, setDidMove }) => {
                     isOnly={columns.length === 1}
                   />
               ))}
-            {/* </div> */}
 
-            {boardId !== undefined && boardId !== null ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+            {boardId ? <ColumnAddTemplate /> : <BoardAddTemplate />}
           </div>
         </div>
     );

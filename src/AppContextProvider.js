@@ -16,12 +16,19 @@ export const AppContextProvider = ({ children }) => {
     const selectedBoardId = JSON.parse(sessionStorage.getItem("boardId"));
 
     const [boardId, setBoardId] = useState(selectedBoardId);
+    const [boardIdHasChanged, setBoardIdHasChanged] = useState(false);
+
+    const [taskTags, setTaskTags] = useState();
+    const [taskTagsHaveChanged, setTaskTagsHaveChanged] = useState(false);
+    const [taskTagsChangedTaskId, setTaskTagsChangedTaskId] = useState();
+
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
 
     const setSelectedBoardId = (boardId) => {
         if (boardId) {
             setBoardId(parseInt(boardId));
+            setBoardIdHasChanged(true);
             sessionStorage.setItem("boardId", boardId);
         }
     };
@@ -115,6 +122,12 @@ export const AppContextProvider = ({ children }) => {
         setIsSideModalOpen(true);
     }
     
+    const openAddTagModal = () => {
+        setModalType(Constants.MODAL_TYPE.ADD_TAG);
+        setModalHeader("New Tag");
+        setIsSideModalOpen(true);
+    }
+    
     const openAddBoardModal = () => {
         setModalType(Constants.MODAL_TYPE.ADD_BOARD);
         setModalHeader("New Board");
@@ -177,6 +190,7 @@ export const AppContextProvider = ({ children }) => {
 
     const ctx = {
         boardId,
+        boardIdHasChanged,
         isCenterModalOpen,
         isSideModalOpen,
         modalType,
@@ -192,13 +206,18 @@ export const AppContextProvider = ({ children }) => {
         resourceToDelete,
         userSession,
         jwtToken,
+        deleteModalArgs,
+        resetPasswordData,
+        signupData,
+        taskTags,
+        taskTagsHaveChanged,
+        taskTagsChangedTaskId,
         closeSideModal,
         closeError,
         closeSuccess,
         closeDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete,
         confirmDeletion,
-        deleteModalArgs,
         handleRerender,
         handleDelete,
         handleColumnAdded,
@@ -208,13 +227,13 @@ export const AppContextProvider = ({ children }) => {
         openAddBoardModal,
         openAddColumnModal,
         openAddTaskModal,
+        openAddTagModal,
         openEditColumnModal,
         openEditTaskModal,
         openViewTaskModal,
-        resetPasswordData,
-        signupData,
         signupEmail,
         setAuthenticatedUserSession,
+        setBoardIdHasChanged,
         setSelectedBoardId,
         setDeleteConfirmed,
         setError,
@@ -224,7 +243,10 @@ export const AppContextProvider = ({ children }) => {
         setSignupData,
         setAndStoreSignupData,
         setAndStoreResetPasswordData,
-        showSuccess
+        showSuccess,
+        setTaskTags,
+        setTaskTagsHaveChanged,
+        setTaskTagsChangedTaskId
     }
 
   return (

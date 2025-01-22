@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'React';
+import React, { useState, useEffect } from 'react';
 import { SomeView } from '../view/SomeView';
 import modelMapper from '../../requestModelMapper';
 import jobsClient from '../../../api/jobsClient';
 import usersClient from '../../../api/usersClient';
 import { handleError } from '../../handleError';
 
-export const SomeController = ({
-    userType,
-    displayErrorMessage,
-    displaySuccessMessage
-}) => {
+export const SomeController = () => {
     const [formData, setFormData] = useState({});
     const [someValues, setSomeValues] = useState();
     const [isLoading, setIsLoading] = useState();
@@ -46,7 +42,7 @@ export const SomeController = ({
     }
 
     useEffect(() => {
-        // if (someData === undefined)
+        // if (!someData)
         //     loadData(someValues);
     }, []);
 

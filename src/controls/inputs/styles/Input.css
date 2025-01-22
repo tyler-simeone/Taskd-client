@@ -8,7 +8,7 @@
     font-size: 14.5px;
     margin-bottom: 3.5px;
     margin-left: 6px;
-    color: #4e4e4e;
+    color: #454545;
     letter-spacing: 0.1px;
 }
 
@@ -16,12 +16,9 @@
     height: 42px;
     border-radius: 7px;
     border: none;
-    /* background-color: #f3f4f5; */
     background-color: #f6f6f7;
+    color: #1b1b1b;
     padding-left: 14px;
-    font-size: 16px;
-    /* color: #4b4b4b; */
-    color: #2e2e2e;
     letter-spacing: 0.2px;
     font-size: 15.5px;
 }
@@ -35,8 +32,11 @@
 
 .pb-input.login {
     color: #26282a;
+    background-color: #f3f3f3;
 }
 
 .modal-input {
-    background-color: #f0f1f3;
+    /* background-color: #efeff1; */
+    background-color: #eff0f1;
+    border-radius: 5px;
 }
