@@ -12,7 +12,7 @@ import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession, taskTags, boardId } = useContext(AppContext);
+    const { userSession, taskTags, boardId, setTaskTagsHaveChanged, setTaskTagsChangedTaskId } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -75,7 +75,6 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const loadTaskTags = async () => {
         var taskTags = await tagsClient.getTaskTags(boardId, taskId);
         setTagsOnTask(taskTags.data);
-        handleTagsHaveChanged();
     };
 
     const handleTagDeleteFromTask = async (taskTagId) => {
@@ -89,12 +88,20 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
             }
         } catch (err) {
             handleError(err, setError)
+        } finally {
+            handleTagsHaveChanged();
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     }
 
-    const handleTagsHaveChanged = () => setTagsHaveChanged(!tagsHaveChanged);
+    const handleTagsHaveChanged = () => {
+        setTagsHaveChanged(!tagsHaveChanged);
+
+        if (tagsHaveChanged)
+            setTaskTagsChangedTaskId(taskId);
+
+        setTaskTagsHaveChanged(true);
+    };
     
     useEffect(() => {
         if (!editTask)
@@ -103,9 +110,6 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
 
     useEffect(() => {
         if ((taskTags && !tagsOnTask) || tagsHaveChanged) {
-            if (tagsHaveChanged)
-                handleTagsHaveChanged();
-
             loadTaskTags();
         }
     }, [tagsOnTask, tagsHaveChanged])

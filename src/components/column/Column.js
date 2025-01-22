@@ -17,7 +17,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         deleteConfirmed,
         openDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete,
-        rerender
+        rerender,
+        taskTagsHaveChanged
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
@@ -51,45 +52,47 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
 
     const toggleColumnDescription = () => setShowColumnDescription(!showColumnDescription);
 
-    const deleteColumn = (columnId) => {
+    const deleteColumn = async columnId => {
         setError();
         setIsLoading(true);
-        columnsClient.deleteColumn(columnId, 1)
-            .then(() =>  handleRerender())
-            .catch(err => handleError(err, setError));
-        setIsLoading(false);
-        handleRerender();
-        closeDeleteConfirmationModalOnDelete();
+
+        try {
+            var resp = await columnsClient.deleteColumn(columnId, 1);
+            if (resp)
+                handleRerender();
+        } catch (err) {
+            handleError(err, setError);
+        } finally {
+            setIsLoading(false);
+            handleRerender();
+            closeDeleteConfirmationModalOnDelete();
+        }
     }
 
-    const loadTasks = () => {
+    const loadTasks = async () => {
         setError();
         setIsLoading(true);
-        tasksClient.getTasks(column.columnId)
-            .then(resp => {
-                // console.log("resp: ", resp);
-                // if (resp.tasks.length === 0) {
-                //     const moreIconValuesCopy = [...moreIconValues];
-                //     moreIconValuesCopy.splice(0, 2);
-                //     setMoreIconValues(moreIconValuesCopy);
-                // }
 
-                setTasks(resp.tasks);
-            })
-            .catch(err => handleError(err, setError));
-        setIsLoading(false);
+        try {
+            var resp = await tasksClient.getTasks(column.columnId);
+            setTasks(resp.tasks);
+        } catch (err) {
+            handleError(err, setError);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     useEffect(() => {
         // console.log("useEffect tasks: ", tasks);
         // console.log("isOver: ", isOver);
-
-        if (!tasks || rerender)
+        
+        if (!tasks || rerender || taskTagsHaveChanged)
             loadTasks();
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
-    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, taskTagsHaveChanged]);
 
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>

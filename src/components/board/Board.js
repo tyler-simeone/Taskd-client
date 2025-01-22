@@ -27,7 +27,9 @@ export const Board = ({ didMove, setDidMove }) => {
       taskTags,
       setTaskTags,
       boardIdHasChanged,
-      setBoardIdHasChanged
+      setBoardIdHasChanged,
+      taskTagsHaveChanged,
+      setTaskTagsHaveChanged
     } = useContext(AppContext); 
     
     const navigate = useNavigate();
@@ -111,8 +113,10 @@ export const Board = ({ didMove, setDidMove }) => {
 
       try {
           var taskTags = await tagsClient.getTaskTagsByBoardId(boardId, userSession.userId);
-          if (taskTags.data)
+          if (taskTags && taskTags.data) {
             setTaskTags(taskTags.data);
+            setTaskTagsHaveChanged(false);
+          }
       } catch (err) {
           handleError(err, setError)
       } finally {
@@ -120,20 +124,20 @@ export const Board = ({ didMove, setDidMove }) => {
       }
     }
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && (!board || boardIdHasChanged)) {
+    if (boardId && (!board || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
     }
-  }, [boardIdHasChanged, rerender, board, boardId, columnAdded]);
+  }, [boardIdHasChanged, rerender, board, boardId, columnAdded, taskTags]);
 
   useEffect(() => {
-    if (boardId && board && (!taskTags || boardIdHasChanged)) {
+    if (boardId && board && (!taskTags || taskTagsHaveChanged || boardIdHasChanged)) {
       loadBoardTags(boardId);
     }
-  }, [board, boardIdHasChanged]);
+  }, [board, boardIdHasChanged, taskTagsHaveChanged]);
 
     return (
         <div className="board--container">

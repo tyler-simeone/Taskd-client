@@ -17,7 +17,11 @@ export const AppContextProvider = ({ children }) => {
 
     const [boardId, setBoardId] = useState(selectedBoardId);
     const [boardIdHasChanged, setBoardIdHasChanged] = useState(false);
+
     const [taskTags, setTaskTags] = useState();
+    const [taskTagsHaveChanged, setTaskTagsHaveChanged] = useState(false);
+    const [taskTagsChangedTaskId, setTaskTagsChangedTaskId] = useState();
+
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
 
@@ -202,13 +206,18 @@ export const AppContextProvider = ({ children }) => {
         resourceToDelete,
         userSession,
         jwtToken,
+        deleteModalArgs,
+        resetPasswordData,
+        signupData,
+        taskTags,
+        taskTagsHaveChanged,
+        taskTagsChangedTaskId,
         closeSideModal,
         closeError,
         closeSuccess,
         closeDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete,
         confirmDeletion,
-        deleteModalArgs,
         handleRerender,
         handleDelete,
         handleColumnAdded,
@@ -222,8 +231,6 @@ export const AppContextProvider = ({ children }) => {
         openEditColumnModal,
         openEditTaskModal,
         openViewTaskModal,
-        resetPasswordData,
-        signupData,
         signupEmail,
         setAuthenticatedUserSession,
         setBoardIdHasChanged,
@@ -237,8 +244,9 @@ export const AppContextProvider = ({ children }) => {
         setAndStoreSignupData,
         setAndStoreResetPasswordData,
         showSuccess,
-        taskTags,
-        setTaskTags
+        setTaskTags,
+        setTaskTagsHaveChanged,
+        setTaskTagsChangedTaskId
     }
 
   return (

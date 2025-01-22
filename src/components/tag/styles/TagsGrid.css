@@ -10,7 +10,8 @@
 
 .tags-grid {
     overflow: scroll;    
-    background-color: #f0f1f3;
+    /* background-color: #f0f1f3; */
+    background-color: #eff0f1;
     border-radius: 8px;
     height: 45px;
 }

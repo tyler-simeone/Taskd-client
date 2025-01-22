@@ -12,7 +12,7 @@ export const TagsList = ({
 }) => {
     return (
         <>
-            {isTaskEditView && <h4 className='tags--lbl'>Tags ({tags.length}):</h4>}
+            {/* {isTaskEditView && <h4 className='tags--lbl'>Tags ({tags.length}):</h4>} */}
             
             <ul 
                 className="tags-list" 

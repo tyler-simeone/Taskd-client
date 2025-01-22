@@ -13,7 +13,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             openDeleteConfirmationModal,
             closeDeleteConfirmationModalOnDelete,
             taskTags,
-            userSession
+            userSession,
+            taskTagsHaveChanged
         } = useContext(AppContext);
 
     const [task, setTask] = useState();
@@ -67,7 +68,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
     }, [task, deleteConfirmed]);
 
     useEffect(() => {
-        if (taskTags && !tagsOnTask)
+        if (taskTags && (!tagsOnTask || taskTagsHaveChanged))
           loadTaskTags();
       }, [tagsOnTask]);
 

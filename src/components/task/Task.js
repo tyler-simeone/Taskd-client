@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
 import { TagsList } from "../tag/TagsList";
+import { tagsClient } from "../../api/tagsClient";
 import "./styles/Task.css"
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
-    const { openViewTaskModal, taskTags } = useContext(AppContext);
+    const { openViewTaskModal, boardId, taskTags, taskTagsHaveChanged, setTaskTagsHaveChanged, taskTagsChangedTaskId } = useContext(AppContext);
     
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
@@ -36,20 +37,35 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
 
       const [tagsOnTask, setTagsOnTask] = useState();
 
-      const loadTaskTags = () => {
-        var tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
+      const loadTaskTags = async () => {
+        var tagsForTask = null;
+
+        if (taskTagsHaveChanged) {
+          var resp = await tagsClient.getTaskTags(boardId, task.taskId);
+          tagsForTask = resp.data;
+        }
+        else
+          tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
+        
+        if (tagsForTask.length > 0) {
+          console.log(`***taskName:*** ${task.taskName}, ***tagCount:*** ${tagsForTask.length}`);
+        }
+        
         if (tagsForTask.length > 0)
-            setTagsOnTask(tagsForTask);
+          setTagsOnTask(tagsForTask);
+          setTaskTagsHaveChanged(false);
       };
 
 
       useEffect(() => {
-        if (taskTags && !tagsOnTask)
+        var taskTagsHaveChangedForTask = (taskTagsHaveChanged && taskTagsChangedTaskId && taskTagsChangedTaskId === task.taskId);
+        
+        if (taskTags && (!tagsOnTask || taskTagsHaveChangedForTask))
           loadTaskTags();
-      }, [tagsOnTask]);
+      }, [tagsOnTask, taskTagsHaveChanged]);
 
     return (
-        <div 
+        <div
             className="task--container"
             ref={drag}
             style={{

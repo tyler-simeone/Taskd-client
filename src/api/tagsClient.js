@@ -29,7 +29,7 @@ export const tagsClient = {
         return responseHandler(parsedResp);
     },
     // Gets all tags that are tied to tasks on the board.
-    getTagsByTaskId: async (taskId, boardId) => {
+    getAvailableTagsByTaskId: async (taskId, boardId) => {
         const resp = await fetch(`${tagsClient.baseURL}/task/${taskId}?boardId=${boardId}`, {
             method: "GET",
             headers: tagsClient.headers,
@@ -44,6 +44,7 @@ export const tagsClient = {
 
         return responseHandler(parsedResp);
     },
+    // Gets tags already assigned to task
     getTaskTags: async (boardId, taskId) => {
         const resp = await fetch(`${tagsClient.baseURL}/board/${boardId}/task/${taskId}`, {
             method: "GET",
