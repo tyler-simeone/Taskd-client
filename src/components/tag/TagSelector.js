@@ -29,8 +29,10 @@ export const TagSelector = ({
             else 
                 response = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
 
+            if (tags && handleTagsHaveChanged)
+                handleTagsHaveChanged();
+
             setTags(response.data);
-            handleTagsHaveChanged();
         } catch (err) {
             handleError(err, setFormError);
         }
@@ -65,9 +67,6 @@ export const TagSelector = ({
 
     useEffect(() => {
         if (!tags || tagsHaveChanged) {
-            if (tagsHaveChanged)
-                handleTagsHaveChanged();
-
             loadTags();
         }
     }, [tags, tagsHaveChanged]);
