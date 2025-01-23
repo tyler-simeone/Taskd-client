@@ -28,11 +28,11 @@ export const TagSelector = ({
                 response = await tagsClient.getAvailableTagsByTaskId(taskId, boardId);
             else 
                 response = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
-
-            if (tags && handleTagsHaveChanged)
-                handleTagsHaveChanged();
-
+            
             setTags(response.data);
+
+            if (handleTagsHaveChanged)
+                handleTagsHaveChanged();
         } catch (err) {
             handleError(err, setFormError);
         }
