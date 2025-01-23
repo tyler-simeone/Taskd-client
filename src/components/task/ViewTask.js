@@ -78,7 +78,9 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                 <div className="task-details">
                     <div>
                         {task.taskDescription && task.taskDescription.trim().length > 0 ? (
-                            <p className="task-description-details">{task.taskDescription}</p>
+                            <p className="task-description-details" onClick={() => openEditTaskModal(taskId)}>
+                                {task.taskDescription}
+                            </p>
                         ) : (
                             <p className="task-description-details"><em className="description-not-provided--lbl">No description provided.</em></p>
                         )}
