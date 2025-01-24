@@ -46,14 +46,12 @@ export const Board = ({ didMove, setDidMove }) => {
 
       // console.log("destinationColumn: ", destinationColumn);
 
-      var updateTaskRequest = {
+      var payload = {
         userId: userSession.userId,
         taskId: newTask.taskId,
-        columnId: destinationColumn.columnId,
-        taskName: newTask.taskName,
-        taskDescription: newTask.taskDescription
+        columnId: destinationColumn.columnId
       };
-      tasksClient.updateTask(updateTaskRequest)
+      tasksClient.dropTask(payload)
         .then(() => handleRerender())
         .catch(err => handleError(err, setError));
     };
