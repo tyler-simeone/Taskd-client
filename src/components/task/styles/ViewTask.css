@@ -4,10 +4,10 @@
 
 .task-description-details {
     font-size: 17px;
-    color: #6e7274;
-    color: #6b6f70;
-    color: #585d66;
     color: #575a5f;
+}
+.task-description-details:hover {
+    cursor: pointer;
 }
 
 .task-create-date--container {

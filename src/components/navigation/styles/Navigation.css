@@ -1,10 +1,8 @@
 .nav--container {
     width: 94.5%;
-    height: 58.5px;
     height: 54px;
     padding: 10px 48px;
     padding-top: 6px;
-    /* background-color: #fdfeff; */
 }
 
 .nav {
@@ -19,12 +17,10 @@
     margin-top: 10px;
     font-weight: 500;
     letter-spacing: 0.3px;
-    font-style: italic;
-
     font-size: 27px;
     font-weight: 700;
-    color: #2d2d2d;
-    color: #2b2b2b;
+    font-style: italic;
+    color: #272727;
 }
 
 .pb-logo:hover {
