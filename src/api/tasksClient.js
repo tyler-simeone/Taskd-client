@@ -78,6 +78,22 @@ export const tasksClient = {
 
         return responseHandler(parsedResp);
     },
+    dropTask: async (payload) => {
+        const resp = await fetch(`${tasksClient.baseURL}/dropped`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: tasksClient.headers,
+        });
+
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+
+        return responseHandler(parsedResp);
+    },
     deleteTask: async (taskId, userId) => {
         const resp = await fetch(`${tasksClient.baseURL}/${taskId}?userId=${userId}`, {
             method: "DELETE",
