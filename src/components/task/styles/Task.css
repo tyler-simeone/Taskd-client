@@ -7,9 +7,10 @@
     border-radius: 5px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
-    background-color: #fff !important;
-    /* border: 1px solid #bababc !important; */
-    border: 1px solid #bcbcbc !important;
+    background-color: #fefeff !important;
+    border: 1px solid #bababe !important;
+    border: 1px solid #b9b9bd !important;
+    border: 1px solid #b7b7ba !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -17,16 +18,16 @@
 
 .task-title {
     font-size: 17.5px;
+    font-size: 18px;
     font-weight: 600;
-    color: #282828;
+    color: #222;
 }
 
 .task-description {
     font-size: 16.5px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
-    color: #565759;
-    color: #535456;
+    color: #4f4f4f;
 }
 
 .description-not-provided--lbl {

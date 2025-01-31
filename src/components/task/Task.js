@@ -47,19 +47,16 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         else
           tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
         
-        if (tagsForTask.length > 0) {
-          console.log(`***taskName:*** ${task.taskName}, ***tagCount:*** ${tagsForTask.length}`);
-        }
-        
-        if (tagsForTask.length > 0)
-          setTagsOnTask(tagsForTask);
-          setTaskTagsHaveChanged(false);
+        console.log(`***taskName:*** ${task.taskName}, ***tagCount:*** ${tagsForTask.length}`);
+      
+        setTagsOnTask(tagsForTask);
+        setTaskTagsHaveChanged(false);
       };
 
 
       useEffect(() => {
         var taskTagsHaveChangedForTask = (taskTagsHaveChanged && taskTagsChangedTaskId && taskTagsChangedTaskId === task.taskId);
-        
+
         if (taskTags && (!tagsOnTask || taskTagsHaveChangedForTask))
           loadTaskTags();
       }, [tagsOnTask, taskTagsHaveChanged]);

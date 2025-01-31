@@ -15,19 +15,17 @@ html {
 .App {
   display: flex;
   flex-direction: column;
-  /* background-color: #fdfeff; */
   background-color: #fff;
 }
 
 /* Additional styles */
 h2 {
   margin: 2px auto;
-  color: #38393b;
+  color: #343434;
   letter-spacing: 0.2px;
 }
 
 h3 {
-  color: #2c2f34;
   color: #262626;
   font-size: 17px ;
   font-weight: 500 ;

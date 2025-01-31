@@ -66,6 +66,7 @@ export const TagSelector = ({
     };
 
     useEffect(() => {
+        console.log("tagsHaveChanged: ", tagsHaveChanged);
         if (!tags || tagsHaveChanged) {
             loadTags();
         }
