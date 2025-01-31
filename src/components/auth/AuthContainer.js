@@ -22,9 +22,11 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
         <div className="auth--container">
             <div className="auth-header--container">
                 <TaskdLogo style={{position: "relative", left: "40%", fontSize: 27.5}} isLink={false} />
-                <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>
-                    {isLogin ? 'Login' : isSignup ? 'Sign Up' : isConfirmAccount ? 'Enter Confirmation Code' : 'Reset Password'}
-                </h2>
+                {!isLogin && (
+                    <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>
+                        {isSignup ? 'Sign Up' : isConfirmAccount ? 'Enter Confirmation Code' : 'Reset Password'}
+                    </h2>
+                )}
             </div>
 
             {formError !== undefined && <div className="form-error">{formError}</div>}
