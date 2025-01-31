@@ -5,8 +5,12 @@
     font-size: 14.5px;
     letter-spacing: 0.3px;
     border-radius: 10px;
+    border-radius: 8px;
     height: 42.5px;
     padding: 4px 40px;
+
+    background-color: #e4e5e6;
+    /* color: #696969; */
 }
 .button.flat:focus {
     outline: none;
