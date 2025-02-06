@@ -27,11 +27,11 @@
 .add-new-board--btn {
     display: flex;
     margin-right: 1%;
-    border-radius: 3px;
-    padding: 10.5px 16px;
+    border-radius: 4px;
+    padding: 10px 16px;
     color: #808080;
     background-color: #f0f0f0;
-    font-size: 15.5px;
+    font-size: 15px;
     font-weight: 500;
     font-weight: 600;
 }

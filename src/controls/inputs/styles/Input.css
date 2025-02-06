@@ -9,7 +9,7 @@
     margin-bottom: 3.5px;
     margin-left: 6px;
     margin-left: 2px;
-    color: #525255;
+    color: #1a1a1a;
     letter-spacing: 0.1px;
 }
 
@@ -18,7 +18,8 @@
     border-radius: 7px;
     border: none;
     background-color: #f6f6f7;
-    color: #1b1b1b;
+    /* color: #1a1a1a; */
+    color: #0c0c0c;
     padding-left: 14px;
     letter-spacing: 0.2px;
     font-size: 15.5px;
@@ -37,6 +38,7 @@
 }
 
 .modal-input {
-    background-color: #eff0f2;
+    /* background-color: #eff0f2; */
+    background-color: #ededed;
     border-radius: 4px;
 }
