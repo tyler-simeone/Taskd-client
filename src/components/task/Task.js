@@ -84,7 +84,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
               <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
             )}
 
-            {tagsOnTask && <TagsList tags={tagsOnTask} isTaskBoardView={true} />}
+            {tagsOnTask && tagsOnTask.length > 0 && <TagsList tags={tagsOnTask} isTaskBoardView={true} />}
         </div>
     );
 }

@@ -1,16 +1,14 @@
 .button.flat {
-    background-color: #e4e5e6;
-    color: #8b8b8b;
     font-weight: 600;
     font-size: 14.5px;
     letter-spacing: 0.3px;
     border-radius: 10px;
     border-radius: 8px;
-    height: 42.5px;
+    border-radius: 6.5px;
+    height: 42px;
     padding: 4px 40px;
-
-    background-color: #e4e5e6;
-    /* color: #696969; */
+    color: #8e8e8e;
+    background-color: #ebebeb;
 }
 .button.flat:focus {
     outline: none;

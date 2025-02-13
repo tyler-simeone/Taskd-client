@@ -21,6 +21,10 @@
     color: #3573d9;
     color: #3470d4;
     text-wrap-mode: nowrap;
+
+    color: #3d7ae0;
+    color: #467edc;
+    font-weight: 700;
 }
 
 .delete-tag-btn--container {
