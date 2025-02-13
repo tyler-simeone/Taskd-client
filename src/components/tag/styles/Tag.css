@@ -16,14 +16,13 @@
 }
 
 .tag-name {
-    font-weight: 600;
     font-size: 13px;
-    color: #3573d9;
     color: #3470d4;
+    font-weight: 600;
     text-wrap-mode: nowrap;
 
-    color: #3d7ae0;
-    color: #467edc;
+    color: #457cd8;
+    color: #4075cc;
     font-weight: 700;
 }
 

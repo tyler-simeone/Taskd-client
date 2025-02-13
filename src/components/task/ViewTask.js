@@ -14,7 +14,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             closeDeleteConfirmationModalOnDelete,
             taskTags,
             userSession,
-            taskTagsHaveChanged
+            taskTagsHaveChanged,
+            closeSideModal
         } = useContext(AppContext);
 
     const [task, setTask] = useState();
@@ -37,6 +38,8 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             })
             .catch(err => {
                 setIsLoading(false);
+                if (err.status === 401)
+                    closeSideModal();
                 handleError(err, setError);
             });
     }
