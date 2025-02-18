@@ -29,13 +29,12 @@
 .add-new-board--btn {
     display: flex;
     margin-right: 1%;
-    border-radius: 4px;
-    padding: 10px 16px;
-    color: #808080;
-    color: #7e7e7e;
+    border-radius: 2px;
+    padding: 9px 16px;
+    color: #878787;
     background-color: #f0f0f0;
+    background-color: #f0f0f1;
     font-size: 15px;
-    font-weight: 500;
     font-weight: 600;
 }
 .add-new-board--btn:hover {

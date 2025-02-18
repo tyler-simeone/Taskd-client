@@ -2,9 +2,9 @@
     display: flex;
     margin-right: 2.7%;
     padding: 1px 8px;
-    border: 1.5px solid #5b99fd;
     border: 1.5px solid #478cff;
     background-color: rgb(79 168 255 / 12%);
+    background-color: rgb(79 168 255 / 14%);
     border-radius: 15px;
 }
 .tag--container:hover {
@@ -17,13 +17,9 @@
 
 .tag-name {
     font-size: 13px;
-    color: #3470d4;
-    font-weight: 600;
-    text-wrap-mode: nowrap;
-
-    color: #457cd8;
     color: #4075cc;
     font-weight: 700;
+    text-wrap-mode: nowrap;
 }
 
 .delete-tag-btn--container {
@@ -33,5 +29,5 @@
     margin-right: -3.5px;
     margin-top: -3px;
     margin-bottom: -1.5px;
-    color: #3573d9;
+    color: #4075cc;
 }

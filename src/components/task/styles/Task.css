@@ -10,7 +10,7 @@
     background-color: #fefeff !important;
     border: 1px solid #b8b8b8 !important;
     border: 1px solid #b1b1b1 !important;
-    border: 1px solid #afafaf !important;
+    /* border: 1px solid #afafaf !important; */
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -20,8 +20,8 @@
     font-size: 17.5px;
     font-size: 18px;
     font-weight: 600;
-    color: #111;
     color: #0f0f0f;
+    color: #111;
 }
 
 .task-description {
