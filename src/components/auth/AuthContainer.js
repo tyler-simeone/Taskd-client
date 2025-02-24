@@ -21,7 +21,7 @@ export const AuthContainer = ({ isLogin, isSignup, isConfirmAccount }) => {
     return (
         <div className="auth--container">
             <div className="auth-header--container">
-                <TaskdLogo style={{position: "relative", left: "40%", fontSize: 27.5}} isLink={false} />
+                <TaskdLogo style={{position: "relative", left: "40%"}} isLink={false} />
                 {!isLogin && (
                     <h2 className="auth--header" style={isConfirmAccount ? {marginBottom: 14.5} : null}>
                         {isSignup ? 'Sign Up' : isConfirmAccount ? 'Enter Confirmation Code' : 'Reset Password'}

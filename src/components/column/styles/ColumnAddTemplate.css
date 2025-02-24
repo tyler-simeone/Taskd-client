@@ -3,16 +3,14 @@
     min-width: 344px;
     max-width: 344px;
     border-radius: 26px;
+    border-radius: 15px;
     padding: 20px;
     padding-top: 18px;
     margin-left: 0.3%;
-    /* border: 1px dashed #d4d4d9; */
     border: 1px dashed #c5c5ca;
 }
 .add-column-template--container:hover {
     cursor: pointer;
-    /* background-color: #f1f5f9;
-    border: 1px dashed #cbcbcf; */
 }
 
 .add-column-template--body {

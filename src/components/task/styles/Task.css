@@ -4,13 +4,13 @@
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 9px !important;
+    padding-top: 8.5px !important;
     border-radius: 4px !important;
     max-width: 392px;
     margin-bottom: 8.5px !important;
     background-color: #fefeff !important;
-    border: 1px solid #b8b8b8 !important;
-    border: 1px solid #b1b1b1 !important;
-    /* border: 1px solid #afafaf !important; */
+    background-color: #fff !important;
+    border: 1px solid #aaa !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -22,6 +22,7 @@
     font-weight: 600;
     color: #0f0f0f;
     color: #111;
+    /* color: #101010; */
 }
 
 .task-description {
