@@ -16,7 +16,7 @@ export const TagsList = ({
             
             <ul 
                 className="tags-list" 
-                style={ isTaskBoardView ? {padding: 0, paddingTop: 5.5} : isTaskDetailsView ? {padding: 0, paddingTop: 16} : isTaskEditView && {padding: 0}}
+                style={ isTaskBoardView ? {padding: 0, paddingTop: 5} : isTaskDetailsView ? {padding: 0, paddingTop: 16} : isTaskEditView && {padding: 0}}
             >
                 {tags && tags.map(tag => {
                     return (

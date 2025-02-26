@@ -11,6 +11,7 @@
     background-color: #fefeff !important;
     background-color: #fff !important;
     border: 1px solid #aaa !important;
+    border: 1px solid #a9a9ad !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -20,9 +21,8 @@
     font-size: 17.5px;
     font-size: 18px;
     font-weight: 600;
-    color: #0f0f0f;
     color: #111;
-    /* color: #101010; */
+    color: #101010;
 }
 
 .task-description {
@@ -30,7 +30,6 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #444;
     color: #404040;
 }
 
