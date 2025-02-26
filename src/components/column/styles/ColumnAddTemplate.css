@@ -2,12 +2,11 @@
     height: 50px;
     min-width: 344px;
     max-width: 344px;
-    border-radius: 26px;
-    border-radius: 15px;
+    border-radius: 14px;
     padding: 20px;
     padding-top: 18px;
     margin-left: 0.3%;
-    border: 1px dashed #c5c5ca;
+    border: 1px dashed #c8c8c8;
 }
 .add-column-template--container:hover {
     cursor: pointer;
