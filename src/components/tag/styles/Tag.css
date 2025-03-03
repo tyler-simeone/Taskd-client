@@ -1,7 +1,8 @@
 .tag--container {
     display: flex;
-    margin-right: 2.7%;
+    margin-right: 2.5%;
     padding: 1px 8px;
+    padding: 0.5px 6px;
     border: 1.5px solid #478cff;
     background-color: rgb(79 168 255 / 12%);
     background-color: rgb(79 168 255 / 14%);
