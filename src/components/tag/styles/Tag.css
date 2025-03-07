@@ -19,6 +19,8 @@
 .tag-name {
     font-size: 13px;
     color: #4075cc;
+    color: #3e71c4;
+    /* color: #3e71c5; */
     font-weight: 700;
     text-wrap-mode: nowrap;
 }
