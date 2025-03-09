@@ -12,9 +12,8 @@
     border: 1px solid #acacb0 !important;
     border: 1px solid #a9a9a9 !important;
     border: 1px solid #a2a2a2 !important;
-    border: 1px solid #a8a8a8 !important;
     border: 1px solid #a9a9a9 !important;
-    border: 1px solid #a0a0a4 !important;
+    /* border: 1px solid #a0a0a4 !important; */
 }
 .task--container:hover { 
     cursor: pointer !important;
