@@ -10,20 +10,20 @@
     background-color: #fefeff !important;
     background-color: #fff !important;
     border: 1px solid #acacb0 !important;
-    border: 1px solid #a9a9a9 !important;
-    border: 1px solid #a2a2a2 !important;
-    border: 1px solid #a9a9a9 !important;
-    /* border: 1px solid #a0a0a4 !important; */
+    border: 1px solid #a0a0a0 !important;
+    border: 1px solid #9a9a9a !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
 }
 
 .task-title {
-    font-size: 17.5px;
-    font-size: 18px;
+    font-size: 18.5px;
+    font-size: 19px;
     font-weight: 600;
-    color: #0f0f0f;
+    color: #1a1a1a;
+    color: #1c1c1c;
+    color: #1b1b1b;
 }
 
 .task-description {
@@ -31,7 +31,6 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #404040;
     color: #363636;
 }
 

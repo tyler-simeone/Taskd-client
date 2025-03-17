@@ -144,6 +144,7 @@ export const Board = ({ didMove, setDidMove }) => {
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
+
               <div className="board-action-btns--container">
                 <div className="add-new-board--btn" onClick={openAddBoardModal}>
                   <span className="add-new-board--lbl">Add new board</span>
@@ -169,7 +170,7 @@ export const Board = ({ didMove, setDidMove }) => {
                   />
               ))}
 
-            {boardId ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+            {isLoading || board ? null : boardId && columns && columns.length > 0 ? <ColumnAddTemplate /> : <BoardAddTemplate />}
           </div>
         </div>
     );
