@@ -18,7 +18,8 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         openDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete,
         rerender,
-        taskTagsHaveChanged
+        taskTagsHaveChanged,
+        boardId
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
@@ -74,7 +75,7 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
         setIsLoading(true);
 
         try {
-            var resp = await tasksClient.getTasks(column.columnId);
+            var resp = await tasksClient.getTasks(boardId, column.columnId);
             setTasks(resp.tasks);
         } catch (err) {
             handleError(err, setError);
