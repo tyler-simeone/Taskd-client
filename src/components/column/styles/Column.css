@@ -5,9 +5,7 @@
     min-width: 438px;
     margin-right: 0.65%;
     border-radius: 4px;
-    border-radius: 2.5px;
-    background-color: #f2f2f3;
-    background-color: #f0f0f0;
+    /* border-radius: 2.5px; */
     background-color: #f1f1f1;
 }
 .column--container.last {
@@ -27,9 +25,6 @@
     font-size: 18.5px;
     font-size: 19px;
     font-weight: 600;
-    color: #111;
-    color: #0f0f0f;
-    color: #0e0e0e;
     color: #000;
 } 
 
