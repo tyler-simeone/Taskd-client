@@ -3,9 +3,8 @@
     margin-right: 2.5%;
     padding: 1px 8px;
     padding: 0.5px 6px;
-    border: 1.5px solid #478cff;
     border: 1.5px solid #4289ff;
-    background-color: rgb(49 153 255 / 14%);
+    background-color: rgb(49 153 255 / 16%);
     border-radius: 15px;
 }
 .tag--container:hover {
@@ -19,8 +18,7 @@
 .tag-name {
     font-size: 13px;
     color: #4075cc;
-    /* color: #3e71c4;
-    color: #3e71c5; */
+    color: #3f72c6;
     font-weight: 700;
     text-wrap-mode: nowrap;
 }
