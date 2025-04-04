@@ -21,6 +21,7 @@
     color: #3f72c6;
     color: #3b6ec2;
     color: #3870cd;
+    color: #376ec9;
     font-weight: 700;
     text-wrap-mode: nowrap;
 }
@@ -28,9 +29,12 @@
 .delete-tag-btn--container {
     display: none;
     padding-left: 3.5px;
+    padding-right: 2px;
     font-size: 19px;
+    font-size: 19.5px;
     margin-right: -3.5px;
     margin-top: -3px;
+    margin-top: -3.5px;
     margin-bottom: -1.5px;
     color: #4075cc;
 }
