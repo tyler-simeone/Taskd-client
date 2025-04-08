@@ -19,9 +19,8 @@ export const Login = ({
 
     const [cssSubmitBtn, setCssSubmitBtn] = useState({
         marginTop: 12,
-        height: 44.5,
-        borderRadius: 8,
-        color: "#fafafa",
+        height: 43.5,
+        borderRadius: 6,
         fontWeight: 600,
         fontSize: 14.5
     });

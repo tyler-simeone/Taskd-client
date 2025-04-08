@@ -3,7 +3,6 @@
     border-top: none;
     display: flex;
     flex-direction: column;
-    /* background-color: #fdfeff; */
 }
 
 .board-name--container {
@@ -17,8 +16,14 @@
 
 .board-name {
     font-size: 22.5px;
+    font-size: 22px;
     letter-spacing: 0.5px;
-    color: #2b2b2b;
+    font-size: 19.5px;
+    text-transform: uppercase;
+    color: #212121;
+    color: #2a2a2a;
+    color: #1a1a1a;
+    color: #111;
 }
 
 .board-action-btns--container {
@@ -27,15 +32,13 @@
 
 .add-new-board--btn {
     display: flex;
-    /* margin-right: 4.8%; */
     margin-right: 1%;
-    border-radius: 12px;
-    padding: 6px 12px;
-    color: #636569;
-    background-color: #f1f1f3;
+    border-radius: 2px;
+    padding: 9px 16px;
+    color: #828282;
+    background-color: #f0f0f1;
     font-size: 15px;
-    border: 1px solid rgb(0 0 0 / 10%);
-    /* margin-left: -10%; */
+    font-weight: 600;
 }
 .add-new-board--btn:hover {
     cursor: pointer;

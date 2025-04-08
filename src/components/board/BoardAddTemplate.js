@@ -9,7 +9,7 @@ export const BoardAddTemplate = () => {
     return (
         <div key={-1} className="add-column-template--container" onClick={openAddBoardModal}>
             <div className="add-column-template--body">
-                <h2 style={{fontSize: "21.5px", color: "#4c4d53"}}>Add new board</h2>
+                <h2 className="column-add-template">Add new board</h2>
                 <div className="add-column-template-icon--container" ><PbAddIcon /></div>
             </div>
         </div>

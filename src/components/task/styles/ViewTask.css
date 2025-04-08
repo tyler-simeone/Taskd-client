@@ -3,8 +3,10 @@
 }
 
 .task-description-details {
-    font-size: 17px;
-    color: #575a5f;
+    font-size: 17.5px;
+    color: #555;
+    color: #505050;
+    color: #2b3237;
 }
 .task-description-details:hover {
     cursor: pointer;
@@ -21,12 +23,12 @@
     margin-top: 1px;
     margin-left: 0px !important;
     letter-spacing: 0.5px;
-    font-size: 14.5px;
+    font-size: 15px;
     color: #8c8c8c;
 }
 
 .created-date {
-    font-size: 14.5px;
+    font-size: 15px;
     color: #8c8c8c;
     font-weight: 500;
 }

@@ -5,13 +5,14 @@
 
 .tags--lbl {
     margin-bottom: 6px;
-    color: #818387;
+    color: #8a8a8a;
+    /* color: #8f8f8f; */
 }
 
 .tags-grid {
     overflow: scroll;    
-    /* background-color: #f0f1f3; */
     background-color: #eff0f1;
+    background-color: #f1f1f1;
     border-radius: 8px;
     height: 45px;
 }

@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
 import { TagsList } from "../tag/TagsList";
-import { tagsClient } from "../../api/tagsClient";
 import "./styles/Task.css"
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
-    const { openViewTaskModal, boardId, taskTags, taskTagsHaveChanged, setTaskTagsHaveChanged, taskTagsChangedTaskId } = useContext(AppContext);
+    const { openViewTaskModal, taskTagsHaveChanged, } = useContext(AppContext);
     
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
@@ -37,31 +36,8 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
 
       const [tagsOnTask, setTagsOnTask] = useState();
 
-      const loadTaskTags = async () => {
-        var tagsForTask = null;
-
-        if (taskTagsHaveChanged) {
-          var resp = await tagsClient.getTaskTags(boardId, task.taskId);
-          tagsForTask = resp.data;
-        }
-        else
-          tagsForTask = taskTags.filter(tt => tt.taskId === task.taskId);
-        
-        if (tagsForTask.length > 0) {
-          console.log(`***taskName:*** ${task.taskName}, ***tagCount:*** ${tagsForTask.length}`);
-        }
-        
-        if (tagsForTask.length > 0)
-          setTagsOnTask(tagsForTask);
-          setTaskTagsHaveChanged(false);
-      };
-
-
       useEffect(() => {
-        var taskTagsHaveChangedForTask = (taskTagsHaveChanged && taskTagsChangedTaskId && taskTagsChangedTaskId === task.taskId);
-        
-        if (taskTags && (!tagsOnTask || taskTagsHaveChangedForTask))
-          loadTaskTags();
+        setTagsOnTask(task.taskTags);
       }, [tagsOnTask, taskTagsHaveChanged]);
 
     return (
@@ -79,7 +55,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
             }}
             onClick={() => openViewTaskModal(task.taskId, task.taskName)}
         >
-            <h4 className="task-title">{task.taskName}</h4>
+            <h4 className="task-title"><span style={{fontSize: 17.5}}>#{task.taskId} -</span> {task.taskName}</h4>
 
             {task.taskDescription && task.taskDescription.trim().length > 0 ? (
               <p className="task-description">{task.taskDescription}</p>
@@ -87,7 +63,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
               <p className="task-description"><em className="description-not-provided--lbl">No description provided.</em></p>
             )}
 
-            {tagsOnTask && <TagsList tags={tagsOnTask} isTaskBoardView={true} />}
+            {tagsOnTask && tagsOnTask.length > 0 && <TagsList tags={tagsOnTask} isTaskBoardView={true} />}
         </div>
     );
 }

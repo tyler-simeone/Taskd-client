@@ -2,17 +2,14 @@
     height: 50px;
     min-width: 344px;
     max-width: 344px;
-    border-radius: 26px;
+    border-radius: 14px;
     padding: 20px;
     padding-top: 18px;
     margin-left: 0.3%;
-    /* border: 1px dashed #d4d4d9; */
-    border: 1px dashed #c5c5ca;
+    border: 1px dashed #c8c8c8;
 }
 .add-column-template--container:hover {
     cursor: pointer;
-    /* background-color: #f1f5f9;
-    border: 1px dashed #cbcbcf; */
 }
 
 .add-column-template--body {
@@ -23,7 +20,7 @@
 
 .column-add-template {
     font-size: 21.5px !important;
-    color: #4c4d53;
+    color: #2a2a2a;
 }
 
 .add-column-template-icon--container {

@@ -5,7 +5,7 @@ export const handleError = (err, setError, setIsSubmitting) => {
     if (setIsSubmitting)
         setIsSubmitting(false);
     if (err.status === 401) { 
-        setError("Unauthorized. Please log in to continue.");
+        // setError("Unauthorized. Please log in to continue.");
         logout();
     } else if (err.detail !== undefined) { 
         if (err.detail.includes('Password did not conform with policy: '))

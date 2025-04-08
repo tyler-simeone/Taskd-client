@@ -155,7 +155,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                     />
 
                     <PrimaryButton 
-                        text={"Submit"} 
+                        text={"Save"} 
                         handleSubmit={handleSubmit} 
                         isSubmitting={isSubmitting} 
                     />

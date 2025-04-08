@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { XIcon } from "../../../controls/icons/XIcon";
+import { Constants } from "../../../util/Constants";
 import "./styles/Modal.css"
 
 export const SideModal = ({ children }) => {
     const { 
         isSideModalOpen,
+        modalType,
+        openEditTaskModal,
+        taskId,
         modalHeader,
         formError,
         closeSideModal
@@ -16,7 +20,7 @@ export const SideModal = ({ children }) => {
             <div className="modal-header--container">
                 <XIcon onClick={closeSideModal} />
                 
-                <h2 className="modal-header">{modalHeader}</h2>
+                <h2 className="modal-header" onClick={() => modalType === Constants.MODAL_TYPE.VIEW_TASK ? openEditTaskModal(taskId) : null}>{modalHeader}</h2>
             </div>
 
             <div className="form-err-msg">

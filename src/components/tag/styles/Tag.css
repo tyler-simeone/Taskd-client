@@ -1,9 +1,10 @@
 .tag--container {
     display: flex;
-    margin-right: 2.7%;
+    margin-right: 2.5%;
     padding: 1px 8px;
-    border: 1.5px solid #5b99fd;
-    background-color: rgb(79 168 255 / 9%);
+    padding: 0.5px 6px;
+    border: 1.5px solid #4289ff;
+    background-color: rgb(49 153 255 / 16%);
     border-radius: 15px;
 }
 .tag--container:hover {
@@ -15,18 +16,25 @@
 }
 
 .tag-name {
-    font-weight: 600;
     font-size: 13px;
-    color: #3573d9;
+    color: #4075cc;
+    color: #3f72c6;
+    color: #3b6ec2;
+    color: #3870cd;
+    color: #376ec9;
+    font-weight: 700;
     text-wrap-mode: nowrap;
 }
 
 .delete-tag-btn--container {
     display: none;
     padding-left: 3.5px;
+    padding-right: 2px;
     font-size: 19px;
+    font-size: 19.5px;
     margin-right: -3.5px;
     margin-top: -3px;
+    margin-top: -3.5px;
     margin-bottom: -1.5px;
-    color: #3573d9;
+    color: #4075cc;
 }

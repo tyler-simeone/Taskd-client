@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TagsList } from './TagsList';
 import "./styles/TagsGrid.css";
 
 export const TagsGrid = ({ tags, handleAddTagToTask }) => {
+    useEffect(() => {
+
+    }, [tags]);
+
     return (
         <div className="tags-grid--container">
             <h4 className='tags--lbl'>Available Tags {tags && `(${tags.length})`}:</h4>
