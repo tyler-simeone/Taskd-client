@@ -13,6 +13,7 @@
     background-color: #fff !important;
     border: 1px solid #969696 !important;
     border: 1px solid #929292 !important;
+    border: 1px solid #909090 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -20,8 +21,13 @@
 
 .task-title {
     font-size: 18.5px;
+    font-size: 18px;
+    font-size: 17.5px;
     font-weight: 600;
     color: #1a1a1a;
+    color: #111;
+    color: #0e0e0e;
+    color: #000;
 }
 
 .task-description {
@@ -30,6 +36,8 @@
     margin-top: 4.5px;
     overflow-wrap: break-word;
     color: #2b3237;
+    color: #293034;
+    color: #21272a;
 }
 
 .description-not-provided--lbl {
