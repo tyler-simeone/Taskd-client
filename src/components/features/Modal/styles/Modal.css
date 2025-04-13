@@ -74,5 +74,6 @@
   }
   .form-err-msg > span {
     color: #de0000;
+    color: #e60000;
     font-size: 15px;
   }

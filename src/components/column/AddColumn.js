@@ -31,7 +31,9 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
         return true;
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+
         if (formIsValid()) {
             setIsSubmitting(true);
     
@@ -57,7 +59,7 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
         <form>
             <Input name={"columnName"} label={"*Column Name"} handleChange={handleChange} fromModal={true} />
             <Input name={"columnDescription"} label={"Column Description"} handleChange={handleChange} fromModal={true} />
-            <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
+            <PrimaryButton text={"Submit"} handleSubmit={evt => handleSubmit(evt)} isSubmitting={isSubmitting} />
         </ form>
     );
 }

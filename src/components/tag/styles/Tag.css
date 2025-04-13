@@ -4,6 +4,7 @@
     padding: 1px 8px;
     padding: 0.5px 6px;
     border: 1.5px solid #4289ff;
+    border: 1.5px solid #2f7dff;
     background-color: rgb(49 153 255 / 16%);
     border-radius: 15px;
 }
@@ -17,11 +18,8 @@
 
 .tag-name {
     font-size: 13px;
-    color: #4075cc;
-    color: #3f72c6;
-    color: #3b6ec2;
-    color: #3870cd;
     color: #376ec9;
+    color: #366cc4;
     font-weight: 700;
     text-wrap-mode: nowrap;
 }

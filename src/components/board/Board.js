@@ -170,7 +170,8 @@ export const Board = ({ didMove, setDidMove }) => {
                   />
               ))}
 
-            {isLoading ? null : boardId && columns ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+            {/* {isLoading ? null : boardId && columns ? <ColumnAddTemplate /> : <BoardAddTemplate />} */}
+            {boardId && columns ? <ColumnAddTemplate /> : <BoardAddTemplate />}
           </div>
         </div>
     );

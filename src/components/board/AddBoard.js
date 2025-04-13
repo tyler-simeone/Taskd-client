@@ -31,7 +31,9 @@ export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerende
         return true;
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+
         if (formIsValid()) {
             setIsSubmitting(true);
     
@@ -53,7 +55,7 @@ export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerende
         <form>
             <Input name={"boardName"} label={"*Board Name"} handleChange={handleChange} fromModal={true} />
             <Input name={"boardDescription"} label={"Board Description"} handleChange={handleChange} fromModal={true} />
-            <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
+            <PrimaryButton text={"Submit"} handleSubmit={evt => handleSubmit(evt)} isSubmitting={isSubmitting} />
         </ form>
     );
 }

@@ -14,6 +14,8 @@
 
 .task-create-date--container {
     margin-top: 16px;
+    margin-top: 14px;
+    margin-top: 12px;
     display: flex;
     font-style: italic;
 }
@@ -35,6 +37,6 @@
 
 .task-action-btns {
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     margin-top: 16px;
 }

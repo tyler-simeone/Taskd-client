@@ -16,9 +16,11 @@
 }
 
 .button.flat.task-edit {
-    margin-left: 3%;
+    /* margin-left: 3%; */
+    margin-right: 3%;
 }
 
 .button.flat.task-delete {
     width: 40%;
+    width: 60%;
 }
