@@ -3,6 +3,7 @@
     margin-right: 2.5%;
     padding: 1px 8px;
     padding: 0.5px 6px;
+    padding: 0px 6px;
     border: 1.5px solid #4289ff;
     border: 1.5px solid #2f7dff;
     background-color: rgb(49 153 255 / 16%);
@@ -18,6 +19,7 @@
 
 .tag-name {
     font-size: 13px;
+    font-size: 12.5px;
     color: #376ec9;
     color: #366cc4;
     font-weight: 700;

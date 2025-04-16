@@ -8,6 +8,7 @@
     border-radius: 3.5px;
     border-radius: 3px;
     border-radius: 5px;
+    border-radius: 4px;
     background-color: #f0f0f1;
     /* background-color: #f0f0f2; */
     background-color: #f1f1f1;
@@ -22,6 +23,7 @@
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    padding: 13px;
     padding-top: 10px;
     padding-top: 9px;
     padding-top: 8.5px;
@@ -31,6 +33,7 @@
     padding-bottom: 5.5px;
     padding-bottom: 5px;
     padding-bottom: 4px;
+    padding-bottom: 3px;
     text-align: center;
 }
 
