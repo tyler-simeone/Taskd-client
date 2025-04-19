@@ -4,17 +4,14 @@
 
 .task-description-details {
     font-size: 17.5px;
-    color: #555;
-    color: #505050;
-    color: #2b3237;
+    font-size: 17px;
+    color: #484848;
 }
 .task-description-details:hover {
     cursor: pointer;
 }
 
 .task-create-date--container {
-    margin-top: 16px;
-    margin-top: 14px;
     margin-top: 12px;
     display: flex;
     font-style: italic;
@@ -37,7 +34,5 @@
 
 .task-action-btns {
     display: flex;
-    /* flex-direction: row-reverse; */
-    margin-top: 16px;
     margin-top: 14px;
 }

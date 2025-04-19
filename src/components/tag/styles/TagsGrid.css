@@ -6,12 +6,10 @@
 .tags--lbl {
     margin-bottom: 6px;
     color: #8a8a8a;
-    /* color: #8f8f8f; */
 }
 
 .tags-grid {
     overflow: scroll;    
-    background-color: #eff0f1;
     background-color: #f1f1f1;
     border-radius: 8px;
     height: 45px;
@@ -19,7 +17,7 @@
 
 .tags-list {
     margin: 0 auto;
-    padding: 10px 0px;
+    padding: 12px 0px;
     display: flex;
     width: 100%;
     overflow: scroll;

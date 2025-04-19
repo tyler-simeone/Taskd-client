@@ -11,9 +11,6 @@
     max-width: 392px;
     margin-bottom: 8.5px !important;
     background-color: #fff !important;
-    border: 1px solid #909090 !important;
-    border: 1px solid #969696 !important;
-    border: 1px solid #979797 !important;
     border: 1px solid #959595 !important;
 }
 .task--container:hover { 
@@ -21,15 +18,11 @@
 }
 
 .task-title {
-    font-size: 18.5px;
     font-size: 18px;
     font-size: 17.5px;
+    /* font-size: 17px; */
     font-weight: 600;
-    /* font-family: 'Lato'; */
-    color: #1a1a1a;
-    color: #111;
-    color: #0e0e0e;
-    color: #000;
+    color: #080808;
 }
 
 .task-description {
@@ -37,12 +30,6 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #2b3237;
-    color: #293034;
-    color: #21272a;
-    color: #1d2325;
-    color: #363a3c;
-    color: #4e4e4e;
     color: #353535;
 }
 
