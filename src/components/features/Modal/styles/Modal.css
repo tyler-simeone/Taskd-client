@@ -35,7 +35,7 @@
     padding-left: 30px;
     padding-right: 30px;
     background-color: #fefeff;
-    border: 1px solid #d5d6d7;
+    border: 1px solid #dedede;
     box-shadow: 0px 1px 18px 6px rgb(0 0 0 / 2%);
     transition: opacity 0.3s ease, transform 3s ease;
   }
