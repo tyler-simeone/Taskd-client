@@ -8,7 +8,10 @@
     height: 42px;
     padding: 4px 40px;
     color: #888;
+    color: #868686;
+    color: #838383;
     background-color: #ebebeb;
+    background-color: #eee;
 }
 .button.flat:focus {
     outline: none;

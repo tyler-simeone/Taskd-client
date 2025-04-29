@@ -3,9 +3,8 @@
 }
 
 .task-description-details {
-    font-size: 17.5px;
     font-size: 17px;
-    color: #484848;
+    color: #3c3c3c;
 }
 .task-description-details:hover {
     cursor: pointer;
@@ -15,21 +14,17 @@
     margin-top: 12px;
     display: flex;
     font-style: italic;
+    font-size: 15px;
+    color: #8c8c8c;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: #898989;
 }
 
 .task-lbl {
-    font-weight: 500;
     margin-top: 1px;
     margin-left: 0px !important;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    color: #8c8c8c;
-}
-
-.created-date {
-    font-size: 15px;
-    color: #8c8c8c;
-    font-weight: 500;
+    /* letter-spacing: 0.5px; */
 }
 
 .task-action-btns {

@@ -93,8 +93,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                         <TagsList tags={tagsOnTask} isTaskDetailsView={true} />}
                     
                     <div className="task-create-date--container">
-                        <h3 className="task-lbl">Created on:</h3>
-                        <p className="created-date">{dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
+                        <p className="task-lbl">Created on: {dateHelper.formatDateLongMonthShortDayYear(task.createDatetime)}</p>
                     </div>
                 </div>
 

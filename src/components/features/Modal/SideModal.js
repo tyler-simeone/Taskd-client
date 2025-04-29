@@ -20,15 +20,10 @@ export const SideModal = ({ children }) => {
             <div className="modal-header--container">
                 <XIcon onClick={closeSideModal} />
                 
-                {modalType === Constants.MODAL_TYPE.VIEW_TASK ? (
-                    <h2 className="modal-header" onClick={() => openEditTaskModal(taskId)}>
-                        #{taskId} - {modalHeader}
-                    </h2>
-                ) : (
-                    <h2 className="modal-header">
-                        {modalType === Constants.MODAL_TYPE.CONFIRM_DELETE && `#${taskId} -`} {modalHeader}
-                    </h2>
-                )}
+                <h2 className="modal-header">
+                    {modalType === Constants.MODAL_TYPE.VIEW_TASK ||
+                     modalType === Constants.MODAL_TYPE.CONFIRM_DELETE ? `#${taskId} -` : null} {modalHeader}
+                </h2>
             </div>
 
             <div className="form-err-msg">

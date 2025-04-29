@@ -9,10 +9,10 @@
     background-color: rgb(49 153 255 / 16%);
     border-radius: 15px;
 }
-.tag--container:hover {
+.tag--container.task-details:hover {
     cursor: pointer;
 }
-.tag--container:hover .delete-tag-btn--container {
+.tag--container.task-details:hover .delete-tag-btn--container {
     cursor: pointer;
     display: block;
 }
@@ -20,8 +20,8 @@
 .tag-name {
     font-size: 13px;
     font-size: 12.5px;
-    color: #376ec9;
-    color: #366cc4;
+    color: #356ac0;
+    color: #3467bb;
     font-weight: 700;
     text-wrap-mode: nowrap;
 }
@@ -37,4 +37,5 @@
     margin-top: -3.5px;
     margin-bottom: -1.5px;
     color: #4075cc;
+    color: #3a6bbd;
 }
