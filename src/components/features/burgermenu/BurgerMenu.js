@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { X, Menu } from "lucide-react"; // Optional: lucide icons
 import "./BurgerMenu.css";
 
 export const BurgerMenu = ({
@@ -14,7 +15,8 @@ export const BurgerMenu = ({
     <div>
       {/* Burger Icon */}
       <button className="burger-button" onClick={toggleMenu}>
-        ☰
+        {/* ☰ */}
+        <Menu />
       </button>
 
       {/* Overlay */}
@@ -23,7 +25,8 @@ export const BurgerMenu = ({
       {/* Slide-out Panel */}
       <div className={`side-panel ${isOpen ? "open" : ""}`}>
         <button className="close-button" onClick={toggleMenu}>
-          ✕
+          {/* ✕ */}
+          <X />
         </button>
         <nav className="menu-content">
           <h2>Menu</h2>

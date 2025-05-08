@@ -9,8 +9,6 @@ import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
-import { PbAddIcon } from "../../controls/icons/AddIcon";
-import { BurgerMenu } from "../features/burgermenu/BurgerMenu";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
@@ -21,8 +19,6 @@ export const Board = ({ didMove, setDidMove }) => {
       isAuthenticated,
       userSession,
       boardId,
-      openAddBoardModal,
-      openAddTagModal,
       columnAdded,
       handleColumnAdded,
       taskTags,
@@ -145,22 +141,6 @@ export const Board = ({ didMove, setDidMove }) => {
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
-
-              <div className="board-action-btns--container">
-                <div className="add-new-board--btn" onClick={openAddBoardModal}>
-                  <span className="add-new-board--lbl">Add new board</span>
-                  <PbAddIcon classname={"board"} />
-                </div>
-                <div className="add-new-board--btn" onClick={openAddTagModal}>
-                  <span className="add-new-board--lbl">Add tag</span>
-                  <PbAddIcon classname={"board"} />
-                </div>
-              </div>
-
-              <BurgerMenu 
-                linkOneClick={openAddBoardModal}
-                linkTwoClick={openAddTagModal}
-              />
             </div>
           </div>
 

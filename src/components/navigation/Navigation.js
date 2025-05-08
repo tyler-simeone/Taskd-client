@@ -4,19 +4,22 @@ import { AppContext } from "../../AppContextProvider";
 import { boardsClient } from "../../api/boardClient";
 import { TaskdLogo } from "../../controls/icons/TaskdLogo";
 import { handleError } from "../../util/handleError";
+import { BurgerMenu } from "../features/burgermenu/BurgerMenu";
 import "./styles/Navigation.css"
 
 export const Navigation = () => {
   const { 
     isAuthenticated,
-    logout,
     userSession,
     boardId,
     setError,
     setSelectedBoardId,
     handleRerender,
     rerender,
-    selectedBoardId 
+    selectedBoardId,
+    openAddBoardModal,
+    openAddTagModal,
+    logout
   } = useContext(AppContext);
 
   const [boardOptions, setBoardOptions] = useState();
@@ -73,15 +76,17 @@ export const Navigation = () => {
         {isAuthenticated() && <TaskdLogo isAuthenticated={isAuthenticated} />}
 
         {isAuthenticated() && (
-          <div style={{display: "flex"}}>
+          <div style={{display: "flex", marginTop: 5.5}}>
             <NavigationSelect 
                 selectedValue={selectedValue} 
                 options={boardOptions} 
             />
 
-            <div className="logout-btn" onClick={logout}>
-                <span>Logout</span>
-            </div>
+            <BurgerMenu 
+              linkOneClick={openAddBoardModal}
+              linkTwoClick={openAddTagModal}
+              linkThreeClick={logout}
+            />
           </div>
         )}
       </div>
