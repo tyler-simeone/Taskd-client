@@ -22,7 +22,7 @@ export const Login = ({
         height: 43.5,
         borderRadius: 6,
         fontWeight: 600,
-        fontSize: 14.5
+        fontSize: 15.5
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 

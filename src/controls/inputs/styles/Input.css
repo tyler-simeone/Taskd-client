@@ -16,14 +16,13 @@
 
 .pb-input {
     height: 42px;
-    border-radius: 7px;
+    border-radius: 5px;
     border: none;
     padding-left: 14px;
     padding-right: 8px;
     letter-spacing: 0.2px;
     font-size: 15.5px;
     background-color: #f6f6f7;
-    color: #040404;
     color: #000;
 }
 .pb-input:focus {
@@ -36,7 +35,6 @@
 
 .pb-input.login {
     height: 43.5px;
-    border-radius: 5px;
 }
 
 .modal-input {

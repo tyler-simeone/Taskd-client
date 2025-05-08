@@ -151,7 +151,7 @@ export const Board = ({ didMove, setDidMove }) => {
                   <PbAddIcon classname={"board"} />
                 </div>
                 <div className="add-new-board--btn" onClick={openAddTagModal}>
-                  <span className="add-new-board--lbl">Add new tag</span>
+                  <span className="add-new-board--lbl">Add tag</span>
                   <PbAddIcon classname={"board"} />
                 </div>
               </div>
