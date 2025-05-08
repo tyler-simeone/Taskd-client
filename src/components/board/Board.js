@@ -10,6 +10,7 @@ import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
 import { PbAddIcon } from "../../controls/icons/AddIcon";
+import { BurgerMenu } from "../features/burgermenu/BurgerMenu";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
@@ -155,6 +156,11 @@ export const Board = ({ didMove, setDidMove }) => {
                   <PbAddIcon classname={"board"} />
                 </div>
               </div>
+
+              <BurgerMenu 
+                linkOneClick={openAddBoardModal}
+                linkTwoClick={openAddTagModal}
+              />
             </div>
           </div>
 

@@ -1,0 +1,78 @@
+  /* Burger Button */
+  .burger-button {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1001;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+  }
+  
+  /* Side Panel */
+  .side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
+  }
+  
+  .side-panel.open {
+    transform: translateX(0);
+  }
+  
+  /* Close Button */
+  .close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Menu Content */
+  .menu-content {
+    padding: 80px 20px 20px;
+  }
+  
+  .menu-content h2 {
+    margin-top: 0;
+  }
+  
+  .menu-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-content li {
+    margin: 12px 0;
+  }
+  
+  .menu-content a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .menu-content a:hover {
+    text-decoration: underline;
+  }
