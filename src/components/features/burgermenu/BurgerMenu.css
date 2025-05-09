@@ -27,6 +27,7 @@
     top: 0;
     right: 0;
     width: 260px;
+    width: 360px;
     height: 100%;
     background: #fff;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
@@ -66,13 +67,19 @@
   
   .menu-content li {
     margin: 12px 0;
+    /* margin: 28px 0; */
   }
   
   .menu-content a {
     color: #333;
     text-decoration: none;
+    display: block;
+    width: 100%;
+    margin: 28px 0;
+    line-height: 36px;
+    border-radius: 4px;
   }
-  
   .menu-content a:hover {
-    text-decoration: underline;
+    background-color: #ebebeb;
+    text-decoration: none;
   }
