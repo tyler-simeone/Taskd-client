@@ -7,6 +7,7 @@
     border: 1.5px solid #4289ff;
     border: 1.5px solid #2f7dff;
     background-color: rgb(49 153 255 / 16%);
+    background-color: rgb(49 153 255 / 15%);
     border-radius: 15px;
 }
 .tag--container.task-details:hover {
@@ -24,6 +25,8 @@
     color: #3467bb;
     color: #3263b4;
     color: #3967b4;
+    color: #4270be;
+    color: #3f6bb5;
     /* color: #2f67b0; */
     font-weight: 700;
     text-wrap-mode: nowrap;
