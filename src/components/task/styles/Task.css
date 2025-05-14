@@ -19,6 +19,7 @@
     font-size: 17.5px;
     font-weight: 600;
     color: #050505;
+    color: #040404;
 }
 
 .task-description {
@@ -28,6 +29,9 @@
     overflow-wrap: break-word;
     color: #303030;
     color: #353535;
+    color: #303030;
+    /* color: #262626; */
+    /* color: #222; */
 }
 
 .description-not-provided--lbl {
