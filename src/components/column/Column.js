@@ -93,6 +93,10 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
+
+        // console.log("didMove: ", didMove);
+        console.log("rerender: ", rerender);
+        // console.log("rerender: ", rerender, column.columnName);
     }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, taskTagsHaveChanged]);
 
     return (
