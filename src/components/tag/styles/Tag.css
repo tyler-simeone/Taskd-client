@@ -4,6 +4,7 @@
     padding: 1px 8px;
     padding: 0.5px 6px;
     padding: 0px 6px;
+    padding: 0px 5.5px;
     border: 1.5px solid #4289ff;
     border: 1.5px solid #2f7dff;
     background-color: rgb(49 153 255 / 16%);
@@ -29,6 +30,8 @@
     color: #3f6bb5;
     color: #3772b1;
     color: #3871ae;
+    color: #366da8;
+    color: #356ba5;
     /* color: #2f67b0; */
     font-weight: 700;
     text-wrap-mode: nowrap;
