@@ -9,7 +9,11 @@
     margin-bottom: 8.5px !important;
     margin-bottom: 7.5px !important;
     background-color: #fff !important;
+    /* background-color: #fefeff !important; */
     border: 1px solid #909090 !important;
+    border: 1px solid #929295 !important;
+    border: 1px solid #87878a !important;
+    border: 1px solid #949497 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -27,6 +31,7 @@
 
 .task-description {
     font-size: 16.5px;
+    font-size: 17px;
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
@@ -35,6 +40,7 @@
     color: #303030;
     color: #262626;
     color: #282828;
+    color: #2c2c2c;
     /* color: #222; */
 }
 
