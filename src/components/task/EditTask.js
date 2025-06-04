@@ -11,8 +11,20 @@ import { tagsClient } from "../../api/tagsClient";
 import { TagSelector } from "../tag/TagSelector";
 import "./styles/EditTask.css"
 
-export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession, taskTags, boardId, setTaskTagsHaveChanged, setTaskTagsChangedTaskId } = useContext(AppContext);
+export const EditTask = ({ 
+    taskId,
+    setFormError,
+    openViewTaskModal,
+    setError,
+    showSuccess,
+    handleRerender 
+}) => {
+    const { userSession,
+            taskTags,
+            boardId,
+            setTaskTagsHaveChanged,
+            setTaskTagsChangedTaskId 
+        } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,6 +32,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const [editTask, setEditTask] = useState();
     const [tagsOnTask, setTagsOnTask] = useState();
     const [tagsHaveChanged, setTagsHaveChanged] = useState(false);
+    const [showTagSelector, setShowTagSelector] = useState(false);
 
     const loadTask = () => {
         setError();
@@ -144,20 +157,25 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                             tags={tagsOnTask}
                             handleTagDeleteFromTask={handleTagDeleteFromTask} 
                             isTaskEditView={true} 
+                            onClick={() => setShowTagSelector(true)}
                         />
                     }
 
-                    <TagSelector 
-                        taskId={taskId}
-                        handleTagsHaveChanged={handleTagsHaveChanged}
-                        tagsHaveChanged={tagsHaveChanged}
-                        setFormError={setFormError}
-                    />
+                    {showTagSelector && (
+                        <TagSelector 
+                            taskId={taskId}
+                            handleTagsHaveChanged={handleTagsHaveChanged}
+                            tagsHaveChanged={tagsHaveChanged}
+                            setFormError={setFormError}
+                            isTaskEditView={true} 
+                        />
+                    )}
 
                     <PrimaryButton 
                         text={"Save"} 
                         handleSubmit={handleSubmit} 
                         isSubmitting={isSubmitting} 
+                        style={{height: 40, fontSize: 15.5}}
                     />
                 </ form>
             </>

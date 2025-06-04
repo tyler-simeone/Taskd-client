@@ -8,10 +8,16 @@
     font-size: 15px;
     margin-bottom: 4px;
     margin-bottom: 6px;
+    margin-bottom: 4.5px;
     margin-left: 2px;
     color: #515151;
     color: #4b4b4b;
+    color: #636363;
     letter-spacing: 0.1px;
+    width: max-content;
+}
+.pb-input-lbl:hover {
+    cursor: text;
 }
 
 .pb-input {

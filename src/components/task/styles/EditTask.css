@@ -4,6 +4,11 @@
     margin-top: -10px;
     margin-bottom: 4px;
 }
+
 .update-task-return-arrow:hover {
     cursor: pointer;
+}
+
+.edit-task-tags-list--container {
+    display: flex;
 }

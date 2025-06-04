@@ -5,6 +5,7 @@ export const TagController = ({
     tagModel,
     handleAddTagToTask,
     isTaskEditView,
+    isTagsGrid,
     handleTagDeleteFromTask
 }) => {
     return (
@@ -12,6 +13,7 @@ export const TagController = ({
             tagModel={tagModel}
             handleAddTagToTask={handleAddTagToTask}
             isTaskEditView={isTaskEditView}
+            isTagsGrid={isTagsGrid}
             handleTagDeleteFromTask={handleTagDeleteFromTask}
         />
     );

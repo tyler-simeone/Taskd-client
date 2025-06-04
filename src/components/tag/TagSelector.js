@@ -9,7 +9,8 @@ export const TagSelector = ({
     setTagId,
     handleTagsHaveChanged,
     tagsHaveChanged,
-    setFormError
+    setFormError,
+    isTaskEditView
 }) => {
     const { userSession, boardId } = useContext(AppContext);
 
@@ -73,6 +74,10 @@ export const TagSelector = ({
     }, [tags, tagsHaveChanged]);
 
     return (
-        <TagsGrid tags={tags} handleAddTagToTask={handleAddTagToTask} />
+        <TagsGrid 
+            tags={tags} 
+            handleAddTagToTask={handleAddTagToTask}
+            isTaskEditView={isTaskEditView}
+        />
     );
 }

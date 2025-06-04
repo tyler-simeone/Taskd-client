@@ -1,8 +1,17 @@
 .add-icon {
     color: #7c7b7b;
-    font-size: 25px !important;
+    width: 23px;
+    height: 23px;
     padding: 0px !important;
 }
+
+.add-icon.edit-task-tags-list {
+    width: 22px;
+    height: 20px;
+    margin-left: 1%;
+    color: #2871c8;
+}
+
 .add-icon:hover {
     cursor: pointer;
 }
