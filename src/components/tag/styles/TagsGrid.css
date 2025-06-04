@@ -17,7 +17,7 @@
 
 .tags-list {
     margin: 0 auto;
-    padding: 12px 0px;
+    /* padding: 12px 0px; */
     display: flex;
     width: 100%;
     overflow: scroll;

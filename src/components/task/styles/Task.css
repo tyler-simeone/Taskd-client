@@ -35,13 +35,9 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #303030;
-    color: #353535;
-    color: #303030;
-    color: #262626;
-    color: #282828;
     color: #2c2c2c;
-    /* color: #222; */
+    color: #454545;
+    color: #444;
 }
 
 .description-not-provided--lbl {

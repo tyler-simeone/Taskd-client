@@ -27,13 +27,16 @@
     right: -33%;
     height: 90%;
     top: 1.8%;
-    width: 362px;
-    width: 360.5px;
-    width: 376px;
+    /* width: 362px; */
+    /* width: 360.5px; */
+    /* width: 376px; */
+    width: 380px;
     box-shadow: none;
     border-radius: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    /* padding-left: 30px; */
+    padding-left: 28px;
+    /* padding-right: 30px; */
+    padding-right: 28px;
     background-color: #fefeff;
     border: 1px solid #dedede;
     box-shadow: 0px 1px 18px 6px rgb(0 0 0 / 2%);
