@@ -2,15 +2,10 @@
     font-weight: 600;
     font-size: 14.5px;
     letter-spacing: 0.3px;
-    border-radius: 10px;
-    border-radius: 8px;
     border-radius: 6.5px;
-    height: 42px;
+    height: 41px;
     padding: 4px 40px;
-    color: #888;
-    color: #868686;
-    color: #838383;
-    background-color: #ebebeb;
+    color: #9c9c9c;
     background-color: #eee;
 }
 .button.flat:focus {
@@ -18,11 +13,9 @@
 }
 
 .button.flat.task-edit {
-    /* margin-left: 3%; */
     margin-right: 3%;
 }
 
 .button.flat.task-delete {
-    width: 40%;
     width: 60%;
 }
