@@ -12,7 +12,8 @@ export const TagsList = ({
     isTaskEditView,
     isTagsGrid,
     handleTagDeleteFromTask,
-    onClick
+    onClick,
+    showTagSelector
 }) => {
     return (
         <div className={`tags-list--container ${isTaskEditView && !isTagsGrid && 'edit-task'}`}>
@@ -37,7 +38,7 @@ export const TagsList = ({
                     })}
                 </ul>
 
-                {isTaskEditView && !isTagsGrid && <AddIcon onClick={onClick} classname={"edit-task-tags-list"} />}
+                {isTaskEditView && !isTagsGrid && !showTagSelector && <AddIcon onClick={onClick} classname={"task-tag"} />}
             </div>
         </div>
     );

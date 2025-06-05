@@ -9,6 +9,7 @@ import { TextArea } from "../../controls/inputs/TextArea";
 import { TagsList } from "../tag/TagsList";
 import { tagsClient } from "../../api/tagsClient";
 import { TagSelector } from "../tag/TagSelector";
+import { AddTaskTag } from "../tag/AddTaskTag";
 import "./styles/EditTask.css"
 
 export const EditTask = ({ 
@@ -115,6 +116,10 @@ export const EditTask = ({
 
         setTaskTagsHaveChanged(true);
     };
+
+    const handleShowTagSelector = () => {
+        setShowTagSelector(true);
+    }
     
     useEffect(() => {
         if (!editTask)
@@ -156,10 +161,13 @@ export const EditTask = ({
                         <TagsList 
                             tags={tagsOnTask}
                             handleTagDeleteFromTask={handleTagDeleteFromTask} 
-                            isTaskEditView={true} 
-                            onClick={() => setShowTagSelector(true)}
+                            isTaskEditView={true}
+                            onClick={handleShowTagSelector}
+                            showTagSelector={showTagSelector}
                         />
                     }
+                    
+                    {!showTagSelector && tagsOnTask && tagsOnTask.length === 0 && <AddTaskTag onClick={handleShowTagSelector} />}
 
                     {showTagSelector && (
                         <TagSelector 

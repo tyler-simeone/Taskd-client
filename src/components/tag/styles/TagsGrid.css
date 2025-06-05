@@ -24,13 +24,10 @@
 }
 
 .tags-list {
-    /* margin: 0 auto; */
     margin-top: 0px;
     margin-bottom: 0px;
-    /* padding: 12px 0px; */
     display: flex;
-    /* width: 100%; */
+    width: 100%;
     overflow: scroll;
-    /* padding-left: 14px; */
     padding-left: 0px;
 }
