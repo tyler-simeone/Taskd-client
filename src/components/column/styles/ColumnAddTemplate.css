@@ -8,6 +8,7 @@
     margin-left: 0.3%;
     /* border: 1px dashed #c8c8c8; */
     border: 1.5px dashed #e3e3e3;
+    border: 1.5px dashed #dadada;
 }
 .add-column-template--container:hover {
     cursor: pointer;
@@ -22,6 +23,7 @@
 .column-add-template {
     font-size: 21.5px !important;
     color: #2a2a2a;
+    color: #000;
 }
 
 .add-column-template-icon--container {
