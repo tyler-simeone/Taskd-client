@@ -27,16 +27,12 @@
     right: -33%;
     height: 90%;
     top: 1.8%;
-    /* width: 362px; */
-    /* width: 360.5px; */
-    /* width: 376px; */
     width: 380px;
     box-shadow: none;
     border-radius: 10px;
-    /* padding-left: 30px; */
+    border-radius: 9px;
     padding-left: 28px;
     padding-left: 24px;
-    /* padding-right: 30px; */
     padding-right: 28px;
     padding-right: 24px;
     background-color: #fefeff;
