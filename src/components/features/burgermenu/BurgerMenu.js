@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, Menu } from "lucide-react"; // Optional: lucide icons
+import { X, Menu } from "lucide-react";
 import "./BurgerMenu.css";
 
 export const BurgerMenu = ({

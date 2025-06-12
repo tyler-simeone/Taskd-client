@@ -7,6 +7,7 @@
     margin-right: 0.65%;
     border-radius: 5.5px;
     border-radius: 6px;
+    border-radius: 7px;
     /* background-color: #f1f1f1; */
     /* background-color: #f0f0f0; */
     background-color: #f2f2f2;
@@ -21,8 +22,11 @@
     display: flex;
     justify-content: space-between;
     padding: 13px;
-    padding-top: 3px;
+    padding: 12px;
+    /* padding-top: 3px; */
+    padding-top: 2.5px;
     padding-bottom: 0.5px;
+    /* padding-bottom: 0px; */
     text-align: center;
 }
 
@@ -54,6 +58,7 @@
 
 .column--body {
     padding: 10px;
+    /* padding: 9.5px; */
     padding-top: 2px;
     overflow-y: scroll;
     overflow-x: hidden;

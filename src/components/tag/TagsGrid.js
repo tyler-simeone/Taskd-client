@@ -2,18 +2,27 @@ import React, { useEffect } from 'react';
 import { TagsList } from './TagsList';
 import "./styles/TagsGrid.css";
 
-export const TagsGrid = ({ tags, handleAddTagToTask }) => {
+export const TagsGrid = ({ 
+    tags, 
+    handleAddTagToTask, 
+    isTaskEditView 
+}) => {
     useEffect(() => {
 
     }, [tags]);
 
     return (
         <div className="tags-grid--container">
-            <h4 className='tags--lbl'>Available Tags {tags && `(${tags.length})`}:</h4>
+            <h4 className='available-tags--lbl'>Available Tags {tags && `(${tags.length})`}:</h4>
 
             {tags && tags.length > 0 && (
                 <div className="tags-grid">
-                    <TagsList tags={tags} handleAddTagToTask={handleAddTagToTask} />
+                    <TagsList 
+                        tags={tags} 
+                        handleAddTagToTask={handleAddTagToTask}
+                        isTaskEditView={isTaskEditView}
+                        isTagsGrid={true}
+                    />
                 </div>
             )}
         </div>

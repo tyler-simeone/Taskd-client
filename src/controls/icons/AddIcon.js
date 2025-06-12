@@ -1,10 +1,10 @@
 import React from "react";
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
+import { Plus } from "lucide-react";
 import "./styles/AddIcon.css"
 
-export const PbAddIcon = ({ classname }) => {
-
+export const AddIcon = ({ onClick, classname }) => {
     return (
-        <AddIcon className={`add-icon ${classname}`} />
+        <Plus onClick={onClick} className={`add-icon ${classname}`} />
     );
 }

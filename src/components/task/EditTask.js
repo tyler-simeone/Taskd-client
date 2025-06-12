@@ -9,10 +9,23 @@ import { TextArea } from "../../controls/inputs/TextArea";
 import { TagsList } from "../tag/TagsList";
 import { tagsClient } from "../../api/tagsClient";
 import { TagSelector } from "../tag/TagSelector";
+import { AddTaskTag } from "../tag/AddTaskTag";
 import "./styles/EditTask.css"
 
-export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, showSuccess, handleRerender }) => {
-    const { userSession, taskTags, boardId, setTaskTagsHaveChanged, setTaskTagsChangedTaskId } = useContext(AppContext);
+export const EditTask = ({ 
+    taskId,
+    setFormError,
+    openViewTaskModal,
+    setError,
+    showSuccess,
+    handleRerender 
+}) => {
+    const { userSession,
+            taskTags,
+            boardId,
+            setTaskTagsHaveChanged,
+            setTaskTagsChangedTaskId 
+        } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,6 +33,7 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
     const [editTask, setEditTask] = useState();
     const [tagsOnTask, setTagsOnTask] = useState();
     const [tagsHaveChanged, setTagsHaveChanged] = useState(false);
+    const [showTagSelector, setShowTagSelector] = useState(false);
 
     const loadTask = () => {
         setError();
@@ -102,6 +116,10 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
 
         setTaskTagsHaveChanged(true);
     };
+
+    const handleShowTagSelector = () => {
+        setShowTagSelector(true);
+    }
     
     useEffect(() => {
         if (!editTask)
@@ -143,21 +161,29 @@ export const EditTask = ({ taskId, setFormError, openViewTaskModal, setError, sh
                         <TagsList 
                             tags={tagsOnTask}
                             handleTagDeleteFromTask={handleTagDeleteFromTask} 
-                            isTaskEditView={true} 
+                            isTaskEditView={true}
+                            onClick={handleShowTagSelector}
+                            showTagSelector={showTagSelector}
                         />
                     }
+                    
+                    {!showTagSelector && tagsOnTask && tagsOnTask.length === 0 && <AddTaskTag onClick={handleShowTagSelector} />}
 
-                    <TagSelector 
-                        taskId={taskId}
-                        handleTagsHaveChanged={handleTagsHaveChanged}
-                        tagsHaveChanged={tagsHaveChanged}
-                        setFormError={setFormError}
-                    />
+                    {showTagSelector && (
+                        <TagSelector 
+                            taskId={taskId}
+                            handleTagsHaveChanged={handleTagsHaveChanged}
+                            tagsHaveChanged={tagsHaveChanged}
+                            setFormError={setFormError}
+                            isTaskEditView={true} 
+                        />
+                    )}
 
                     <PrimaryButton 
                         text={"Save"} 
                         handleSubmit={handleSubmit} 
                         isSubmitting={isSubmitting} 
+                        style={{height: 40, fontSize: 15.5}}
                     />
                 </ form>
             </>

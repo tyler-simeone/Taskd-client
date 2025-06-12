@@ -5,6 +5,7 @@ export const TagView = ({
     tagModel,
     handleAddTagToTask,
     isTaskEditView,
+    isTagsGrid,
     handleTagDeleteFromTask
 }) => {
 
@@ -15,7 +16,7 @@ export const TagView = ({
         >
             <p className="tag-name">{tagModel.tagName}</p>
             
-            {isTaskEditView && (
+            {isTaskEditView && !isTagsGrid && (
                 <div className="delete-tag-btn--container">
                     <span 
                         className="tag-delete-icon" 

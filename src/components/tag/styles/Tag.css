@@ -5,9 +5,10 @@
     border: 1.5px solid #2778ff;
     border: 1.5px solid #5092ff;
     border: 1.5px solid #649fff;
-    border: 1.5px solid #66a0ff;
+    /* border: 1.5px solid #66a0ff; */
     background-color: rgb(50 154 255 / 16%);
     background-color: rgb(50 149 255 / 16%);
+    background-color: rgb(50 149 255 / 14%);
     border-radius: 15px;
 }
 .tag--container.task-details:hover {
@@ -24,6 +25,12 @@
     color: #286ac0;
     color: #2b73c7;
     color: #2a6fc1;
+    color: #2b7ddd;
+    color: #2a79d5;
+    color: #2977d2;
+    color: #2975cf;
+    color: #2871c8;
+    color: #2973cc;
     font-weight: 700;
     text-wrap-mode: nowrap;
     margin-top: 1.5px;
