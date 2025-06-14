@@ -10,14 +10,8 @@
     margin-bottom: 8.5px !important;
     margin-bottom: 7.5px !important;
     background-color: #fff !important;
-    /* background-color: #fefeff !important; */
-    border: 1px solid #909090 !important;
-    border: 1px solid #929295 !important;
-    border: 1px solid #87878a !important;
-    border: 1px solid #949497 !important;
-    border: 1px solid #919194 !important;
-    border: 1px solid #949497 !important;
     border: 1px solid #98989b !important;
+    border: 1px solid #9d9da0 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -26,10 +20,6 @@
 .task-title {
     font-size: 17.5px;
     font-weight: 600;
-    color: #050505;
-    color: #040404;
-    color: #0b0b0b;
-    color: #050505;
     color: #000;
 }
 
@@ -39,14 +29,9 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #2c2c2c;
-    color: #454545;
-    color: #444;
-    color: #404142;
-    color: #3c3d3e;
-    color: #393a3b;
     color: #343536;
     color: #2f3031;
+    color: #303030;
 }
 
 .description-not-provided--lbl {

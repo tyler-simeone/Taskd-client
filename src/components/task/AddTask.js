@@ -6,11 +6,13 @@ import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { TextArea } from "../../controls/inputs/TextArea";
 import { TagSelector } from "../tag/TagSelector";
+import { AddTaskTag } from "../tag/AddTaskTag";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const { userSession } = useContext(AppContext);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showTagSelector, setShowTagSelector] = useState(false);
     const [newTask, setNewTask] = useState({
         taskId: null,
         taskName: "",
@@ -31,6 +33,8 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
         }
         return true;
     }
+
+    const handleShowTagSelector = () => setShowTagSelector(true);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -72,7 +76,9 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
                 fromModal={true} 
             />
 
-            <TagSelector setTagId={setTagId} setFormError={setFormError} />
+            {/* {!showTagSelector && <AddTaskTag onClick={handleShowTagSelector} />} */}
+
+            {/* {showTagSelector && <TagSelector setTagId={setTagId} setFormError={setFormError} />} */}
 
             <PrimaryButton 
                 text={"Submit"} 
