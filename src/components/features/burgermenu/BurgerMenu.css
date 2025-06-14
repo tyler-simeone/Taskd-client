@@ -1,6 +1,4 @@
-  /* Burger Button */
   .burger-button {
-    /* position: fixed; */
     top: 16px;
     right: 16px;
     z-index: 1001;
@@ -11,7 +9,6 @@
     color: #6a6a6a;
   }
   
-  /* Overlay */
   .overlay {
     position: fixed;
     top: 0;
@@ -22,7 +19,6 @@
     z-index: 1000;
   }
   
-  /* Side Panel */
   .side-panel {
     position: fixed;
     top: 0;
@@ -41,7 +37,6 @@
     transform: translateX(0);
   }
   
-  /* Close Button */
   .close-button {
     position: absolute;
     top: 16px;
@@ -52,7 +47,6 @@
     cursor: pointer;
   }
   
-  /* Menu Content */
   .menu-content {
     padding: 80px 20px 20px;
   }
