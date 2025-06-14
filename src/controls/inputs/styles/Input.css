@@ -13,8 +13,11 @@
     color: #515151;
     color: #4b4b4b;
     color: #636363;
+    color: #656567;
     letter-spacing: 0.1px;
     width: max-content;
+    font-weight: 500;
+    font-size: 14.5px;
 }
 .pb-input-lbl:hover {
     cursor: text;

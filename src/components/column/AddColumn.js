@@ -58,7 +58,7 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
     return (
         <form>
             <Input name={"columnName"} label={"*Column Name"} handleChange={handleChange} fromModal={true} />
-            <Input name={"columnDescription"} label={"Column Description"} handleChange={handleChange} fromModal={true} />
+            <Input name={"columnDescription"} label={"Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={evt => handleSubmit(evt)} isSubmitting={isSubmitting} />
         </ form>
     );

@@ -13,7 +13,7 @@ export const TagsGrid = ({
 
     return (
         <div className="tags-grid--container">
-            <h4 className='available-tags--lbl'>Available Tags {tags && `(${tags.length})`}:</h4>
+            <h4 className="tags--lbl">Available Tags {tags && `(${tags.length})`}:</h4>
 
             {tags && tags.length > 0 && (
                 <div className="tags-grid">

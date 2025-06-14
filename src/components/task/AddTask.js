@@ -67,7 +67,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
 
             <TextArea 
                 name={"taskDescription"} 
-                label={"Task Description"} 
+                label={"Description"} 
                 handleChange={handleChange} 
                 fromModal={true} 
             />

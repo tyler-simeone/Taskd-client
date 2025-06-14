@@ -151,7 +151,7 @@ export const EditTask = ({
 
                     <TextArea 
                         name={"taskDescription"} 
-                        label={"Task Description"} 
+                        label={"Description"} 
                         handleChange={handleChange} 
                         value={editTask.taskDescription}
                         fromModal={true} 
