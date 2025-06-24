@@ -12,6 +12,9 @@
     background-color: #fff !important;
     border: 1px solid #98989b !important;
     border: 1px solid #9d9da0 !important;
+    border: 1px solid #b4b4b7 !important;
+    border: 1px solid #b0b0b4 !important;
+    border: 1px solid #a9aaad !important;
 }
 .task--container:hover { 
     cursor: pointer !important;

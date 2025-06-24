@@ -110,7 +110,7 @@ export const ConfirmAccount = ({
             ) : null}
             <form className="auth--form">
                 <Input id={"confirmationCode"} label={"Confirmation Code"} name={"confirmationCode"} handleChange={handleChange} />
-                <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45, borderRadius: 8}} />
+                <PrimaryButton text={"Submit"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45}} />
                 <SecondaryButton text={"Resend confirmation code"} handleClick={handleResendCode} isSubmitting={isResendCodeSubmitting} style={{marginTop: 8}} />
             </form>
         </>

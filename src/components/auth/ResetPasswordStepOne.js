@@ -8,7 +8,7 @@ export const ResetPasswordStepOne = ({ handleChange, handleSubmit, isSubmitting 
         <>
             <form className="auth--form">
                 <Input id={"email"} label={"Email"} name={"email"} handleChange={handleChange} />
-                <PrimaryButton text={"Reset Password"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45, borderRadius: 8}} />
+                <PrimaryButton text={"Reset Password"} handleSubmit={handleSubmit} isSubmitting={isSubmitting} style={{marginTop: 12, height: 45}} />
             </form>
         </>
     );

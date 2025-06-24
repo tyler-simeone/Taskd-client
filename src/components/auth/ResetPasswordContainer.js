@@ -83,7 +83,13 @@ export const ResetPasswordContainer = ({ setFormError, setFormSuccess, setAndSto
             {!passwordResetUserConfirmed ? (
                 <ResetPasswordStepOne handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
             ) : (
-                <ResetPasswordStepTwo handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />   
+                <ResetPasswordStepTwo 
+                    handleChange={handleChange} 
+                    handleSubmit={handleSubmit} 
+                    setFormSuccess={setFormSuccess}
+                    setFormError={setFormError}
+                    isSubmitting={isSubmitting} 
+                />   
             )}
         </>
     );
