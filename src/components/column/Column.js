@@ -8,7 +8,7 @@ import { columnsClient } from "../../api/columnsClient";
 import { AddIcon } from "../../controls/icons/AddIcon";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppedTaskId, setDroppedColumnId, isLast, isOnly }) => {
+export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppedTaskId, setDroppedColumnId, setDroppedTaskId, isLast, isOnly }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
@@ -78,19 +78,20 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
             var resp = await tasksClient.getTasks(boardId, column.columnId);
             // Kind of a hacky solution *for now* to get around this race condition
             // Refetch the column's tasks to get the latest task
-            if (column.columnId === droppedColumnId) {
-                if (resp.tasks.filter(t => t.taskId === droppedTaskId).length === 0) {
-                    resp = await tasksClient.getTasks(boardId, column.columnId);
-                }
-            } else {
-                if (resp.tasks.filter(t => t.taskId === droppedTaskId).length > 0) {
-                    resp = await tasksClient.getTasks(boardId, column.columnId);
-                }
-            }
+            // if (column.columnId === droppedColumnId) {
+            //     if (resp.tasks.filter(t => t.taskId === droppedTaskId).length === 0) {
+            //         resp = await tasksClient.getTasks(boardId, column.columnId);
+            //     }
+            // } else {
+            //     if (resp.tasks.filter(t => t.taskId === droppedTaskId).length > 0) {
+            //         resp = await tasksClient.getTasks(boardId, column.columnId);
+            //     }
+            // }
 
-            console.log("### column.columnId: ", column.columnId);
-            console.log("### resp.tasks: ", resp.tasks);
+            // console.log("### column.columnId: ", column.columnId);
+            // console.log("### resp.tasks: ", resp.tasks);
             setTasks(resp.tasks);
+            setDroppedTaskId();
         } catch (err) {
             handleError(err, setError);
         } finally {
@@ -105,7 +106,8 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
         
         // if (!tasks || column.columnId === droppedColumnId || taskTagsHaveChanged) {
-        if (!tasks || rerender || taskTagsHaveChanged) {
+        if (!tasks || rerender || droppedTaskId || taskTagsHaveChanged) {
+            // console.log("hiya")
             // console.log("droppedTaskId: ", droppedTaskId);
             // console.log("droppedColumnId: ", droppedColumnId);
             loadTasks();
@@ -116,7 +118,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
         // console.log("didMove: ", didMove);
         // console.log("rerender: ", rerender, column.columnName);
-    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, taskTagsHaveChanged]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, droppedTaskId, taskTagsHaveChanged]);
 
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>

@@ -12,6 +12,8 @@
     /* border: 1px dashed #c8c8c8; */
     border: 1.5px dashed #e3e3e3;
     border: 1.5px dashed #dadada;
+    border: 1.5px dashed #e7e7e7;
+    border: 1.5px dashed #e1e1e1;
 }
 .add-column-template--container:hover {
     cursor: pointer;

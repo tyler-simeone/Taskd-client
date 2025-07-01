@@ -12,6 +12,7 @@ export const Navigation = () => {
     isAuthenticated,
     userSession,
     boardId,
+    boardName,
     setError,
     setSelectedBoardId,
     handleRerender,
@@ -73,7 +74,7 @@ export const Navigation = () => {
   return (
     <div className="nav--container">
       <div className="nav">
-        {isAuthenticated() && <TaskdLogo isAuthenticated={isAuthenticated} />}
+        {isAuthenticated() && <TaskdLogo isAuthenticated={isAuthenticated} boardName={boardName} />}
 
         {isAuthenticated() && (
           <div style={{display: "flex", marginTop: 5.5}}>

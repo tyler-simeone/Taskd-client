@@ -25,6 +25,7 @@ export const Board = ({ didMove, setDidMove }) => {
       setTaskTags,
       boardIdHasChanged,
       setBoardIdHasChanged,
+      setBoardName,
       taskTagsHaveChanged,
       setTaskTagsHaveChanged
     } = useContext(AppContext); 
@@ -97,6 +98,7 @@ export const Board = ({ didMove, setDidMove }) => {
           var board = await boardsClient.getBoard(boardId, userSession.userId);
           if (board && board.columns) {
             setBoard(board);
+            setBoardName(board.boardName);
             setColumns(board.columns);
             if (columnAdded)
               handleColumnAdded();
@@ -145,13 +147,13 @@ export const Board = ({ didMove, setDidMove }) => {
 
     return (
         <div className="board--container">
-          <div className="board-name--container">
+          {/* <div className="board-name--container">
             <div style={{ display: "flex" }}>
               <h2 className="board-name">
                 {board && board.boardName}
               </h2>
             </div>
-          </div>
+          </div> */}
 
           <div className="board">
               {columns && columns.map(column => (
@@ -163,6 +165,7 @@ export const Board = ({ didMove, setDidMove }) => {
                     droppedColumnId={droppedColumnId}
                     droppedTaskId={droppedTaskId}
                     setDroppedColumnId={setDroppedColumnId}
+                    setDroppedTaskId={setDroppedTaskId}
                     isLast={(columns.length > 1 && column.columnId === columns[columns.length-1].columnId)}
                     isOnly={columns.length === 1}
                   />

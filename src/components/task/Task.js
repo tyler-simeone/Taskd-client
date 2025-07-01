@@ -44,15 +44,15 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         <div
             className="task--container"
             ref={drag}
-            style={{
-                opacity: isDragging ? 0.5 : 1,
-                cursor: 'move',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                padding: '10px',
-                marginBottom: '10px',
-                backgroundColor: 'white',
-            }}
+            // style={{
+            //     // opacity: isDragging ? 0.5 : 1,
+            //     cursor: 'move',
+            //     // border: '1px solid #ccc',
+            //     // borderRadius: '5px',
+            //     // padding: '10px',
+            //     // marginBottom: '10px',
+            //     // backgroundColor: 'white',
+            // }}
             onClick={() => openViewTaskModal(task.taskId, task.taskName)}
         >
             <h4 className="task-title"><span style={{fontSize: 17.5}}>#{task.taskId} -</span> {task.taskName}</h4>
