@@ -15,6 +15,8 @@
     border: 1px solid #b4b4b7 !important;
     border: 1px solid #b0b0b4 !important;
     border: 1px solid #a9aaad !important;
+    border: 1px solid #b6b8bb !important;
+    border: 1px solid #b2b4b7 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -35,6 +37,8 @@
     color: #343536;
     color: #2f3031;
     color: #303030;
+    color: #484b4e;
+    color: #515558;
 }
 
 .description-not-provided--lbl {

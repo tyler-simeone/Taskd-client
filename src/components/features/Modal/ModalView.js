@@ -78,8 +78,7 @@ export const ModalView = () => {
                 setModalView(<AddBoard 
                                 setFormError={setFormError} 
                                 setError={setError} 
-                                closeSideModal={closeSideModal} 
-                                handleRerender={handleRerender} 
+                                closeSideModal={closeSideModal}
                              />);
                 break;
             case Constants.MODAL_TYPE.EDIT_COLUMN:

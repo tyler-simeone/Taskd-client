@@ -8,7 +8,8 @@ export const Select = ({
     options,
     handleSelectChange,
     value,
-    disabled
+    disabled,
+    placeholder
 }) => {
     const handleSelect = () => {      
         var selectMenu = document.getElementById(`pb-select-${index}`);
@@ -32,7 +33,7 @@ export const Select = ({
                     className={`pb-select ${disabled ? 'disabled' : ''}`}
                     disabled={disabled}
                 >
-                    {/* <option value="" disabled selected hidden></option> */}
+                    {options && options.length === 0 && <option value="" disabled selected hidden>{placeholder}</option>}
 
                     {options && options.map(option => {
                         return (

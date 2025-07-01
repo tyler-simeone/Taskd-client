@@ -5,7 +5,7 @@ import { TagsList } from "../tag/TagsList";
 import "./styles/Task.css"
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
-    const { openViewTaskModal, taskTagsHaveChanged, } = useContext(AppContext);
+    const { openViewTaskModal, taskTagsHaveChanged } = useContext(AppContext);
     
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',

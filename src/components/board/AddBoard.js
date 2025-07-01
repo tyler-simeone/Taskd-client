@@ -5,8 +5,8 @@ import { Input } from "../../controls/inputs/Input";
 import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 import { boardsClient } from "../../api/boardClient";
 
-export const AddBoard = ({ setFormError, setError, closeSideModal, handleRerender }) => {
-    const { userSession, boardId } = useContext(AppContext);
+export const AddBoard = ({ setFormError, setError, closeSideModal }) => {
+    const { userSession, handleRerender } = useContext(AppContext);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newBoard, setNewBoard] = useState({

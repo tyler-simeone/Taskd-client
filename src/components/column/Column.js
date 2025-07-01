@@ -8,7 +8,7 @@ import { columnsClient } from "../../api/columnsClient";
 import { AddIcon } from "../../controls/icons/AddIcon";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
+export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppedTaskId, setDroppedColumnId, isLast, isOnly }) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
@@ -76,10 +76,25 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
 
         try {
             var resp = await tasksClient.getTasks(boardId, column.columnId);
+            // Kind of a hacky solution *for now* to get around this race condition
+            // Refetch the column's tasks to get the latest task
+            if (column.columnId === droppedColumnId) {
+                if (resp.tasks.filter(t => t.taskId === droppedTaskId).length === 0) {
+                    resp = await tasksClient.getTasks(boardId, column.columnId);
+                }
+            } else {
+                if (resp.tasks.filter(t => t.taskId === droppedTaskId).length > 0) {
+                    resp = await tasksClient.getTasks(boardId, column.columnId);
+                }
+            }
+
+            console.log("### column.columnId: ", column.columnId);
+            console.log("### resp.tasks: ", resp.tasks);
             setTasks(resp.tasks);
         } catch (err) {
             handleError(err, setError);
         } finally {
+            setDroppedColumnId();
             setIsLoading(false);
         }
     }
@@ -87,15 +102,19 @@ export const Column = ({ column, useCustomDrop, didMove, isLast, isOnly }) => {
     useEffect(() => {
         // console.log("useEffect tasks: ", tasks);
         // console.log("isOver: ", isOver);
+
         
-        if (!tasks || rerender || taskTagsHaveChanged)
+        // if (!tasks || column.columnId === droppedColumnId || taskTagsHaveChanged) {
+        if (!tasks || rerender || taskTagsHaveChanged) {
+            // console.log("droppedTaskId: ", droppedTaskId);
+            // console.log("droppedColumnId: ", droppedColumnId);
             loadTasks();
+        }
 
         // console.log("isHover, isOver, canDrop: ", isHover, isOver, canDrop);
         // console.log("didDrop, dropResult: ", didDrop, dropResult);
 
         // console.log("didMove: ", didMove);
-        console.log("rerender: ", rerender);
         // console.log("rerender: ", rerender, column.columnName);
     }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, taskTagsHaveChanged]);
 

@@ -32,6 +32,8 @@ export const Board = ({ didMove, setDidMove }) => {
     const navigate = useNavigate();
 
     const [columns, setColumns] = useState();
+    const [droppedColumnId, setDroppedColumnId] = useState();
+    const [droppedTaskId, setDroppedTaskId] = useState();
     // const [sourceColumnId, setSourceColumnId] = useState();
     const [board, setBoard] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +51,12 @@ export const Board = ({ didMove, setDidMove }) => {
         columnId: destinationColumn.columnId
       };
       tasksClient.dropTask(payload)
-        .then(() => handleRerender())
+        .then(() => {
+          // console.log("task dropped!");
+          setDroppedColumnId(destinationColumnId);
+          setDroppedTaskId(newTask.taskId);
+          handleRerender();
+        })
         .catch(err => handleError(err, setError));
     };
 
@@ -120,13 +127,15 @@ export const Board = ({ didMove, setDidMove }) => {
     }
 
   useEffect(() => {
+    // console.log("rerender: ", rerender);
+
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
     if (boardId && (!board || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
     }
-  }, [boardIdHasChanged, rerender, board, boardId, columnAdded, taskTags]);
+  }, [boardIdHasChanged, rerender, board, boardId, droppedColumnId, columnAdded, taskTags]);
 
   useEffect(() => {
     if (boardId && board && (!taskTags || taskTagsHaveChanged || boardIdHasChanged)) {
@@ -150,7 +159,10 @@ export const Board = ({ didMove, setDidMove }) => {
                     key={column.columnId} 
                     column={column} 
                     useCustomDrop={useCustomDrop} 
-                    didMove={didMove} 
+                    didMove={didMove}
+                    droppedColumnId={droppedColumnId}
+                    droppedTaskId={droppedTaskId}
+                    setDroppedColumnId={setDroppedColumnId}
                     isLast={(columns.length > 1 && column.columnId === columns[columns.length-1].columnId)}
                     isOnly={columns.length === 1}
                   />
