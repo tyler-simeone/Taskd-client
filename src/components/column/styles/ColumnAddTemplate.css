@@ -1,11 +1,13 @@
 .add-column-template--container {
     height: 50px;
     height: 48px;
+    height: 44px;
     min-width: 344px;
     max-width: 344px;
     border-radius: 8px;
     border-radius: 7px;
     border-radius: 5px;
+    border-radius: 6px;
     padding: 20px;
     padding-top: 18px;
     margin-left: 0.3%;
