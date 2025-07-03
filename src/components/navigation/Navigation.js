@@ -74,7 +74,11 @@ export const Navigation = () => {
   return (
     <div className="nav--container">
       <div className="nav">
-        {isAuthenticated() && <TaskdLogo isAuthenticated={isAuthenticated} boardName={boardName} />}
+        {isAuthenticated() && 
+          <TaskdLogo 
+            isAuthenticated={isAuthenticated} 
+            boardName={boardName} 
+          />}
 
         {isAuthenticated() && (
           <div style={{display: "flex", marginTop: 5.5}}>
