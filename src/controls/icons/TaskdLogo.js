@@ -70,8 +70,8 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                             {!isEdit ? (
                                 <p onClick={handleEdit}>{boardName}</p>
                             ) : (
-                                // <form onSubmit={handleSubmit}>
-                                <form onSubmit={handleSubmit} onMouseOut={handleEdit}>
+                                <form onSubmit={handleSubmit}>
+                                {/* <form onSubmit={handleSubmit} onMouseOut={handleEdit}> */}
                                     <Input 
                                         id={"board-name"}
                                         value={updatedBoardName}
