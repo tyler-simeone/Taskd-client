@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { XIcon } from "../../../controls/icons/XIcon";
 import { Constants } from "../../../util/Constants";
@@ -14,6 +14,23 @@ export const SideModal = ({ children }) => {
         formError,
         closeSideModal
      } = useContext(AppContext);
+
+
+    useEffect(() => {
+        if (!isSideModalOpen) return;
+
+        function handleKeyDown(event) {
+            if (event.key === "Escape") {
+                closeSideModal();
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyDown);
+        
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isSideModalOpen, closeSideModal]);
 
     return (
         <div className={`modal-content side ${isSideModalOpen ? 'active' : ''}`}>
