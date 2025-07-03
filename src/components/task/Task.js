@@ -55,7 +55,7 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
             // }}
             onClick={() => openViewTaskModal(task.taskId, task.taskName)}
         >
-            <h4 className="task-title"><span style={{fontSize: 17.5}}>#{task.taskId} -</span> {task.taskName}</h4>
+            <h4 className="task-title"><span style={{fontSize: 17}}>#{task.taskId} -</span> {task.taskName}</h4>
 
             {task.taskDescription && task.taskDescription.trim().length > 0 ? (
               <p className="task-description">{task.taskDescription}</p>

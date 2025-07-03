@@ -1,14 +1,9 @@
-.more-icon--container {
-    height: 29px;
-}
-.more-icon--container:hover {
-    cursor: pointer;
-}
 .more-icon {
-    /* color: gray; */
     color: #7c7b7b;
-    font-size: 27.5px !important;
     font-size: 29.5px !important;
+}
+.more-icon:hover {
+    cursor: pointer;
 }
 
 .more-options--container {
@@ -33,16 +28,14 @@
 
 .more-options-li {
     list-style-type: none;
-    width: 95%;
-    padding: 8px 4px;
-    border-radius: 5px;
+    /* width: 95%; */
+    padding: 8px 16px;
+    border-radius: 4.5px;
     margin: 0 auto;
     font-size: 15.5px;
-    color: #585d66;
-    color: #4b4f56;
     color: #575a5f;
 }
 .more-options-li:hover {
     cursor: pointer;
-    background-color: #edeff2;
+    background-color: #f3f4f4;
 }
