@@ -59,7 +59,7 @@ export const boardsClient = {
         return responseHandler(parsedResp);
     },
     updateBoardName: async (payload) => {
-        const resp = await fetch(`${boardsClient.baseURL}/name`, {
+        const resp = await fetch(`${boardsClient.baseURL}/boardName`, {
             method: "PUT",
             body: JSON.stringify(payload),
             headers: boardsClient.headers,
