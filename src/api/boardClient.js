@@ -58,6 +58,22 @@ export const boardsClient = {
         
         return responseHandler(parsedResp);
     },
+    updateBoardName: async (payload) => {
+        const resp = await fetch(`${boardsClient.baseURL}/name`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: boardsClient.headers,
+        });
+        
+        let parsedResp = resp;
+        try {
+            parsedResp = await resp.json();
+        } catch (err) {
+            // swallow error here. just means no response body was returned.
+        }
+        
+        return responseHandler(parsedResp);
+    },
     updateBoard: async (payload) => {
         const resp = await fetch(`${boardsClient.baseURL}`, {
             method: "PUT",
