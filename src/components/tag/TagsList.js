@@ -22,7 +22,7 @@ export const TagsList = ({
             <div className="edit-task-tags-list--container">
                 <ul 
                     className="tags-list" 
-                    style={ isTaskBoardView ? {padding: 0, paddingTop: 5} : isTaskDetailsView ? {padding: 0, paddingTop: 12} : isTagsGrid && {padding: 0}}
+                    style={ isTaskBoardView ? {padding: 0, paddingTop: 4} : isTaskDetailsView ? {padding: 0, paddingTop: 12} : isTagsGrid && {padding: 0}}
                 >
                     {tags && tags.map(tag => {
                         return (

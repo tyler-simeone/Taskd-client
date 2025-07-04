@@ -66,9 +66,9 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                     {/* Editable Board Name */}
                     {boardName && (
                         <div style={{display: "flex", marginTop: 8, marginLeft: 2, fontSize: 17.5, color: "#949494"}}>
-                            <p style={{margin: "0px 8px"}}>/</p>
+                            <p style={{margin: "0px 8px", marginBottom: 0}}>/</p>
                             {!isEdit ? (
-                                <p onClick={handleEdit}>{boardName}</p>
+                                <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>
                             ) : (
                                 <form onSubmit={handleSubmit}>
                                 {/* <form onSubmit={handleSubmit} onMouseOut={handleEdit}> */}
@@ -76,7 +76,7 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                                         id={"board-name"}
                                         value={updatedBoardName}
                                         handleChange={handleChange}
-                                        style={{height: 34, marginTop: "-3.5px"}}
+                                        style={{height: 34, marginTop: "-3.5px", marginBottom: 0}}
                                     />
                                 </form>
                             )}

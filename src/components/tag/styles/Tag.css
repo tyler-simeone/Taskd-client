@@ -2,15 +2,9 @@
     display: flex;
     margin-right: 2.5%;
     padding: 0px 5px;
-    border: 1.5px solid #2778ff;
-    border: 1.5px solid #5092ff;
-    border: 1.5px solid #649fff;
     border: 1.5px solid #7caeff;
-    /* border: 1.5px solid #66a0ff; */
-    background-color: rgb(50 154 255 / 16%);
-    background-color: rgb(50 149 255 / 16%);
-    background-color: rgb(50 149 255 / 14%);
-    background-color: rgb(59 154 255 / 14%);
+    border: 1.5px solid #5dabff;
+    /* border: 1.5px solid #87bdff; */
     background-color: rgb(59 154 255 / 13%);
     border-radius: 15px;
 }
