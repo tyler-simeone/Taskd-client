@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { AppContext } from '../../AppContextProvider';
 import { TagsList } from './TagsList';
+import { AddTaskTag } from './AddTaskTag';
 import "./styles/TagsGrid.css";
 
 export const TagsGrid = ({ 
@@ -7,13 +9,17 @@ export const TagsGrid = ({
     handleAddTagToTask, 
     isTaskEditView 
 }) => {
+    const { openAddTagModal } = useContext(AppContext);
     useEffect(() => {
 
     }, [tags]);
 
     return (
         <div className="tags-grid--container">
-            <h4 className="tags--lbl">Available Tags {tags && `(${tags.length})`}:</h4>
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+                <h4 className="tags--lbl">Available Tags {tags && `(${tags.length})`}:</h4>
+                <AddTaskTag isAddNewTag={true} onClick={openAddTagModal} />
+            </div>
 
             {tags && tags.length > 0 && (
                 <div className="tags-grid">

@@ -7,9 +7,15 @@
 
 .add-icon.task-tag {
     width: 22px;
-    height: 20px;
+    height: 22px;
     margin-left: 1%;
     color: #2871c8;
+}
+
+.add-icon.task-tag.new-tag {
+    width: 18.5px;
+    margin-top: -3px;
+    margin-left: 4px;
 }
 
 .add-icon:hover {
