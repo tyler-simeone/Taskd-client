@@ -10,9 +10,6 @@ export const TagsGrid = ({
     isTaskEditView 
 }) => {
     const { openAddTagModal } = useContext(AppContext);
-    useEffect(() => {
-
-    }, [tags]);
 
     return (
         <div className="tags-grid--container">

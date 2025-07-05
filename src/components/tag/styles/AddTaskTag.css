@@ -1,16 +1,19 @@
 .add-task-tag--container {
     display: flex;
-    margin-bottom: 5px;
-    margin-bottom: 6px;
-    margin-bottom: 0px;
+    margin-bottom: 8px;
     margin-top: 2px;
+    width: 76px;
+}
+.add-task-tag--container.new-tag {
+    margin-bottom: 0px;
+    width: 109px;
 }
 .add-task-tag--container:hover {
     cursor: pointer;
 }
 
 .add-task-tag--lbl {
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 600;
     color: #2871c8;
     margin-top: 0;
