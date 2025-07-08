@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { tagsClient } from "../../api/tagsClient";
@@ -6,6 +7,7 @@ import { handleError } from "../../util/handleError";
 import { FlatButton } from "../../controls/buttons/FlatButton";
 import { dateHelper } from "../../util/helpers/dateHelper";
 import { TagsList } from "../tag/TagsList";
+import { XIcon } from "../../controls/icons/XIcon";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
@@ -18,10 +20,17 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
             closeSideModal
         } = useContext(AppContext);
 
+    const navigate = useNavigate();
+
     const [task, setTask] = useState();
     const [tagsOnTask, setTagsOnTask] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [deleteModalArgs, setDeleteModalArgs] = useState();
+
+    const handleCloseSideModal = () => {
+        closeSideModal();
+        navigate('/board');
+    }
 
     const loadTask = () => {
         setError();
@@ -78,6 +87,13 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
     return (
         task && (
             <>
+                <div className="modal-header--container">
+                    <XIcon onClick={handleCloseSideModal} />
+
+                    <h2 className="modal-header">
+                        #{task.taskId} - {task.taskName}
+                    </h2>
+                </div>
                 <div className="task-details">
                     <div onClick={() => openEditTaskModal(taskId)}>
                         {task.taskDescription && task.taskDescription.trim().length > 0 ? (

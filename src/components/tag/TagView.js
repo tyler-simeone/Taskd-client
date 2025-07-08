@@ -11,7 +11,7 @@ export const TagView = ({
 
     return (
         <div 
-            className={`tag--container ${isTaskEditView ? "task-details" : ""}`}
+            className={`tag--container ${isTaskEditView ? "task-tag-details" : ""}`}
             onClick={() => handleAddTagToTask && handleAddTagToTask(tagModel.tagId)}
         >
             <p className="tag-name">{tagModel.tagName}</p>

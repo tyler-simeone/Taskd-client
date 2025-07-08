@@ -17,7 +17,8 @@ export const TagsList = ({
 }) => {
     return (
         <div className={`tags-list--container ${isTaskEditView && !isTagsGrid && 'edit-task'}`}>
-            {isTaskEditView && !isTagsGrid && <h4 className="tags--lbl">Tags ({tags.length}):</h4>}
+            {isTaskEditView && !isTagsGrid && 
+                <h4 className="tags--lbl">Tags ({tags.length}):</h4>}
 
             <div className="edit-task-tags-list--container">
                 <ul 

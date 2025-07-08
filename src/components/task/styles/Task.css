@@ -2,23 +2,13 @@
     min-height: 50px;
     padding-bottom: 10.5px !important;
     padding-right: 15px !important;
-    padding-top: 7px !important;
     padding-top: 6px !important;
-    padding-left: 14px !important;
     padding-left: 13px !important;
-    border-radius: 3.5px !important;
-    margin-bottom: 8.5px !important;
+    /* border-radius: 3.5px !important; */
+    border-radius: 4px !important;
     margin-bottom: 7.5px !important;
     background-color: #fff !important;
-    border: 1px solid #98989b !important;
-    border: 1px solid #9d9da0 !important;
-    border: 1px solid #b4b4b7 !important;
-    border: 1px solid #b0b0b4 !important;
-    border: 1px solid #a9aaad !important;
-    border: 1px solid #b6b8bb !important;
-    border: 1px solid #b2b4b7 !important;
     border: 1px solid #b7b9bc !important;
-    /* border: 1px solid #bbbec1 !important; */
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -36,12 +26,7 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #343536;
-    color: #2f3031;
-    color: #303030;
-    color: #484b4e;
     color: #444749;
-    /* color: #515558; */
 }
 
 .description-not-provided--lbl {

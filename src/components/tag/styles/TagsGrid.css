@@ -4,9 +4,10 @@
 }
 
 .tags--lbl {
-    color: #959595;
     margin-bottom: 5px;
-
+    margin-bottom: 5.5px;
+    margin-left: 0px;
+    margin-right: 2%;
     color: #656567;
     font-weight: 500;
     font-size: 13.5px;
@@ -19,20 +20,26 @@
 
 .tags-grid {
     overflow: scroll;    
-    /* background-color: #f1f1f1;
-    border-radius: 8px; */
-
-    /* background-color: transparent;
-    border: 2px solid #e5e5e5;
-    border-radius: 6px; */
-    /* height: 42px; */
+    display: flex;
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.tags-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
 }
 
 .tags-list {
     margin-top: 0px;
     margin-bottom: 0px;
-    display: flex;
-    width: 100%;
-    overflow: scroll;
     padding-left: 0px;
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.tags-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
 }
