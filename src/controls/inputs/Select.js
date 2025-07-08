@@ -33,7 +33,7 @@ export const Select = ({
                     className={`pb-select ${disabled ? 'disabled' : ''}`}
                     disabled={disabled}
                 >
-                    {options && options.length === 0 && <option value="" disabled selected hidden>{placeholder}</option>}
+                    <option value="" disabled selected hidden>{placeholder}</option>
 
                     {options && options.map(option => {
                         return (

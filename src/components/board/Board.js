@@ -9,6 +9,7 @@ import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
+import { BoardFilterPanel } from "../features/boardfilterpanel/BoardFilterPanel";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
@@ -167,6 +168,8 @@ export const Board = ({ didMove, setDidMove }) => {
               </h2>
             </div>
           </div> */}
+
+          <BoardFilterPanel />
 
           <div className="board">
               {columns && columns.map(column => (

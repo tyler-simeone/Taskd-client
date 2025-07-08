@@ -1,0 +1,8 @@
+.filter-icon {
+    color: #8f8f8f;
+    width: 21px;
+    margin-left: 3%;
+}
+.filter-icon:hover {
+    cursor: pointer;
+}
