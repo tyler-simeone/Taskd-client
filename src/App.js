@@ -34,8 +34,10 @@ function App() {
             <div className="App">
                 {!error && !success && 
                     <Modal>
-                        {isSideModalOpen && <SideModal><ModalView /></SideModal>}
-                        {isCenterModalOpen && <CenterModal><CenterModalView /></CenterModal>}
+                        {isSideModalOpen && 
+                            <SideModal><ModalView /></SideModal>}
+                        {isCenterModalOpen && 
+                            <CenterModal><CenterModalView /></CenterModal>}
                     </Modal>
                 }
 

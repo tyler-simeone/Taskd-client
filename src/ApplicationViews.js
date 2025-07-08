@@ -19,7 +19,11 @@ const ApplicationViews = () => {
             <Route path="/oauth/register" element={<AuthContainer isSignup={true} />} />
             <Route path="/oauth/confirm" element={<AuthContainer isConfirmAccount={true} />} />
             <Route path="/oauth/resetPassword" element={<AuthContainer isResetPassword={true} />} />
-            <Route path="/board" element={<DndProvider backend={HTML5Backend}><Board didMove={didMove} setDidMove={setDidMove} /></DndProvider>} />
+            <Route path="/board" element={
+                <DndProvider backend={HTML5Backend}>
+                    <Board didMove={didMove} setDidMove={setDidMove} />
+                </DndProvider>
+            } />
         </ Routes>
     )
 }
