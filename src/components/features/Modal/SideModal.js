@@ -48,7 +48,7 @@ export const SideModal = ({ children }) => {
                     <XIcon onClick={handleCloseSideModal} />
                     
                     <h2 className="modal-header">
-                        {modalType === Constants.MODAL_TYPE.CONFIRM_DELETE ? `#${taskId} -` : null} {modalHeader}
+                        {modalHeader}
                     </h2>
                 </div>
             )}
