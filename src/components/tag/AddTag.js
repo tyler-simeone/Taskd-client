@@ -77,7 +77,6 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
             }
             
             setIsSubmitting(false);
-            console.log("isAddTagFromEditTask: ", isAddTagFromEditTask);
             if (isAddTagFromEditTask) {
                 handleRedirectToTaskView();
             } else {
