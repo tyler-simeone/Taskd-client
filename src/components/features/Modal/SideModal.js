@@ -42,7 +42,8 @@ export const SideModal = ({ children }) => {
 
     return (
         <div className={`modal-content side ${isSideModalOpen ? 'active' : ''}`}>
-            {modalType !== Constants.MODAL_TYPE.VIEW_TASK && (
+            {modalType !== Constants.MODAL_TYPE.VIEW_TASK &&
+             modalType !== Constants.MODAL_TYPE.CONFIRM_DELETE && (
                 <div className="modal-header--container">
                     <XIcon onClick={handleCloseSideModal} />
                     
