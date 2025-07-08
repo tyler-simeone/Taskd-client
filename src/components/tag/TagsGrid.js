@@ -9,13 +9,18 @@ export const TagsGrid = ({
     handleAddTagToTask, 
     isTaskEditView 
 }) => {
-    const { openAddTagModal } = useContext(AppContext);
+    const { openAddTagModal, setIsAddTagFromEditTask } = useContext(AppContext);
+
+    const handleAddNewTag = () => {
+        setIsAddTagFromEditTask(true);
+        openAddTagModal();
+    }
 
     return (
         <div className="tags-grid--container">
             <div style={{display: "flex", justifyContent: "space-between"}}>
                 <h4 className="tags--lbl">Available Tags {tags && `(${tags.length})`}:</h4>
-                <AddTaskTag isAddNewTag={true} onClick={openAddTagModal} />
+                <AddTaskTag isAddNewTag={true} onClick={handleAddNewTag} />
             </div>
 
             {tags && tags.length > 0 && (

@@ -38,6 +38,7 @@ export const EditTask = ({
     const loadTask = () => {
         setError();
         setIsLoading(true);
+        
         tasksClient.getTask(taskId, userSession.userId)
             .then(resp => {
                 setEditTask(resp);
@@ -47,43 +48,6 @@ export const EditTask = ({
                 setIsLoading(false);
                 handleError(err, setError);
             });
-    }
-
-    const handleChange = (evt) => {
-        setFormError();
-        const stateToChange = {...editTask};
-        stateToChange[evt.target.name] = evt.target.value;
-        setEditTask(stateToChange);
-    }
-
-    const formIsValid = () => {
-        if (editTask.taskName.trim() === "") {
-            setFormError("Task name is required.");
-            return false;
-        }
-        return true;
-    }
-
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
-
-        if (formIsValid()) {
-            setIsSubmitting(true);
-    
-            const editTaskRequestModel = {
-                userId: userSession.userId,
-                taskId: editTask.taskId,
-                columnId: editTask.columnId,
-                taskName: editTask.taskName,
-                taskDescription: editTask.taskDescription,
-            };
-            tasksClient.updateTask(editTaskRequestModel)
-                .then(() => handleRerender())
-                .catch(err => handleError(err, setError));
-    
-            setIsSubmitting(false);
-            openViewTaskModal(editTask.taskId, editTask.taskName);
-        }
     }
 
     const loadTaskTags = async () => {
@@ -120,6 +84,44 @@ export const EditTask = ({
     const handleShowTagSelector = () => {
         setShowTagSelector(true);
     }
+
+    const handleChange = (evt) => {
+        setFormError();
+        const stateToChange = {...editTask};
+        stateToChange[evt.target.name] = evt.target.value;
+        setEditTask(stateToChange);
+    }
+
+    const formIsValid = () => {
+        if (editTask.taskName.trim() === "") {
+            setFormError("Task name is required.");
+            return false;
+        }
+        return true;
+    }
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        console.log("submitting!");
+
+        if (formIsValid()) {
+            setIsSubmitting(true);
+    
+            const editTaskRequestModel = {
+                userId: userSession.userId,
+                taskId: editTask.taskId,
+                columnId: editTask.columnId,
+                taskName: editTask.taskName,
+                taskDescription: editTask.taskDescription,
+            };
+            tasksClient.updateTask(editTaskRequestModel)
+                .then(() => handleRerender())
+                .catch(err => handleError(err, setError));
+    
+            setIsSubmitting(false);
+            openViewTaskModal(editTask.taskId, editTask.taskName);
+        }
+    }
     
     useEffect(() => {
         if (!editTask)
@@ -130,7 +132,7 @@ export const EditTask = ({
         if ((taskTags && !tagsOnTask) || tagsHaveChanged) {
             loadTaskTags();
         }
-    }, [tagsOnTask, tagsHaveChanged])
+    }, [editTask, tagsOnTask, tagsHaveChanged])
 
     return (
         editTask && (
@@ -167,7 +169,8 @@ export const EditTask = ({
                         />
                     }
                     
-                    {!showTagSelector && tagsOnTask && tagsOnTask.length === 0 && <AddTaskTag onClick={handleShowTagSelector} />}
+                    {!showTagSelector && tagsOnTask && tagsOnTask.length === 0 
+                        && <AddTaskTag onClick={handleShowTagSelector} />}
 
                     {showTagSelector && (
                         <TagSelector 

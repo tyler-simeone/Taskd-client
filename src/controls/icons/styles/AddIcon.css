@@ -1,13 +1,13 @@
 .add-icon {
     color: #7c7b7b;
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 24px;
     padding: 0px !important;
 }
 
 .add-icon.task-tag {
     width: 22px;
-    height: 19px;
+    height: 22px;
     margin-left: 1%;
     margin-top: -1px;
     color: #2871c8;
@@ -16,6 +16,7 @@
 .add-icon.task-tag.new-tag {
     width: 18.5px;
     height: 22px;
+    height: 24px;
     margin-top: -3px;
     margin-left: 4px;
 }

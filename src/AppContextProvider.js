@@ -22,6 +22,8 @@ export const AppContextProvider = ({ children }) => {
     const [taskTags, setTaskTags] = useState();
     const [taskTagsHaveChanged, setTaskTagsHaveChanged] = useState(false);
     const [taskTagsChangedTaskId, setTaskTagsChangedTaskId] = useState();
+    
+    const [isAddTagFromEditTask, setIsAddTagFromEditTask] = useState(false);
 
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
@@ -146,6 +148,7 @@ export const AppContextProvider = ({ children }) => {
         setModalHeader(taskName);
         setTaskId(taskId);
         setIsSideModalOpen(true);
+        navigate(`/board?taskId=${taskId}`);
     }
     
     const openEditTaskModal = (taskId) => {
@@ -153,6 +156,7 @@ export const AppContextProvider = ({ children }) => {
         setModalHeader("Update Task");
         setTaskId(taskId);
         setIsSideModalOpen(true);
+        navigate(`/board?taskId=${taskId}&view=edit`);
     }
    
     const openEditColumnModal = (columnId) => {
@@ -195,6 +199,7 @@ export const AppContextProvider = ({ children }) => {
         boardIdHasChanged,
         isCenterModalOpen,
         isSideModalOpen,
+        isAddTagFromEditTask,
         modalType,
         modalHeader,
         formError,
@@ -243,6 +248,7 @@ export const AppContextProvider = ({ children }) => {
         setFormError,
         setIsSideModalOpen,
         setIsCenterModalOpen,
+        setIsAddTagFromEditTask,
         setSignupData,
         setAndStoreSignupData,
         setAndStoreResetPasswordData,

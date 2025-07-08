@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../../AppContextProvider";
 import { XIcon } from "../../../controls/icons/XIcon";
 import { Constants } from "../../../util/Constants";
@@ -13,8 +14,14 @@ export const SideModal = ({ children }) => {
         modalHeader,
         formError,
         closeSideModal
-     } = useContext(AppContext);
+    } = useContext(AppContext);
 
+    const navigate = useNavigate();
+
+    const handleCloseSideModal = () => {
+        closeSideModal();
+        navigate('/board');
+    }
 
     useEffect(() => {
         if (!isSideModalOpen) return;
@@ -22,6 +29,7 @@ export const SideModal = ({ children }) => {
         function handleKeyDown(event) {
             if (event.key === "Escape") {
                 closeSideModal();
+                navigate('/board');
             }
         }
 
@@ -34,18 +42,21 @@ export const SideModal = ({ children }) => {
 
     return (
         <div className={`modal-content side ${isSideModalOpen ? 'active' : ''}`}>
-            <div className="modal-header--container">
-                <XIcon onClick={closeSideModal} />
-                
-                <h2 className="modal-header">
-                    {modalType === Constants.MODAL_TYPE.VIEW_TASK ||
-                     modalType === Constants.MODAL_TYPE.CONFIRM_DELETE ? `#${taskId} -` : null} {modalHeader}
-                </h2>
-            </div>
+            {modalType !== Constants.MODAL_TYPE.VIEW_TASK && (
+                <div className="modal-header--container">
+                    <XIcon onClick={handleCloseSideModal} />
+                    
+                    <h2 className="modal-header">
+                        {modalType === Constants.MODAL_TYPE.CONFIRM_DELETE ? `#${taskId} -` : null} {modalHeader}
+                    </h2>
+                </div>
+            )}
 
-            <div className="form-err-msg">
-                <span>{formError}</span>
-            </div>
+            {formError && (
+                <div className="form-err-msg">
+                    <span>{formError}</span>
+                </div>
+            )}
 
             {children}
         </div>

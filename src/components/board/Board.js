@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { boardsClient } from "../../api/boardClient";
@@ -27,10 +27,15 @@ export const Board = ({ didMove, setDidMove }) => {
       setBoardIdHasChanged,
       setBoardName,
       taskTagsHaveChanged,
-      setTaskTagsHaveChanged
+      setTaskTagsHaveChanged,
+      openViewTaskModal,
+      openEditTaskModal
     } = useContext(AppContext); 
     
     const navigate = useNavigate();
+
+    const useQuery = () => new URLSearchParams(useLocation().search);
+    const query = useQuery();
 
     const [columns, setColumns] = useState();
     const [droppedColumnId, setDroppedColumnId] = useState();
@@ -103,11 +108,19 @@ export const Board = ({ didMove, setDidMove }) => {
             if (columnAdded)
               handleColumnAdded();
             setBoardIdHasChanged(false);
-          }
+
+            const taskId = query.get("taskId");
+            const view = query.get("view");
+            if (taskId && !view) {
+              openViewTaskModal(taskId);
+            } else if (taskId && view === "edit") {
+              openEditTaskModal(taskId);
+            }
+          } 
       } catch (err) {
-          handleError(err, setError)
+          handleError(err, setError);
       } finally {
-          setIsLoading(false)
+          setIsLoading(false);
       }
     }
     
