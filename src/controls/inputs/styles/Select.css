@@ -4,7 +4,8 @@
     /* height: 42.5px; */
     /* padding: 10px; */
     padding: 7px;
-    width: 288px;
+    /* min-width: 288px; */
+    min-width: 262px;
     font-size: 16.5px;
     color: #000;
     background-color: transparent;
