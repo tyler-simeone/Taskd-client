@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function TogglePopout({ children, renderButton }) {
+export default function TogglePopout({ children, renderButton, style }) {
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ top: 0, left: 0 });
     const buttonRef = useRef(null);
@@ -38,7 +38,7 @@ export default function TogglePopout({ children, renderButton }) {
     }, [isOpen]);
 
     return (
-        <div style={{height: 20}}>
+        <div style={style}>
             {/* Toggle Button */}
             <div ref={buttonRef} onClick={toggleOpen}>
                 {renderButton({ isOpen })}

@@ -33,6 +33,7 @@ export const MoreIcon = ({ options, idx }) => {
                 renderButton={({ isOpen }) => (
                     <MoreHorizIcon className="more-icon" />
                 )}
+                style={{height: 20}}
             >
                 {({ position, ref }) => (
                     <div 
