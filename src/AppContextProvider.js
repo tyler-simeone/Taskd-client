@@ -24,6 +24,7 @@ export const AppContextProvider = ({ children }) => {
     const [taskTagsChangedTaskId, setTaskTagsChangedTaskId] = useState();
     
     const [isAddTagFromEditTask, setIsAddTagFromEditTask] = useState(false);
+    const [tagFilterCriteria, setTagFilterCriteria] = useState([]);
 
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
@@ -219,6 +220,7 @@ export const AppContextProvider = ({ children }) => {
         taskTags,
         taskTagsHaveChanged,
         taskTagsChangedTaskId,
+        tagFilterCriteria,
         closeSideModal,
         closeError,
         closeSuccess,
@@ -255,7 +257,8 @@ export const AppContextProvider = ({ children }) => {
         showSuccess,
         setTaskTags,
         setTaskTagsHaveChanged,
-        setTaskTagsChangedTaskId
+        setTaskTagsChangedTaskId,
+        setTagFilterCriteria
     }
 
   return (

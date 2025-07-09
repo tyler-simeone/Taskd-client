@@ -3,15 +3,23 @@ import TogglePopout from "../popoutmenu/TogglePopout";
 import { Input } from "../../../controls/inputs/Input";
 import "./PopoutMenuSearch.css"
 
-export const PopoutMenuSearch = ({ options, idx }) => {
+export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabled }) => {
+
+    useEffect(() => {
+        console.log("options: ", options);
+    }, [])
 
     return (
         <>
             <TogglePopout
                 renderButton={({ isOpen }) => (
                     <Input 
-                        style={{height: 31, border: "1px solid lightgray", borderRadius: 4, backgroundColor: "#fff"}}
+                        style={{height: 31, border: "1px solid lightgray", borderRadius: 4}}
+                        // style={{height: 31, border: "1px solid lightgray", borderRadius: 4, backgroundColor: "#fff"}}
                         containerStyle={{marginBottom: 0}}
+                        value={value}
+                        placeholder={placeholder}
+                        isDisabled={inputDisabled}
                     />
                 )}
             >
@@ -34,7 +42,7 @@ export const PopoutMenuSearch = ({ options, idx }) => {
                         <ul style={{padding: "16px 0px", margin: "0 auto", width: 188}}>
                             {options && (
                                 options.map(option => (
-                                    <li className="more-options-li" key={option.name} name={option.name} onClick={option.callback}>
+                                    <li className="more-options-li" key={option.name} name={option.name} onClick={option.onClick}>
                                         {option.value}
                                     </li>
                                 ))

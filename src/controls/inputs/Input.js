@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Input.css"
 
-export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className, style, containerStyle }) => {
+export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className, style, containerStyle, placeholder }) => {
 
     return (
         <div className="pb-input--container" style={containerStyle}>
@@ -16,6 +16,7 @@ export const Input = ({ id, label, name, type, value, handleChange, isDisabled, 
                 value={value}
                 disabled={isDisabled}
                 style={style}
+                placeholder={placeholder}
             />
         </div>
     );
