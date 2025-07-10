@@ -1,21 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../../AppContextProvider";
 import { FilterIcon } from "../../../controls/icons/FilterIcon";
-import { Select } from "../../../controls/inputs/Select";
 import { PopoutMenuSearch } from "../popoutmenusearch/PopoutMenuSearch";
 import { tagsClient } from "../../../api/tagsClient";
 import { handleError } from "../../../util/handleError";
 import "./BoardFilterPanel.css";
 
 export const BoardFilterPanel = () => {
-    const { boardId, userSession, tagFilterCriteria, setTagFilterCriteria, setError } = useContext(AppContext);
+    const { boardId, userSession, tagFilterCriteria, setTagFilterCriteria, setError, setBoardHasChanged, handleRerender } = useContext(AppContext);
 
     const [showFilters, setShowFilters] = useState(false);
     const [popoutMenuValues, setPopoutMenuValues] = useState();
     const [filterCriteria, setFilterCriteria] = useState();
+    const [tagFilterPlaceholder, setTagFilterPlaceholder] = useState();
 
     const handleClick = () => {
         setShowFilters(!showFilters);
+    }
+
+    const buildTagFilterPlaceholder = () => {
+        const tagFilterName = filterCriteria.sort((a, b) => a.tagName.localeCompare(b.tagName))[0]?.tagName;
+        const additionalTagFilterCount = filterCriteria.length-1;
+        if (additionalTagFilterCount !== 0)
+            return `${tagFilterName} (+${additionalTagFilterCount})`
+        return `${tagFilterName}`
     }
     
     const handleAddToTagFilterCriteria = (tagId, tagName) => {
@@ -35,6 +43,8 @@ export const BoardFilterPanel = () => {
         // console.log("updatedFilterCriteria: ", updatedFilterCriteria);
         sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
         setFilterCriteria(updatedFilterCriteria);
+        setBoardHasChanged(true);
+        handleRerender();
     };
 
     const loadTags = () => {
@@ -55,6 +65,8 @@ export const BoardFilterPanel = () => {
     useEffect(() => {
         if (!filterCriteria)
             setFilterCriteria(JSON.parse(sessionStorage.getItem("filterCriteria")));
+        else
+            setTagFilterPlaceholder(buildTagFilterPlaceholder());
 
         if (!popoutMenuValues || popoutMenuValues.length === 0)
             loadTags();
@@ -62,11 +74,12 @@ export const BoardFilterPanel = () => {
 
     return (
         <div className="board-filter-panel--container">
-            {showFilters &&
+            {(showFilters || filterCriteria) && popoutMenuValues && popoutMenuValues.length > 0 && 
                 <PopoutMenuSearch 
                     options={popoutMenuValues} 
-                    placeholder={filterCriteria && 
-                        `${filterCriteria.sort((a, b) => a.tagName.localeCompare(b.tagName))[0]?.tagName} (+${[filterCriteria.length-1]})`} 
+                    placeholder={filterCriteria && tagFilterPlaceholder &&
+                        tagFilterPlaceholder
+                    } 
                 />}
 
             <FilterIcon onClick={handleClick} />

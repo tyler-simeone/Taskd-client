@@ -6,7 +6,7 @@ import "./PopoutMenuSearch.css"
 export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabled }) => {
 
     useEffect(() => {
-        console.log("options: ", options);
+        // console.log("options: ", options);
     }, [])
 
     return (

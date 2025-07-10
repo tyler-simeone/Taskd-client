@@ -17,6 +17,7 @@ export const AppContextProvider = ({ children }) => {
 
     const [boardId, setBoardId] = useState(selectedBoardId);
     const [boardIdHasChanged, setBoardIdHasChanged] = useState(false);
+    const [boardHasChanged, setBoardHasChanged] = useState(false);
     const [boardName, setBoardName] = useState();
 
     const [taskTags, setTaskTags] = useState();
@@ -197,6 +198,7 @@ export const AppContextProvider = ({ children }) => {
     const ctx = {
         boardId,
         boardName,
+        boardHasChanged,
         boardIdHasChanged,
         isCenterModalOpen,
         isSideModalOpen,
@@ -242,6 +244,7 @@ export const AppContextProvider = ({ children }) => {
         openViewTaskModal,
         signupEmail,
         setAuthenticatedUserSession,
+        setBoardHasChanged,
         setBoardIdHasChanged,
         setBoardName,
         setSelectedBoardId,
