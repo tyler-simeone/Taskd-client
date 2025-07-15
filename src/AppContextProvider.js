@@ -37,7 +37,7 @@ export const AppContextProvider = ({ children }) => {
             if (!boardId || boardIdParam !== boardIdFromStorage) {
                 setBoardId(parseInt(boardIdParam));
                 setBoardIdHasChanged(true);
-                sessionStorage.setItem("boardId", boardIdParam);
+                sessionStorage.setItem("boardId", JSON.stringify(boardIdParam));
             }
         }
     };

@@ -26,9 +26,11 @@ export const BoardFilterPanel = () => {
     const buildTagFilterPlaceholder = () => {
         const tagFilterName = filterCriteria.sort((a, b) => a.tagName.localeCompare(b.tagName))[0]?.tagName;
         const additionalTagFilterCount = filterCriteria.length-1;
+        
         if (additionalTagFilterCount !== 0)
-            return `${tagFilterName} (+${additionalTagFilterCount})`
-        return `${tagFilterName}`
+            setTagFilterPlaceholder(`${tagFilterName} (+${additionalTagFilterCount})`);
+        
+        setTagFilterPlaceholder(`${tagFilterName}`);
     }
     
     const handleAddToTagFilterCriteria = (tagId, tagName) => {
@@ -42,10 +44,27 @@ export const BoardFilterPanel = () => {
                 tagId: tagId,
                 tagName: tagName
             };
-            updatedFilterCriteria.push(criteria)
+            updatedFilterCriteria.push(criteria);
         }
 
-        // console.log("updatedFilterCriteria: ", updatedFilterCriteria);
+        sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
+        setFilterCriteria(updatedFilterCriteria);
+        setBoardHasChanged(true);
+        handleRerender();
+    };
+    
+    const handleRemoveTagFromFilterCriteria = (tagId) => {
+        console.log("handleRemoveTagFromFilterCriteria: ", handleRemoveTagFromFilterCriteria);
+        let persistedFilterCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
+        if (!persistedFilterCriteria || !Array.isArray(persistedFilterCriteria))
+            persistedFilterCriteria = [];
+
+        const updatedFilterCriteria = [...persistedFilterCriteria];
+        if (updatedFilterCriteria.find(c => c.tagId === tagId)) {
+            const existingTagIdx = updatedFilterCriteria.indexOf(updatedFilterCriteria.find(c => c.tagId === tagId));
+            updatedFilterCriteria = updatedFilterCriteria.splice(existingTagIdx, 1);
+        }
+
         sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
         setFilterCriteria(updatedFilterCriteria);
         setBoardHasChanged(true);
@@ -57,9 +76,21 @@ export const BoardFilterPanel = () => {
             .then(resp => {
                 const popoutValues = [];
                 resp.data.forEach(r => popoutValues.push({
+                    id: r.tagId,
                     value: r.tagName,
                     name: r.tagName,
-                    onClick: () => handleAddToTagFilterCriteria(r.tagId, r.tagName)
+                    onClick: () => {
+                        console.log("filterCriteria: ", filterCriteria);
+                        if (filterCriteria && filterCriteria.length > 0) {
+                            if (!filterCriteria.find(c => c.tagId === r.tagId)) {
+                                console.log("heyyo");
+                                handleAddToTagFilterCriteria(r.tagId, r.tagName);
+                            } else {
+                                handleRemoveTagFromFilterCriteria(r.tagId);
+                            }
+                        } else
+                            handleAddToTagFilterCriteria(r.tagId, r.tagName);
+                    }
                 }));
                 popoutValues.sort((a, b) => a.value.localeCompare(b.value));
                 setPopoutMenuValues(popoutValues);
@@ -74,19 +105,24 @@ export const BoardFilterPanel = () => {
             setTagFilterPlaceholder();
         } else {
             if (!filterCriteria) {
+                console.log("hi1");
                 const sessionFilterCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
-                if (sessionFilterCriteria)
+                if (sessionFilterCriteria) {
+                    console.log("hi2");
                     setFilterCriteria(sessionFilterCriteria);
+                }
             }
             else
-                setTagFilterPlaceholder(buildTagFilterPlaceholder());
+                buildTagFilterPlaceholder();
         }
     }
 
     useEffect(() => {
+        console.log("boardIdHasChanged: ", boardIdHasChanged);
+
         loadFilters();
 
-        if (boardId && (!popoutMenuValues || popoutMenuValues.length === 0)) {
+        if (boardId && (boardIdHasChanged || (!popoutMenuValues || popoutMenuValues.length === 0))) {
             loadTags();
         }
     }, [popoutMenuValues, filterCriteria, boardIdHasChanged])

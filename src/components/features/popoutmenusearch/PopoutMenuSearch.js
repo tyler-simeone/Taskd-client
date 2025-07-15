@@ -14,7 +14,7 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
             <TogglePopout
                 renderButton={({ isOpen }) => (
                     <Input 
-                        style={{height: 31, border: "1px solid lightgray", borderRadius: 4}}
+                        style={{height: 31, border: "1px solid lightgray", borderRadius: 3}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
                         placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}

@@ -150,7 +150,7 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    console.log("boardHasChanged: ", boardHasChanged);
+    // console.log("boardHasChanged: ", boardHasChanged);
     
     if (boardId && (!board || boardHasChanged || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
