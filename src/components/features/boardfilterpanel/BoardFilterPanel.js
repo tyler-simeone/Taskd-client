@@ -7,7 +7,12 @@ import { handleError } from "../../../util/handleError";
 import "./BoardFilterPanel.css";
 
 export const BoardFilterPanel = () => {
-    const { boardId, userSession, tagFilterCriteria, setTagFilterCriteria, setError, setBoardHasChanged, handleRerender } = useContext(AppContext);
+    const { boardId,
+            boardIdHasChanged,
+            userSession,
+            setError,
+            setBoardHasChanged,
+            handleRerender } = useContext(AppContext);
 
     const [showFilters, setShowFilters] = useState(false);
     const [popoutMenuValues, setPopoutMenuValues] = useState();
@@ -63,14 +68,22 @@ export const BoardFilterPanel = () => {
     }
 
     useEffect(() => {
+        // if (boardIdHasChanged) {
+        //     sessionStorage.removeItem("filterCriteria");
+        //     setTagFilterPlaceholder();
+        // }
+
         if (!filterCriteria)
             setFilterCriteria(JSON.parse(sessionStorage.getItem("filterCriteria")));
         else
             setTagFilterPlaceholder(buildTagFilterPlaceholder());
 
-        if (!popoutMenuValues || popoutMenuValues.length === 0)
+        console.log("boardIdHasChanged: ", boardIdHasChanged);
+        if (boardId && (!popoutMenuValues || popoutMenuValues.length === 0)) {
+            console.log("Hiya")
             loadTags();
-    }, [filterCriteria])
+        }
+    }, [popoutMenuValues, filterCriteria, boardIdHasChanged])
 
     return (
         <div className="board-filter-panel--container">
