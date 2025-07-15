@@ -15,10 +15,9 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
                 renderButton={({ isOpen }) => (
                     <Input 
                         style={{height: 31, border: "1px solid lightgray", borderRadius: 4}}
-                        // style={{height: 31, border: "1px solid lightgray", borderRadius: 4, backgroundColor: "#fff"}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
-                        placeholder={placeholder}
+                        placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}
                         isDisabled={inputDisabled}
                     />
                 )}
@@ -40,12 +39,16 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
                         }}      
                     >
                         <ul style={{padding: "16px 0px", margin: "0 auto", width: 188}}>
-                            {options && (
+                            {options && options.length > 0 ? (
                                 options.map(option => (
                                     <li className="more-options-li" key={option.name} name={option.name} onClick={option.onClick}>
                                         {option.value}
                                     </li>
                                 ))
+                            ) : (
+                                <li className="more-options-li not-found" key={-1}>
+                                    No Tags Found
+                                </li>
                             )}
                         </ul>
                     </div>

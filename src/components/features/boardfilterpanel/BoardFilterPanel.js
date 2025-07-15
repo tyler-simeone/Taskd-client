@@ -67,33 +67,40 @@ export const BoardFilterPanel = () => {
             .catch(err => handleError(err, setError))
     }
 
+    const loadFilters = () => {
+        if (boardIdHasChanged) {
+            sessionStorage.removeItem("filterCriteria");
+            setFilterCriteria();
+            setTagFilterPlaceholder();
+        } else {
+            if (!filterCriteria) {
+                const sessionFilterCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
+                if (sessionFilterCriteria)
+                    setFilterCriteria(sessionFilterCriteria);
+            }
+            else
+                setTagFilterPlaceholder(buildTagFilterPlaceholder());
+        }
+    }
+
     useEffect(() => {
-        // if (boardIdHasChanged) {
-        //     sessionStorage.removeItem("filterCriteria");
-        //     setTagFilterPlaceholder();
-        // }
+        loadFilters();
 
-        if (!filterCriteria)
-            setFilterCriteria(JSON.parse(sessionStorage.getItem("filterCriteria")));
-        else
-            setTagFilterPlaceholder(buildTagFilterPlaceholder());
-
-        console.log("boardIdHasChanged: ", boardIdHasChanged);
         if (boardId && (!popoutMenuValues || popoutMenuValues.length === 0)) {
-            console.log("Hiya")
             loadTags();
         }
     }, [popoutMenuValues, filterCriteria, boardIdHasChanged])
 
     return (
         <div className="board-filter-panel--container">
-            {(showFilters || filterCriteria) && popoutMenuValues && popoutMenuValues.length > 0 && 
+            {(showFilters || filterCriteria) &&
                 <PopoutMenuSearch 
                     options={popoutMenuValues} 
                     placeholder={filterCriteria && tagFilterPlaceholder &&
                         tagFilterPlaceholder
                     } 
-                />}
+                />
+            }
 
             <FilterIcon onClick={handleClick} />
         </div>

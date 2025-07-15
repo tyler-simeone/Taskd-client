@@ -30,11 +30,15 @@ export const AppContextProvider = ({ children }) => {
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
 
-    const setSelectedBoardId = (boardId) => {
-        if (boardId) {
-            setBoardId(parseInt(boardId));
-            setBoardIdHasChanged(true);
-            sessionStorage.setItem("boardId", boardId);
+    const setSelectedBoardId = (boardIdParam) => {
+        if (boardIdParam) {
+            const boardIdFromStorage = JSON.parse(sessionStorage.getItem("boardId"));
+            // Either initial load of board or changing boards
+            if (!boardId || boardIdParam !== boardIdFromStorage) {
+                setBoardId(parseInt(boardIdParam));
+                setBoardIdHasChanged(true);
+                sessionStorage.setItem("boardId", boardIdParam);
+            }
         }
     };
 
