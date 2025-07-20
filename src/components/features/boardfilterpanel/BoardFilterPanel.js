@@ -96,13 +96,10 @@ export const BoardFilterPanel = () => {
             setTagFilterPlaceholder();
         } else {
             if (!filterCriteria) {
-                console.log("hi1");
                 if (sessionFilterCriteria) {
                     if (sessionFilterCriteria.length === 0) {
-                        // setSessionFilterCriteria();
                         setFilterCriteria();
                     } else {
-                        console.log("hi2");
                         setFilterCriteria(sessionFilterCriteria);
                     }
                 }
