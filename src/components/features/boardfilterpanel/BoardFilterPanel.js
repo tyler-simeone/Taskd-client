@@ -31,8 +31,8 @@ export const BoardFilterPanel = () => {
         if (tagFilterName) {
             if (additionalTagFilterCount !== 0)
                 setTagFilterPlaceholder(`${tagFilterName} (+${additionalTagFilterCount})`);
-            
-            setTagFilterPlaceholder(`${tagFilterName}`);
+            else
+                setTagFilterPlaceholder(`${tagFilterName}`);
         } else {
             setTagFilterPlaceholder("No tags found");
         }
@@ -44,19 +44,15 @@ export const BoardFilterPanel = () => {
             persistedFilterCriteria = [];
 
         const updatedFilterCriteria = [...persistedFilterCriteria];
-        console.log("pre--updatedFilterCriteria: ", updatedFilterCriteria);
         if (!updatedFilterCriteria.find(c => c.tagId === tagId)) {
             const criteria = {
                 tagId: tagId,
                 tagName: tagName
             };
             updatedFilterCriteria.push(criteria);
-            console.log("post--updatedFilterCriteria: ", updatedFilterCriteria);
         } else {
             const existingTagIdx = updatedFilterCriteria.indexOf(updatedFilterCriteria.find(c => c.tagId === tagId));
-            console.log("existingTagIdx: ", existingTagIdx);
             updatedFilterCriteria.splice(existingTagIdx, 1);
-            console.log("post--updatedFilterCriteria: ", updatedFilterCriteria);
         }
 
         sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
@@ -117,8 +113,6 @@ export const BoardFilterPanel = () => {
     }
 
     useEffect(() => {
-        console.log("boardIdHasChanged: ", boardIdHasChanged);
-
         if (!sessionFilterCriteria) {
             const storageCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
             if (storageCriteria) {
