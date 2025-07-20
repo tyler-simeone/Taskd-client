@@ -76,6 +76,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
         try {
             var resp = await tasksClient.getTasks(boardId, column.columnId);
+
             // Kind of a hacky solution *for now* to get around this race condition
             // Refetch the column's tasks to get the latest task
             // if (column.columnId === droppedColumnId) {
@@ -90,7 +91,18 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
             // console.log("### column.columnId: ", column.columnId);
             // console.log("### resp.tasks: ", resp.tasks);
-            setTasks(resp.tasks);
+
+            const filteredTasks = [];
+            const tagFilterCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
+            if (tagFilterCriteria) {
+                const filteredTagSet = new Set(tagFilterCriteria.map(c => c.tagId));
+                filteredTasks.push(resp.tasks.filter(t =>
+                    t.taskTags.some(tag => filteredTagSet.has(tag.tagId))
+                ));
+            }
+
+            filteredTasks.length > 0 ? setTasks(filteredTasks[0]) : setTasks(resp.tasks);
+            // Highly necessary for proper re-rendering on task drop
             setDroppedTaskId();
         } catch (err) {
             handleError(err, setError);

@@ -9,6 +9,7 @@ import { useDrop } from 'react-dnd';
 import { Column } from "../column/Column";
 import { ColumnAddTemplate } from "../column/ColumnAddTemplate";
 import { BoardAddTemplate } from "./BoardAddTemplate";
+import { BoardFilterPanel } from "../features/boardfilterpanel/BoardFilterPanel";
 import './styles/Board.css';
 
 export const Board = ({ didMove, setDidMove }) => {
@@ -23,7 +24,9 @@ export const Board = ({ didMove, setDidMove }) => {
       handleColumnAdded,
       taskTags,
       setTaskTags,
+      boardHasChanged,
       boardIdHasChanged,
+      setBoardHasChanged,
       setBoardIdHasChanged,
       setBoardName,
       taskTagsHaveChanged,
@@ -147,10 +150,15 @@ export const Board = ({ didMove, setDidMove }) => {
     if (!isAuthenticated()) 
       navigate('/oauth/login');
 
-    if (boardId && (!board || boardIdHasChanged || taskTagsHaveChanged)) {
+    // console.log("boardHasChanged: ", boardHasChanged);
+    
+    if (boardId && (!board || boardHasChanged || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
     }
-  }, [boardIdHasChanged, rerender, board, boardId, droppedColumnId, columnAdded, taskTags]);
+
+    if (boardHasChanged)
+      setBoardHasChanged(false);
+  }, [boardHasChanged, boardIdHasChanged, rerender, board, boardId, droppedColumnId, columnAdded, taskTags]);
 
   useEffect(() => {
     if (boardId && board && (!taskTags || taskTagsHaveChanged || boardIdHasChanged)) {
@@ -167,6 +175,8 @@ export const Board = ({ didMove, setDidMove }) => {
               </h2>
             </div>
           </div> */}
+
+          <BoardFilterPanel />
 
           <div className="board">
               {columns && columns.map(column => (
@@ -185,7 +195,8 @@ export const Board = ({ didMove, setDidMove }) => {
               ))}
 
             {/* {isLoading ? null : boardId && columns ? <ColumnAddTemplate /> : <BoardAddTemplate />} */}
-            {boardId && columns ? <ColumnAddTemplate /> : <BoardAddTemplate />}
+            {boardId && columns ? 
+              <ColumnAddTemplate /> : <BoardAddTemplate />}
           </div>
         </div>
     );

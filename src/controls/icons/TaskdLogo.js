@@ -51,7 +51,6 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
     }
 
     useEffect(() => {
-        console.log("isEdit: ", isEdit);
         setUpdatedBoardName(boardName);
     }, [isEdit])
 
@@ -65,13 +64,12 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                     
                     {/* Editable Board Name */}
                     {boardName && (
-                        <div style={{display: "flex", marginTop: 8, marginLeft: 2, fontSize: 17.5, color: "#949494"}}>
+                        <div style={{display: "flex", marginTop: 8, marginLeft: 2, fontSize: 17.5, lineHeight: "22px", color: "#a0a0a0"}}>
                             <p style={{margin: "0px 8px", marginBottom: 0}}>/</p>
                             {!isEdit ? (
                                 <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>
                             ) : (
                                 <form onSubmit={handleSubmit}>
-                                {/* <form onSubmit={handleSubmit} onMouseOut={handleEdit}> */}
                                     <Input 
                                         id={"board-name"}
                                         value={updatedBoardName}

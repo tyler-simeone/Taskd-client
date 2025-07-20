@@ -17,6 +17,7 @@ export const AppContextProvider = ({ children }) => {
 
     const [boardId, setBoardId] = useState(selectedBoardId);
     const [boardIdHasChanged, setBoardIdHasChanged] = useState(false);
+    const [boardHasChanged, setBoardHasChanged] = useState(false);
     const [boardName, setBoardName] = useState();
 
     const [taskTags, setTaskTags] = useState();
@@ -24,15 +25,20 @@ export const AppContextProvider = ({ children }) => {
     const [taskTagsChangedTaskId, setTaskTagsChangedTaskId] = useState();
     
     const [isAddTagFromEditTask, setIsAddTagFromEditTask] = useState(false);
+    const [tagFilterCriteria, setTagFilterCriteria] = useState([]);
 
     const [columnAdded, setColumnAdded] = useState(false);
     const [rerender, setRerender] = useState(false);
 
-    const setSelectedBoardId = (boardId) => {
-        if (boardId) {
-            setBoardId(parseInt(boardId));
-            setBoardIdHasChanged(true);
-            sessionStorage.setItem("boardId", boardId);
+    const setSelectedBoardId = (boardIdParam) => {
+        if (boardIdParam) {
+            const boardIdFromStorage = JSON.parse(sessionStorage.getItem("boardId"));
+            // Either initial load of board or changing boards
+            if (!boardId || boardIdParam !== boardIdFromStorage) {
+                setBoardId(parseInt(boardIdParam));
+                setBoardIdHasChanged(true);
+                sessionStorage.setItem("boardId", JSON.stringify(boardIdParam));
+            }
         }
     };
 
@@ -196,6 +202,7 @@ export const AppContextProvider = ({ children }) => {
     const ctx = {
         boardId,
         boardName,
+        boardHasChanged,
         boardIdHasChanged,
         isCenterModalOpen,
         isSideModalOpen,
@@ -219,6 +226,7 @@ export const AppContextProvider = ({ children }) => {
         taskTags,
         taskTagsHaveChanged,
         taskTagsChangedTaskId,
+        tagFilterCriteria,
         closeSideModal,
         closeError,
         closeSuccess,
@@ -240,6 +248,7 @@ export const AppContextProvider = ({ children }) => {
         openViewTaskModal,
         signupEmail,
         setAuthenticatedUserSession,
+        setBoardHasChanged,
         setBoardIdHasChanged,
         setBoardName,
         setSelectedBoardId,
@@ -255,7 +264,8 @@ export const AppContextProvider = ({ children }) => {
         showSuccess,
         setTaskTags,
         setTaskTagsHaveChanged,
-        setTaskTagsChangedTaskId
+        setTaskTagsChangedTaskId,
+        setTagFilterCriteria
     }
 
   return (

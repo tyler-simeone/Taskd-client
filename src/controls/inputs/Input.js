@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles/Input.css"
 
-export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className, style }) => {
+export const Input = ({ id, label, name, type, value, handleChange, isDisabled, fromModal, className, style, containerStyle, placeholder }) => {
 
     return (
-        <div className="pb-input--container">
+        <div className="pb-input--container" style={containerStyle}>
             {label && <label className="pb-input-lbl" htmlFor={id}>{label}:</label>}
 
             <input 
@@ -16,6 +16,7 @@ export const Input = ({ id, label, name, type, value, handleChange, isDisabled, 
                 value={value}
                 disabled={isDisabled}
                 style={style}
+                placeholder={placeholder}
             />
         </div>
     );
