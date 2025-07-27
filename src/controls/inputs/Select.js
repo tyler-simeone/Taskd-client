@@ -9,7 +9,8 @@ export const Select = ({
     handleSelectChange,
     value,
     disabled,
-    placeholder
+    placeholder,
+    style
 }) => {
     const handleSelect = () => {      
         var selectMenu = document.getElementById(`pb-select-${index}`);
@@ -32,6 +33,7 @@ export const Select = ({
                     onChange={(evt) => handleSelect()}
                     className={`pb-select ${disabled ? 'disabled' : ''}`}
                     disabled={disabled}
+                    style={style}
                 >
                     <option value="" disabled selected hidden>{placeholder}</option>
 

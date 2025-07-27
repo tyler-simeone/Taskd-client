@@ -1,20 +1,11 @@
 .add-column-template--container {
-    height: 50px;
-    height: 48px;
     height: 44px;
     min-width: 344px;
     max-width: 344px;
-    border-radius: 8px;
-    border-radius: 7px;
-    border-radius: 5px;
     border-radius: 6px;
     padding: 20px;
     padding-top: 18px;
     margin-left: 0.3%;
-    /* border: 1px dashed #c8c8c8; */
-    border: 1.5px dashed #e3e3e3;
-    border: 1.5px dashed #dadada;
-    border: 1.5px dashed #e7e7e7;
     border: 1.5px dashed #e1e1e1;
 }
 .add-column-template--container:hover {
@@ -28,8 +19,7 @@
 }
 
 .column-add-template {
-    font-size: 21.5px !important;
-    color: #2a2a2a;
+    font-size: 21px !important;
     color: #000;
 }
 
