@@ -4,6 +4,7 @@ import { FilterIcon } from "../../../controls/icons/FilterIcon";
 import { PopoutMenuSearch } from "../popoutmenusearch/PopoutMenuSearch";
 import { tagsClient } from "../../../api/tagsClient";
 import { handleError } from "../../../util/handleError";
+import { stringHelper } from "../../../util/helpers/stringHelper";
 import "./BoardFilterPanel.css";
 
 export const BoardFilterPanel = () => {
@@ -44,6 +45,7 @@ export const BoardFilterPanel = () => {
             persistedFilterCriteria = [];
 
         const updatedFilterCriteria = [...persistedFilterCriteria];
+        //add
         if (!updatedFilterCriteria.find(c => c.tagId === tagId)) {
             const criteria = {
                 tagId: tagId,
@@ -51,12 +53,10 @@ export const BoardFilterPanel = () => {
             };
             updatedFilterCriteria.push(criteria);
         } else {
+            //remove
             const existingTagIdx = updatedFilterCriteria.indexOf(updatedFilterCriteria.find(c => c.tagId === tagId));
             updatedFilterCriteria.splice(existingTagIdx, 1);
         }
-
-        sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
-        setFilterCriteria(updatedFilterCriteria);
         
         if (updatedFilterCriteria.length !== 0) {
             sessionStorage.setItem("filterCriteria", JSON.stringify(updatedFilterCriteria));
@@ -83,7 +83,7 @@ export const BoardFilterPanel = () => {
                     name: r.tagName,
                     onClick: () => handleToggleTagInFilterCriteria(r.tagId, r.tagName)
                 }));
-                popoutValues.sort((a, b) => a.value.localeCompare(b.value));
+                stringHelper.sortStringList(popoutValues);
                 setPopoutMenuValues(popoutValues);
             })
             .catch(err => handleError(err, setError))
@@ -134,9 +134,8 @@ export const BoardFilterPanel = () => {
             {(showFilters || filterCriteria) &&
                 <PopoutMenuSearch 
                     options={popoutMenuValues} 
-                    placeholder={filterCriteria && tagFilterPlaceholder &&
-                        tagFilterPlaceholder
-                    } 
+                    placeholder={filterCriteria && tagFilterPlaceholder && tagFilterPlaceholder}
+                    selectedIds={filterCriteria && filterCriteria.map(c => c.tagId)}
                 />
             }
 

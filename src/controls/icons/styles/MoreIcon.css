@@ -31,6 +31,7 @@
     text-align: left;
     padding: 8px 16px;
     padding-left: 26px;
+    padding-left: 12px;
     margin: 0 auto;
     font-size: 15.5px;
     color: #575a5f;
@@ -39,6 +40,19 @@
 .more-options-li:hover {
     cursor: pointer;
     background-color: #f3f4f4;
+}
+.more-options-li.selected {
+    background-color: #e3f0ff;
+    color: #6886a5;
+    color: #4e657c;
+    color: #516980;
+}
+.more-options-li.selected:hover {
+    /* border-top: 1.5px solid #c0d7f0; */
+    /* padding-top: 6.5px; */
+    /* border-bottom: 1.5px solid #c0d7f0; */
+    /* padding-bottom: 6.5px; */
+    background-color: #d9ebff;
 }
 .more-options-li.not-found:hover {
     background-color: #fff;

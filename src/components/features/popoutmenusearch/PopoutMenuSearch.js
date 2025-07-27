@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import TogglePopout from "../popoutmenu/TogglePopout";
 import { Input } from "../../../controls/inputs/Input";
+import { Checkbox } from "../../../controls/inputs/Checkbox";
 import "./PopoutMenuSearch.css"
 
-export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabled }) => {
+export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabled, selectedIds }) => {
 
     useEffect(() => {
-        // console.log("options: ", options);
+        // console.log("selectedIds: ", selectedIds);
     }, [])
 
-    return (
+    return (    
         <>
             <TogglePopout
                 renderButton={({ isOpen }) => (
                     <Input 
-                        style={{height: 31, border: "1px solid lightgray", borderRadius: 3}}
+                        style={{height: 31, border: "1px solid lightgray", borderRadius: 2.5}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
                         placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}
@@ -30,10 +31,10 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
                             left: position.left,
                             position: 'absolute',
                             backgroundColor: "#fff",
-                            borderRadius: 5.5,
+                            borderRadius: 5,
                             borderRadius: "4px 4px 5.5px 5.5px",
-                            border: "1px solid lightgrey",
-                            boxShadow: "0px 2px 3px 1px rgb(0 0 0 / 20%)",
+                            border: "1px solid #e1e1e1",
+                            boxShadow: "0px 2px 3px 1px rgb(0 0 0 / 10%)",
                             height: 200,
                             overflow: "scroll"
                         }}      
@@ -41,8 +42,19 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
                         <ul style={{padding: "16px 0px", margin: "0 auto", width: 188}}>
                             {options && options.length > 0 ? (
                                 options.map(option => (
-                                    <li className="more-options-li" key={option.name} name={option.name} onClick={option.onClick}>
-                                        {option.value}
+                                    <li 
+                                        className={`more-options-li ${selectedIds && selectedIds.includes(option.id) ? 'selected' : ''}`} 
+                                        key={option.id} 
+                                        name={option.name} 
+                                        onClick={option.onClick}
+                                    >
+                                        <div style={{display: "flex"}}>
+                                            <Checkbox 
+                                                checked={selectedIds && selectedIds.includes(option.id)}
+                                                style={{marginRight: 8, marginTop: 5}}
+                                            /> 
+                                            <p>{option.value}</p>
+                                        </div>
                                     </li>
                                 ))
                             ) : (

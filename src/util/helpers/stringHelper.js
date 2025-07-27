@@ -9,5 +9,6 @@ export const stringHelper = {
     },
     capitalizeEveryFirstLetter: (textString) => {
         return textString.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
-    }
+    },
+    sortStringList: (list) => list.sort((a, b) => a.value.localeCompare(b.value))
 };
