@@ -74,7 +74,7 @@ export const BoardFilterPanel = () => {
     };
 
     const loadTags = () => {
-        tagsClient.getTagsByBoardId(boardId, userSession.userId)
+        tagsClient.getTaskTagsByBoardId(boardId, userSession.userId)
             .then(resp => {
                 const popoutValues = [];
                 resp.data.forEach(r => popoutValues.push({
