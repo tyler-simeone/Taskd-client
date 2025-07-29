@@ -112,6 +112,14 @@ export const BoardFilterPanel = () => {
         }
     }
 
+    const clearFilters = () => {
+        sessionStorage.removeItem("filterCriteria");
+        setSessionFilterCriteria();
+        setFilterCriteria();
+        setBoardHasChanged(true);
+        handleRerender();
+    }
+
     useEffect(() => {
         if (!sessionFilterCriteria) {
             const storageCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
@@ -136,9 +144,12 @@ export const BoardFilterPanel = () => {
         <div className="board-filter-panel--container">
             {(showFilters || filterCriteria) &&
                 <PopoutMenuSearch 
+                    label={"Filter Tags"}
                     options={popoutMenuValues} 
                     placeholder={filterCriteria && tagFilterPlaceholder && tagFilterPlaceholder}
                     selectedIds={filterCriteria && filterCriteria.map(c => c.tagId)}
+                    showXIcon={filterCriteria}
+                    handleClearFilters={clearFilters}
                 />
             }
 

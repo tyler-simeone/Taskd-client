@@ -4,7 +4,17 @@ import { Input } from "../../../controls/inputs/Input";
 import { Checkbox } from "../../../controls/inputs/Checkbox";
 import "./PopoutMenuSearch.css"
 
-export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabled, selectedIds }) => {
+export const PopoutMenuSearch = ({ 
+    options,
+    idx,
+    value,
+    label,
+    placeholder,
+    inputDisabled,
+    selectedIds,
+    showXIcon,
+    handleClearFilters
+}) => {
 
     useEffect(() => {
         // console.log("selectedIds: ", selectedIds);
@@ -15,11 +25,14 @@ export const PopoutMenuSearch = ({ options, idx, value, placeholder, inputDisabl
             <TogglePopout
                 renderButton={({ isOpen }) => (
                     <Input 
+                        label={label}
                         style={{height: 31, border: "1px solid lightgray", borderRadius: 2.5}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
                         placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}
                         isDisabled={inputDisabled}
+                        showXIcon={showXIcon}
+                        xIconOnClick={handleClearFilters}
                     />
                 )}
             >
