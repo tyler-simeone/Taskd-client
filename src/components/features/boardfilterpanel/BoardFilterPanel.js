@@ -26,6 +26,8 @@ export const BoardFilterPanel = () => {
     }
 
     const buildTagFilterPlaceholder = () => {
+        if (!filterCriteria)
+            return;
         const tagFilterName = filterCriteria.sort((a, b) => a.tagName.localeCompare(b.tagName))[0]?.tagName;
         const additionalTagFilterCount = filterCriteria.length-1;
         
@@ -95,6 +97,7 @@ export const BoardFilterPanel = () => {
             setFilterCriteria();
             setTagFilterPlaceholder();
         } else {
+            // tags are selected
             if (!filterCriteria) {
                 if (sessionFilterCriteria) {
                     if (sessionFilterCriteria.length === 0) {
