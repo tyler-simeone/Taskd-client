@@ -146,11 +146,10 @@ export const Board = ({ didMove, setDidMove }) => {
 
   useEffect(() => {
     // console.log("rerender: ", rerender);
+    // console.log("boardHasChanged: ", boardHasChanged);
 
     if (!isAuthenticated()) 
       navigate('/oauth/login');
-
-    // console.log("boardHasChanged: ", boardHasChanged);
     
     if (boardId && (!board || boardHasChanged || boardIdHasChanged || taskTagsHaveChanged)) {
       loadBoard(boardId);
@@ -168,14 +167,6 @@ export const Board = ({ didMove, setDidMove }) => {
 
     return (
         <div className="board--container">
-          {/* <div className="board-name--container">
-            <div style={{ display: "flex" }}>
-              <h2 className="board-name">
-                {board && board.boardName}
-              </h2>
-            </div>
-          </div> */}
-
           <BoardFilterPanel />
 
           <div className="board">

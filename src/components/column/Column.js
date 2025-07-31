@@ -8,7 +8,17 @@ import { columnsClient } from "../../api/columnsClient";
 import { AddIcon } from "../../controls/icons/AddIcon";
 import './styles/Column.css';
 
-export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppedTaskId, setDroppedColumnId, setDroppedTaskId, isLast, isOnly }) => {
+export const Column = ({ 
+    column,
+    useCustomDrop,
+    didMove,
+    droppedColumnId,
+    droppedTaskId,
+    setDroppedColumnId,
+    setDroppedTaskId,
+    isLast,
+    isOnly 
+}) => {
     const { 
         openAddTaskModal,
         openEditColumnModal,
@@ -48,6 +58,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);
+    const [newTaskCount, setNewTaskCount] = useState();
 
     const [{ isHover, isOver, canDrop, didDrop, dropResult }, drop] = useCustomDrop(column.columnId);
 
@@ -77,21 +88,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
         try {
             var resp = await tasksClient.getTasks(boardId, column.columnId);
 
-            // Kind of a hacky solution *for now* to get around this race condition
-            // Refetch the column's tasks to get the latest task
-            // if (column.columnId === droppedColumnId) {
-            //     if (resp.tasks.filter(t => t.taskId === droppedTaskId).length === 0) {
-            //         resp = await tasksClient.getTasks(boardId, column.columnId);
-            //     }
-            // } else {
-            //     if (resp.tasks.filter(t => t.taskId === droppedTaskId).length > 0) {
-            //         resp = await tasksClient.getTasks(boardId, column.columnId);
-            //     }
-            // }
-
-            // console.log("### column.columnId: ", column.columnId);
-            // console.log("### resp.tasks: ", resp.tasks);
-
+            // Task filtering by tags
             const filteredTasks = [];
             const tagFilterCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
             if (tagFilterCriteria) {
@@ -100,8 +97,9 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
                     t.taskTags.some(tag => filteredTagSet.has(tag.tagId))
                 ));
             }
-
             filteredTasks.length > 0 ? setTasks(filteredTasks[0]) : setTasks(resp.tasks);
+
+            setNewTaskCount(resp.tasks.length);
             // Highly necessary for proper re-rendering on task drop
             setDroppedTaskId();
         } catch (err) {
@@ -117,9 +115,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
         // console.log("isOver: ", isOver);
 
         
-        // if (!tasks || column.columnId === droppedColumnId || taskTagsHaveChanged) {
         if (!tasks || rerender || droppedTaskId || taskTagsHaveChanged) {
-            // console.log("hiya")
             // console.log("droppedTaskId: ", droppedTaskId);
             // console.log("droppedColumnId: ", droppedColumnId);
             loadTasks();
@@ -130,7 +126,7 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
         // console.log("didMove: ", didMove);
         // console.log("rerender: ", rerender, column.columnName);
-    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, droppedTaskId, taskTagsHaveChanged]);
+    }, [isOver, tasks, showColumnDescription, deleteConfirmed, rerender, droppedTaskId, taskTagsHaveChanged, newTaskCount]);
 
     return (
         <div key={column.columnId} className={`column--container ${isOnly ? 'only' : isLast ? 'last' : ''}`}>
@@ -139,7 +135,11 @@ export const Column = ({ column, useCustomDrop, didMove, droppedColumnId, droppe
 
                 <div style={{ width: "80%" }}>
                     <h3 className="column-header ph" onClick={toggleColumnDescription}>
-                        <span>{column.columnName}</span> {column.taskCount > 0 && (<span>({column.taskCount})</span>)}
+                        <span>{column.columnName}</span>
+
+                        {newTaskCount ? (
+                            <span> ({newTaskCount})</span>
+                        ) : null}
                     </h3>
 
                     {showColumnDescription && 
