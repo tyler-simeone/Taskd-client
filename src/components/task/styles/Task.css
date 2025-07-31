@@ -16,9 +16,6 @@
 .task-title {
     font-size: 17.5px;
     font-weight: 600;
-    color: #000;
-    color: #1b1b1b;
-    color: #111;
     color: #141414;
 }
 
@@ -28,12 +25,12 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    color: #444749;
-    color: #585b5e;
     color: #4e5053;
     margin-bottom: 2.5px;
 }
 
 .description-not-provided--lbl {
     font-size: 16px;
+    font-size: 15.5px;
+    color: #81848a;
 }
