@@ -33,16 +33,6 @@ export const Column = ({
     } = useContext(AppContext); 
 
     const [moreIconValues, setMoreIconValues] = useState([
-        // {
-        //     name: "sortAZ",
-        //     value: "Sort A-Z",
-        //     // callback: () => sortTas
-        // },
-        // {
-        //     name: "sortCreateDate",
-        //     value: "Sort by Recently Added",
-        //     callback: () => sortTasksRecentlyAdded(tasks)
-        // },
         {
             name: "editColumn",
             value: "Edit Column",
@@ -52,9 +42,8 @@ export const Column = ({
             name: "deleteColumn",
             value: "Delete Column",
             callback: () => openDeleteConfirmationModal({resourceName: column.columnName, resourceId: column.columnId, callback: () => deleteColumn(column.columnId)})
-            // callback: () => openDeleteConfirmationModal(deleteConfirmationModalArgs(column.columnId, column.columnName, deleteColumn))
         },
-    ]); 
+    ]);
     const [tasks, setTasks] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showColumnDescription, setShowColumnDescription] = useState(false);

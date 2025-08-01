@@ -6,26 +6,35 @@ import './TableRow.css';
 
 export const TableRow = ({ name, createdDate, thirdColumn }) => {
     // const {} = useContext(AppContext);
-    const [state, setState] = useState(false);
 
-    const toggleState = () => {
-        setState(!state);
-    };
+    const [moreIconValues, setMoreIconValues] = useState([
+        {
+            name: "deleteBoard",
+            value: "Delete Board",
+            callback: () => console.log("Board deleted!")
+        }
+    ]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [state]);
+    // }, [state]);
 
     return (
         <div
             className="table-row"
-            style={{ width: "100%", display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #ccc' }}
-            onClick={toggleState}
+            style={{ 
+                width: "100%",
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '10px',
+                paddingLeft: 0,
+                borderBottom: '1px solid #ccc' 
+            }}
         >
             <div className="table-cell" style={{ flex: 1 }}>{name}</div>
             <div className="table-cell" style={{ flex: 1 }}>{createdDate}</div>
             <div className="table-cell" style={{ flex: 1 }}>
-                <MoreIcon />
+                <MoreIcon options={moreIconValues} />
             </div>
         </div>
     );
@@ -33,5 +42,5 @@ export const TableRow = ({ name, createdDate, thirdColumn }) => {
 
 TableRow.propTypes = {
     name: PropTypes.string.isRequired,
-    createdDate: PropTypes.string.isRequired
+    // createdDate: PropTypes.string.isRequired
 };

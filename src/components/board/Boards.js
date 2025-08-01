@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../AppContextProvider';
 import { boardsClient } from '../../api/boardClient';
+import { TableRow }  from "../../controls/tablerow/TableRow";
 
 export const Boards = () => {
     const { userSession } = useContext(AppContext);
@@ -21,11 +22,16 @@ export const Boards = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{ width: '60%', margin: "0 auto", padding: '46px', boxSizing: 'border-box' }}>
             <h2>Boards</h2>
-            <ul>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {items && items.map((item, idx) => (
-                    <li key={idx}>{item.boardName}</li>
+                    <li key={idx}>
+                        <TableRow
+                            name={item.boardName}
+                            // createdDate={item.createdDate}
+                        />
+                    </li>
                 ))}
             </ul>
         </div>
