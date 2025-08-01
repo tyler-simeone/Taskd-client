@@ -6,10 +6,14 @@ import { TableRow }  from "../../controls/tablerow/TableRow";
 export const Boards = () => {
     const { 
         userSession,
+        setError,
+        setIsLoading,
+        handleRerender,
+        handleError,
         openDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete
     } = useContext(AppContext);
-    
+
     const [items, setItems] = useState();
 
     const loadBoards = async () => {
