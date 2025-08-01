@@ -20,6 +20,7 @@ export const Column = ({
     isOnly 
 }) => {
     const { 
+        userSession,
         openAddTaskModal,
         openEditColumnModal,
         handleRerender,
@@ -58,7 +59,7 @@ export const Column = ({
         setIsLoading(true);
 
         try {
-            var resp = await columnsClient.deleteColumn(columnId, 1);
+            var resp = await columnsClient.deleteColumn(columnId, userSession.userId);
             if (resp)
                 handleRerender();
         } catch (err) {

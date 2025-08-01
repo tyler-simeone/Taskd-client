@@ -4,16 +4,8 @@ import PropTypes from 'prop-types';
 import { MoreIcon } from '../icons/MoreIcon';
 import './TableRow.css';
 
-export const TableRow = ({ name, createdDate, thirdColumn }) => {
-    // const {} = useContext(AppContext);
-
-    const [moreIconValues, setMoreIconValues] = useState([
-        {
-            name: "deleteBoard",
-            value: "Delete Board",
-            callback: () => console.log("Board deleted!")
-        }
-    ]);
+export const TableRow = ({ id, name, createdDate, moreIconValues }) => {
+    
 
     // useEffect(() => {
 
