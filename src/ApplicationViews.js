@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Board } from './components/board/Board';
+import { Boards } from './components/board/Boards';
 import { Login } from './components/auth/Login';
 import { AuthContainer } from './components/auth/AuthContainer';
 
@@ -24,6 +25,7 @@ const ApplicationViews = () => {
                     <Board didMove={didMove} setDidMove={setDidMove} />
                 </DndProvider>
             } />
+            <Route exact path="/boards" element={<Boards />} />
         </ Routes>
     )
 }

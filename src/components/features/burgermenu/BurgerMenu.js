@@ -39,6 +39,12 @@ export const BurgerMenu = ({
             </li>
             
             <li onClick={() => {
+              toggleMenu();
+            }}>
+              <a href="/boards">View Boards</a>
+            </li>
+            
+            <li onClick={() => {
               linkTwoClick();
               toggleMenu();
             }}>
