@@ -18,12 +18,21 @@ export const TableRow = ({ id, name, createdDate, moreIconValues }) => {
                 width: "100%",
                 display: 'flex',
                 justifyContent: 'space-between',
-                padding: '10px',
+                padding: '16px',
                 paddingLeft: 0,
-                borderBottom: '1px solid #ccc' 
+                borderBottom: '1px solid #dbdbdb' 
             }}
         >
-            <div className="table-cell" style={{ flex: 1 }}>{name}</div>
+            <div className="table-cell" style={{ flex: 1 }}>
+                <p style={{
+                    margin: 0,
+                    fontSize: '15.5px',
+                    fontWeight: 'bold',
+                    color: '#282828',
+                    cursor: 'pointer',
+                    textDecoration: 'none'
+                }}>{name}</p>
+            </div>
             <div className="table-cell" style={{ flex: 1 }}>{createdDate}</div>
             <div className="table-cell" style={{ flex: 1 }}>
                 <MoreIcon options={moreIconValues} />
