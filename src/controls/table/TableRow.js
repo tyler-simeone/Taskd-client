@@ -4,12 +4,30 @@ import PropTypes from 'prop-types';
 import { MoreIcon } from '../icons/MoreIcon';
 import './TableRow.css';
 
-export const TableRow = ({ id, name, createdDate, moreIconValues }) => {
-    
+export const TableRow = ({ id, name, createdDate, moreIconProps }) => {
+    const {
+        openDeleteConfirmationModal,
+        deleteConfirmed
+    } = useContext(AppContext);
 
-    // useEffect(() => {
+    const [moreIconValues, setMoreIconValues] = useState([
+        // Delete option
+        {
+            name: moreIconProps.name,
+            value: moreIconProps.value,
+            callback: () => openDeleteConfirmationModal({
+                resourceName: name, 
+                resourceId: id, 
+                callback: () => moreIconProps.deleteCallback(id)
+            })
+        }
+    ]);
 
-    // }, [state]);
+    useEffect(() => {
+        if (deleteConfirmed) {
+            moreIconProps.deleteCallback(id);
+        }
+    }, [deleteConfirmed]);
 
     return (
         <div
@@ -26,7 +44,7 @@ export const TableRow = ({ id, name, createdDate, moreIconValues }) => {
             <div className="table-cell" style={{ flex: 1 }}>
                 <p style={{
                     margin: 0,
-                    fontSize: '15.5px',
+                    fontSize: '16px',
                     fontWeight: 'bold',
                     color: '#282828',
                     cursor: 'pointer',

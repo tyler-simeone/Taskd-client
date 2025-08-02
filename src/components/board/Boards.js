@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../AppContextProvider';
 import { boardsClient } from '../../api/boardClient';
-import { TableRow }  from "../../controls/tablerow/TableRow";
+import { Table } from '../../controls/table/Table';
 
 export const Boards = () => {
     const { 
@@ -14,29 +14,19 @@ export const Boards = () => {
         closeDeleteConfirmationModalOnDelete
     } = useContext(AppContext);
 
-    const [items, setItems] = useState();
+    const [boards, setBoards] = useState();
 
     const loadBoards = async () => {
         try {
             const response = await boardsClient.getBoards(userSession.userId);
-            setItems(response.boards);
+            setBoards(response.boards);
         } catch (error) {
             console.error('Error fetching boards:', error);
         }
     }
 
-    const [moreIconValues, setMoreIconValues] = useState([
-        {
-            name: "deleteBoard",
-            value: "Delete Board",
-            callback: () => console.log("Board deleted!")
-            // callback: () => openDeleteConfirmationModal({resourceName: name, resourceId: id, callback: () => deleteBoard(column.columnId)})
-        }
-    ]);
-
     const deleteBoard = async boardId => {
         setError();
-        setIsLoading(true);
 
         try {
             var resp = await boardsClient.deleteBoard(boardId, userSession.userId);
@@ -51,26 +41,26 @@ export const Boards = () => {
         }
     }
 
+    const [moreIconProps, setMoreIconProps] = useState({
+        name: "deleteBoard",
+        value: "Delete Board",
+        deleteCallback: id => deleteBoard(id)
+    });
+
     useEffect(() => {
-        if (!items)
+        if (!boards) {
             loadBoards();
+        }
     }, []);
 
     return (
         <div style={{ width: '60%', margin: "0 auto", padding: '46px', boxSizing: 'border-box' }}>
             <h2>Boards</h2>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {items && items.map((item, idx) => (
-                    <li key={idx}>
-                        <TableRow
-                            id={item.boardId}
-                            name={item.boardName}
-                            // createdDate={item.createdDate}
-                            moreIconValues={moreIconValues}
-                        />
-                    </li>
-                ))}
-            </ul>
+            
+            <Table
+                rowItems={boards}
+                moreIconProps={moreIconProps}
+            />
         </div>
     );
 };

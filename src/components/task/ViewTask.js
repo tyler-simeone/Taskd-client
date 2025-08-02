@@ -58,7 +58,7 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
     const deleteTask = (taskId) => {
         setError();
         setIsLoading(true);
-        tasksClient.deleteTask(taskId, 1)
+        tasksClient.deleteTask(taskId, userSession.userId)
             .catch(err => handleError(err, setError));
         setIsLoading(false);
         handleRerender();
