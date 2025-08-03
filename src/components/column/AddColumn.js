@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
@@ -7,6 +7,8 @@ import { PrimaryButton } from "../../controls/buttons/PrimaryButton";
 
 export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerender }) => {
     const { userSession, boardId, handleColumnAdded } = useContext(AppContext);
+
+    const columnNameInputRef = useRef(null);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
@@ -55,9 +57,23 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
         }
     }
 
+    useEffect(() => {
+        if (columnNameInputRef.current) {
+            columnNameInputRef.current.focus();
+            columnNameInputRef.current.setSelectionRange(0, 0);
+            columnNameInputRef.current.scrollLeft = 0;
+        }
+    }, []);
+
     return (
         <form>
-            <Input name={"columnName"} label={"*Column Name"} handleChange={handleChange} fromModal={true} />
+            <Input 
+                name={"columnName"}
+                label={"*Column Name"}
+                handleChange={handleChange}
+                fromModal={true}
+                ref={columnNameInputRef}
+            />
             <Input name={"columnDescription"} label={"Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={evt => handleSubmit(evt)} isSubmitting={isSubmitting} />
         </ form>

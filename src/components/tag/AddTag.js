@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AppContext } from "../../AppContextProvider";
 import { handleError } from "../../util/handleError";
@@ -13,6 +13,8 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
             taskId,
             isAddTagFromEditTask,
             openEditTaskModal } = useContext(AppContext);
+
+    const tagNameInputRef = useRef(null);
 
     const navigate = useNavigate();
     const useQuery = () => new URLSearchParams(useLocation().search);
@@ -86,6 +88,14 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
         }
     }
 
+    useEffect(() => {
+        if (tagNameInputRef.current) {
+            tagNameInputRef.current.focus();
+            tagNameInputRef.current.setSelectionRange(0, 0);
+            tagNameInputRef.current.scrollLeft = 0;
+        }
+    }, [tagNameInputRef]);
+
     return (
         <>
             {isAddTagFromEditTask && (
@@ -101,6 +111,7 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
                     label={"*Tag Name"} 
                     handleChange={handleChange} 
                     fromModal={true} 
+                    ref={tagNameInputRef}
                 />
 
                 {/* <TextArea 

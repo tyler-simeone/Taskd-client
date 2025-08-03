@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { handleError } from "../../util/handleError";
 import { Input } from "../../controls/inputs/Input";
@@ -7,6 +7,8 @@ import { boardsClient } from "../../api/boardClient";
 
 export const AddBoard = ({ setFormError, setError, closeSideModal }) => {
     const { userSession, handleRerender } = useContext(AppContext);
+
+    const boardNameInputRef = useRef(null);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newBoard, setNewBoard] = useState({
@@ -51,9 +53,23 @@ export const AddBoard = ({ setFormError, setError, closeSideModal }) => {
         }
     }
 
+    useEffect(() => {
+        if (boardNameInputRef.current) {
+            boardNameInputRef.current.focus();
+            boardNameInputRef.current.setSelectionRange(0, 0);
+            boardNameInputRef.current.scrollLeft = 0;
+        }
+    }, [boardNameInputRef]);
+
     return (
         <form>
-            <Input name={"boardName"} label={"*Board Name"} handleChange={handleChange} fromModal={true} />
+            <Input 
+                name={"boardName"}
+                label={"*Board Name"}
+                handleChange={handleChange}
+                fromModal={true}
+                ref={boardNameInputRef}
+            />
             <Input name={"boardDescription"} label={"Description"} handleChange={handleChange} fromModal={true} />
             <PrimaryButton text={"Submit"} handleSubmit={evt => handleSubmit(evt)} isSubmitting={isSubmitting} />
         </ form>

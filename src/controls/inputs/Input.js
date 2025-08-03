@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { X } from "lucide-react";
 import "./styles/Input.css"
 
-export const Input = ({ 
+export const Input = forwardRef(({ 
     id,
     label,
     name,
@@ -17,7 +17,7 @@ export const Input = ({
     placeholder,
     showXIcon,
     xIconOnClick
-}) => {
+}, ref) => {
 
     return (
         <div className="pb-input--container" style={containerStyle}>
@@ -36,6 +36,7 @@ export const Input = ({
                             disabled={isDisabled}
                             style={style}
                             placeholder={placeholder}
+                            ref={ref}
                         />
                             <button
                                 className="pb-input-clr--btn"
@@ -59,9 +60,10 @@ export const Input = ({
                         disabled={isDisabled}
                         style={style}
                         placeholder={placeholder}
+                        ref={ref}
                     />
                 </>
             )}
         </div>
     );
-}
+});

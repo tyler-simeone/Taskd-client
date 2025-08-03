@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
@@ -27,8 +27,9 @@ export const EditTask = ({
             setTaskTagsChangedTaskId 
         } = useContext(AppContext);
 
-    const [isLoading, setIsLoading] = useState(false);
+    const taskNameInputRef = useRef(null);
 
+    const [isLoading, setIsLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editTask, setEditTask] = useState();
     const [tagsOnTask, setTagsOnTask] = useState();
@@ -126,6 +127,12 @@ export const EditTask = ({
     useEffect(() => {
         if (!editTask)
             loadTask();
+        else if (taskNameInputRef.current) {
+            // Autofocus the Name input when the component mounts
+            taskNameInputRef.current.focus();
+            taskNameInputRef.current.setSelectionRange(0, 0);
+            taskNameInputRef.current.scrollLeft = 0;
+        }
     }, [editTask])
 
     useEffect(() => {
@@ -149,6 +156,7 @@ export const EditTask = ({
                         handleChange={handleChange} 
                         fromModal={true}
                         value={editTask.taskName}
+                        ref={taskNameInputRef}
                     />
 
                     <TextArea 

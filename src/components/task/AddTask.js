@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { tasksClient } from "../../api/tasksClient";
 import { handleError } from "../../util/handleError";
@@ -10,6 +10,8 @@ import { AddTaskTag } from "../tag/AddTaskTag";
 
 export const AddTask = ({ setFormError, setError, closeSideModal, columnId, handleRerender }) => {
     const { userSession } = useContext(AppContext);
+
+    const taskNameInputRef = useRef(null);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showTagSelector, setShowTagSelector] = useState(false);
@@ -60,13 +62,22 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
         }
     }
 
+    useEffect(() => {
+        if (taskNameInputRef.current) {
+            taskNameInputRef.current.focus();
+            taskNameInputRef.current.setSelectionRange(0, 0);
+            taskNameInputRef.current.scrollLeft = 0;
+        }
+    }, [taskNameInputRef]);
+
     return (
         <form>
             <Input 
                 name={"taskName"} 
                 label={"*Task Name"} 
                 handleChange={handleChange} 
-                fromModal={true} 
+                fromModal={true}
+                ref={taskNameInputRef}
             />
 
             <TextArea 

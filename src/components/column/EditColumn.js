@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { columnsClient } from "../../api/columnsClient";
 import { handleError } from "../../util/handleError";
@@ -8,6 +8,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 export const EditColumn = ({ setFormError, setError, closeSideModal, handleRerender, columnId }) => {
     const { userSession } = useContext(AppContext);
+
+    const columnNameInputRef = useRef(null);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [updatedColumn, setUpdatedColumn] = useState();
@@ -59,12 +61,17 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
     }
 
     useEffect(() => {
-        if (updatedColumn === undefined)
+        if (!updatedColumn)
             loadColumn();
+        else if (columnNameInputRef.current) {
+            columnNameInputRef.current.focus();
+            columnNameInputRef.current.setSelectionRange(0, 0);
+            columnNameInputRef.current.scrollLeft = 0;
+        }
     }, [updatedColumn])
 
     return (
-        updatedColumn !== undefined ? (
+        updatedColumn && (
             <>
                 <form>
                     <Input 
@@ -73,6 +80,7 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
                         handleChange={handleChange}
                         fromModal={true} 
                         value={updatedColumn.columnName}
+                        ref={columnNameInputRef}
                     />
                     <Input 
                         name={"columnDescription"} 
@@ -88,6 +96,6 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
                     />
                 </ form>
             </>
-        ) : null
+        )
     );
 }
