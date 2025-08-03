@@ -9,6 +9,7 @@ export const AddBoard = ({ setFormError, setError, closeSideModal }) => {
     const { userSession, handleRerender } = useContext(AppContext);
 
     const boardNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newBoard, setNewBoard] = useState({
@@ -54,10 +55,11 @@ export const AddBoard = ({ setFormError, setError, closeSideModal }) => {
     }
 
     useEffect(() => {
-        if (boardNameInputRef.current) {
+        if (boardNameInputRef.current && !hasFocused.current) {
             boardNameInputRef.current.focus();
             boardNameInputRef.current.setSelectionRange(0, 0);
             boardNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, [boardNameInputRef]);
 

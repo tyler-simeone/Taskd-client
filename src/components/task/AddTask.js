@@ -12,6 +12,7 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
     const { userSession } = useContext(AppContext);
 
     const taskNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showTagSelector, setShowTagSelector] = useState(false);
@@ -63,10 +64,11 @@ export const AddTask = ({ setFormError, setError, closeSideModal, columnId, hand
     }
 
     useEffect(() => {
-        if (taskNameInputRef.current) {
+        if (taskNameInputRef.current && !hasFocused.current) {
             taskNameInputRef.current.focus();
             taskNameInputRef.current.setSelectionRange(0, 0);
             taskNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, [taskNameInputRef]);
 

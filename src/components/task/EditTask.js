@@ -28,6 +28,7 @@ export const EditTask = ({
         } = useContext(AppContext);
 
     const taskNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -127,11 +128,12 @@ export const EditTask = ({
     useEffect(() => {
         if (!editTask)
             loadTask();
-        else if (taskNameInputRef.current) {
+        else if (taskNameInputRef.current && !hasFocused.current) {
             // Autofocus the Name input when the component mounts
             taskNameInputRef.current.focus();
             taskNameInputRef.current.setSelectionRange(0, 0);
             taskNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, [editTask])
 

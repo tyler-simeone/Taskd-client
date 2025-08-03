@@ -9,6 +9,7 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
     const { userSession, boardId, handleColumnAdded } = useContext(AppContext);
 
     const columnNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [newColumn, setNewColumn] = useState({
@@ -58,10 +59,11 @@ export const AddColumn = ({ setFormError, setError, closeSideModal, handleRerend
     }
 
     useEffect(() => {
-        if (columnNameInputRef.current) {
+        if (columnNameInputRef.current && !hasFocused.current) {
             columnNameInputRef.current.focus();
             columnNameInputRef.current.setSelectionRange(0, 0);
             columnNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, []);
 

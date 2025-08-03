@@ -15,6 +15,7 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
             openEditTaskModal } = useContext(AppContext);
 
     const tagNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const navigate = useNavigate();
     const useQuery = () => new URLSearchParams(useLocation().search);
@@ -89,10 +90,11 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
     }
 
     useEffect(() => {
-        if (tagNameInputRef.current) {
+        if (tagNameInputRef.current && !hasFocused.current) {
             tagNameInputRef.current.focus();
             tagNameInputRef.current.setSelectionRange(0, 0);
             tagNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, [tagNameInputRef]);
 

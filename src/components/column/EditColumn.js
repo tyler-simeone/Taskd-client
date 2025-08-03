@@ -10,6 +10,7 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
     const { userSession } = useContext(AppContext);
 
     const columnNameInputRef = useRef(null);
+    const hasFocused = useRef(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [updatedColumn, setUpdatedColumn] = useState();
@@ -63,10 +64,11 @@ export const EditColumn = ({ setFormError, setError, closeSideModal, handleReren
     useEffect(() => {
         if (!updatedColumn)
             loadColumn();
-        else if (columnNameInputRef.current) {
+        else if (columnNameInputRef.current && !hasFocused.current) {
             columnNameInputRef.current.focus();
             columnNameInputRef.current.setSelectionRange(0, 0);
             columnNameInputRef.current.scrollLeft = 0;
+            hasFocused.current = true;
         }
     }, [updatedColumn])
 
