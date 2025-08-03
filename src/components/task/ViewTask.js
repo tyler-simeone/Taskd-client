@@ -11,10 +11,11 @@ import { XIcon } from "../../controls/icons/XIcon";
 import "./styles/ViewTask.css"
 
 export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }) => {
-    const { deleteConfirmed,
+    const { 
+            boardId,
+            deleteConfirmed,
             openDeleteConfirmationModal,
             closeDeleteConfirmationModalOnDelete,
-            taskTags,
             userSession,
             taskTagsHaveChanged,
             closeSideModal
@@ -43,14 +44,19 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
                     resourceId: resp.taskId, 
                     callback: () => deleteTask(resp.taskId)
                 });
-                setIsLoading(false);
+            })
+            .then(() => {
+                tagsClient.getTaskTags(boardId, taskId)
+                    .then(resp => setTagsOnTask(resp.data))
+                    .catch(err => handleError(err, setError));
             })
             .catch(err => {
                 setIsLoading(false);
                 if (err.status === 401)
                     closeSideModal();
                 handleError(err, setError);
-            });
+            })
+            .finally(() => setIsLoading(false));
     }
     
     const openDeleteConfirmation = () => openDeleteConfirmationModal(deleteModalArgs);
@@ -65,12 +71,6 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
         closeDeleteConfirmationModalOnDelete();
     }
 
-    const loadTaskTags = () => {
-        var tagsForTask = taskTags.filter(tt => tt.taskId === taskId);
-        if (tagsForTask.length > 0)
-            setTagsOnTask(tagsForTask);
-    };
-
     useEffect(() => {
         if (!task)
             loadTask();
@@ -78,11 +78,6 @@ export const ViewTask = ({ taskId, openEditTaskModal, setError, handleRerender }
         if (deleteConfirmed)
             deleteTask();
     }, [task, deleteConfirmed]);
-
-    useEffect(() => {
-        if (taskTags && (!tagsOnTask || taskTagsHaveChanged))
-          loadTaskTags();
-      }, [tagsOnTask]);
 
     return (
         task && (
