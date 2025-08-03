@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import TogglePopout from "../popoutmenu/TogglePopout";
 import { Input } from "../../../controls/inputs/Input";
 import { Checkbox } from "../../../controls/inputs/Checkbox";
 import "./PopoutMenuSearch.css"
 
-export const PopoutMenuSearch = ({ 
+export const PopoutMenuSearch = ({
     options,
     idx,
     value,
@@ -17,15 +17,24 @@ export const PopoutMenuSearch = ({
     onInputChange
 }) => {
 
-    useEffect(() => {
-        // console.log("selectedIds: ", selectedIds);
-    }, [])
+    // const popoutSearchRef = useRef(null);
+    // const hasFocused = useRef(false);
+
+    // useEffect(() => {
+    //     if (popoutSearchRef.current) {
+    //         popoutSearchRef.current.focus();
+    //         popoutSearchRef.current.setSelectionRange(0, 0);
+    //         popoutSearchRef.current.scrollLeft = 0;
+    //         hasFocused.current = true;
+    //     }
+    // }, [])
 
     return (    
         <>
             <TogglePopout
                 renderButton={({ isOpen }) => (
-                    <Input 
+                    <Input
+                        id={`popout-search`}
                         label={label}
                         style={{height: 31, border: "1px solid lightgray", borderRadius: 2.5}}
                         containerStyle={{marginBottom: 0}}
@@ -35,6 +44,7 @@ export const PopoutMenuSearch = ({
                         showXIcon={showXIcon}
                         xIconOnClick={handleClearFilters}
                         handleChange={onInputChange}
+                        // ref={popoutSearchRef}
                     />
                 )}
             >

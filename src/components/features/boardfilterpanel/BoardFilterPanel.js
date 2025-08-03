@@ -122,7 +122,7 @@ export const BoardFilterPanel = () => {
 
     const handleTextFilter = (e) => {
         const textFilter = e.target.value.toLowerCase();
-        if (!textFilter || textFilter.length === 0) {
+        if (textFilter.length === 0) {
             handleClearTextFilter();
             return;
         }
@@ -130,6 +130,12 @@ export const BoardFilterPanel = () => {
         
         if (popoutMenuValues && popoutMenuValues.length > 0) {
             const filteredValues = popoutMenuValues.filter(v => v.name.toLowerCase().startsWith(textFilter));
+            if (filteredValues.length === 0) {
+                // setTagFilterPlaceholder("No tags found");
+                // setPopoutMenuValues();
+                loadTags();
+                return;
+            }
             setPopoutMenuValues(filteredValues);
         }
     }
@@ -163,7 +169,7 @@ export const BoardFilterPanel = () => {
     return (
         <div className="board-filter-panel--container">
             {(showFilters || filterCriteria) &&
-                <PopoutMenuSearch 
+                <PopoutMenuSearch
                     label={"Filter Tags"}
                     options={popoutMenuValues} 
                     placeholder={filterCriteria && tagFilterPlaceholder && tagFilterPlaceholder}
