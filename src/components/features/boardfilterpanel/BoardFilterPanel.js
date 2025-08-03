@@ -120,6 +120,26 @@ export const BoardFilterPanel = () => {
         handleRerender();
     }
 
+    const handleTextFilter = (e) => {
+        const textFilter = e.target.value.toLowerCase();
+        if (!textFilter || textFilter.length === 0) {
+            handleClearTextFilter();
+            return;
+        }
+        setTagFilterPlaceholder(textFilter);
+        
+        if (popoutMenuValues && popoutMenuValues.length > 0) {
+            const filteredValues = popoutMenuValues.filter(v => v.name.toLowerCase().startsWith(textFilter));
+            setPopoutMenuValues(filteredValues);
+        }
+    }
+
+    const handleClearTextFilter = () => {
+        if (popoutMenuValues && popoutMenuValues.length > 0) {
+            loadTags();
+        }
+    }
+
     useEffect(() => {
         if (!sessionFilterCriteria) {
             const storageCriteria = JSON.parse(sessionStorage.getItem("filterCriteria"));
@@ -150,6 +170,7 @@ export const BoardFilterPanel = () => {
                     selectedIds={filterCriteria && filterCriteria.map(c => c.tagId)}
                     showXIcon={filterCriteria}
                     handleClearFilters={clearFilters}
+                    onInputChange={handleTextFilter}
                 />
             }
 

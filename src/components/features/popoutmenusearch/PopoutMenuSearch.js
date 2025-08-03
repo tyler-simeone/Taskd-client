@@ -13,7 +13,8 @@ export const PopoutMenuSearch = ({
     inputDisabled,
     selectedIds,
     showXIcon,
-    handleClearFilters
+    handleClearFilters,
+    onInputChange
 }) => {
 
     useEffect(() => {
@@ -33,6 +34,7 @@ export const PopoutMenuSearch = ({
                         isDisabled={inputDisabled}
                         showXIcon={showXIcon}
                         xIconOnClick={handleClearFilters}
+                        handleChange={onInputChange}
                     />
                 )}
             >
