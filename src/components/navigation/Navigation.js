@@ -78,6 +78,7 @@ export const Navigation = () => {
           <TaskdLogo 
             isAuthenticated={isAuthenticated} 
             boardName={boardName} 
+            isLink={true}
           />}
 
         {isAuthenticated() && (

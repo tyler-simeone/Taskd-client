@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { TableRow }  from "../../controls/table/TableRow";
+import { TableRow }  from "./TableRow";
 
 export const Table = ({ rowItems, moreIconProps }) => {
     

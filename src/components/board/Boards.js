@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../AppContextProvider';
 import { boardsClient } from '../../api/boardClient';
-import { Table } from '../../controls/table/Table';
+import { Table } from '../features/table/Table';
 
 export const Boards = () => {
     const { 
@@ -10,7 +10,6 @@ export const Boards = () => {
         setIsLoading,
         handleRerender,
         handleError,
-        openDeleteConfirmationModal,
         closeDeleteConfirmationModalOnDelete
     } = useContext(AppContext);
 

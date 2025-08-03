@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../AppContextProvider';
+import { AppContext } from '../../../AppContextProvider';
 import PropTypes from 'prop-types';
-import { MoreIcon } from '../icons/MoreIcon';
+import { MoreIcon } from '../../../controls/icons/MoreIcon';
 import './TableRow.css';
 
 export const TableRow = ({ id, name, createdDate, moreIconProps }) => {

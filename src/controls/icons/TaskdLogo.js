@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../AppContextProvider";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input } from "../inputs/Input";
 import { boardsClient } from "../../api/boardClient";
 import { handleError } from "../../util/handleError";
 
 export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
     const { userSession, boardId, handleRerender, setError } = useContext(AppContext);
+
+    const navigate = useNavigate();
+
     const [isEdit, setIsEdit] = useState(false);
     const [updatedBoardName, setUpdatedBoardName] = useState(boardName);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,38 +53,42 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
             .catch(err => handleError(err, setError));
     }
 
+    const navigateToBoard = () => {
+        if (isAuthenticated) {
+            navigate("/board");
+        } else {
+            navigate("/login");
+        }
+    }
+
     useEffect(() => {
         setUpdatedBoardName(boardName);
     }, [isEdit])
 
     return (
         <div style={style} className="pb-logo">
-            {isLink ? (
-                <Link to={isAuthenticated ? "/board" : "/login"}>Task'd</Link>
-            ) : (
-                <div style={{display: "flex"}}>
-                    <p>Task'd</p> 
-                    
-                    {/* Editable Board Name */}
-                    {boardName && (
-                        <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 18, lineHeight: "22px", color: "#a7a7a7"}}>
-                            <p style={{margin: "0px 8px", marginBottom: 0}}>/</p>
-                            {!isEdit ? (
-                                <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>
-                            ) : (
-                                <form onSubmit={handleSubmit}>
-                                    <Input 
-                                        id={"board-name"}
-                                        value={updatedBoardName}
-                                        handleChange={handleChange}
-                                        style={{height: 34, marginTop: "-3.5px", marginBottom: 0}}
-                                    />
-                                </form>
-                            )}
-                        </div>
-                    )}
-                </div>
-            )}
+            <div style={{display: "flex"}}>
+                <p onClick={() => isLink && navigateToBoard()}>Task'd</p> 
+                
+                {/* Editable Board Name */}
+                {boardName && (
+                    <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 18, lineHeight: "22px", color: "#a7a7a7"}}>
+                        <p style={{margin: "0px 8px", marginBottom: 0}}>/</p>
+                        {!isEdit ? (
+                            <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>
+                        ) : (
+                            <form onSubmit={handleSubmit}>
+                                <Input 
+                                    id={"board-name"}
+                                    value={updatedBoardName}
+                                    handleChange={handleChange}
+                                    style={{height: 34, marginTop: "-3.5px", marginBottom: 0}}
+                                />
+                            </form>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
