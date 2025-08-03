@@ -54,7 +54,9 @@ export const Boards = () => {
 
     return (
         <div style={{ width: '60%', margin: "0 auto", padding: '46px', boxSizing: 'border-box' }}>
-            <h2 style={{ marginBottom: 8 }}>Boards</h2>
+            <h2 style={{ marginBottom: 14 }}>
+                My Boards
+            </h2>
             
             {boards && (
                 <Table

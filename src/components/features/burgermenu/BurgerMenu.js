@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X, Menu } from "lucide-react";
 import "./BurgerMenu.css";
 
@@ -10,6 +10,19 @@ export const BurgerMenu = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && isOpen) {
+        toggleMenu();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   return (
     <div>
@@ -41,7 +54,7 @@ export const BurgerMenu = ({
             <li onClick={() => {
               toggleMenu();
             }}>
-              <a href="/boards">View Boards</a>
+              <a href="/boards">My Boards</a>
             </li>
             
             <li onClick={() => {
