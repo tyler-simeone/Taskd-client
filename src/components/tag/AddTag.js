@@ -63,6 +63,7 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
             try {
                 var newTagId = await tagsClient.createTag(addTagPayload);
 
+                // adding tag to board & task at same time, if we're coming from edit task workflow
                 if (isAddTagFromEditTask) {
                     const addTagTaskPayload = {
                         userId: userSession.userId,
@@ -70,7 +71,7 @@ export const AddTag = ({ setFormError, setError, closeSideModal, handleRerender 
                         taskId: taskId,
                         tagId: newTagId
                     }
-                    var resp = await tagsClient.addTagToTask(addTagTaskPayload);
+                    await tagsClient.addTagToTask(addTagTaskPayload);
                 }
 
                 if (newTagId)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { AppContext } from "../../AppContextProvider";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../inputs/Input";
@@ -7,6 +7,8 @@ import { handleError } from "../../util/handleError";
 
 export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
     const { userSession, boardId, handleRerender, setError } = useContext(AppContext);
+
+    const inputRef = useRef(null);
 
     const navigate = useNavigate();
 
@@ -61,8 +63,24 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
         }
     }
 
+    const handleClickOutside = (event) => {
+        if (inputRef.current && !inputRef.current.contains(event.target)) {
+            setIsEdit(false);
+        }
+    };
+
     useEffect(() => {
         setUpdatedBoardName(boardName);
+
+        if (isEdit) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside); // Cleanup on unmount
+        };
     }, [isEdit])
 
     return (
@@ -72,7 +90,8 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                 
                 {/* Editable Board Name */}
                 {boardName && (
-                    <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 18, lineHeight: "22px", color: "#a7a7a7"}}>
+                    // <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 18, lineHeight: "22px", color: "#a7a7a7"}}>
+                    <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 18, lineHeight: "22px", color: "#a6a7a8"}}>
                         <p style={{margin: "0px 8px", marginBottom: 0}}>/</p>
                         {!isEdit ? (
                             <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>
@@ -82,7 +101,8 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                                     id={"board-name"}
                                     value={updatedBoardName}
                                     handleChange={handleChange}
-                                    style={{height: 34, marginTop: "-3.5px", marginBottom: 0}}
+                                    style={{height: 34, marginTop: -5.5, marginBottom: 0}}
+                                    ref={inputRef}
                                 />
                             </form>
                         )}
