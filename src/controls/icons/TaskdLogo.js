@@ -101,7 +101,7 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                                     id={"board-name"}
                                     value={updatedBoardName}
                                     handleChange={handleChange}
-                                    style={{height: 34, marginTop: -5.5, marginBottom: 0}}
+                                    style={{height: 30, marginTop: -2, marginBottom: 0}}
                                     ref={inputRef}
                                 />
                             </form>
