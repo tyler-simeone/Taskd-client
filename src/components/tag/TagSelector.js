@@ -24,10 +24,10 @@ export const TagSelector = ({
             var response = null; 
             
             // When taskId has a value, we're loading tags just for a specific Task, to see what remaining tags are avaliable.
-            // Otherwise, just load all tags for a board, as this is a new Task.
             if (taskId)
                 response = await tagsClient.getAvailableTagsByTaskId(taskId, boardId);
-            else 
+            // Load all tags for a board, as this is a new Task.
+            else
                 response = await tagsClient.getTagsByBoardId(boardId, userSession.userId);
             
             setTags(response.data);

@@ -75,12 +75,20 @@ export const EditTask = ({
     }
 
     const handleTagsHaveChanged = () => {
-        setTagsHaveChanged(!tagsHaveChanged);
+        console.log("tagsHaveChanged: ", tagsHaveChanged);
+        
+        // setTagsHaveChanged(!tagsHaveChanged);
 
-        if (tagsHaveChanged)
+        if (!tagsHaveChanged) {
+            setTagsHaveChanged(true);
+            setTaskTagsHaveChanged(true);
             setTaskTagsChangedTaskId(taskId);
+        } else {
+            setTagsHaveChanged(false);
+            setTaskTagsHaveChanged(false);
+        }
 
-        setTaskTagsHaveChanged(true);
+        // setTaskTagsHaveChanged(true);
     };
 
     const handleShowTagSelector = () => {

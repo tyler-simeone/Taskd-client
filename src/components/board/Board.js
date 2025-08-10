@@ -160,10 +160,13 @@ export const Board = ({ didMove, setDidMove }) => {
   }, [boardHasChanged, boardIdHasChanged, rerender, board, boardId, droppedColumnId, columnAdded, taskTags]);
 
   useEffect(() => {
+    console.log("BOARD: taskTagsHaveChanged: ", taskTagsHaveChanged);
+
     if (boardId && board && (!taskTags || taskTagsHaveChanged || boardIdHasChanged)) {
+      console.log("Yup hiya!")
       loadBoardTags(boardId);
     }
-  }, [board, boardIdHasChanged, taskTagsHaveChanged]);
+  }, [board, boardIdHasChanged, taskTagsHaveChanged, taskTags]);
 
     return (
         <div className="board--container">

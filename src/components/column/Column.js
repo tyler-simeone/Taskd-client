@@ -90,6 +90,7 @@ export const Column = ({
             filteredTasks.length > 0 ? setTasks(filteredTasks[0]) : setTasks(resp.tasks);
 
             setNewTaskCount(resp.tasks.length);
+            
             // Highly necessary for proper re-rendering on task drop
             setDroppedTaskId();
         } catch (err) {

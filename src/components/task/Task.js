@@ -3,9 +3,19 @@ import { AppContext } from "../../AppContextProvider";
 import { useDrag } from 'react-dnd';
 import { TagsList } from "../tag/TagsList";
 import "./styles/Task.css"
+import { tagsClient } from "../../api/tagsClient";
+import { handleError } from "../../util/handleError";
 
 export const Task = ({ task, sourceColumnId, index, didMove }) => {
-    const { openViewTaskModal, taskTagsHaveChanged } = useContext(AppContext);
+    const { 
+      openViewTaskModal, 
+      taskTagsHaveChanged,
+      taskTagsChangedTaskId,
+      setTaskTagsHaveChanged,
+      setError
+    } = useContext(AppContext);
+
+    const [tagsOnTask, setTagsOnTask] = useState();
     
     const [{ isDragging }, drag] = useDrag({
         type: 'CARD',
@@ -34,9 +44,21 @@ export const Task = ({ task, sourceColumnId, index, didMove }) => {
         }),
       });
 
-      const [tagsOnTask, setTagsOnTask] = useState();
+      const loadTaskTags = async () => {
+        try {
+          var taskTags = await tagsClient.getTaskTags(task.boardId, task.taskId);
+          setTagsOnTask(taskTags.data);
+          setTaskTagsHaveChanged(false);
+        } catch (error) {
+          handleError(error, setError);
+        }
+      }
 
       useEffect(() => {
+        console.log("Hello from Task useEffect...");
+        if (taskTagsHaveChanged && taskTagsChangedTaskId === task.taskId) {
+          loadTaskTags();
+        }
         setTagsOnTask(task.taskTags);
       }, [tagsOnTask, taskTagsHaveChanged]);
 
