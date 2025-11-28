@@ -17,18 +17,6 @@ export const PopoutMenuSearch = ({
     onInputChange
 }) => {
 
-    // const popoutSearchRef = useRef(null);
-    // const hasFocused = useRef(false);
-
-    // useEffect(() => {
-    //     if (popoutSearchRef.current) {
-    //         popoutSearchRef.current.focus();
-    //         popoutSearchRef.current.setSelectionRange(0, 0);
-    //         popoutSearchRef.current.scrollLeft = 0;
-    //         hasFocused.current = true;
-    //     }
-    // }, [])
-
     return (    
         <>
             <TogglePopout
@@ -36,7 +24,7 @@ export const PopoutMenuSearch = ({
                     <Input
                         id={`popout-search`}
                         label={label}
-                        style={{height: 31, border: "1px solid lightgray", borderRadius: 2.5}}
+                        style={{height: 31, border: "1px solid #c8c8c8", borderRadius: 2.5}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
                         placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}

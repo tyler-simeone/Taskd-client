@@ -42,7 +42,7 @@ export const Input = forwardRef(({
                                 className="pb-input-clr--btn"
                                 onClick={xIconOnClick}
                             >
-                                <X style={{width: 22, height: 22}} />
+                                <X style={{width: 20, height: 20}} />
                             </button>
                     </div>
                 </>
