@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: #d2d4d982;
     z-index: 1000;
   }
   
@@ -26,11 +26,11 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 260px;
     width: 360px;
     height: 100%;
     background: #fff;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1); */
+    border-left: 1px solid lightgray;
     transform: translateX(100%);
     transition: transform 0.2s ease-in-out;
     z-index: 1001;
