@@ -1,13 +1,20 @@
 .task--container {
     min-height: 50px;
-    padding-bottom: 10.5px !important;
+
+    /* padding-bottom: 10.5px !important;
     padding-right: 15px !important;
     padding-top: 6px !important;
-    padding-left: 13px !important;
+    padding-left: 13px !important; */
+
+    padding-bottom: 10px !important;
+    padding-right: 15px !important;
+    padding-top: 4px !important;
+    padding-left: 11px !important;
+
     border-radius: 4px !important;
     margin-bottom: 7.5px !important;
     background-color: #fff !important;
-    border: 1px solid #b7b9bc !important;
+    border: 1px solid #c3c3c3 !important;
 }
 .task--container:hover { 
     cursor: pointer !important;
@@ -25,15 +32,10 @@
     letter-spacing: 0.1px;
     margin-top: 4.5px;
     overflow-wrap: break-word;
-    /* color: #4e5053; */
-    /* color: #525457; */
-    /* color: #525456; */
-    color: #4f5152;
-    /* color: #4f5052; */
+    color: #3a3a3a;
     margin-bottom: 2.5px;
 }
 
 .description-not-provided--lbl {
     font-size: 15.5px;
-    /* color: #81848a; */
 }

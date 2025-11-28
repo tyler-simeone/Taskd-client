@@ -26,14 +26,9 @@
 
 .more-options-li {
     list-style-type: none;
-    text-align: left;
-    padding: 8px 16px;
-    padding-left: 26px;
-    padding-left: 14px;
-    margin: 0 auto;
+    padding: 10px 24px;
     font-size: 15.5px;
-    color: #646464;
-    color: #696969;
+    color: #3a3a3a;
 }
 .more-options-li:hover {
     cursor: pointer;

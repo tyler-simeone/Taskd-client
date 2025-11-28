@@ -14,8 +14,8 @@
     cursor: pointer;
 }
 .button:focus-visible {
-    outline: 3px solid rgba(0, 123, 255, 0.6); /* Creates the focus ring */
-    outline-offset: 0.5px; /* Adds whitespace between the button and the outline */
+    outline: 2.5px solid #448dd7;
+    outline-offset: 1px;
 }
 .button.disabled {
     background-color: #ced4db;

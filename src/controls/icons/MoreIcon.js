@@ -39,8 +39,8 @@ export const MoreIcon = ({ options, idx }) => {
                     <div 
                         ref={ref}
                         style={{
-                            top: position.top,
-                            left: position.left,
+                            top: position.top-3,
+                            left: position.left-4,
                             position: 'absolute',
                             backgroundColor: "#fff",
                             borderRadius: 5.5,

@@ -8,9 +8,11 @@
 }
 
 .resource-to-delete {
-    color: #777;
-    color: #7f7f7f;
-    color: #757575;
+    /* color: #777;
+    color: #7f7f7f; 
+    color: #757575; */
+    color: #7b7b7b;
+    font-style: italic;
 }
 
 .confirm-delete-btns--container {

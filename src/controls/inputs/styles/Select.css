@@ -2,12 +2,11 @@
     outline: none;
     box-shadow: none;
     border: 1px solid rgb(0 0 0 / 20%);
-    border-radius: 3px;
+    border-radius: 2.5px;
     padding: 8px;
     min-width: 230px;
     font-size: 16.5px;
     font-size: 17px;
-    color: #000;
     color: #222;
     background-color: transparent;
     transition: outline 0.2s ease;

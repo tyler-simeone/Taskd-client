@@ -29,7 +29,7 @@ export const BurgerMenu = ({
       {/* Burger Icon */}
       <button className="burger-button" onClick={toggleMenu}>
         {/* ☰ */}
-        <Menu style={{width: 26, height: 26}} />
+        <Menu style={{width: 27, height: 27}} />
       </button>
 
       {/* Overlay */}
