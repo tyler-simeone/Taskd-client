@@ -90,7 +90,8 @@ export const TaskdLogo = ({ isAuthenticated, boardName, isLink, style }) => {
                 
                 {/* Editable Board Name */}
                 {boardName && (
-                    <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 17.5, lineHeight: "22px", color: "#b1b1b1"}}>
+                    // <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 17.5, lineHeight: "22px", color: "#b1b1b1"}}>
+                    <div style={{display: "flex", marginTop: 8.5, marginLeft: 2, fontSize: 17.5, lineHeight: "22px", color: "#959595"}}>
                         <p style={{margin: "0px 10px", marginBottom: 0}}>/</p>
                         {!isEdit ? (
                             <p style={{marginBottom: 0}} onClick={handleEdit}>{boardName}</p>

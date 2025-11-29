@@ -60,8 +60,11 @@ export const Column = ({
 
         try {
             var resp = await columnsClient.deleteColumn(columnId, userSession.userId);
-            if (resp)
+            console.log("deleteColumn resp: ", resp);
+            if (resp) {
+                console.log("Column deleted successfully");
                 handleRerender();
+            }
         } catch (err) {
             handleError(err, setError);
         } finally {
