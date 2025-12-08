@@ -64,8 +64,10 @@
 
   .modal-header {
     font-size: 21px;
+    font-size: 20.5px;
+    font-size: 20px;
     margin-left: 4px;
-    margin-right: 10px;
+    margin-right: 14px;
   }
 
   .form-err-msg {

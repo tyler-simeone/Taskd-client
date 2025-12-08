@@ -1,8 +1,9 @@
 .add-task-tag--container {
     display: flex;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
+    margin-bottom: 7px;
     margin-top: 2px;
-    width: 76px;
+    /* width: 76px; */
 }
 .add-task-tag--container.new-tag {
     margin-bottom: 0px;
@@ -13,9 +14,12 @@
 }
 
 .add-task-tag--lbl {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    color: #007add;
+    /* color: #007add; */
+    color: #2071c5;
+    color: #2376cc;
+    color: #2375c9;
     margin-top: 0;
     line-height: 18px;
 }

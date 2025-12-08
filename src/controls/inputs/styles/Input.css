@@ -11,6 +11,8 @@
     /* color: #656567; */
     color: #848484;
     color: #707070;
+    color: #6c6c6c;
+    color: #616161;
     letter-spacing: 0.1px;
     width: max-content;
     font-weight: 500;
@@ -28,7 +30,7 @@
     padding-right: 8px;
     letter-spacing: 0.2px;
     font-size: 16px;
-    background-color: #f8f8f8;
+    background-color: #f4f4f4;
     color: #000;
 }
 .pb-input:focus {
