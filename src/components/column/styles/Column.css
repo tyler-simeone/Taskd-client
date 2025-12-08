@@ -16,13 +16,14 @@
     justify-content: space-between;
     padding: 12px;
     padding-top: 1px;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
     text-align: center;
 }
 
 .column-header {
     font-size: 18.5px;
     font-size: 17.5px;
+    font-size: 18px;
     font-weight: 600;
     font-weight: 700;
     color: #000;

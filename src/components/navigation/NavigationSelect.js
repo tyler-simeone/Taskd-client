@@ -29,7 +29,7 @@ export const NavigationSelect = ({ selectedValue, options }) => {
                 handleSelectChange={handleSelectChange}
                 value={selectedValue}
                 placeholder={"No boards yet"}
-                style={{border: "1px solid rgb(0 0 0 / 18%)", padding: 6.5}}
+                style={{border: "1px solid rgb(0 0 0 / 19%)", padding: 6.5}}
             />
         </div>
     );
