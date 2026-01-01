@@ -48,7 +48,7 @@ export const MoreIcon = ({ options, idx }) => {
                             boxShadow: "0px 2px 3px 0px rgb(0 0 0 / 10%)",
                         }}      
                     >
-                        <ul style={{padding: "7px 0px", margin: "0 auto"}}>
+                        <ul style={{padding: "8px 0px", margin: "0 auto"}}>
                             {options && (
                                 options.map(option => (
                                     <li className="more-options-li" key={option.name} name={option.name} onClick={option.callback}>

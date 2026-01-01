@@ -24,7 +24,7 @@ export const PopoutMenuSearch = ({
                     <Input
                         id={`popout-search`}
                         label={label}
-                        style={{height: 31, border: "1px solid #c8c8c8", borderRadius: 2.5}}
+                        style={{height: 31, fontSize: 15}}
                         containerStyle={{marginBottom: 0}}
                         value={value}
                         placeholder={options && options.length > 0 ? placeholder : "No Tags Found"}
